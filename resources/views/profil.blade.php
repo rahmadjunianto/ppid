@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
             --kemenag-primary: #1e5631;
@@ -19,6 +19,7 @@
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
+            padding-top: 80px;
         }
 
         /* Header */
@@ -221,11 +222,11 @@
             .page-header h1 {
                 font-size: 2rem;
             }
-            
+
             .section-title {
                 font-size: 1.5rem;
             }
-            
+
             .card-header {
                 font-size: 0.9rem;
             }
@@ -233,71 +234,8 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <i class="bi bi-building"></i> PPID Kemenag Nganjuk
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/') }}">
-                            <i class="bi bi-house"></i> Beranda
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" id="profilDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-person-lines-fill"></i> Profil PPID
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ url('/profil') }}">Profil PPID</a></li>
-                            <li><a class="dropdown-item" href="#">Visi & Misi</a></li>
-                            <li><a class="dropdown-item" href="#">Struktur Organisasi</a></li>
-                            <li><a class="dropdown-item" href="#">Tugas & Fungsi</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="informasiDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-info-circle"></i> Informasi Publik
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Daftar Informasi Publik</a></li>
-                            <li><a class="dropdown-item" href="#">Informasi Berkala</a></li>
-                            <li><a class="dropdown-item" href="#">Informasi Serta Merta</a></li>
-                            <li><a class="dropdown-item" href="#">Informasi Setiap Saat</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="layananDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-gear"></i> Layanan Informasi
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Permohonan Informasi</a></li>
-                            <li><a class="dropdown-item" href="#">Pengajuan Keberatan</a></li>
-                            <li><a class="dropdown-item" href="#">Status Permohonan</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="standarDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-award"></i> Standar Layanan
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Maklumat Pelayanan</a></li>
-                            <li><a class="dropdown-item" href="#">SOP Layanan</a></li>
-                            <li><a class="dropdown-item" href="#">Biaya Layanan</a></li>
-                            <li><a class="dropdown-item" href="#">Waktu Layanan</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Include Navbar -->
+    @include('partials.navbar')
 
     <!-- Page Header -->
     <div class="page-header">
@@ -322,13 +260,13 @@
                     <i class="bi bi-info-circle"></i> Tentang PPID Kemenag
                 </h4>
                 <p class="mb-3">
-                    Dalam rangka memberikan pelayanan Informasi Publik sebagaimana diamanatkan dalam 
-                    Peraturan Pemerintah Nomor 61 Tahun 2010 tentang Pelaksanaan Undang-Undang Nomor 14 Tahun 2008 
-                    tentang Keterbukaan Informasi Publik, Menteri Agama menetapkan Pejabat Pengelola Informasi dan 
+                    Dalam rangka memberikan pelayanan Informasi Publik sebagaimana diamanatkan dalam
+                    Peraturan Pemerintah Nomor 61 Tahun 2010 tentang Pelaksanaan Undang-Undang Nomor 14 Tahun 2008
+                    tentang Keterbukaan Informasi Publik, Menteri Agama menetapkan Pejabat Pengelola Informasi dan
                     Dokumentasi (PPID) Kementerian Agama.
                 </p>
                 <p class="mb-0">
-                    PPID Utama maupun PPID Unit Kementerian Agama bertanggung jawab atas penyediaan, penyimpanan, 
+                    PPID Utama maupun PPID Unit Kementerian Agama bertanggung jawab atas penyediaan, penyimpanan,
                     pendokumentasian, pelayanan, dan pengamanan informasi publik.
                 </p>
             </div>
@@ -376,7 +314,7 @@
             <h2 class="section-title">
                 <i class="bi bi-diagram-3"></i> Struktur PPID Kementerian Agama
             </h2>
-            
+
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card">
@@ -390,7 +328,7 @@
                                 <h5><i class="bi bi-star"></i> PPID Utama</h5>
                                 <p>Biro Humas dan Komunikasi Publik Sekretariat Jenderal</p>
                             </div>
-                            
+
                             <div class="structure-item">
                                 <h5><i class="bi bi-building"></i> PPID Unit</h5>
                                 <ul class="structure-list">
@@ -404,7 +342,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-header">
@@ -417,7 +355,7 @@
                                 <h5><i class="bi bi-star"></i> Atasan PPID Kemenag</h5>
                                 <p>Sekretaris Jenderal</p>
                             </div>
-                            
+
                             <div class="structure-item">
                                 <h5><i class="bi bi-building"></i> Atasan PPID Unit</h5>
                                 <ul class="structure-list">
@@ -439,7 +377,7 @@
             <h2 class="section-title">
                 <i class="bi bi-geo-alt"></i> PPID Kementerian Agama Kabupaten Nganjuk
             </h2>
-            
+
             <div class="row">
                 <div class="col-lg-8">
                     <div class="card">
@@ -463,9 +401,9 @@
                                     <p>Kepala Kantor Kementerian Agama<br>Kabupaten Nganjuk</p>
                                 </div>
                             </div>
-                            
+
                             <hr>
-                            
+
                             <h6 class="text-primary">
                                 <i class="bi bi-bullseye"></i> Tugas dan Tanggung Jawab
                             </h6>
@@ -479,7 +417,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-header">
@@ -494,21 +432,21 @@
                                 </h6>
                                 <p class="small">Jl. Raya Surabaya-Madiun KM. 45<br>Nganjuk, Jawa Timur</p>
                             </div>
-                            
+
                             <div class="mb-3">
                                 <h6 class="text-primary">
                                     <i class="bi bi-telephone"></i> Telepon
                                 </h6>
                                 <p class="small">(0358) 321175</p>
                             </div>
-                            
+
                             <div class="mb-3">
                                 <h6 class="text-primary">
                                     <i class="bi bi-envelope"></i> Email
                                 </h6>
                                 <p class="small">ppid@kemenagnganjuk.id</p>
                             </div>
-                            
+
                             <div>
                                 <h6 class="text-primary">
                                     <i class="bi bi-clock"></i> Jam Layanan
@@ -528,8 +466,8 @@
                     <i class="bi bi-book"></i> Pedoman Layanan Informasi Publik
                 </h4>
                 <p class="mb-0">
-                    Agar pelaksanaan keterbukaan informasi publik di satuan kerja pusat dan daerah berjalan baik, 
-                    ditetapkan <strong>KMA Nomor 92 Tahun 2019</strong> tentang Pedoman Layanan Informasi Publik 
+                    Agar pelaksanaan keterbukaan informasi publik di satuan kerja pusat dan daerah berjalan baik,
+                    ditetapkan <strong>KMA Nomor 92 Tahun 2019</strong> tentang Pedoman Layanan Informasi Publik
                     bagi PPID dan Atasan PPID Kementerian Agama.
                 </p>
             </div>

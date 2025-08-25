@@ -27,6 +27,7 @@
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
+            padding-top: 80px;
         }
 
         .navbar-kemenag {
@@ -362,88 +363,8 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-kemenag fixed-top">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23ffd700'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='%231e5631' font-family='Arial' font-size='20' font-weight='bold'%3EPPID%3C/text%3E%3C/svg%3E" alt="PPID Logo" class="me-2">
-                <span class="fw-bold">PPID Kemenag Nganjuk</span>
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#beranda">Beranda</a>
-                    </li>
-
-                    <!-- A. Profil PPID -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            Profil PPID
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ url('/profil') }}"><i class="bi bi-info-circle me-2"></i>Profil PPID</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-person-badge me-2"></i>Profil Pejabat</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-eye me-2"></i>Visi dan Misi</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-diagram-3 me-2"></i>Struktur Organisasi</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-list-task me-2"></i>Tugas dan Fungsi</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- B. Informasi Publik -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            Informasi Publik
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-calendar-check me-2"></i>Informasi Berkala</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-exclamation-triangle me-2"></i>Informasi Serta Merta</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-clock me-2"></i>Informasi Tersedia Setiap Saat</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- C. Layanan Informasi -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            Layanan Informasi
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-text me-2"></i>Tata Cara Permohonan Informasi</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-x me-2"></i>Tata Cara Pengajuan Keberatan</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-shield-check me-2"></i>Tata Cara Penyelesaian Sengketa</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>SOP Layanan Informasi</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-megaphone me-2"></i>Standar Pengumuman Informasi</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-chat-square-dots me-2"></i>Tata Cara Pengaduan Masyarakat</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-question-circle me-2"></i>Alasan Pengajuan Keberatan</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- D. Standar Layanan -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            Standar Layanan
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-award me-2"></i>Maklumat Pelayanan</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-calendar3 me-2"></i>Jadwal Pelayanan</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-currency-dollar me-2"></i>Biaya/Tarif Layanan</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-star me-2"></i>Standar Pelayanan</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-compass me-2"></i>Arah Kebijakan Layanan</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-graph-up-arrow me-2"></i>Strategi Pembinaan, Pengawasan, Evaluasi, dan Monitoring</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-telephone me-1"></i>Kontak</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Include Navbar -->
+    @include('partials.navbar')
 
     <!-- Hero Slideshow Section -->
     <section class="hero-section" id="beranda">

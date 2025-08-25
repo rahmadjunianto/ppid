@@ -24,3 +24,7 @@ Route::get('/beranda', function () {
 Route::get('/profil', function () {
     return view('profil');
 });
+
+Route::get('/profil-pejabat', function () {
+    return view('profil-pejabat');
+});

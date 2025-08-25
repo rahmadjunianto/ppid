@@ -27,7 +27,7 @@
                         <li><a class="dropdown-item {{ request()->is('profil-pejabat') ? 'active' : '' }}" href="{{ url('/profil-pejabat') }}">
                             <i class="bi bi-person-badge me-2"></i>Profil Pejabat
                         </a></li>
-                        <li><a class="dropdown-item" href="#">
+                        <li><a class="dropdown-item {{ request()->is('visi-misi') ? 'active' : '' }}" href="{{ url('/visi-misi') }}">
                             <i class="bi bi-eye me-2"></i>Visi dan Misi
                         </a></li>
                         <li><a class="dropdown-item" href="#">

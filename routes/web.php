@@ -28,3 +28,7 @@ Route::get('/profil', function () {
 Route::get('/profil-pejabat', function () {
     return view('profil-pejabat');
 });
+
+Route::get('/visi-misi', function () {
+    return view('visi-misi');
+});

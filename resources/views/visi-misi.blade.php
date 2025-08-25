@@ -395,6 +395,9 @@
     <div class="container">
         <!-- Introduction -->
         <div class="content-section">
+            <div class="text-center mb-4">
+                <img src="{{ asset('visi-misi.webp') }}" alt="Komitmen Pelayanan PPID" class="img-fluid rounded shadow" style="max-width: 600px; height: auto;">
+            </div>
             <div class="commitment-box">
                 <h4>📢 Komitmen Pelayanan PPID</h4>
                 <p>

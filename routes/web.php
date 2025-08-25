@@ -32,3 +32,11 @@ Route::get('/profil-pejabat', function () {
 Route::get('/visi-misi', function () {
     return view('visi-misi');
 });
+
+Route::get('/tugas-fungsi', function () {
+    return view('tugas-fungsi');
+});
+
+Route::get('/struktur-organisasi', function () {
+    return view('struktur-organisasi');
+});

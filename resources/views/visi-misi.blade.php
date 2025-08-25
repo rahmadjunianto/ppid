@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
             --kemenag-primary: #1e5631;
@@ -349,23 +349,23 @@
             .page-header h1 {
                 font-size: 2rem;
             }
-            
+
             .section-title {
                 font-size: 1.5rem;
             }
-            
+
             .hero-card {
                 padding: 2rem 1.5rem;
             }
-            
+
             .hero-title {
                 font-size: 1.5rem;
             }
-            
+
             .hero-content {
                 font-size: 1rem;
             }
-            
+
             body {
                 padding-top: 70px;
             }
@@ -398,7 +398,7 @@
             <div class="commitment-box">
                 <h4>📢 Komitmen Pelayanan PPID</h4>
                 <p>
-                    Visi, Misi, dan Motto PPID Kementerian Agama Kabupaten Nganjuk telah kami tetapkan sebagai 
+                    Visi, Misi, dan Motto PPID Kementerian Agama Kabupaten Nganjuk telah kami tetapkan sebagai
                     komitmen dalam memberikan pelayanan informasi yang akuntabel dan transparan kepada masyarakat.
                 </p>
             </div>
@@ -416,8 +416,8 @@
                         <div class="hero-content">
                             <strong>Terwujudnya Pelayanan Informasi yang Akuntabel dan Transparan</strong>
                             <br><br>
-                            Mewujudkan pelayanan informasi publik yang dapat dipertanggungjawabkan, 
-                            mudah diakses, dan terbuka bagi seluruh masyarakat sesuai dengan 
+                            Mewujudkan pelayanan informasi publik yang dapat dipertanggungjawabkan,
+                            mudah diakses, dan terbuka bagi seluruh masyarakat sesuai dengan
                             prinsip-prinsip keterbukaan informasi publik.
                         </div>
                     </div>
@@ -430,7 +430,7 @@
             <h2 class="section-title">
                 <i class="bi bi-bullseye"></i> Misi PPID
             </h2>
-            
+
             <div class="row">
                 <div class="col-lg-8">
                     <div class="misi-item">
@@ -440,7 +440,7 @@
                             <p>Memberikan pelayanan informasi publik yang cepat dalam merespon, tepat dalam menyajikan informasi, dan transparan dalam proses pelayanan kepada masyarakat.</p>
                         </div>
                     </div>
-                    
+
                     <div class="misi-item">
                         <div class="misi-number">2</div>
                         <div class="misi-content">
@@ -448,7 +448,7 @@
                             <p>Mengembangkan sumber daya manusia PPID yang memiliki kompetensi, integritas, dan profesionalisme dalam mengelola dan melayani informasi publik.</p>
                         </div>
                     </div>
-                    
+
                     <div class="misi-item">
                         <div class="misi-number">3</div>
                         <div class="misi-content">
@@ -457,7 +457,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-4">
                     <div class="row">
                         <div class="col-12">
@@ -469,7 +469,7 @@
                                 <p>Respon maksimal 24 jam untuk setiap permohonan informasi</p>
                             </div>
                         </div>
-                        
+
                         <div class="col-12">
                             <div class="value-item">
                                 <div class="value-icon">
@@ -479,7 +479,7 @@
                                 <p>Informasi akurat sesuai kebutuhan pemohon</p>
                             </div>
                         </div>
-                        
+
                         <div class="col-12">
                             <div class="value-item">
                                 <div class="value-icon">
@@ -489,7 +489,7 @@
                                 <p>Proses terbuka dan dapat dipertanggungjawabkan</p>
                             </div>
                         </div>
-                        
+
                         <div class="col-12">
                             <div class="value-item">
                                 <div class="value-icon">
@@ -516,7 +516,7 @@
                         <div class="hero-content">
                             <strong>"Melayani dengan Ikhlas"</strong>
                             <br><br>
-                            Memberikan pelayanan informasi publik dengan hati yang tulus, 
+                            Memberikan pelayanan informasi publik dengan hati yang tulus,
                             penuh dedikasi, dan komitmen untuk kepentingan masyarakat.
                         </div>
                     </div>
@@ -529,7 +529,7 @@
             <h2 class="section-title">
                 <i class="bi bi-gem"></i> Nilai-Nilai dan Prinsip Pelayanan
             </h2>
-            
+
             <div class="row">
                 <div class="col-md-3">
                     <div class="value-item">
@@ -540,7 +540,7 @@
                         <p>Konsisten dalam menjalankan tugas dengan jujur dan dapat dipercaya</p>
                     </div>
                 </div>
-                
+
                 <div class="col-md-3">
                     <div class="value-item">
                         <div class="value-icon">
@@ -550,7 +550,7 @@
                         <p>Melakukan tugas dengan standar kualitas tinggi dan keahlian yang memadai</p>
                     </div>
                 </div>
-                
+
                 <div class="col-md-3">
                     <div class="value-item">
                         <div class="value-icon">
@@ -560,7 +560,7 @@
                         <p>Tanggap terhadap kebutuhan masyarakat akan informasi publik</p>
                     </div>
                 </div>
-                
+
                 <div class="col-md-3">
                     <div class="value-item">
                         <div class="value-icon">
@@ -578,10 +578,10 @@
             <div class="commitment-box">
                 <h4>🎯 Komitmen PPID Kemenag Kabupaten Nganjuk</h4>
                 <p>
-                    Kami berkomitmen untuk terus meningkatkan kualitas pelayanan informasi publik 
-                    melalui inovasi, teknologi, dan pengembangan SDM yang berkelanjutan. 
-                    Bersama-sama mewujudkan <strong>#PPIDKemenag</strong> yang 
-                    <strong>#MelayaniDenganIkhlas</strong> untuk <strong>#KeterbukaanInformasiPublik</strong> 
+                    Kami berkomitmen untuk terus meningkatkan kualitas pelayanan informasi publik
+                    melalui inovasi, teknologi, dan pengembangan SDM yang berkelanjutan.
+                    Bersama-sama mewujudkan <strong>#PPIDKemenag</strong> yang
+                    <strong>#MelayaniDenganIkhlas</strong> untuk <strong>#KeterbukaanInformasiPublik</strong>
                     dan mendukung <strong>#ZonaIntegritas</strong> Kementerian Agama.
                 </p>
             </div>

@@ -30,10 +30,10 @@
                         <li><a class="dropdown-item {{ request()->is('visi-misi') ? 'active' : '' }}" href="{{ url('/visi-misi') }}">
                             <i class="bi bi-eye me-2"></i>Visi dan Misi
                         </a></li>
-                        <li><a class="dropdown-item" href="#">
+                        <li><a class="dropdown-item {{ request()->is('struktur-organisasi') ? 'active' : '' }}" href="{{ url('/struktur-organisasi') }}">
                             <i class="bi bi-diagram-3 me-2"></i>Struktur Organisasi
                         </a></li>
-                        <li><a class="dropdown-item" href="#">
+                        <li><a class="dropdown-item {{ request()->is('tugas-fungsi') ? 'active' : '' }}" href="{{ url('/tugas-fungsi') }}">
                             <i class="bi bi-list-task me-2"></i>Tugas dan Fungsi
                         </a></li>
                     </ul>

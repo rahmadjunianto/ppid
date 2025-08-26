@@ -79,12 +79,17 @@
             position: relative;
             height: 60vh;
             overflow: hidden;
+            min-height: 400px;
+            max-height: 600px;
         }
 
         .hero-image {
             height: 60vh;
+            min-height: 400px;
+            max-height: 600px;
             object-fit: cover;
             object-position: center;
+            width: 100%;
         }        .hero-slide::before {
             content: '';
             position: absolute;
@@ -153,11 +158,15 @@
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .hero-image {
-                height: 40vh;
+                height: 35vh;
+                min-height: 250px;
+                max-height: 300px;
             }
 
             .hero-section {
-                height: 40vh;
+                height: 35vh;
+                min-height: 250px;
+                max-height: 300px;
             }
 
             .carousel-control-prev,
@@ -168,28 +177,71 @@
             }
 
             .carousel-indicators {
-                bottom: 20px;
+                bottom: 15px;
             }
 
             .carousel-indicators button {
-                width: 12px;
-                height: 12px;
+                width: 10px;
+                height: 10px;
                 margin: 0 3px;
             }
         }
 
         @media (max-width: 576px) {
             .hero-image {
-                height: 35vh;
+                height: 30vh;
+                min-height: 200px;
+                max-height: 250px;
             }
 
             .hero-section {
-                height: 35vh;
+                height: 30vh;
+                min-height: 200px;
+                max-height: 250px;
             }
 
             .carousel-control-prev,
             .carousel-control-next {
-                display: none;
+                width: 40px;
+                height: 40px;
+                margin: 0 5px;
+            }
+
+            .carousel-indicators {
+                bottom: 10px;
+            }
+
+            .carousel-indicators button {
+                width: 8px;
+                height: 8px;
+                margin: 0 2px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-image {
+                height: 25vh;
+                min-height: 180px;
+                max-height: 220px;
+            }
+
+            .hero-section {
+                height: 25vh;
+                min-height: 180px;
+                max-height: 220px;
+            }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 35px;
+                height: 35px;
+                margin: 0 5px;
+            }
+
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+                width: 18px;
+                height: 18px;
             }
         }
 
@@ -202,6 +254,57 @@
         .carousel-item-next,
         .carousel-item-prev {
             display: block;
+        }
+
+        /* Ensure carousel fills container properly */
+        #heroCarousel {
+            height: 100%;
+        }
+
+        .carousel-inner {
+            height: 100%;
+        }
+
+        .carousel-item {
+            height: 100%;
+        }
+
+        /* Fix for small screens */
+        @media (max-width: 375px) {
+            .hero-image {
+                height: 22vh;
+                min-height: 160px;
+                max-height: 200px;
+            }
+
+            .hero-section {
+                height: 22vh;
+                min-height: 160px;
+                max-height: 200px;
+            }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 30px;
+                height: 30px;
+                margin: 0 3px;
+            }
+
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+                width: 15px;
+                height: 15px;
+            }
+
+            .carousel-indicators {
+                bottom: 8px;
+            }
+
+            .carousel-indicators button {
+                width: 6px;
+                height: 6px;
+                margin: 0 1px;
+            }
         }
 
         .service-card {
@@ -372,7 +475,6 @@
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
 
             <div class="carousel-inner">
@@ -386,18 +488,10 @@
 
                 <!-- Slide 2 -->
                 <div class="carousel-item">
-                    <img src="https://ppid.kemenagnganjuk.id/wp-content/uploads/2025/08/1753760691_14395792b5a7ede2dd62.png"
+                    <img src="img2.webp"
                          class="d-block w-100 hero-image"
                          alt="PPID Kemenag Nganjuk"
                          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1800 600\'%3E%3Cdefs%3E%3ClinearGradient id=\'grad2\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%232d8f47;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%231e5631;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'1800\' height=\'600\' fill=\'url(%23grad2)\'/%3E%3Ctext x=\'900\' y=\'250\' text-anchor=\'middle\' fill=\'white\' font-family=\'Arial\' font-size=\'48\' font-weight=\'bold\'%3ELayanan Informasi%3C/text%3E%3Ctext x=\'900\' y=\'320\' text-anchor=\'middle\' fill=\'%23ffd700\' font-family=\'Arial\' font-size=\'24\'%3ETransparan & Akuntabel%3C/text%3E%3C/svg%3E';">
-                </div>
-
-                <!-- Slide 3 -->
-                <div class="carousel-item">
-                    <img src="https://ppid.kemenagnganjuk.id/wp-content/uploads/2025/08/1753840064_2a3d67b4c23ec708ddf0.jpg"
-                         class="d-block w-100 hero-image"
-                         alt="PPID Kemenag Nganjuk"
-                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1800 600\'%3E%3Cdefs%3E%3ClinearGradient id=\'grad3\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%23ffd700;stop-opacity:0.9\' /%3E%3Cstop offset=\'50%25\' style=\'stop-color:%232d8f47;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%231e5631;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'1800\' height=\'600\' fill=\'url(%23grad3)\'/%3E%3Ctext x=\'900\' y=\'250\' text-anchor=\'middle\' fill=\'white\' font-family=\'Arial\' font-size=\'48\' font-weight=\'bold\'%3EVisi & Misi%3C/text%3E%3Ctext x=\'900\' y=\'320\' text-anchor=\'middle\' fill=\'white\' font-family=\'Arial\' font-size=\'24\'%3EKemenag Nganjuk%3C/text%3E%3C/svg%3E';">
                 </div>
 
             </div>
@@ -687,12 +781,27 @@
         document.addEventListener('DOMContentLoaded', function() {
             const heroCarousel = document.querySelector('#heroCarousel');
             if (heroCarousel) {
-                const carousel = new bootstrap.Carousel(heroCarousel, {
-                    interval: 5000,
-                    ride: 'carousel',
-                    pause: 'hover',
-                    wrap: true
-                });
+                // Pastikan Bootstrap carousel tersedia
+                if (typeof bootstrap !== 'undefined' && bootstrap.Carousel) {
+                    const carousel = new bootstrap.Carousel(heroCarousel, {
+                        interval: 5000,
+                        ride: 'carousel',
+                        pause: 'hover',
+                        wrap: true
+                    });
+                    
+                    // Debug: log when carousel is initialized
+                    console.log('Hero carousel initialized successfully');
+                    
+                    // Manual trigger untuk memastikan carousel berjalan
+                    setTimeout(() => {
+                        carousel.cycle();
+                    }, 1000);
+                } else {
+                    console.error('Bootstrap carousel not available');
+                }
+            } else {
+                console.error('Hero carousel element not found');
             }
         });
 

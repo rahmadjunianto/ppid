@@ -419,36 +419,68 @@
         <div class="container">
             <div class="quick-access">
                 <div class="row">
-                    <div class="col-md-3 col-6">
-                        <a href="#" class="quick-access-item">
+                    <div class="col-md-3 col-6 mb-3">
+                        <a href="https://ptspjatim.kemenag.go.id/index.php/layananv2/sekjen/layanan-permohonan-informasi" target="_blank" class="quick-access-item">
                             <div class="service-icon mx-auto">
                                 <i class="bi bi-file-earmark-text text-white fs-4"></i>
                             </div>
                             <h6 class="fw-semibold">Permohonan Informasi</h6>
                         </a>
                     </div>
-                    <div class="col-md-3 col-6">
+                    <div class="col-md-3 col-6 mb-3">
                         <a href="#" class="quick-access-item">
                             <div class="service-icon mx-auto">
-                                <i class="bi bi-graph-up text-white fs-4"></i>
+                                <i class="bi bi-clipboard-check text-white fs-4"></i>
                             </div>
-                            <h6 class="fw-semibold">Statistik Layanan</h6>
+                            <h6 class="fw-semibold">Isi Survey</h6>
                         </a>
                     </div>
-                    <div class="col-md-3 col-6">
+                    <div class="col-md-3 col-6 mb-3">
                         <a href="#" class="quick-access-item">
                             <div class="service-icon mx-auto">
                                 <i class="bi bi-calendar-event text-white fs-4"></i>
                             </div>
-                            <h6 class="fw-semibold">Agenda Kegiatan</h6>
+                            <h6 class="fw-semibold">Daftar Agenda</h6>
                         </a>
                     </div>
-                    <div class="col-md-3 col-6">
+                    <div class="col-md-3 col-6 mb-3">
+                        <a href="#" class="quick-access-item">
+                            <div class="service-icon mx-auto">
+                                <i class="bi bi-list-ul text-white fs-4"></i>
+                            </div>
+                            <h6 class="fw-semibold">Daftar Informasi Publik</h6>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
                         <a href="#" class="quick-access-item">
                             <div class="service-icon mx-auto">
                                 <i class="bi bi-people text-white fs-4"></i>
                             </div>
                             <h6 class="fw-semibold">Data Pegawai</h6>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <a href="#" class="quick-access-item">
+                            <div class="service-icon mx-auto">
+                                <i class="bi bi-buildings text-white fs-4"></i>
+                            </div>
+                            <h6 class="fw-semibold">Satuan Kerja</h6>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <a href="#" class="quick-access-item">
+                            <div class="service-icon mx-auto">
+                                <i class="bi bi-book text-white fs-4"></i>
+                            </div>
+                            <h6 class="fw-semibold">Daftar Regulasi</h6>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <a href="#" class="quick-access-item">
+                            <div class="service-icon mx-auto">
+                                <i class="bi bi-chat-square-dots text-white fs-4"></i>
+                            </div>
+                            <h6 class="fw-semibold">Saran dan Kritik</h6>
                         </a>
                     </div>
                 </div>
@@ -638,7 +670,7 @@
             </div>
 
             <div class="text-center mt-4">
-                <a href="#" class="btn btn-kemenag text-white btn-lg">Lihat Semua Berita</a>
+                <a href="#" class="btn btn-kemenag text-white btn-lg">Lihat Semua Artikel</a>
             </div>
         </div>
     </section>

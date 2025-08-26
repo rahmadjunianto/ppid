@@ -26,7 +26,7 @@
                 <i class="fas fa-expand-arrows-alt"></i>
             </a>
         </li>
-        
+
         <!-- Notifications -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
@@ -53,7 +53,7 @@
         <!-- User Menu -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name ?? 'Admin') }}&background=1e5631&color=fff&size=32" 
+                <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name ?? 'Admin') }}&background=1e5631&color=fff&size=32"
                      class="img-circle" alt="User Image" style="width: 32px; height: 32px;">
                 <span class="d-none d-md-inline ml-1">{{ auth()->user()->name ?? 'Admin' }}</span>
             </a>

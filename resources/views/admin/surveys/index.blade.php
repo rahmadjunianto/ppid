@@ -1,29 +1,14 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Data Survey')
+@section('page-title', 'Data Survey')
 
-@section('content')
-<div class="content-wrapper">
-    <!-- Content Header -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Data Survey</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Data Survey</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+    <li class="breadcrumb-item active">Data Survey</li>
+@endsection
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
+@section('content')>
             
             <!-- Statistics Cards -->
             <div class="row mb-4">

@@ -163,4 +163,102 @@ class SurveyController extends Controller
 
         return view('admin.surveys.statistics', compact('statistics', 'monthlyStats'));
     }
+
+    /**
+     * Export surveys to Excel
+     */
+    public function export()
+    {
+        $surveys = Survey::latest()->get();
+
+        $headers = [
+            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'Content-Disposition' => 'attachment; filename="data-survey-' . date('Y-m-d') . '.csv"',
+        ];
+
+        $callback = function() use ($surveys) {
+            $file = fopen('php://output', 'w');
+            
+            // UTF-8 BOM for proper encoding in Excel
+            fprintf($file, chr(0xEF).chr(0xBB).chr(0xBF));
+            
+            // Headers
+            fputcsv($file, [
+                'No',
+                'Nama',
+                'Email', 
+                'No HP',
+                'Jenis Kelamin',
+                'Umur',
+                'Pendidikan',
+                'Pekerjaan',
+                'Alamat',
+                'Kepuasan Layanan',
+                'Kemudahan Akses',
+                'Kecepatan Respon',
+                'Kejelasan Informasi',
+                'Keramahan Petugas',
+                'Fasilitas Layanan',
+                'Kepuasan Keseluruhan',
+                'Rating Rata-rata',
+                'Saran & Masukan',
+                'Tanggal Submit'
+            ]);
+
+            // Data
+            foreach ($surveys as $index => $survey) {
+                $avgRating = collect([
+                    $survey->kepuasan_layanan,
+                    $survey->kemudahan_akses,
+                    $survey->kecepatan_respon,
+                    $survey->kejelasan_informasi,
+                    $survey->keramahan_petugas,
+                    $survey->fasilitas_layanan,
+                    $survey->kepuasan_keseluruhan
+                ])->avg();
+
+                fputcsv($file, [
+                    $index + 1,
+                    $survey->nama,
+                    $survey->email,
+                    $survey->no_hp,
+                    $survey->jenis_kelamin,
+                    $survey->umur,
+                    $survey->pendidikan,
+                    $survey->pekerjaan,
+                    $survey->alamat,
+                    $survey->kepuasan_layanan,
+                    $survey->kemudahan_akses,
+                    $survey->kecepatan_respon,
+                    $survey->kejelasan_informasi,
+                    $survey->keramahan_petugas,
+                    $survey->fasilitas_layanan,
+                    $survey->kepuasan_keseluruhan,
+                    number_format($avgRating, 2),
+                    $survey->saran_masukan,
+                    $survey->created_at->format('d/m/Y H:i:s')
+                ]);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    /**
+     * Remove the specified survey from storage.
+     */
+    public function destroy(Survey $survey)
+    {
+        try {
+            $survey->delete();
+            
+            return redirect()->route('admin.surveys.index')
+                           ->with('success', 'Survey berhasil dihapus.');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.surveys.index')
+                           ->with('error', 'Gagal menghapus survey: ' . $e->getMessage());
+        }
+    }
 }

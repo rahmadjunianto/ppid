@@ -378,7 +378,7 @@
             <div class="carousel-inner">
                 <!-- Slide 1 -->
                 <div class="carousel-item active">
-                    <img src="https://ppid.kemenagnganjuk.id/wp-content/uploads/2025/08/1753840064_2a3d67b4c23ec708ddf0.jpg"
+                    <img src="img1.webp"
                          class="d-block w-100 hero-image"
                          alt="PPID Kemenag Nganjuk"
                          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1800 600\'%3E%3Cdefs%3E%3ClinearGradient id=\'grad1\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%231e5631;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%232d8f47;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'1800\' height=\'600\' fill=\'url(%23grad1)\'/%3E%3Ctext x=\'900\' y=\'250\' text-anchor=\'middle\' fill=\'white\' font-family=\'Arial\' font-size=\'48\' font-weight=\'bold\'%3EPPID KEMENAG NGANJUK%3C/text%3E%3Ctext x=\'900\' y=\'320\' text-anchor=\'middle\' fill=\'%23ffd700\' font-family=\'Arial\' font-size=\'24\'%3EKabupaten Nganjuk%3C/text%3E%3C/svg%3E';">

@@ -46,17 +46,17 @@
                         <div class="d-flex mb-2">
                             <i class="bi bi-geo-alt-fill me-2 mt-1"></i>
                             <div>
-                                <p class="mb-0">Jalan Raya Nganjuk</p>
+                                <p class="mb-0">Jalan Dermojoyo 22, Payaman, Kec. Nganjuk</p>
                                 <p class="mb-0">Kabupaten Nganjuk, Jawa Timur</p>
                             </div>
                         </div>
                         <div class="d-flex mb-2">
                             <i class="bi bi-telephone-fill me-2"></i>
-                            <p class="mb-0">(0358) 521234</p>
+                            <p class="mb-0">0821-3233-9933</p>
                         </div>
                         <div class="d-flex mb-2">
                             <i class="bi bi-envelope-fill me-2"></i>
-                            <p class="mb-0">kemenagnganjuk@kemenag.go.id</p>
+                            <p class="mb-0">ppid.kemenagnganjuk@gmail.com</p>
                         </div>
                     </div>
                 </div>

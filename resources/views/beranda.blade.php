@@ -546,7 +546,7 @@
                         </a>
                     </div>
                     <div class="col-md-3 col-6 mb-3">
-                        <a href="#" class="quick-access-item">
+                        <a href="{{ route('pegawai.index') }}" class="quick-access-item">
                             <div class="service-icon mx-auto">
                                 <i class="bi bi-people text-white fs-4"></i>
                             </div>
@@ -789,10 +789,10 @@
                         pause: 'hover',
                         wrap: true
                     });
-                    
+
                     // Debug: log when carousel is initialized
                     console.log('Hero carousel initialized successfully');
-                    
+
                     // Manual trigger untuk memastikan carousel berjalan
                     setTimeout(() => {
                         carousel.cycle();

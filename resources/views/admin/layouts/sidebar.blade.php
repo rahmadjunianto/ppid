@@ -58,12 +58,43 @@
 
                 <!-- User Management -->
                 @if(auth()->user() && auth()->user()->role === 'admin')
-                <li class="nav-item {{ request()->routeIs('admin.users.*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                                </li>
+
+                <!-- Data Pegawai -->
+                <li class="nav-item {{ request()->routeIs('admin.pegawai.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.pegawai.*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                            User Management
-                            <i class="right fas fa-angle-left"></i>
+                            Data Pegawai
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.pegawai.index') }}" 
+                               class="nav-link {{ request()->routeIs('admin.pegawai.index') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Daftar Pegawai</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.pegawai.create') }}" 
+                               class="nav-link {{ request()->routeIs('admin.pegawai.create') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tambah Pegawai</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                @if(auth()->user() && auth()->user()->role === 'admin')
+                <!-- User Management -->
+                <li class="nav-item {{ request()->routeIs('admin.users.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-user-cog"></i>
+                        <p>
+                            Manajemen User
+                            <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -81,6 +112,7 @@
                         </li>
                     </ul>
                 </li>
+                @endif
                 @endif
 
                 <!-- Settings -->

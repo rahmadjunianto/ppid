@@ -46,6 +46,8 @@ Route::get('/struktur-organisasi', function () {
     return view('struktur-organisasi');
 });
 
+Route::get('/pegawai', [App\Http\Controllers\PegawaiController::class, 'index'])->name('pegawai.index');
+
 // Survey Routes
 Route::prefix('survey')->name('survey.')->group(function () {
     Route::get('/', [SurveyController::class, 'index'])->name('index');
@@ -58,13 +60,6 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-// Public Article Routes
-Route::prefix('artikel')->name('articles.')->group(function () {
-    Route::get('/', [ArticleController::class, 'index'])->name('index');
-    Route::get('/kategori/{category:slug}', [ArticleController::class, 'category'])->name('category');
-    Route::get('/jenis/{type}', [ArticleController::class, 'type'])->name('type');
-    Route::get('/{article:slug}', [ArticleController::class, 'show'])->name('show');
-});
 
 // Admin Routes
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
@@ -75,15 +70,31 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');
-    
+
     // Survey Management
     Route::prefix('surveys')->name('surveys.')->group(function () {
         Route::get('/', [AdminSurveyController::class, 'index'])->name('index');
-        Route::get('/statistics', [AdminSurveyController::class, 'statistics'])->name('statistics');
-        Route::get('/export', [AdminSurveyController::class, 'export'])->name('export');
-        Route::get('/{survey}', [AdminSurveyController::class, 'show'])->name('show');
-        Route::delete('/{survey}', [AdminSurveyController::class, 'destroy'])->name('destroy');
+        // Route::get('/statistics', [AdminSurveyController::class, 'statistics'])->name('statistics');
+        // Route::get('/export', [AdminSurveyController::class, 'export'])->name('export');
+        // Route::get('/{survey}', [AdminSurveyController::class, 'show'])->name('show');
+        // Route::delete('/{survey}', [AdminSurveyController::class, 'destroy'])->name('destroy');
     });
+
+    // Pegawai Management
+    Route::prefix('pegawai')->name('pegawai.')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\PegawaiController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\Admin\PegawaiController::class, 'create'])->name('create');
+        Route::post('/', [App\Http\Controllers\Admin\PegawaiController::class, 'store'])->name('store');
+        Route::get('/{pegawai}', [App\Http\Controllers\Admin\PegawaiController::class, 'show'])->name('show');
+        Route::get('/{pegawai}/edit', [App\Http\Controllers\Admin\PegawaiController::class, 'edit'])->name('edit');
+        Route::put('/{pegawai}', [App\Http\Controllers\Admin\PegawaiController::class, 'update'])->name('update');
+        Route::delete('/{pegawai}', [App\Http\Controllers\Admin\PegawaiController::class, 'destroy'])->name('destroy');
+    });
+});
+
+// Public Pegawai Routes
+Route::prefix('pegawai')->name('pegawai.')->group(function () {
+    Route::get('/{pegawai}', [App\Http\Controllers\PegawaiController::class, 'show'])->name('show');
 });
 
 Auth::routes();

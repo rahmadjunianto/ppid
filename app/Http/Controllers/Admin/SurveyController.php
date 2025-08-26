@@ -32,13 +32,13 @@ class SurveyController extends Controller
                 $avgRating = $survey->getAverageRating();
                 return round($avgRating) == $request->rating;
             });
-            
+
             // Convert back to paginated collection
             $currentPage = $request->get('page', 1);
             $perPage = 15;
             $total = $surveys->count();
             $surveys = $surveys->slice(($currentPage - 1) * $perPage, $perPage);
-            
+
             $surveys = new \Illuminate\Pagination\LengthAwarePaginator(
                 $surveys->values(),
                 $total,
@@ -63,81 +63,81 @@ class SurveyController extends Controller
         return view('admin.surveys.show', compact('survey'));
     }
 
-    /**
-     * Remove the specified survey from storage.
-     */
-    public function destroy(Survey $survey)
-    {
-        $survey->delete();
+    // /**
+    //  * Remove the specified survey from storage.
+    //  */
+    // public function destroy(Survey $survey)
+    // {
+    //     $survey->delete();
 
-        return redirect()->route('admin.surveys.index')
-                        ->with('success', 'Data survey berhasil dihapus.');
-    }
+    //     return redirect()->route('admin.surveys.index')
+    //                     ->with('success', 'Data survey berhasil dihapus.');
+    // }
 
-    /**
-     * Export survey data to CSV
-     */
-    public function export()
-    {
-        $surveys = Survey::all();
-        
-        $headers = [
-            'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="survey-data-' . date('Y-m-d') . '.csv"',
-        ];
+    // /**
+    //  * Export survey data to CSV
+    //  */
+    // public function export()
+    // {
+    //     $surveys = Survey::all();
 
-        $callback = function() use ($surveys) {
-            $file = fopen('php://output', 'w');
-            
-            // Header CSV
-            fputcsv($file, [
-                'ID',
-                'Nama',
-                'Umur',
-                'Jenis Kelamin',
-                'No HP',
-                'Pendidikan',
-                'Pekerjaan',
-                'Kemudahan Akses',
-                'Kualitas Informasi',
-                'Kemudahan Permintaan',
-                'Ketepatan Waktu Jawab',
-                'Kelengkapan Informasi',
-                'Ketepatan Tanggap',
-                'Pelayanan Petugas',
-                'Rata-rata Rating',
-                'Saran Masukan',
-                'Tanggal Submit'
-            ]);
+    //     $headers = [
+    //         'Content-Type' => 'text/csv',
+    //         'Content-Disposition' => 'attachment; filename="survey-data-' . date('Y-m-d') . '.csv"',
+    //     ];
 
-            // Data
-            foreach ($surveys as $survey) {
-                fputcsv($file, [
-                    $survey->id,
-                    $survey->nama,
-                    $survey->umur,
-                    $survey->jenis_kelamin,
-                    $survey->no_hp,
-                    $survey->pendidikan,
-                    $survey->pekerjaan,
-                    $survey->kemudahan_akses_informasi,
-                    $survey->kualitas_informasi,
-                    $survey->kemudahan_permintaan,
-                    $survey->ketepatan_waktu_jawab,
-                    $survey->kelengkapan_informasi,
-                    $survey->ketepatan_tanggap,
-                    $survey->pelayanan_petugas,
-                    number_format($survey->getAverageRating(), 2),
-                    $survey->saran_masukan,
-                    $survey->created_at->format('Y-m-d H:i:s')
-                ]);
-            }
+    //     $callback = function() use ($surveys) {
+    //         $file = fopen('php://output', 'w');
 
-            fclose($file);
-        };
+    //         // Header CSV
+    //         fputcsv($file, [
+    //             'ID',
+    //             'Nama',
+    //             'Umur',
+    //             'Jenis Kelamin',
+    //             'No HP',
+    //             'Pendidikan',
+    //             'Pekerjaan',
+    //             'Kemudahan Akses',
+    //             'Kualitas Informasi',
+    //             'Kemudahan Permintaan',
+    //             'Ketepatan Waktu Jawab',
+    //             'Kelengkapan Informasi',
+    //             'Ketepatan Tanggap',
+    //             'Pelayanan Petugas',
+    //             'Rata-rata Rating',
+    //             'Saran Masukan',
+    //             'Tanggal Submit'
+    //         ]);
 
-        return response()->stream($callback, 200, $headers);
-    }
+    //         // Data
+    //         foreach ($surveys as $survey) {
+    //             fputcsv($file, [
+    //                 $survey->id,
+    //                 $survey->nama,
+    //                 $survey->umur,
+    //                 $survey->jenis_kelamin,
+    //                 $survey->no_hp,
+    //                 $survey->pendidikan,
+    //                 $survey->pekerjaan,
+    //                 $survey->kemudahan_akses_informasi,
+    //                 $survey->kualitas_informasi,
+    //                 $survey->kemudahan_permintaan,
+    //                 $survey->ketepatan_waktu_jawab,
+    //                 $survey->kelengkapan_informasi,
+    //                 $survey->ketepatan_tanggap,
+    //                 $survey->pelayanan_petugas,
+    //                 number_format($survey->getAverageRating(), 2),
+    //                 $survey->saran_masukan,
+    //                 $survey->created_at->format('Y-m-d H:i:s')
+    //             ]);
+    //         }
+
+    //         fclose($file);
+    //     };
+
+    //     return response()->stream($callback, 200, $headers);
+    // }
 
     /**
      * Show survey statistics dashboard
@@ -145,7 +145,7 @@ class SurveyController extends Controller
     public function statistics()
     {
         $statistics = Survey::getStatistics();
-        
+
         // Additional statistics
         $monthlyStats = Survey::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
                              ->whereYear('created_at', date('Y'))
@@ -178,15 +178,15 @@ class SurveyController extends Controller
 
         $callback = function() use ($surveys) {
             $file = fopen('php://output', 'w');
-            
+
             // UTF-8 BOM for proper encoding in Excel
             fprintf($file, chr(0xEF).chr(0xBB).chr(0xBF));
-            
+
             // Headers
             fputcsv($file, [
                 'No',
                 'Nama',
-                'Email', 
+                'Email',
                 'No HP',
                 'Jenis Kelamin',
                 'Umur',
@@ -253,7 +253,7 @@ class SurveyController extends Controller
     {
         try {
             $survey->delete();
-            
+
             return redirect()->route('admin.surveys.index')
                            ->with('success', 'Survey berhasil dihapus.');
         } catch (\Exception $e) {

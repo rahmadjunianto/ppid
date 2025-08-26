@@ -15,7 +15,7 @@ class CreateSurveysTable extends Migration
     {
         Schema::create('surveys', function (Blueprint $table) {
             $table->id();
-            
+
             // Biodata Responden
             $table->string('nama');
             $table->integer('umur');
@@ -23,7 +23,7 @@ class CreateSurveysTable extends Migration
             $table->string('no_hp');
             $table->string('pendidikan');
             $table->string('pekerjaan');
-            
+
             // Jawaban Survey (1-4 scale)
             $table->tinyInteger('kemudahan_akses_informasi'); // 1-4
             $table->tinyInteger('kualitas_informasi'); // 1-4
@@ -32,14 +32,14 @@ class CreateSurveysTable extends Migration
             $table->tinyInteger('kelengkapan_informasi'); // 1-4
             $table->tinyInteger('ketepatan_tanggap'); // 1-4
             $table->tinyInteger('pelayanan_petugas'); // 1-4
-            
+
             // Saran dan Masukan
             $table->text('saran_masukan')->nullable();
-            
+
             // Meta Data
             $table->ipAddress('ip_address')->nullable();
             $table->string('user_agent')->nullable();
-            
+
             $table->timestamps();
         });
     }

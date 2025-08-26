@@ -72,7 +72,7 @@ class Survey extends Model
     public static function getStatistics()
     {
         $total = self::count();
-        
+
         if ($total == 0) {
             return [
                 'total_responden' => 0,
@@ -95,7 +95,7 @@ class Survey extends Model
         $surveys = self::all();
         $totalRating = 0;
         $distribusi = [1 => 0, 2 => 0, 3 => 0, 4 => 0];
-        
+
         // Initialize question averages
         $questionTotals = [
             'kemudahan_akses_informasi' => 0,
@@ -110,12 +110,12 @@ class Survey extends Model
         foreach ($surveys as $survey) {
             $avgRating = $survey->getAverageRating();
             $totalRating += $avgRating;
-            
+
             $roundedRating = round($avgRating);
             if (isset($distribusi[$roundedRating])) {
                 $distribusi[$roundedRating]++;
             }
-            
+
             // Add to question totals
             foreach ($questionTotals as $question => $value) {
                 $questionTotals[$question] += $survey->{$question};

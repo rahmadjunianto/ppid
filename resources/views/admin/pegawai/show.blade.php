@@ -26,7 +26,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="card-body">
                     <table class="table table-bordered">
                         <tr>
@@ -74,10 +74,10 @@
                         </tr>
                     </table>
                 </div>
-                
+
                 <div class="card-footer">
-                    <form action="{{ route('admin.pegawai.destroy', $pegawai) }}" 
-                          method="POST" 
+                    <form action="{{ route('admin.pegawai.destroy', $pegawai) }}"
+                          method="POST"
                           style="display: inline-block;"
                           onsubmit="return confirm('Apakah Anda yakin ingin menghapus pegawai ini?')">
                         @csrf

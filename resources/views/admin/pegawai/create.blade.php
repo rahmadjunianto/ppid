@@ -31,11 +31,11 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="nama">Nama Lengkap <span class="text-danger">*</span></label>
-                                    <input type="text" 
-                                           class="form-control @error('nama') is-invalid @enderror" 
-                                           id="nama" 
-                                           name="nama" 
-                                           value="{{ old('nama') }}" 
+                                    <input type="text"
+                                           class="form-control @error('nama') is-invalid @enderror"
+                                           id="nama"
+                                           name="nama"
+                                           value="{{ old('nama') }}"
                                            required>
                                     @error('nama')
                                         <span class="invalid-feedback">{{ $message }}</span>
@@ -44,11 +44,11 @@
 
                                 <div class="form-group">
                                     <label for="jabatan">Jabatan <span class="text-danger">*</span></label>
-                                    <input type="text" 
-                                           class="form-control @error('jabatan') is-invalid @enderror" 
-                                           id="jabatan" 
-                                           name="jabatan" 
-                                           value="{{ old('jabatan') }}" 
+                                    <input type="text"
+                                           class="form-control @error('jabatan') is-invalid @enderror"
+                                           id="jabatan"
+                                           name="jabatan"
+                                           value="{{ old('jabatan') }}"
                                            required>
                                     @error('jabatan')
                                         <span class="invalid-feedback">{{ $message }}</span>
@@ -59,11 +59,11 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="golongan">Golongan</label>
-                                    <input type="text" 
-                                           class="form-control @error('golongan') is-invalid @enderror" 
-                                           id="golongan" 
-                                           name="golongan" 
-                                           value="{{ old('golongan') }}" 
+                                    <input type="text"
+                                           class="form-control @error('golongan') is-invalid @enderror"
+                                           id="golongan"
+                                           name="golongan"
+                                           value="{{ old('golongan') }}"
                                            placeholder="Contoh: III/c">
                                     @error('golongan')
                                         <span class="invalid-feedback">{{ $message }}</span>
@@ -72,11 +72,11 @@
 
                                 <div class="form-group">
                                     <label for="unit_kerja">Unit Kerja <span class="text-danger">*</span></label>
-                                    <input type="text" 
-                                           class="form-control @error('unit_kerja') is-invalid @enderror" 
-                                           id="unit_kerja" 
-                                           name="unit_kerja" 
-                                           value="{{ old('unit_kerja') }}" 
+                                    <input type="text"
+                                           class="form-control @error('unit_kerja') is-invalid @enderror"
+                                           id="unit_kerja"
+                                           name="unit_kerja"
+                                           value="{{ old('unit_kerja') }}"
                                            required>
                                     @error('unit_kerja')
                                         <span class="invalid-feedback">{{ $message }}</span>
@@ -85,11 +85,11 @@
 
                                 <div class="form-group">
                                     <label for="urutan">Urutan Tampil</label>
-                                    <input type="number" 
-                                           class="form-control @error('urutan') is-invalid @enderror" 
-                                           id="urutan" 
-                                           name="urutan" 
-                                           value="{{ old('urutan', 0) }}" 
+                                    <input type="number"
+                                           class="form-control @error('urutan') is-invalid @enderror"
+                                           id="urutan"
+                                           name="urutan"
+                                           value="{{ old('urutan', 0) }}"
                                            min="0">
                                     <small class="form-text text-muted">Urutan tampil di halaman publik (0 = paling atas).</small>
                                     @error('urutan')

@@ -248,11 +248,11 @@ $(document).ready(function() {
     // Delete confirmation with SweetAlert
     $(document).on('click', '.btn-delete', function(e) {
         e.preventDefault();
-        
+
         var form = $(this).closest('form');
         var title = $(this).data('title') || 'Apakah Anda yakin?';
         var text = $(this).data('text') || 'Data yang dihapus tidak dapat dikembalikan!';
-        
+
         Swal.fire({
             title: title,
             text: text,

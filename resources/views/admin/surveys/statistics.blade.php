@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')>
-            
+
             <!-- Back Button -->
             <div class="mb-3">
                 <a href="{{ route('admin.surveys.index') }}" class="btn btn-secondary">
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-success">
                         <div class="inner">
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-warning">
                         <div class="inner">
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-danger">
                         <div class="inner">
@@ -122,12 +122,12 @@
                                 $maxCount = max($statistics['distribusi_rating']);
                                 $ratingLabels = [
                                     1 => ['label' => 'Tidak Puas', 'color' => 'danger'],
-                                    2 => ['label' => 'Kurang Puas', 'color' => 'warning'], 
+                                    2 => ['label' => 'Kurang Puas', 'color' => 'warning'],
                                     3 => ['label' => 'Puas', 'color' => 'info'],
                                     4 => ['label' => 'Sangat Puas', 'color' => 'success']
                                 ];
                             @endphp
-                            
+
                             @foreach($statistics['distribusi_rating'] as $rating => $count)
                             <div class="mb-4">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
@@ -138,12 +138,12 @@
                                         {{ $ratingLabels[$rating]['label'] }}
                                     </h5>
                                     <span class="text-muted">
-                                        {{ $count }} responden 
+                                        {{ $count }} responden
                                         ({{ $statistics['total_responden'] > 0 ? round(($count / $statistics['total_responden']) * 100, 1) : 0 }}%)
                                     </span>
                                 </div>
                                 <div class="progress" style="height: 25px;">
-                                    <div class="progress-bar bg-{{ $ratingLabels[$rating]['color'] }}" 
+                                    <div class="progress-bar bg-{{ $ratingLabels[$rating]['color'] }}"
                                          style="width: {{ $maxCount > 0 ? ($count / $maxCount) * 100 : 0 }}%">
                                         {{ $count }}
                                     </div>
@@ -176,7 +176,7 @@
                                 $positivePercentage = round(($positiveResponse / $statistics['total_responden']) * 100, 1);
                                 $negativePercentage = round(($negativeResponse / $statistics['total_responden']) * 100, 1);
                             @endphp
-                            
+
                             <div class="row text-center">
                                 <div class="col-md-4">
                                     <div class="info-box bg-success">
@@ -188,7 +188,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-4">
                                     <div class="info-box bg-danger">
                                         <span class="info-box-icon"><i class="fas fa-frown"></i></span>
@@ -199,7 +199,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-4">
                                     <div class="info-box bg-info">
                                         <span class="info-box-icon"><i class="fas fa-chart-line"></i></span>

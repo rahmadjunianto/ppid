@@ -10,7 +10,7 @@ Telah berhasil dibuat admin panel menggunakan AdminLTE v3.2 untuk mengelola sist
 - **Fitur**:
   - Statistik total survey, survey hari ini, minggu ini, dan rating rata-rata
   - Grafik survey 7 hari terakhir (line chart)
-  - Grafik demografi responden (doughnut chart) 
+  - Grafik demografi responden (doughnut chart)
   - Tabel survey terbaru (10 data terakhir)
   - Analisis rating per kategori (bar chart)
 
@@ -25,7 +25,7 @@ Telah berhasil dibuat admin panel menggunakan AdminLTE v3.2 untuk mengelola sist
   - Statistik lengkap dengan berbagai chart
 
 ### 3. Layout & Components
-- **Navbar**: 
+- **Navbar**:
   - Notifikasi survey terbaru
   - User menu dengan profile dan logout
   - Link ke website publik
@@ -34,7 +34,7 @@ Telah berhasil dibuat admin panel menggunakan AdminLTE v3.2 untuk mengelola sist
   - Survey management dengan submenu
   - Search functionality
   - User profile section
-- **Footer**: 
+- **Footer**:
   - Copyright dan informasi versi
   - Total survey counter
 
@@ -83,7 +83,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::get('/', function () {
         return redirect()->route('admin.dashboard');
     });
-    
+
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');

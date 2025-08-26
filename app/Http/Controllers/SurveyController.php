@@ -75,7 +75,7 @@ class SurveyController extends Controller
             return redirect()->route('survey.index')
                            ->with('error', 'Silakan isi survey terlebih dahulu.');
         }
-        
+
         return view('survey.success');
     }
 
@@ -86,7 +86,7 @@ class SurveyController extends Controller
     {
         $statistics = Survey::getStatistics();
         $recentSurveys = Survey::latest()->take(10)->get();
-        
+
         return view('survey.results', compact('statistics', 'recentSurveys'));
     }
 }

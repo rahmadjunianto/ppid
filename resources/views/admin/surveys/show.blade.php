@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')>
-            
+
             <!-- Back Button -->
             <div class="mb-3">
                 <a href="{{ route('admin.surveys.index') }}" class="btn btn-secondary">
@@ -81,7 +81,7 @@
                                     'ketepatan_tanggap' => 'Ketepatan waktu dalam menjawab/menanggapi permintaan',
                                     'pelayanan_petugas' => 'Pelayanan petugas dalam melayani permintaan informasi'
                                 ];
-                                
+
                                 $ratings = [
                                     1 => ['label' => 'Tidak Baik', 'color' => 'danger'],
                                     2 => ['label' => 'Kurang Baik', 'color' => 'warning'],
@@ -105,7 +105,7 @@
                             @endforeach
 
                             <hr>
-                            
+
                             <!-- Average Rating -->
                             <div class="text-center">
                                 <h5>Rata-rata Rating</h5>
@@ -152,8 +152,8 @@
                             <button type="button" class="btn btn-danger" onclick="confirmDelete()">
                                 <i class="fas fa-trash"></i> Hapus Data Survey
                             </button>
-                            
-                            <form id="delete-form" action="{{ route('admin.surveys.destroy', $survey) }}" 
+
+                            <form id="delete-form" action="{{ route('admin.surveys.destroy', $survey) }}"
                                   method="POST" style="display: none;">
                                 @csrf
                                 @method('DELETE')

@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')>
-            
+
             <!-- Statistics Cards -->
             <div class="row mb-4">
                 <div class="col-lg-3 col-6">
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-success">
                         <div class="inner">
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-warning">
                         <div class="inner">
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-danger">
                         <div class="inner">
@@ -66,14 +66,14 @@
                 <div class="card-header">
                     <h3 class="card-title">Daftar Responden Survey</h3>
                     <div class="card-tools">
-                        <div class="btn-group">
+                        {{-- <div class="btn-group">
                             <a href="{{ route('admin.surveys.export') }}" class="btn btn-success btn-sm">
                                 <i class="fas fa-download"></i> Export CSV
                             </a>
                             <a href="{{ route('admin.surveys.statistics') }}" class="btn btn-info btn-sm">
                                 <i class="fas fa-chart-bar"></i> Statistik Detail
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -81,8 +81,8 @@
                     <!-- Search and Filter -->
                     <form method="GET" class="row mb-3">
                         <div class="col-md-4">
-                            <input type="text" name="search" class="form-control" 
-                                   placeholder="Cari nama, pekerjaan, atau saran..." 
+                            <input type="text" name="search" class="form-control"
+                                   placeholder="Cari nama, pekerjaan, atau saran..."
                                    value="{{ request('search') }}">
                         </div>
                         <div class="col-md-3">
@@ -136,18 +136,18 @@
                                     <td>{{ $survey->created_at->format('d/m/Y H:i') }}</td>
                                     <td>
                                         <div class="btn-group btn-group-sm">
-                                            <a href="{{ route('admin.surveys.show', $survey) }}" 
+                                            <a href="{{ route('admin.surveys.show', $survey) }}"
                                                class="btn btn-info" title="Detail">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-                                            <button type="button" class="btn btn-danger" 
+                                            <button type="button" class="btn btn-danger"
                                                     onclick="confirmDelete({{ $survey->id }})" title="Hapus">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </div>
-                                        
-                                        <form id="delete-form-{{ $survey->id }}" 
-                                              action="{{ route('admin.surveys.destroy', $survey) }}" 
+
+                                        <form id="delete-form-{{ $survey->id }}"
+                                              action="{{ route('admin.surveys.destroy', $survey) }}"
                                               method="POST" style="display: none;">
                                             @csrf
                                             @method('DELETE')
@@ -160,9 +160,19 @@
                     </div>
 
                     <!-- Pagination -->
-                    <div class="d-flex justify-content-center">
-                        {{ $surveys->links() }}
-                    </div>
+                    @if($surveys->hasPages())
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div>
+                                <small class="text-muted">
+                                    Menampilkan {{ $surveys->firstItem() }} - {{ $surveys->lastItem() }} 
+                                    dari {{ $surveys->total() }} survey
+                                </small>
+                            </div>
+                            <div>
+                                {{ $surveys->appends(request()->query())->links('admin-pagination') }}
+                            </div>
+                        </div>
+                    @endif
                     @else
                     <div class="text-center py-4">
                         <i class="fas fa-clipboard-list fa-3x text-muted mb-3"></i>

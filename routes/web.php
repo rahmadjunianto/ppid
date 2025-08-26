@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\Admin\SurveyController as AdminSurveyController;
 
 /*
@@ -48,6 +49,12 @@ Route::get('/struktur-organisasi', function () {
 
 Route::get('/pegawai', [App\Http\Controllers\PegawaiController::class, 'index'])->name('pegawai.index');
 
+// Agenda Routes
+Route::prefix('agenda')->name('agenda.')->group(function () {
+    Route::get('/', [AgendaController::class, 'index'])->name('index');
+    Route::get('/{agenda}', [AgendaController::class, 'show'])->name('show');
+});
+
 // Survey Routes
 Route::prefix('survey')->name('survey.')->group(function () {
     Route::get('/', [SurveyController::class, 'index'])->name('index');
@@ -74,10 +81,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     // Survey Management
     Route::prefix('surveys')->name('surveys.')->group(function () {
         Route::get('/', [AdminSurveyController::class, 'index'])->name('index');
-        // Route::get('/statistics', [AdminSurveyController::class, 'statistics'])->name('statistics');
-        // Route::get('/export', [AdminSurveyController::class, 'export'])->name('export');
-        // Route::get('/{survey}', [AdminSurveyController::class, 'show'])->name('show');
-        // Route::delete('/{survey}', [AdminSurveyController::class, 'destroy'])->name('destroy');
+        Route::get('/{survey}', [AdminSurveyController::class, 'show'])->name('show');
+        Route::delete('/{survey}', [AdminSurveyController::class, 'destroy'])->name('destroy');
     });
 
     // Pegawai Management
@@ -89,6 +94,17 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         Route::get('/{pegawai}/edit', [App\Http\Controllers\Admin\PegawaiController::class, 'edit'])->name('edit');
         Route::put('/{pegawai}', [App\Http\Controllers\Admin\PegawaiController::class, 'update'])->name('update');
         Route::delete('/{pegawai}', [App\Http\Controllers\Admin\PegawaiController::class, 'destroy'])->name('destroy');
+    });
+
+    // Agenda Management
+    Route::prefix('agenda')->name('agenda.')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\AgendaController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\Admin\AgendaController::class, 'create'])->name('create');
+        Route::post('/', [App\Http\Controllers\Admin\AgendaController::class, 'store'])->name('store');
+        Route::get('/{agenda}', [App\Http\Controllers\Admin\AgendaController::class, 'show'])->name('show');
+        Route::get('/{agenda}/edit', [App\Http\Controllers\Admin\AgendaController::class, 'edit'])->name('edit');
+        Route::put('/{agenda}', [App\Http\Controllers\Admin\AgendaController::class, 'update'])->name('update');
+        Route::delete('/{agenda}', [App\Http\Controllers\Admin\AgendaController::class, 'destroy'])->name('destroy');
     });
 });
 

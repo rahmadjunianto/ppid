@@ -39,26 +39,8 @@
                                 <p>Data Survey</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.surveys.statistics') }}"
-                               class="nav-link {{ request()->routeIs('admin.surveys.statistics') ? 'active' : '' }}">
-                                <i class="far fa-chart-bar nav-icon"></i>
-                                <p>Statistik & Laporan</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.surveys.export') }}"
-                               class="nav-link">
-                                <i class="far fa-file-excel nav-icon"></i>
-                                <p>Export Data</p>
-                            </a>
-                        </li>
                     </ul>
                 </li>
-
-                <!-- User Management -->
-                @if(auth()->user() && auth()->user()->role === 'admin')
-                                </li>
 
                 <!-- Data Pegawai -->
                 <li class="nav-item {{ request()->routeIs('admin.pegawai.*') ? 'menu-open' : '' }}">
@@ -71,17 +53,44 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('admin.pegawai.index') }}" 
+                            <a href="{{ route('admin.pegawai.index') }}"
                                class="nav-link {{ request()->routeIs('admin.pegawai.index') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Daftar Pegawai</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.pegawai.create') }}" 
+                            <a href="{{ route('admin.pegawai.create') }}"
                                class="nav-link {{ request()->routeIs('admin.pegawai.create') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tambah Pegawai</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Data Agenda -->
+                <li class="nav-item {{ request()->routeIs('admin.agenda.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.agenda.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-calendar-alt"></i>
+                        <p>
+                            Data Agenda
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.agenda.index') }}"
+                               class="nav-link {{ request()->routeIs('admin.agenda.index') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Daftar Agenda</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.agenda.create') }}"
+                               class="nav-link {{ request()->routeIs('admin.agenda.create') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tambah Agenda</p>
                             </a>
                         </li>
                     </ul>
@@ -112,7 +121,6 @@
                         </li>
                     </ul>
                 </li>
-                @endif
                 @endif
 
                 <!-- Settings -->

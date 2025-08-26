@@ -30,9 +30,9 @@
                             <form method="GET" action="{{ route('admin.pegawai.index') }}">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <input type="text" 
-                                               name="search" 
-                                               class="form-control" 
+                                        <input type="text"
+                                               name="search"
+                                               class="form-control"
                                                placeholder="Cari nama, jabatan, golongan..."
                                                value="{{ request('search') }}">
                                     </div>
@@ -59,7 +59,7 @@
 
                     <!-- Results Count -->
                     <p class="text-muted">
-                        Menampilkan {{ $pegawai->firstItem() ?? 0 }} - {{ $pegawai->lastItem() ?? 0 }} 
+                        Menampilkan {{ $pegawai->firstItem() ?? 0 }} - {{ $pegawai->lastItem() ?? 0 }}
                         dari {{ $pegawai->total() }} pegawai
                     </p>
 
@@ -88,16 +88,16 @@
                                         <td class="text-center">{{ $p->urutan }}</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="{{ route('admin.pegawai.show', $p) }}" 
+                                                <a href="{{ route('admin.pegawai.show', $p) }}"
                                                    class="btn btn-info btn-sm" title="Lihat">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
-                                                <a href="{{ route('admin.pegawai.edit', $p) }}" 
+                                                <a href="{{ route('admin.pegawai.edit', $p) }}"
                                                    class="btn btn-warning btn-sm" title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <form action="{{ route('admin.pegawai.destroy', $p) }}" 
-                                                      method="POST" 
+                                                <form action="{{ route('admin.pegawai.destroy', $p) }}"
+                                                      method="POST"
                                                       style="display: inline-block;"
                                                       onsubmit="return confirm('Apakah Anda yakin ingin menghapus pegawai ini?')">
                                                     @csrf
@@ -123,8 +123,16 @@
 
                     <!-- Pagination -->
                     @if($pegawai->hasPages())
-                        <div class="d-flex justify-content-center">
-                            {{ $pegawai->appends(request()->query())->links() }}
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div>
+                                <small class="text-muted">
+                                    Menampilkan {{ $pegawai->firstItem() }} - {{ $pegawai->lastItem() }} 
+                                    dari {{ $pegawai->total() }} pegawai
+                                </small>
+                            </div>
+                            <div>
+                                {{ $pegawai->appends(request()->query())->links('admin-pagination') }}
+                            </div>
                         </div>
                     @endif
                 </div>

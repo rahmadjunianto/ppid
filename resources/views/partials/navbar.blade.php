@@ -38,6 +38,16 @@
                         </a></li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('agenda*') ? 'active' : '' }}" href="{{ route('agenda.index') }}">
+                        <i class="bi bi-calendar-event"></i> Agenda
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('pegawai*') ? 'active' : '' }}" href="{{ route('pegawai.index') }}">
+                        <i class="bi bi-people"></i> Pegawai
+                    </a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="informasiDropdown" role="button" data-bs-toggle="dropdown">
                         <i class="bi bi-info-circle"></i> Informasi Publik

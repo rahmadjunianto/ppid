@@ -23,7 +23,7 @@ class PegawaiSeeder extends Seeder
                 'unit_kerja' => 'Kantor',
                 'urutan' => 1
             ],
-            
+
             // KUA Leaders
             [
                 'nama' => 'KHOIRUN NI`AM S.Pd.I, SE',

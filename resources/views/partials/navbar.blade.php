@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <i class="bi bi-building"></i> PPID Kemenag Nganjuk
+            <img src="{{ asset('logo-kemenag.png') }}" alt="Logo Kemenag" class="navbar-logo me-2" style="height: 40px;"> PPID Kemenag Nganjuk
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

@@ -14,6 +14,7 @@
             --kemenag-secondary: #2d8f47;
             --kemenag-accent: #ffd700;
             --kemenag-light: #f8f9fa;
+            --kemenag-dark: #0d2818;
         }
 
         body {
@@ -321,27 +322,33 @@
         }
 
         /* Footer */
-        .footer {
-            background: linear-gradient(135deg, var(--kemenag-primary) 0%, var(--kemenag-secondary) 100%);
+        .footer-kemenag {
+            background: var(--kemenag-dark);
             color: white;
-            padding: 3rem 0 1rem;
-            margin-top: 4rem;
+            padding: 60px 0 30px;
         }
 
-        .footer h5 {
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--kemenag-accent);
+        .footer-logo {
+            height: 60px;
+            margin-bottom: 20px;
         }
 
-        .footer a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            transition: color 0.3s ease;
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--kemenag-secondary);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: all 0.3s ease;
         }
 
-        .footer a:hover {
-            color: var(--kemenag-accent);
+        .social-icon:hover {
+            background: var(--kemenag-accent);
+            color: var(--kemenag-dark);
+            transform: translateY(-3px);
         }
 
         /* Responsive */
@@ -592,41 +599,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <h5><i class="bi bi-building"></i> PPID Kemenag Nganjuk</h5>
-                    <p>Pejabat Pengelola Informasi dan Dokumentasi Kementerian Agama Kabupaten Nganjuk</p>
-                    <div class="social-links">
-                        <a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="me-3"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="me-3"><i class="bi bi-instagram"></i></a>
-                        <a href="#"><i class="bi bi-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <h5><i class="bi bi-link-45deg"></i> Tautan Penting</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Kementerian Agama RI</a></li>
-                        <li><a href="#">Kanwil Kemenag Jawa Timur</a></li>
-                        <li><a href="#">PPID Kemenag Pusat</a></li>
-                        <li><a href="#">Portal Data Indonesia</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4">
-                    <h5><i class="bi bi-geo-alt"></i> Kontak</h5>
-                    <p><i class="bi bi-geo-alt"></i> Jl. Raya Surabaya-Madiun KM. 45, Nganjuk</p>
-                    <p><i class="bi bi-telephone"></i> (0358) 321175</p>
-                    <p><i class="bi bi-envelope"></i> ppid@kemenagnganjuk.id</p>
-                </div>
-            </div>
-            <hr class="my-3" style="border-color: rgba(255,255,255,0.2);">
-            <div class="text-center">
-                <p>&copy; 2025 PPID Kementerian Agama Kabupaten Nganjuk. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    @include('partials.footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

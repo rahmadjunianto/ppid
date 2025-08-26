@@ -1,40 +1,25 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Edit Agenda')
+@section('page-title', 'Edit Agenda')
+
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('admin.agenda.index') }}">Data Agenda</a></li>
+    <li class="breadcrumb-item active">Edit Agenda</li>
+@endsection
 
 @section('content')
-<div class="content-wrapper">
-    <!-- Content Header -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Edit Agenda</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('admin.agenda.index') }}">Agenda</a></li>
-                        <li class="breadcrumb-item active">Edit</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-edit mr-2"></i>
-                        Form Edit Agenda
+                        Edit Data Agenda
                     </h3>
                     <div class="card-tools">
                         <a href="{{ route('admin.agenda.index') }}" class="btn btn-secondary btn-sm">
-                            <i class="fas fa-arrow-left mr-1"></i>
-                            Kembali
+                            <i class="fas fa-arrow-left"></i> Kembali
                         </a>
                     </div>
                 </div>
@@ -43,15 +28,6 @@
                     @csrf
                     @method('PUT')
                     <div class="card-body">
-                        @if($errors->any())
-                            <div class="alert alert-danger">
-                                <ul class="mb-0">
-                                    @foreach($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
 
                         <div class="row">
                             <div class="col-md-8">
@@ -193,21 +169,7 @@
                 </form>
             </div>
         </div>
-    </section>
-</div>
+    </div>
 @endsection
 
-@push('scripts')
-<script>
-// Auto-fill tanggal selesai when tanggal mulai changes
-document.getElementById('tanggal_mulai').addEventListener('change', function() {
-    const tanggalMulai = this.value;
-    const tanggalSelesaiField = document.getElementById('tanggal_selesai');
 
-    // Only auto-fill if tanggal_selesai is empty or earlier than tanggal_mulai
-    if (tanggalMulai && (!tanggalSelesaiField.value || tanggalSelesaiField.value < tanggalMulai)) {
-        tanggalSelesaiField.value = tanggalMulai;
-    }
-});
-</script>
-@endpush

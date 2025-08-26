@@ -1,40 +1,25 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Tambah Agenda')
+@section('page-title', 'Tambah Agenda')
+
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('admin.agenda.index') }}">Data Agenda</a></li>
+    <li class="breadcrumb-item active">Tambah Agenda</li>
+@endsection
 
 @section('content')
-<div class="content-wrapper">
-    <!-- Content Header -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Tambah Agenda</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('admin.agenda.index') }}">Agenda</a></li>
-                        <li class="breadcrumb-item active">Tambah</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-plus mr-2"></i>
-                        Form Tambah Agenda
+                        Tambah Data Agenda
                     </h3>
                     <div class="card-tools">
                         <a href="{{ route('admin.agenda.index') }}" class="btn btn-secondary btn-sm">
-                            <i class="fas fa-arrow-left mr-1"></i>
-                            Kembali
+                            <i class="fas fa-arrow-left"></i> Kembali
                         </a>
                     </div>
                 </div>
@@ -178,54 +163,7 @@
                 </form>
             </div>
         </div>
-    </section>
-</div>
+    </div>
 @endsection
 
-@push('scripts')
-<script>
-function previewAgenda() {
-    const checkbox = document.getElementById('preview');
-    if (checkbox.checked) {
-        // Collect form data
-        const judul = document.getElementById('judul').value;
-        const deskripsi = document.getElementById('deskripsi').value;
-        const tanggal_mulai = document.getElementById('tanggal_mulai').value;
-        const tanggal_selesai = document.getElementById('tanggal_selesai').value;
-        const tempat = document.getElementById('tempat').value;
-        const penyelenggara = document.getElementById('penyelenggara').value;
-        const status = document.getElementById('status').value;
 
-        let preview = `
-            <strong>Preview Agenda:</strong><br>
-            <strong>Judul:</strong> ${judul || 'Belum diisi'}<br>
-            <strong>Deskripsi:</strong> ${deskripsi || 'Belum diisi'}<br>
-            <strong>Tanggal Mulai:</strong> ${tanggal_mulai || 'Belum diisi'}<br>
-            <strong>Tanggal Selesai:</strong> ${tanggal_selesai || 'Belum diisi'}<br>
-            <strong>Tempat:</strong> ${tempat || 'Belum diisi'}<br>
-            <strong>Penyelenggara:</strong> ${penyelenggara || 'Belum diisi'}<br>
-            <strong>Status:</strong> ${status || 'Belum diisi'}
-        `;
-
-        Swal.fire({
-            title: 'Preview Agenda',
-            html: preview,
-            icon: 'info',
-            confirmButtonText: 'OK'
-        });
-
-        checkbox.checked = false;
-    }
-}
-
-// Auto-fill tanggal selesai when tanggal mulai changes
-document.getElementById('tanggal_mulai').addEventListener('change', function() {
-    const tanggalMulai = this.value;
-    const tanggalSelesaiField = document.getElementById('tanggal_selesai');
-
-    if (tanggalMulai && !tanggalSelesaiField.value) {
-        tanggalSelesaiField.value = tanggalMulai;
-    }
-});
-</script>
-@endpush

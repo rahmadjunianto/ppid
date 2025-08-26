@@ -10,7 +10,7 @@
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <div>
                                 <small class="text-muted">
-                                    Menampilkan {{ $agendas->firstItem() }} - {{ $agendas->lastItem() }} 
+                                    Menampilkan {{ $agendas->firstItem() }} - {{ $agendas->lastItem() }}
                                     dari {{ $agendas->total() }} agenda
                                 </small>
                             </div>

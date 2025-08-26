@@ -126,7 +126,7 @@
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <div>
                                 <small class="text-muted">
-                                    Menampilkan {{ $pegawai->firstItem() }} - {{ $pegawai->lastItem() }} 
+                                    Menampilkan {{ $pegawai->firstItem() }} - {{ $pegawai->lastItem() }}
                                     dari {{ $pegawai->total() }} pegawai
                                 </small>
                             </div>

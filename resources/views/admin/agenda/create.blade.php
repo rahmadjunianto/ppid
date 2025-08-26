@@ -56,7 +56,7 @@
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="judul">Judul Agenda <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('judul') is-invalid @enderror" 
+                                    <input type="text" class="form-control @error('judul') is-invalid @enderror"
                                            id="judul" name="judul" value="{{ old('judul') }}" required>
                                     @error('judul')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -65,7 +65,7 @@
 
                                 <div class="form-group">
                                     <label for="deskripsi">Deskripsi</label>
-                                    <textarea class="form-control @error('deskripsi') is-invalid @enderror" 
+                                    <textarea class="form-control @error('deskripsi') is-invalid @enderror"
                                               id="deskripsi" name="deskripsi" rows="4">{{ old('deskripsi') }}</textarea>
                                     @error('deskripsi')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -76,7 +76,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="tanggal_mulai">Tanggal Mulai <span class="text-danger">*</span></label>
-                                            <input type="datetime-local" class="form-control @error('tanggal_mulai') is-invalid @enderror" 
+                                            <input type="datetime-local" class="form-control @error('tanggal_mulai') is-invalid @enderror"
                                                    id="tanggal_mulai" name="tanggal_mulai" value="{{ old('tanggal_mulai') }}" required>
                                             @error('tanggal_mulai')
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -86,7 +86,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="tanggal_selesai">Tanggal Selesai <span class="text-danger">*</span></label>
-                                            <input type="datetime-local" class="form-control @error('tanggal_selesai') is-invalid @enderror" 
+                                            <input type="datetime-local" class="form-control @error('tanggal_selesai') is-invalid @enderror"
                                                    id="tanggal_selesai" name="tanggal_selesai" value="{{ old('tanggal_selesai') }}" required>
                                             @error('tanggal_selesai')
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -97,7 +97,7 @@
 
                                 <div class="form-group">
                                     <label for="tempat">Tempat <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('tempat') is-invalid @enderror" 
+                                    <input type="text" class="form-control @error('tempat') is-invalid @enderror"
                                            id="tempat" name="tempat" value="{{ old('tempat') }}" required>
                                     @error('tempat')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -106,7 +106,7 @@
 
                                 <div class="form-group">
                                     <label for="penyelenggara">Penyelenggara <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('penyelenggara') is-invalid @enderror" 
+                                    <input type="text" class="form-control @error('penyelenggara') is-invalid @enderror"
                                            id="penyelenggara" name="penyelenggara" value="{{ old('penyelenggara') }}" required>
                                     @error('penyelenggara')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -122,7 +122,7 @@
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label for="status">Status <span class="text-danger">*</span></label>
-                                            <select class="form-control @error('status') is-invalid @enderror" 
+                                            <select class="form-control @error('status') is-invalid @enderror"
                                                     id="status" name="status" required>
                                                 <option value="">Pilih Status</option>
                                                 <option value="draft" {{ old('status') == 'draft' ? 'selected' : '' }}>Draft</option>
@@ -135,7 +135,7 @@
 
                                         <div class="form-group">
                                             <label for="urutan">Urutan</label>
-                                            <input type="number" class="form-control @error('urutan') is-invalid @enderror" 
+                                            <input type="number" class="form-control @error('urutan') is-invalid @enderror"
                                                    id="urutan" name="urutan" value="{{ old('urutan') }}" min="1">
                                             <small class="text-muted">Kosongkan untuk otomatis</small>
                                             @error('urutan')
@@ -222,7 +222,7 @@ function previewAgenda() {
 document.getElementById('tanggal_mulai').addEventListener('change', function() {
     const tanggalMulai = this.value;
     const tanggalSelesaiField = document.getElementById('tanggal_selesai');
-    
+
     if (tanggalMulai && !tanggalSelesaiField.value) {
         tanggalSelesaiField.value = tanggalMulai;
     }

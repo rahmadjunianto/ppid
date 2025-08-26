@@ -164,7 +164,7 @@
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <div>
                                 <small class="text-muted">
-                                    Menampilkan {{ $surveys->firstItem() }} - {{ $surveys->lastItem() }} 
+                                    Menampilkan {{ $surveys->firstItem() }} - {{ $surveys->lastItem() }}
                                     dari {{ $surveys->total() }} survey
                                 </small>
                             </div>

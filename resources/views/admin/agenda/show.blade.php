@@ -126,7 +126,7 @@
                                 <i class="fas fa-edit mr-1"></i>
                                 Edit Agenda
                             </a>
-                            
+
                             @if($agenda->status == 'published')
                                 <a href="{{ route('agenda.show', $agenda) }}" target="_blank" class="btn btn-info btn-block mb-2">
                                     <i class="fas fa-external-link-alt mr-1"></i>

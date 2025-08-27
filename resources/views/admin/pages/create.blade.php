@@ -510,7 +510,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         _initRequest() {
             const xhr = this.xhr = new XMLHttpRequest();
-            xhr.open('POST', '{{ route("admin.pages.upload.image") }}', true);
+
+            // Detect current protocol and construct URL accordingly
+            const protocol = window.location.protocol;
+            const host = window.location.host;
+            const uploadPath = '{{ str_replace(url("/"), "", route("admin.pages.upload.image")) }}';
+            const uploadUrl = protocol + '//' + host + uploadPath;
+
+            console.log('Upload URL:', uploadUrl);
+
+            xhr.open('POST', uploadUrl, true);
             xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
             xhr.responseType = 'json';
         }
@@ -520,14 +529,32 @@ document.addEventListener('DOMContentLoaded', function() {
             const loader = this.loader;
             const genericErrorText = 'Could not upload file: ' + file.name + '.';
 
-            xhr.addEventListener('error', () => reject(genericErrorText));
-            xhr.addEventListener('abort', () => reject());
+            xhr.addEventListener('error', () => {
+                console.error('Upload network error for file:', file.name);
+                reject(genericErrorText);
+            });
+
+            xhr.addEventListener('abort', () => {
+                console.log('Upload aborted for file:', file.name);
+                reject();
+            });
+
             xhr.addEventListener('load', () => {
                 const response = xhr.response;
-                if (!response || xhr.status !== 200) {
-                    return reject(response && response.error && response.error.message ? response.error.message : genericErrorText);
+                console.log('Upload response:', response, 'Status:', xhr.status);
+
+                if (xhr.status !== 200 || !response || response.error) {
+                    const errorMsg = response && response.error ? response.error.message : genericErrorText;
+                    console.error('Upload failed:', errorMsg);
+                    return reject(errorMsg);
                 }
 
+                if (!response.url) {
+                    console.error('Upload response missing URL:', response);
+                    return reject('Server response missing image URL');
+                }
+
+                console.log('Upload successful:', response.url);
                 resolve({
                     default: response.url
                 });

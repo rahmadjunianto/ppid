@@ -78,9 +78,239 @@
                                         <div class="form-group">
                                             <label for="content">Konten</label>
                                             <div id="content" class="@error('content') is-invalid @enderror">
-                                                {!! old('content', '<h2>Judul Halaman</h2><p>Masukkan konten halaman di sini. Anda dapat menggunakan editor untuk formatting yang lebih baik.</p>') !!}
+                                                {!! old('content', '<h2 style="color: #1e5631; font-size: 28px; font-weight: 700; margin-bottom: 20px; text-align: center; border-bottom: 3px solid #1e5631; padding-bottom: 10px;">📋 Informasi Tersedia Setiap Saat</h2>
+
+<div style="background: linear-gradient(135deg, #e7f3ff, #f0f9ff); border-radius: 12px; padding: 20px; margin: 20px 0; border: 1px solid #b8daff;">
+<p style="font-size: 16px; color: #2c5282; margin: 0; text-align: center;">
+🏛️ <strong>Berikut adalah daftar informasi publik yang tersedia setiap saat di PPID Kemenag Nganjuk</strong>
+</p>
+</div>
+
+<div style="overflow-x: auto; margin: 25px 0; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+<table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; background: white; border-radius: 12px; overflow: hidden;">
+<thead>
+<tr style="background: linear-gradient(135deg, #1e5631, #2d8f47); color: white;">
+<th style="padding: 18px 20px; text-align: left; font-size: 16px; font-weight: 600; border: none;">
+📄 Nama Informasi Publik
+</th>
+<th style="padding: 18px 20px; text-align: center; font-size: 16px; font-weight: 600; border: none; min-width: 150px;">
+⚡ Aksi
+</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: #f8fffe; transition: all 0.3s ease; border-bottom: 1px solid #e2e8f0;">
+<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
+<strong style="color: #1e5631;">📋 Daftar Informasi Publik</strong>
+<br><small style="color: #718096; font-size: 13px;">Katalog lengkap informasi yang dapat diakses publik</small>
+</td>
+<td style="padding: 16px 20px; text-align: center; border: none;">
+<a href="#" style="background: linear-gradient(135deg, #4299e1, #3182ce); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(66, 153, 225, 0.3);">
+👀 Lihat Detail
+</a>
+</td>
+</tr>
+<tr style="background-color: white; transition: all 0.3s ease; border-bottom: 1px solid #e2e8f0;">
+<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
+<strong style="color: #1e5631;">🚫 Informasi yang Dikecualikan</strong>
+<br><small style="color: #718096; font-size: 13px;">Daftar informasi yang tidak dapat diakses publik</small>
+</td>
+<td style="padding: 16px 20px; text-align: center; border: none;">
+<a href="#" style="background: linear-gradient(135deg, #ed8936, #dd6b20); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(237, 137, 54, 0.3);">
+📋 Lihat Detail
+</a>
+</td>
+</tr>
+<tr style="background-color: #f8fffe; transition: all 0.3s ease; border-bottom: 1px solid #e2e8f0;">
+<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
+<strong style="color: #1e5631;">📖 Pedoman Pengelolaan Administrasi</strong>
+<br><small style="color: #718096; font-size: 13px;">Panduan tata kelola administrasi perkantoran</small>
+</td>
+<td style="padding: 16px 20px; text-align: center; border: none;">
+<a href="#" style="background: linear-gradient(135deg, #48bb78, #38a169); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(72, 187, 120, 0.3);">
+📥 Download PDF
+</a>
+</td>
+</tr>
+<tr style="background-color: white; transition: all 0.3s ease; border-bottom: 1px solid #e2e8f0;">
+<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
+<strong style="color: #1e5631;">🏢 Pedoman Pengelolaan Organisasi</strong>
+<br><small style="color: #718096; font-size: 13px;">Struktur dan tata kelola organisasi</small>
+</td>
+<td style="padding: 16px 20px; text-align: center; border: none;">
+<a href="#" style="background: linear-gradient(135deg, #9f7aea, #805ad5); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(159, 122, 234, 0.3);">
+📥 Download PDF
+</a>
+</td>
+</tr>
+<tr style="background-color: #f8fffe; transition: all 0.3s ease;">
+<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
+<strong style="color: #1e5631;">📊 Statistik Kepegawaian</strong>
+<br><small style="color: #718096; font-size: 13px;">Data statistik pegawai dan kepegawaian</small>
+</td>
+<td style="padding: 16px 20px; text-align: center; border: none;">
+<a href="#" style="background: linear-gradient(135deg, #f56565, #e53e3e); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(245, 101, 101, 0.3);">
+📈 Lihat Data
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3 style="color: #1e5631; font-size: 22px; font-weight: 600; margin: 35px 0 20px 0;">
+🌟 Informasi Tambahan
+</h3>
+
+<div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 5px solid #1e5631;">
+<ul style="list-style: none; padding: 0; margin: 0;">
+<li style="margin-bottom: 15px; padding: 15px; background: linear-gradient(135deg, #f7fafc, #edf2f7); border-radius: 8px; border-left: 4px solid #4299e1;">
+<strong style="color: #1e5631; font-size: 16px;">🕌 Program Moderasi Beragama</strong>
+<br><span style="color: #4a5568; font-size: 14px; margin-top: 5px; display: block;">Dokumen panduan moderasi beragama untuk menciptakan keharmonisan</span>
+</li>
+<li style="margin-bottom: 15px; padding: 15px; background: linear-gradient(135deg, #f7fafc, #edf2f7); border-radius: 8px; border-left: 4px solid #48bb78;">
+<strong style="color: #1e5631; font-size: 16px;">♿ Layanan Penyandang Disabilitas</strong>
+<br><span style="color: #4a5568; font-size: 14px; margin-top: 5px; display: block;">Informasi layanan khusus untuk penyandang disabilitas</span>
+</li>
+<li style="margin-bottom: 0; padding: 15px; background: linear-gradient(135deg, #f7fafc, #edf2f7); border-radius: 8px; border-left: 4px solid #ed8936;">
+<strong style="color: #1e5631; font-size: 16px;">⚖️ Daftar Produk Hukum</strong>
+<br><span style="color: #4a5568; font-size: 14px; margin-top: 5px; display: block;">Regulasi dan peraturan di lingkungan Kementerian Agama</span>
+</li>
+</ul>
+</div>
+
+<div style="background: linear-gradient(135deg, #edf8f4, #f0fff4); border-left: 6px solid #38a169; border-radius: 12px; padding: 25px; margin: 30px 0; box-shadow: 0 4px 15px rgba(56, 161, 105, 0.15);">
+<div style="display: flex; align-items: flex-start; gap: 15px;">
+<div style="background: #38a169; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">
+💡
+</div>
+<div>
+<h4 style="color: #1e5631; margin: 0 0 10px 0; font-size: 18px; font-weight: 600;">Catatan Penting</h4>
+<p style="color: #2d3748; margin: 0; font-size: 15px; line-height: 1.6;">
+Semua informasi di atas dapat diakses setiap saat oleh masyarakat sesuai dengan ketentuan <strong>UU No. 14 Tahun 2008 tentang Keterbukaan Informasi Publik</strong> dan peraturan perundang-undangan yang berlaku.
+</p>
+</div>
+</div>
+</div>') !!}
                                             </div>
-                                            <textarea name="content" style="display: none;">{{ old('content', '<h2>Judul Halaman</h2><p>Masukkan konten halaman di sini. Anda dapat menggunakan editor untuk formatting yang lebih baik.</p>') }}</textarea>
+                                            <textarea name="content" style="display: none;">{{ old('content', '<h2 style="color: #1e5631; font-size: 28px; font-weight: 700; margin-bottom: 20px; text-align: center; border-bottom: 3px solid #1e5631; padding-bottom: 10px;">📋 Informasi Tersedia Setiap Saat</h2>
+
+<div style="background: linear-gradient(135deg, #e7f3ff, #f0f9ff); border-radius: 12px; padding: 20px; margin: 20px 0; border: 1px solid #b8daff;">
+<p style="font-size: 16px; color: #2c5282; margin: 0; text-align: center;">
+🏛️ <strong>Berikut adalah daftar informasi publik yang tersedia setiap saat di PPID Kemenag Nganjuk</strong>
+</p>
+</div>
+
+<div style="overflow-x: auto; margin: 25px 0; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+<table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; background: white; border-radius: 12px; overflow: hidden;">
+<thead>
+<tr style="background: linear-gradient(135deg, #1e5631, #2d8f47); color: white;">
+<th style="padding: 18px 20px; text-align: left; font-size: 16px; font-weight: 600; border: none; position: relative;">
+<span style="display: flex; align-items: center;">
+📄 Nama Informasi Publik
+</span>
+</th>
+<th style="padding: 18px 20px; text-align: center; font-size: 16px; font-weight: 600; border: none; min-width: 150px;">
+<span style="display: flex; align-items: center; justify-content: center;">
+⚡ Aksi
+</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: #f8fffe; transition: all 0.3s ease; border-bottom: 1px solid #e2e8f0;">
+<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
+<strong style="color: #1e5631;">📋 Daftar Informasi Publik</strong>
+<br><small style="color: #718096; font-size: 13px;">Katalog lengkap informasi yang dapat diakses publik</small>
+</td>
+<td style="padding: 16px 20px; text-align: center; border: none;">
+<a href="#" style="background: linear-gradient(135deg, #4299e1, #3182ce); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(66, 153, 225, 0.3); transition: all 0.3s ease;">
+👀 Lihat Detail
+</a>
+</td>
+</tr>
+<tr style="background-color: white; transition: all 0.3s ease; border-bottom: 1px solid #e2e8f0;">
+<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
+<strong style="color: #1e5631;">🚫 Informasi yang Dikecualikan</strong>
+<br><small style="color: #718096; font-size: 13px;">Daftar informasi yang tidak dapat diakses publik</small>
+</td>
+<td style="padding: 16px 20px; text-align: center; border: none;">
+<a href="#" style="background: linear-gradient(135deg, #ed8936, #dd6b20); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(237, 137, 54, 0.3); transition: all 0.3s ease;">
+📋 Lihat Detail
+</a>
+</td>
+</tr>
+<tr style="background-color: #f8fffe; transition: all 0.3s ease; border-bottom: 1px solid #e2e8f0;">
+<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
+<strong style="color: #1e5631;">📖 Pedoman Pengelolaan Administrasi</strong>
+<br><small style="color: #718096; font-size: 13px;">Panduan tata kelola administrasi perkantoran</small>
+</td>
+<td style="padding: 16px 20px; text-align: center; border: none;">
+<a href="#" style="background: linear-gradient(135deg, #48bb78, #38a169); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(72, 187, 120, 0.3); transition: all 0.3s ease;">
+📥 Download PDF
+</a>
+</td>
+</tr>
+<tr style="background-color: white; transition: all 0.3s ease; border-bottom: 1px solid #e2e8f0;">
+<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
+<strong style="color: #1e5631;">🏢 Pedoman Pengelolaan Organisasi</strong>
+<br><small style="color: #718096; font-size: 13px;">Struktur dan tata kelola organisasi</small>
+</td>
+<td style="padding: 16px 20px; text-align: center; border: none;">
+<a href="#" style="background: linear-gradient(135deg, #9f7aea, #805ad5); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(159, 122, 234, 0.3); transition: all 0.3s ease;">
+📥 Download PDF
+</a>
+</td>
+</tr>
+<tr style="background-color: #f8fffe; transition: all 0.3s ease;">
+<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
+<strong style="color: #1e5631;">📊 Statistik Kepegawaian</strong>
+<br><small style="color: #718096; font-size: 13px;">Data statistik pegawai dan kepegawaian</small>
+</td>
+<td style="padding: 16px 20px; text-align: center; border: none;">
+<a href="#" style="background: linear-gradient(135deg, #f56565, #e53e3e); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(245, 101, 101, 0.3); transition: all 0.3s ease;">
+📈 Lihat Data
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3 style="color: #1e5631; font-size: 22px; font-weight: 600; margin: 35px 0 20px 0; display: flex; align-items: center;">
+🌟 Informasi Tambahan
+</h3>
+
+<div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 5px solid #1e5631;">
+<ul style="list-style: none; padding: 0; margin: 0;">
+<li style="margin-bottom: 15px; padding: 15px; background: linear-gradient(135deg, #f7fafc, #edf2f7); border-radius: 8px; border-left: 4px solid #4299e1;">
+<strong style="color: #1e5631; font-size: 16px;">🕌 Program Moderasi Beragama</strong>
+<br><span style="color: #4a5568; font-size: 14px; margin-top: 5px; display: block;">Dokumen panduan moderasi beragama untuk menciptakan keharmonisan</span>
+</li>
+<li style="margin-bottom: 15px; padding: 15px; background: linear-gradient(135deg, #f7fafc, #edf2f7); border-radius: 8px; border-left: 4px solid #48bb78;">
+<strong style="color: #1e5631; font-size: 16px;">♿ Layanan Penyandang Disabilitas</strong>
+<br><span style="color: #4a5568; font-size: 14px; margin-top: 5px; display: block;">Informasi layanan khusus untuk penyandang disabilitas</span>
+</li>
+<li style="margin-bottom: 0; padding: 15px; background: linear-gradient(135deg, #f7fafc, #edf2f7); border-radius: 8px; border-left: 4px solid #ed8936;">
+<strong style="color: #1e5631; font-size: 16px;">⚖️ Daftar Produk Hukum</strong>
+<br><span style="color: #4a5568; font-size: 14px; margin-top: 5px; display: block;">Regulasi dan peraturan di lingkungan Kementerian Agama</span>
+</li>
+</ul>
+</div>
+
+<div style="background: linear-gradient(135deg, #edf8f4, #f0fff4); border-left: 6px solid #38a169; border-radius: 12px; padding: 25px; margin: 30px 0; box-shadow: 0 4px 15px rgba(56, 161, 105, 0.15);">
+<div style="display: flex; align-items: flex-start; gap: 15px;">
+<div style="background: #38a169; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">
+💡
+</div>
+<div>
+<h4 style="color: #1e5631; margin: 0 0 10px 0; font-size: 18px; font-weight: 600;">Catatan Penting</h4>
+<p style="color: #2d3748; margin: 0; font-size: 15px; line-height: 1.6;">
+Semua informasi di atas dapat diakses setiap saat oleh masyarakat sesuai dengan ketentuan <strong>UU No. 14 Tahun 2008 tentang Keterbukaan Informasi Publik</strong> dan peraturan perundang-undangan yang berlaku.
+</p>
+</div>
+</div>
+</div>') }}</textarea>
                                             <small class="text-muted">Gunakan rich text editor untuk formatting yang lebih baik</small>
                                             @error('content')
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -253,13 +483,83 @@
 @endsection
 
 @section('scripts')
-<!-- CKEditor 5 CDN -->
+<!-- CKEditor 5 CDN with Image Support -->
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize CKEditor 5
+
+    // Custom Upload Adapter for CKEditor 5
+    class CustomUploadAdapter {
+        constructor(loader) {
+            this.loader = loader;
+        }
+
+        upload() {
+            return this.loader.file.then(file => new Promise((resolve, reject) => {
+                this._initRequest();
+                this._initListeners(resolve, reject, file);
+                this._sendRequest(file);
+            }));
+        }
+
+        abort() {
+            if (this.xhr) {
+                this.xhr.abort();
+            }
+        }
+
+        _initRequest() {
+            const xhr = this.xhr = new XMLHttpRequest();
+            xhr.open('POST', '{{ route("admin.pages.upload.image") }}', true);
+            xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+            xhr.responseType = 'json';
+        }
+
+        _initListeners(resolve, reject, file) {
+            const xhr = this.xhr;
+            const loader = this.loader;
+            const genericErrorText = 'Could not upload file: ' + file.name + '.';
+
+            xhr.addEventListener('error', () => reject(genericErrorText));
+            xhr.addEventListener('abort', () => reject());
+            xhr.addEventListener('load', () => {
+                const response = xhr.response;
+                if (!response || xhr.status !== 200) {
+                    return reject(response && response.error && response.error.message ? response.error.message : genericErrorText);
+                }
+
+                resolve({
+                    default: response.url
+                });
+            });
+
+            if (xhr.upload) {
+                xhr.upload.addEventListener('progress', evt => {
+                    if (evt.lengthComputable) {
+                        loader.uploadTotal = evt.total;
+                        loader.uploaded = evt.loaded;
+                    }
+                });
+            }
+        }
+
+        _sendRequest(file) {
+            const data = new FormData();
+            data.append('upload', file);
+            this.xhr.send(data);
+        }
+    }
+
+    function CustomUploadAdapterPlugin(editor) {
+        editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+            return new CustomUploadAdapter(loader);
+        };
+    }
+
+    // Initialize CKEditor 5 with Image Support
     ClassicEditor
         .create(document.querySelector('#content'), {
+            extraPlugins: [CustomUploadAdapterPlugin],
             toolbar: {
                 items: [
                     'heading',
@@ -267,6 +567,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     'bold',
                     'italic',
                     'link',
+                    '|',
+                    'uploadImage',
+                    'insertImage',
+                    '|',
                     'bulletedList',
                     'numberedList',
                     '|',
@@ -282,6 +586,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 ]
             },
             language: 'en',
+            image: {
+                toolbar: [
+                    'imageTextAlternative',
+                    'imageStyle:inline',
+                    'imageStyle:block',
+                    'imageStyle:side',
+                    '|',
+                    'resizeImage:50',
+                    'resizeImage:75',
+                    'resizeImage:original'
+                ],
+                resizeOptions: [
+                    {
+                        name: 'resizeImage:original',
+                        label: 'Original size',
+                        value: null
+                    },
+                    {
+                        name: 'resizeImage:50',
+                        label: '50%',
+                        value: '50'
+                    },
+                    {
+                        name: 'resizeImage:75',
+                        label: '75%',
+                        value: '75'
+                    }
+                ]
+            },
             table: {
                 contentToolbar: [
                     'tableColumn',
@@ -360,6 +693,267 @@ document.addEventListener('DOMContentLoaded', function() {
 .ck-content {
     font-size: 16px;
     line-height: 1.6;
+}
+
+/* Custom CSS untuk tabel yang menarik */
+.ck-content table {
+    overflow: hidden;
+    border-radius: 12px !important;
+}
+
+/* Image Styling */
+.ck-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    margin: 10px 0;
+}
+
+.ck-content img:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transform: scale(1.02);
+}
+
+.ck-content figure.image {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.ck-content figure.image.image-style-side {
+    max-width: 50%;
+    float: right;
+    margin: 0 0 20px 20px;
+}
+
+.ck-content figure.image.image-style-side.image-style-align-left {
+    float: left;
+    margin: 0 20px 20px 0;
+}
+
+.ck-content figure.image figcaption {
+    background: #f8f9fa;
+    color: #6c757d;
+    font-size: 14px;
+    font-style: italic;
+    padding: 8px 12px;
+    border-radius: 0 0 8px 8px;
+    margin-top: -5px;
+    text-align: center;
+}
+
+/* Image upload progress */
+.ck-content .ck-upload-placeholder {
+    background: linear-gradient(135deg, #e7f3ff, #f0f9ff);
+    border: 2px dashed #1e5631;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    color: #1e5631;
+}
+
+.ck-content table tr:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(30, 86, 49, 0.15);
+}
+
+.ck-content table tbody tr {
+    transition: all 0.3s ease !important;
+}
+
+.ck-content table tbody tr:hover {
+    background: linear-gradient(135deg, #f0fff4, #e6fffa) !important;
+}
+
+.ck-content table a {
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.ck-content table a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+}
+
+/* Animasi untuk button actions */
+.ck-content table a[style*="background: linear-gradient(135deg, #4299e1"]:hover {
+    background: linear-gradient(135deg, #3182ce, #2c5282) !important;
+}
+
+.ck-content table a[style*="background: linear-gradient(135deg, #ed8936"]:hover {
+    background: linear-gradient(135deg, #dd6b20, #c05621) !important;
+}
+
+.ck-content table a[style*="background: linear-gradient(135deg, #48bb78"]:hover {
+    background: linear-gradient(135deg, #38a169, #2f855a) !important;
+}
+
+.ck-content table a[style*="background: linear-gradient(135deg, #9f7aea"]:hover {
+    background: linear-gradient(135deg, #805ad5, #6b46c1) !important;
+}
+
+.ck-content table a[style*="background: linear-gradient(135deg, #f56565"]:hover {
+    background: linear-gradient(135deg, #e53e3e, #c53030) !important;
+}
+
+/* Animasi untuk header tabel */
+.ck-content table thead tr {
+    position: relative;
+    overflow: hidden;
+}
+
+.ck-content table thead tr::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.ck-content table:hover thead tr::before {
+    left: 100%;
+}
+
+/* Style untuk list items */
+.ck-content ul li {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.ck-content ul li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 10px rgba(30, 86, 49, 0.1);
+}
+
+/* Efek parallax untuk gradient background */
+.ck-content div[style*="background: linear-gradient"] {
+    background-attachment: fixed !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.ck-content div[style*="background: linear-gradient"]::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+    33% { transform: translate(30px, -30px) rotate(120deg); }
+    66% { transform: translate(-20px, 20px) rotate(240deg); }
+}
+
+/* Pulse animation untuk icons */
+.ck-content h2, .ck-content h3 {
+    position: relative;
+}
+
+.ck-content h2::before,
+.ck-content h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #1e5631, #2d8f47);
+    transition: width 0.5s ease;
+}
+
+.ck-content h2:hover::before,
+.ck-content h3:hover::before {
+    width: 100%;
+}
+
+/* Smooth scroll untuk long content */
+.ck-content {
+    scroll-behavior: smooth;
+}
+
+/* Modern scrollbar untuk overflow areas */
+.ck-content div[style*="overflow-x: auto"]::-webkit-scrollbar {
+    height: 6px;
+}
+
+.ck-content div[style*="overflow-x: auto"]::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+}
+
+.ck-content div[style*="overflow-x: auto"]::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #1e5631, #2d8f47);
+    border-radius: 3px;
+}
+
+.ck-content div[style*="overflow-x: auto"]::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, #2d8f47, #1e5631);
+}
+
+/* Loading animation untuk table */
+.ck-content table {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .ck-content table {
+        font-size: 14px;
+    }
+
+    .ck-content table th,
+    .ck-content table td {
+        padding: 12px 8px !important;
+    }
+
+    .ck-content h2 {
+        font-size: 24px !important;
+    }
+
+    .ck-content h3 {
+        font-size: 20px !important;
+    }
+}
+
+/* Focus states untuk accessibility */
+.ck-content table a:focus {
+    outline: 2px solid #1e5631;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .ck-content table {
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+    }
+
+    .ck-content table th {
+        background: #f0f0f0 !important;
+        color: #000 !important;
+    }
 }
 </style>
 @endsection

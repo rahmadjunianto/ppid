@@ -47,6 +47,31 @@ Route::get('/test-ckeditor', function () {
     return view('test-ckeditor');
 });
 
+// Demo tabel menarik
+Route::get('/demo-table', function () {
+    return view('demo-table');
+});
+
+// Demo CKEditor 5 dengan Image Upload
+Route::get('/demo-image', function () {
+    return view('demo-image-upload');
+});
+
+// Demo CKEditor 5 dengan Image Upload & Resize Features
+Route::get('/demo-image-resize', function () {
+    return view('demo-image-resize');
+});
+
+// Demo CKEditor 5 Superset - Full Features with Image Resize
+Route::get('/demo-image-superset', function () {
+    return view('demo-image-superset');
+});
+
+// Demo CKEditor 5 Working - Stable Version
+Route::get('/demo-ckeditor-working', function () {
+    return view('demo-ckeditor-working');
+});
+
 Route::get('/profil', function () {
     return view('profil');
 });
@@ -129,6 +154,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         Route::patch('/{page}/toggle-status', [AdminPageController::class, 'toggleStatus'])->name('toggle-status');
         Route::post('/update-order', [AdminPageController::class, 'updateOrder'])->name('update-order');
         Route::post('/upload-image', [AdminPageController::class, 'uploadImage'])->name('upload-image');
+        Route::post('/upload/image', [AdminPageController::class, 'uploadImage'])->name('upload.image');
     });
 
     // Agenda Management

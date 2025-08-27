@@ -79,6 +79,9 @@ class PageController extends Controller
             'published_at' => 'nullable|date'
         ]);
 
+        // Set admin_id from authenticated user
+        $request->merge(['admin_id' => auth()->id()]);
+
         $data = $request->all();
 
         // Generate slug if not provided
@@ -288,30 +291,40 @@ class PageController extends Controller
     }
 
     /**
-     * Upload image for TinyMCE editor
+     * Upload image for CKEditor 5
      */
     public function uploadImage(Request $request)
     {
         $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'upload' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120' // 5MB max
         ]);
 
         try {
-            if ($request->hasFile('file')) {
-                $file = $request->file('file');
-                $filename = time() . '_' . $file->getClientOriginalName();
+            if ($request->hasFile('upload')) {
+                $file = $request->file('upload');
+                $filename = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
                 $path = $file->storeAs('pages/images', $filename, 'public');
 
+                // CKEditor 5 expects specific response format
                 return response()->json([
-                    'location' => asset('storage/' . $path)
+                    'url' => asset('storage/' . $path),
+                    'uploaded' => true
                 ]);
             }
         } catch (\Exception $e) {
             return response()->json([
-                'error' => 'Failed to upload image: ' . $e->getMessage()
+                'error' => [
+                    'message' => 'Failed to upload image: ' . $e->getMessage()
+                ],
+                'uploaded' => false
             ], 500);
         }
 
-        return response()->json(['error' => 'No file uploaded'], 400);
+        return response()->json([
+            'error' => [
+                'message' => 'No file uploaded'
+            ],
+            'uploaded' => false
+        ], 400);
     }
 }

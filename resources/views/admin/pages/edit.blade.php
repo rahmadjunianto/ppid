@@ -284,35 +284,166 @@
 @endsection
 
 @section('scripts')
-<!-- CKEditor 5 CDN -->
+<!-- CKEditor 5 Classic with Image Resize -->
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize CKEditor 5
+    // Custom Upload Adapter for CKEditor 5
+    class CustomUploadAdapter {
+        constructor(loader) {
+            this.loader = loader;
+        }
+
+        upload() {
+            return this.loader.file.then(file => new Promise((resolve, reject) => {
+                this._initRequest();
+                this._initListeners(resolve, reject, file);
+                this._sendRequest(file);
+            }));
+        }
+
+        abort() {
+            if (this.xhr) {
+                this.xhr.abort();
+            }
+        }
+
+        _initRequest() {
+            const xhr = this.xhr = new XMLHttpRequest();
+            xhr.open('POST', '{{ route("admin.pages.upload.image") }}', true);
+            xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+            xhr.responseType = 'json';
+        }
+
+        _initListeners(resolve, reject, file) {
+            const xhr = this.xhr;
+            const loader = this.loader;
+            const genericErrorText = 'Could not upload file: ' + file.name + '.';
+
+            xhr.addEventListener('error', () => reject(genericErrorText));
+            xhr.addEventListener('abort', () => reject());
+            xhr.addEventListener('load', () => {
+                const response = xhr.response;
+
+                if (!response || response.error) {
+                    return reject(response && response.error ? response.error.message : genericErrorText);
+                }
+
+                resolve({
+                    default: response.url
+                });
+            });
+
+            if (xhr.upload) {
+                xhr.upload.addEventListener('progress', evt => {
+                    if (evt.lengthComputable) {
+                        loader.uploadTotal = evt.total;
+                        loader.uploaded = evt.loaded;
+                    }
+                });
+            }
+        }
+
+        _sendRequest(file) {
+            const data = new FormData();
+            data.append('upload', file);
+            this.xhr.send(data);
+        }
+    }
+
+    function CustomUploadAdapterPlugin(editor) {
+        editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+            return new CustomUploadAdapter(loader);
+        };
+    }
+
+    // Initialize CKEditor 5 Classic
     ClassicEditor
         .create(document.querySelector('#content'), {
+            extraPlugins: [CustomUploadAdapterPlugin],
             toolbar: {
                 items: [
                     'heading',
                     '|',
                     'bold',
                     'italic',
+                    'underline',
+                    '|',
+                    'fontSize',
+                    'fontColor',
+                    'fontBackgroundColor',
+                    '|',
                     'link',
+                    '|',
+                    'uploadImage',
+                    'insertImage',
+                    '|',
                     'bulletedList',
                     'numberedList',
                     '|',
                     'outdent',
                     'indent',
                     '|',
+                    'alignment',
+                    '|',
                     'blockQuote',
                     'insertTable',
                     '|',
                     'undo',
                     'redo',
+                    '|',
                     'sourceEditing'
                 ]
             },
             language: 'en',
+            image: {
+                toolbar: [
+                    'imageTextAlternative',
+                    '|',
+                    'imageStyle:inline',
+                    'imageStyle:block',
+                    'imageStyle:side',
+                    '|',
+                    'imageStyle:alignLeft',
+                    'imageStyle:alignCenter',
+                    'imageStyle:alignRight',
+                    '|',
+                    'resizeImage:25',
+                    'resizeImage:50',
+                    'resizeImage:75',
+                    'resizeImage:original'
+                ],
+                resizeOptions: [
+                    {
+                        name: 'resizeImage:original',
+                        label: 'Original size',
+                        value: null
+                    },
+                    {
+                        name: 'resizeImage:25',
+                        label: '25%',
+                        value: '25'
+                    },
+                    {
+                        name: 'resizeImage:50',
+                        label: '50%',
+                        value: '50'
+                    },
+                    {
+                        name: 'resizeImage:75',
+                        label: '75%',
+                        value: '75'
+                    }
+                ],
+                styles: [
+                    'alignLeft',
+                    'alignCenter',
+                    'alignRight'
+                ]
+            },
+            fontSize: {
+                options: [9, 10, 11, 12, 13, 14, 'default', 16, 18, 20, 22, 24, 26, 28, 36, 48, 72]
+            },
             table: {
                 contentToolbar: [
                     'tableColumn',
@@ -322,7 +453,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .then(editor => {
-            console.log('CKEditor 5 initialized successfully!');
+            console.log('CKEditor 5 initialized successfully with image resize!');
             window.editor = editor;
 
             // Sync editor content to hidden textarea on form submit
@@ -335,9 +466,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             }
+
+            // Show success message
+            setTimeout(() => {
+                showNotification('CKEditor siap! Fitur upload dan resize gambar tersedia.', 'success');
+            }, 1000);
         })
         .catch(error => {
             console.error('CKEditor 5 initialization failed:', error);
+
+            // Fallback to simple textarea if CKEditor fails
+            const textarea = document.querySelector('#content');
+            if (textarea) {
+                textarea.style.display = 'block';
+                textarea.style.minHeight = '400px';
+                showNotification('CKEditor gagal dimuat, menggunakan textarea biasa.', 'warning');
+            }
         });
 
     // Auto-generate slug from title (only if not manually edited)
@@ -345,42 +489,97 @@ document.addEventListener('DOMContentLoaded', function() {
     const slugInput = document.getElementById('slug');
     const previewUrl = document.getElementById('preview-url');
 
-    titleInput.addEventListener('input', function() {
-        if (slugInput.dataset.auto !== 'false') {
-            const slug = this.value
-                .toLowerCase()
-                .replace(/[^a-z0-9\s-]/g, '')
-                .replace(/\s+/g, '-')
-                .replace(/-+/g, '-')
-                .trim('-');
+    if (titleInput && slugInput && previewUrl) {
+        titleInput.addEventListener('input', function() {
+            if (slugInput.dataset.auto !== 'false') {
+                const slug = this.value
+                    .toLowerCase()
+                    .replace(/[^a-z0-9\s-]/g, '')
+                    .replace(/\s+/g, '-')
+                    .replace(/-+/g, '-')
+                    .trim('-');
 
-            slugInput.value = slug;
-            previewUrl.textContent = '{{ url("/") }}/' + slug;
-        }
-    });
+                slugInput.value = slug;
+                previewUrl.textContent = '{{ url("/") }}/' + slug;
+            }
+        });
 
-    slugInput.addEventListener('input', function() {
-        this.dataset.auto = 'false';
-        previewUrl.textContent = '{{ url("/") }}/' + this.value;
-    });
+        slugInput.addEventListener('input', function() {
+            this.dataset.auto = 'false';
+            previewUrl.textContent = '{{ url("/") }}/' + this.value;
+        });
+    }
 
-    // Image preview
+    // Featured Image preview
     const imageInput = document.getElementById('featured_image');
     const imagePreview = document.getElementById('image-preview');
 
-    imageInput.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                imagePreview.querySelector('img').src = e.target.result;
-                imagePreview.style.display = 'block';
+    if (imageInput && imagePreview) {
+        imageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = imagePreview.querySelector('img');
+                    if (img) {
+                        img.src = e.target.result;
+                        imagePreview.style.display = 'block';
+                    }
+                }
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.style.display = 'none';
             }
-            reader.readAsDataURL(file);
-        } else {
-            imagePreview.style.display = 'none';
+        });
+    }
+
+    // Helper function for notifications
+    function showNotification(message, type) {
+        const colors = {
+            success: '#28a745',
+            error: '#dc3545',
+            info: '#17a2b8',
+            warning: '#ffc107'
+        };
+
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${colors[type] || colors.info};
+            color: ${type === 'warning' ? '#000' : '#fff'};
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 10000;
+            max-width: 300px;
+            font-size: 14px;
+            animation: slideIn 0.3s ease;
+        `;
+        notification.textContent = message;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 4000);
+    }
+
+    // Add CSS animations
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
-    });
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
 });
 </script>
 
@@ -390,6 +589,81 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 .ck-content {
     font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Enhanced styling for images with resize functionality */
+.ck-content .image {
+    display: table;
+    clear: both;
+    text-align: center;
+    margin: 1em auto;
+}
+
+.ck-content .image img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    min-width: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.ck-content .image-inline {
+    display: inline-block;
+    align-items: flex-start;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.ck-content .image-style-side {
+    float: right;
+    margin: 0 0 1em 1em;
+    max-width: 50%;
+}
+
+.ck-content .image-style-align-left {
+    float: left;
+    margin: 0 1em 1em 0;
+}
+
+.ck-content .image-style-align-center {
+    margin: 1em auto;
+    display: block;
+}
+
+.ck-content .image-style-align-right {
+    float: right;
+    margin: 0 0 1em 1em;
+}
+
+/* Responsive images */
+@media (max-width: 768px) {
+    .ck-content .image-style-side,
+    .ck-content .image-style-align-left,
+    .ck-content .image-style-align-right {
+        float: none;
+        margin: 1em auto;
+        max-width: 100%;
+        display: block;
+    }
+}
+
+/* Fallback textarea styling */
+#content {
+    display: none;
+}
+
+#content.fallback {
+    display: block !important;
+    width: 100%;
+    min-height: 400px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
     line-height: 1.6;
 }
 </style>

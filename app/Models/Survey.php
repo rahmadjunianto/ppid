@@ -143,8 +143,8 @@ class Survey extends Model
             ->toArray();
 
         return [
-            'total_responden' => $total,
-            'rata_rata_kepuasan' => $totalRating / $total,
+            'total_responden' => $surveys->count(),
+            'rata_rata_kepuasan' => $totalRating / $surveys->count(),
             'distribusi_rating' => $distribusi,
             'distribusi_gender' => $genderDistribution,
             'distribusi_pendidikan' => $educationDistribution,

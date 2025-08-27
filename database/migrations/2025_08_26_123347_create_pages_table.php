@@ -38,7 +38,7 @@ class CreatePagesTable extends Migration
             $table->index(['parent_id', 'sort_order']);
             $table->index('slug');
             $table->index('admin_id');
-            
+
             // Foreign key constraint
             $table->foreign('admin_id')->references('id')->on('users')->onDelete('set null');
         });

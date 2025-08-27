@@ -6,9 +6,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>CKEditor 5 Test</title>
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            margin: 50px; 
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
             background-color: #f8f9fa;
         }
         .container {
@@ -94,10 +94,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM loaded, initializing CKEditor 5...');
-            
+
             // Update status
             document.getElementById('editor-status').textContent = 'Initializing CKEditor 5...';
-            
+
             ClassicEditor
                 .create(document.querySelector('#content'), {
                     toolbar: {
@@ -144,12 +144,12 @@
                     console.log('CKEditor 5 initialized successfully!');
                     document.getElementById('editor-status').textContent = 'CKEditor 5 loaded successfully! ✅';
                     document.getElementById('editor-status').style.color = 'green';
-                    
+
                     // Sync content with hidden textarea
                     editor.model.document.on('change:data', () => {
                         document.getElementById('content-hidden').value = editor.getData();
                     });
-                    
+
                     // Set initial content
                     document.getElementById('content-hidden').value = editor.getData();
                 })

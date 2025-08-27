@@ -6,9 +6,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>TinyMCE Test</title>
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            margin: 50px; 
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
             background-color: #f8f9fa;
         }
         .container {
@@ -90,10 +90,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM loaded, initializing TinyMCE...');
-            
+
             // Update status
             document.getElementById('editor-status').textContent = 'Initializing TinyMCE...';
-            
+
             tinymce.init({
                 selector: '#content',
                 height: 400,
@@ -111,7 +111,7 @@
                         document.getElementById('editor-status').textContent = 'TinyMCE loaded successfully! ✅';
                         document.getElementById('editor-status').style.color = 'green';
                     });
-                    
+
                     editor.on('change', function () {
                         console.log('Content changed');
                         editor.save();

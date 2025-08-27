@@ -144,11 +144,11 @@
                                             </td>
                                             <td>
                                                 <div class="btn-group" role="group">
-                                                    <a href="{{ route('admin.pages.show', $page) }}" 
+                                                    <a href="{{ route('admin.pages.show', $page) }}"
                                                        class="btn btn-info btn-sm" title="Lihat">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.pages.edit', $page) }}" 
+                                                    <a href="{{ route('admin.pages.edit', $page) }}"
                                                        class="btn btn-warning btn-sm" title="Edit">
                                                         <i class="fas fa-edit"></i>
                                                     </a>

@@ -11,7 +11,7 @@
 </head>
 <body>
     <h1>Simple CKEditor 5 Test</h1>
-    
+
     <div class="editor-container">
         <h3>Content Editor:</h3>
         <div id="editor">
@@ -23,13 +23,13 @@
             </ul>
         </div>
     </div>
-    
+
     <button onclick="getData()">Get Editor Data</button>
-    
+
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     <script>
         let editorInstance;
-        
+
         ClassicEditor
             .create(document.querySelector('#editor'))
             .then(editor => {
@@ -41,7 +41,7 @@
                 console.error('There was a problem initializing the editor.', error);
                 alert('Error loading CKEditor 5: ' + error.message);
             });
-            
+
         function getData() {
             if (editorInstance) {
                 alert('Editor content: ' + editorInstance.getData());

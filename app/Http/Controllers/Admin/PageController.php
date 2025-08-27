@@ -44,7 +44,7 @@ class PageController extends Controller
         }
 
         $pages = $query->orderBy('sort_order')->orderBy('created_at', 'desc')->paginate(15);
-        
+
         $parentPages = Page::whereNull('parent_id')->pluck('title', 'id');
         $templateOptions = Page::getTemplateOptions();
 
@@ -55,7 +55,7 @@ class PageController extends Controller
     {
         $parentPages = Page::whereNull('parent_id')->orWhereNotNull('parent_id')->pluck('title', 'id');
         $templateOptions = Page::getTemplateOptions();
-        
+
         return view('admin.pages.create', compact('parentPages', 'templateOptions'));
     }
 
@@ -134,7 +134,7 @@ class PageController extends Controller
                           ->whereNotIn('id', $this->getChildrenIds($page))
                           ->pluck('title', 'id');
         $templateOptions = Page::getTemplateOptions();
-        
+
         return view('admin.pages.edit', compact('page', 'parentPages', 'templateOptions'));
     }
 
@@ -227,12 +227,12 @@ class PageController extends Controller
     {
         $childrenIds = [];
         $children = $page->children;
-        
+
         foreach ($children as $child) {
             $childrenIds[] = $child->id;
             $childrenIds = array_merge($childrenIds, $this->getChildrenIds($child));
         }
-        
+
         return $childrenIds;
     }
 
@@ -272,7 +272,7 @@ class PageController extends Controller
         $newPage->status = 'draft';
         $newPage->is_homepage = false;
         $newPage->published_at = null;
-        
+
         // Ensure unique slug
         $originalSlug = $newPage->slug;
         $counter = 1;
@@ -280,7 +280,7 @@ class PageController extends Controller
             $newPage->slug = $originalSlug . '-' . $counter;
             $counter++;
         }
-        
+
         $newPage->save();
 
         return redirect()->route('admin.pages.edit', $newPage)
@@ -301,7 +301,7 @@ class PageController extends Controller
                 $file = $request->file('file');
                 $filename = time() . '_' . $file->getClientOriginalName();
                 $path = $file->storeAs('pages/images', $filename, 'public');
-                
+
                 return response()->json([
                     'location' => asset('storage/' . $path)
                 ]);

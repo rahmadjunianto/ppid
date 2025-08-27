@@ -18,18 +18,18 @@
 <body>
     <div class="container">
         <h1>Test CKEditor 5 - Create Page</h1>
-        
+
         <form method="POST" action="#" onsubmit="return false;">
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" id="title" name="title" placeholder="Enter page title">
             </div>
-            
+
             <div class="form-group">
                 <label for="slug">Slug</label>
                 <input type="text" id="slug" name="slug" placeholder="page-slug">
             </div>
-            
+
             <div class="form-group">
                 <label for="content">Content</label>
                 <div id="content">
@@ -43,7 +43,7 @@
                 </div>
                 <textarea name="content" style="display: none;"></textarea>
             </div>
-            
+
             <div class="form-group">
                 <label for="status">Status</label>
                 <select id="status" name="status">
@@ -51,7 +51,7 @@
                     <option value="published">Published</option>
                 </select>
             </div>
-            
+
             <button type="submit" class="btn">Save Page</button>
         </form>
     </div>
@@ -61,7 +61,7 @@
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         console.log('DOM loaded, initializing CKEditor 5...');
-        
+
         // Initialize CKEditor 5
         ClassicEditor
             .create(document.querySelector('#content'), {
@@ -98,7 +98,7 @@
             .then(editor => {
                 console.log('CKEditor 5 initialized successfully!');
                 window.editor = editor;
-                
+
                 // Sync editor content to hidden textarea on form submit
                 const form = document.querySelector('form');
                 if (form) {
@@ -130,7 +130,7 @@
                     .replace(/\s+/g, '-')
                     .replace(/-+/g, '-')
                     .trim('-');
-                
+
                 slugInput.value = slug;
             }
         });

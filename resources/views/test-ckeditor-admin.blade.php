@@ -33,7 +33,7 @@
                             </ul>
                         </div>
                     </div>
-                    
+
                     <button type="button" onclick="getContent()" class="btn btn-primary">Get Content</button>
                 </div>
             </div>
@@ -48,7 +48,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Initializing CKEditor 5...');
-    
+
     ClassicEditor
         .create(document.querySelector('#content'), {
             toolbar: {

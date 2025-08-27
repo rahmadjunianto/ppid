@@ -23,15 +23,15 @@
             <!-- Page Header -->
             <div class="page-header mb-4">
                 <h1 class="display-4">{{ $page->title }}</h1>
-                
+
                 @if($page->excerpt)
                     <p class="lead text-muted">{{ $page->excerpt }}</p>
                 @endif
 
                 @if($page->featured_image)
                     <div class="featured-image my-4">
-                        <img src="{{ asset('storage/' . $page->featured_image) }}" 
-                             alt="{{ $page->title }}" 
+                        <img src="{{ asset('storage/' . $page->featured_image) }}"
+                             alt="{{ $page->title }}"
                              class="img-fluid rounded shadow">
                     </div>
                 @endif
@@ -55,7 +55,7 @@
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card h-100">
                                     @if($child->featured_image)
-                                        <img src="{{ asset('storage/' . $child->featured_image) }}" 
+                                        <img src="{{ asset('storage/' . $child->featured_image) }}"
                                              class="card-img-top" alt="{{ $child->title }}"
                                              style="height: 200px; object-fit: cover;">
                                     @endif
@@ -84,7 +84,7 @@
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card h-100">
                                     @if($related->featured_image)
-                                        <img src="{{ asset('storage/' . $related->featured_image) }}" 
+                                        <img src="{{ asset('storage/' . $related->featured_image) }}"
                                              class="card-img-top" alt="{{ $related->title }}"
                                              style="height: 200px; object-fit: cover;">
                                     @endif
@@ -115,11 +115,11 @@
                                 </a>
                             </div>
                         @endif
-                        
+
                         @if($page->children->where('status', 'published')->count() > 0)
                             <div class="col-md-6 text-md-right">
                                 <div class="dropdown">
-                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" 
+                                    <button class="btn btn-outline-primary dropdown-toggle" type="button"
                                             data-toggle="dropdown">
                                         Sub Halaman
                                     </button>

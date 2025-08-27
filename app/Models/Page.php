@@ -53,7 +53,7 @@ class Page extends Model
             if (empty($page->slug)) {
                 $page->slug = Str::slug($page->title);
             }
-            
+
             // Auto set published_at if status is published
             if ($page->status === 'published' && !$page->published_at) {
                 $page->published_at = now();
@@ -65,7 +65,7 @@ class Page extends Model
             if ($page->status === 'published' && !$page->published_at) {
                 $page->published_at = now();
             }
-            
+
             // Clear published_at if status changed to draft
             if ($page->status === 'draft') {
                 $page->published_at = null;
@@ -125,19 +125,19 @@ class Page extends Model
         if ($this->is_homepage) {
             return url('/');
         }
-        
+
         if ($this->parent_id) {
             $parents = collect();
             $page = $this;
-            
+
             while ($page->parent_id) {
                 $page = $page->parent;
                 $parents->prepend($page->slug);
             }
-            
+
             return url('/' . $parents->implode('/') . '/' . $this->slug);
         }
-        
+
         return url('/' . $this->slug);
     }
 
@@ -146,7 +146,7 @@ class Page extends Model
         if ($this->parent_id) {
             return $this->parent->title . ' → ' . $this->title;
         }
-        
+
         return $this->title;
     }
 
@@ -157,7 +157,7 @@ class Page extends Model
             'draft' => '<span class="badge badge-secondary">Draft</span>',
             'archived' => '<span class="badge badge-warning">Archived</span>'
         ];
-        
+
         return $badges[$this->status] ?? '<span class="badge badge-light">Unknown</span>';
     }
 
@@ -166,7 +166,7 @@ class Page extends Model
         if ($value) {
             return $value;
         }
-        
+
         // Auto generate excerpt from content
         return Str::limit(strip_tags($this->content), 160);
     }
@@ -179,7 +179,7 @@ class Page extends Model
     // Helper methods
     public function isPublished()
     {
-        return $this->status === 'published' && 
+        return $this->status === 'published' &&
                ($this->published_at === null || $this->published_at <= now());
     }
 
@@ -192,13 +192,13 @@ class Page extends Model
     {
         $breadcrumb = collect();
         $page = $this;
-        
+
         $breadcrumb->prepend([
             'title' => $page->title,
             'url' => $page->getUrl(),
             'active' => true
         ]);
-        
+
         while ($page->parent_id) {
             $page = $page->parent;
             $breadcrumb->prepend([
@@ -207,7 +207,7 @@ class Page extends Model
                 'active' => false
             ]);
         }
-        
+
         return $breadcrumb;
     }
 
@@ -225,12 +225,12 @@ class Page extends Model
 
         $segments = collect([$this->slug]);
         $parent = $this->parent;
-        
+
         while ($parent) {
             $segments->prepend($parent->slug);
             $parent = $parent->parent;
         }
-        
+
         return url($segments->implode('/'));
     }
 

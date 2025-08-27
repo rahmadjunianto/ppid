@@ -207,7 +207,7 @@
                                     <h5 class="card-title mb-0">Featured Image</h5>
                                 </div>
                                 <div class="card-body text-center">
-                                    <img src="{{ asset('storage/' . $page->featured_image) }}" 
+                                    <img src="{{ asset('storage/' . $page->featured_image) }}"
                                          alt="{{ $page->title }}" class="img-fluid rounded">
                                 </div>
                             </div>
@@ -278,7 +278,7 @@
                                         <a href="{{ route('admin.pages.edit', $page) }}" class="btn btn-warning btn-sm">
                                             <i class="fas fa-edit"></i> Edit Halaman
                                         </a>
-                                        
+
                                         <form action="{{ route('admin.pages.duplicate', $page) }}" method="POST" class="d-inline">
                                             @csrf
                                             <button type="submit" class="btn btn-info btn-sm w-100">
@@ -298,7 +298,7 @@
                                             </button>
                                         </form>
 
-                                        <form action="{{ route('admin.pages.destroy', $page) }}" method="POST" 
+                                        <form action="{{ route('admin.pages.destroy', $page) }}" method="POST"
                                               onsubmit="return confirm('Apakah Anda yakin ingin menghapus halaman ini?')" class="d-inline">
                                             @csrf
                                             @method('DELETE')

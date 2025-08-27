@@ -31,7 +31,7 @@ class PageSeeder extends Seeder
 
         Page::create([
             'title' => 'Layanan Kami',
-            'slug' => 'layanan-kami', 
+            'slug' => 'layanan-kami',
             'content' => '<h2>Layanan PPID</h2>
                 <p>Berbagai layanan informasi publik yang tersedia...</p>',
             'excerpt' => 'Layanan informasi publik PPID',

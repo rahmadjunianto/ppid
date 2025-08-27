@@ -45,11 +45,11 @@ class AddCmsFieldsToPagesTable extends Migration
     {
         Schema::table('pages', function (Blueprint $table) {
             $table->dropColumn([
-                'template', 
-                'parent_id', 
-                'show_in_menu', 
-                'is_homepage', 
-                'meta_keywords', 
+                'template',
+                'parent_id',
+                'show_in_menu',
+                'is_homepage',
+                'meta_keywords',
                 'custom_fields'
             ]);
         });

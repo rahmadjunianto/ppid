@@ -16,19 +16,19 @@ class PageController extends Controller
 
         foreach ($slugs as $currentSlug) {
             $query = Page::where('slug', $currentSlug)->published();
-            
+
             if ($currentParent) {
                 $query->where('parent_id', $currentParent->id);
             } else {
                 $query->whereNull('parent_id');
             }
-            
+
             $page = $query->first();
-            
+
             if (!$page) {
                 abort(404);
             }
-            
+
             $currentParent = $page;
         }
 
@@ -50,7 +50,7 @@ class PageController extends Controller
 
         // Get related pages (siblings or children)
         $relatedPages = collect();
-        
+
         if ($page->children()->published()->count() > 0) {
             // If page has children, show them
             $relatedPages = $page->children()->published()->orderBy('sort_order')->get();
@@ -80,7 +80,7 @@ class PageController extends Controller
     public function home()
     {
         $homepage = Page::getHomepage();
-        
+
         if (!$homepage) {
             // Fallback to existing beranda view if no homepage is set
             return view('beranda');

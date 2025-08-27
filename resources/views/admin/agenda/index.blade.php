@@ -111,11 +111,11 @@
                                             </td>
                                             <td>
                                                 <div class="btn-group" role="group">
-                                                    <a href="{{ route('admin.agenda.show', $agenda) }}" 
+                                                    <a href="{{ route('admin.agenda.show', $agenda) }}"
                                                        class="btn btn-info btn-sm" title="Lihat">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.agenda.edit', $agenda) }}" 
+                                                    <a href="{{ route('admin.agenda.edit', $agenda) }}"
                                                        class="btn btn-warning btn-sm" title="Edit">
                                                         <i class="fas fa-edit"></i>
                                                     </a>

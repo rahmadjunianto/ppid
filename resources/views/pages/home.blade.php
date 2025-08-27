@@ -15,7 +15,7 @@
                 @if($page->excerpt)
                     <p class="lead">{{ $page->excerpt }}</p>
                 @endif
-                
+
                 @if($page->children->where('status', 'published')->count() > 0)
                     <div class="mt-4">
                         <a href="#main-content" class="btn btn-light btn-lg">
@@ -24,11 +24,11 @@
                     </div>
                 @endif
             </div>
-            
+
             @if($page->featured_image)
                 <div class="col-lg-4">
-                    <img src="{{ asset('storage/' . $page->featured_image) }}" 
-                         alt="{{ $page->title }}" 
+                    <img src="{{ asset('storage/' . $page->featured_image) }}"
+                         alt="{{ $page->title }}"
                          class="img-fluid rounded shadow-lg">
                 </div>
             @endif
@@ -57,26 +57,26 @@
                     <h2 class="display-5">Layanan & Informasi</h2>
                     <p class="lead text-muted">Temukan berbagai layanan dan informasi yang tersedia</p>
                 </div>
-                
+
                 <div class="row">
                     @foreach($page->children->where('status', 'published')->take(6) as $child)
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="card h-100 shadow-sm border-0">
                                 @if($child->featured_image)
-                                    <img src="{{ asset('storage/' . $child->featured_image) }}" 
+                                    <img src="{{ asset('storage/' . $child->featured_image) }}"
                                          class="card-img-top" alt="{{ $child->title }}"
                                          style="height: 250px; object-fit: cover;">
                                 @endif
-                                
+
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">{{ $child->title }}</h5>
-                                    
+
                                     @if($child->excerpt)
                                         <p class="card-text text-muted flex-grow-1">
                                             {{ Str::limit($child->excerpt, 120) }}
                                         </p>
                                     @endif
-                                    
+
                                     <div class="mt-auto">
                                         <a href="{{ $child->getUrl() }}" class="btn btn-primary">
                                             Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
@@ -87,7 +87,7 @@
                         </div>
                     @endforeach
                 </div>
-                
+
                 @if($page->children->where('status', 'published')->count() > 6)
                     <div class="text-center mt-4">
                         <a href="#" class="btn btn-outline-primary btn-lg">
@@ -139,7 +139,7 @@
             <h2 class="display-5">Informasi Terbaru</h2>
             <p class="lead text-muted">Berita dan pengumuman terkini</p>
         </div>
-        
+
         <div class="row">
             @foreach($latestPages as $latest)
                 <div class="col-lg-6 mb-4">
@@ -147,7 +147,7 @@
                         <div class="row no-gutters">
                             @if($latest->featured_image)
                                 <div class="col-4">
-                                    <img src="{{ asset('storage/' . $latest->featured_image) }}" 
+                                    <img src="{{ asset('storage/' . $latest->featured_image) }}"
                                          class="card-img h-100" alt="{{ $latest->title }}"
                                          style="object-fit: cover;">
                                 </div>
@@ -297,11 +297,11 @@
     .hero-section {
         text-align: center;
     }
-    
+
     .hero-section .display-4 {
         font-size: 2rem;
     }
-    
+
     .featured-pages .card-body {
         padding: 1rem;
     }

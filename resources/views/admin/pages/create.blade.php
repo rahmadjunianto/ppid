@@ -135,7 +135,7 @@
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label for="status">Status</label>
-                                            <select class="form-control @error('status') is-invalid @enderror" 
+                                            <select class="form-control @error('status') is-invalid @enderror"
                                                     id="status" name="status" required>
                                                 <option value="draft" {{ old('status') == 'draft' ? 'selected' : '' }}>Draft</option>
                                                 <option value="published" {{ old('status') == 'published' ? 'selected' : '' }}>Published</option>
@@ -157,7 +157,7 @@
 
                                         <div class="form-group">
                                             <label for="template">Template</label>
-                                            <select class="form-control @error('template') is-invalid @enderror" 
+                                            <select class="form-control @error('template') is-invalid @enderror"
                                                     id="template" name="template" required>
                                                 @foreach($templateOptions as $key => $label)
                                                     <option value="{{ $key }}" {{ old('template') == $key ? 'selected' : '' }}>
@@ -172,7 +172,7 @@
 
                                         <div class="form-group">
                                             <label for="parent_id">Parent Page</label>
-                                            <select class="form-control @error('parent_id') is-invalid @enderror" 
+                                            <select class="form-control @error('parent_id') is-invalid @enderror"
                                                     id="parent_id" name="parent_id">
                                                 <option value="">Root Page</option>
                                                 @foreach($parentPages as $id => $title)
@@ -196,8 +196,8 @@
                                         </div>
 
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" 
-                                                   id="show_in_menu" name="show_in_menu" value="1" 
+                                            <input type="checkbox" class="form-check-input"
+                                                   id="show_in_menu" name="show_in_menu" value="1"
                                                    {{ old('show_in_menu', true) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="show_in_menu">
                                                 Tampilkan di Menu
@@ -205,8 +205,8 @@
                                         </div>
 
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" 
-                                                   id="is_homepage" name="is_homepage" value="1" 
+                                            <input type="checkbox" class="form-check-input"
+                                                   id="is_homepage" name="is_homepage" value="1"
                                                    {{ old('is_homepage') ? 'checked' : '' }}>
                                             <label class="form-check-label" for="is_homepage">
                                                 Jadikan Homepage
@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(editor => {
             console.log('CKEditor 5 initialized successfully!');
             window.editor = editor;
-            
+
             // Sync editor content to hidden textarea on form submit
             const form = document.querySelector('form');
             if (form) {
@@ -322,7 +322,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .replace(/\s+/g, '-')
                 .replace(/-+/g, '-')
                 .trim('-');
-            
+
             slugInput.value = slug;
             previewUrl.textContent = '{{ url("/") }}/' + slug;
         }

@@ -41,7 +41,7 @@ class MenuServiceProvider extends ServiceProvider
                           ->orderBy('sort_order')
                           ->get();
             });
-            
+
             $view->with('menuPages', $menuPages);
         });
     }

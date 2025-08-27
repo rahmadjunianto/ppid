@@ -43,7 +43,7 @@
                 </p>
             </div>
         </div>
-        
+
         <div class="col-lg-4 mb-4">
             <div class="contact-card text-center p-4 bg-light rounded shadow-sm h-100">
                 <i class="fas fa-phone fa-3x text-success mb-3"></i>
@@ -55,7 +55,7 @@
                 </p>
             </div>
         </div>
-        
+
         <div class="col-lg-4 mb-4">
             <div class="contact-card text-center p-4 bg-light rounded shadow-sm h-100">
                 <i class="fas fa-envelope fa-3x text-info mb-3"></i>
@@ -74,7 +74,7 @@
         <div class="col-lg-6 mb-4">
             <div class="contact-form">
                 <h3 class="mb-4">Kirim Pesan</h3>
-                
+
                 @if(session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}
@@ -91,7 +91,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="name">Nama Lengkap <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" 
+                        <input type="text" class="form-control @error('name') is-invalid @enderror"
                                id="name" name="name" value="{{ old('name') }}" required>
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -100,7 +100,7 @@
 
                     <div class="form-group">
                         <label for="email">Email <span class="text-danger">*</span></label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" 
+                        <input type="email" class="form-control @error('email') is-invalid @enderror"
                                id="email" name="email" value="{{ old('email') }}" required>
                         @error('email')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -109,7 +109,7 @@
 
                     <div class="form-group">
                         <label for="phone">Nomor Telepon</label>
-                        <input type="tel" class="form-control @error('phone') is-invalid @enderror" 
+                        <input type="tel" class="form-control @error('phone') is-invalid @enderror"
                                id="phone" name="phone" value="{{ old('phone') }}">
                         @error('phone')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -118,7 +118,7 @@
 
                     <div class="form-group">
                         <label for="subject">Subjek <span class="text-danger">*</span></label>
-                        <select class="form-control @error('subject') is-invalid @enderror" 
+                        <select class="form-control @error('subject') is-invalid @enderror"
                                 id="subject" name="subject" required>
                             <option value="">Pilih Subjek</option>
                             <option value="informasi_umum" {{ old('subject') == 'informasi_umum' ? 'selected' : '' }}>Informasi Umum</option>
@@ -134,7 +134,7 @@
 
                     <div class="form-group">
                         <label for="message">Pesan <span class="text-danger">*</span></label>
-                        <textarea class="form-control @error('message') is-invalid @enderror" 
+                        <textarea class="form-control @error('message') is-invalid @enderror"
                                   id="message" name="message" rows="6" required>{{ old('message') }}</textarea>
                         @error('message')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -160,10 +160,10 @@
         <div class="col-lg-6 mb-4">
             <div class="office-info">
                 <h3 class="mb-4">Lokasi Kantor</h3>
-                
+
                 <!-- Google Maps Embed -->
                 <div class="map-container mb-4">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613!3d-6.1944491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sMonas!5e0!3m2!1sen!2sid!4v1635123456789!5m2!1sen!2sid" 
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613!3d-6.1944491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sMonas!5e0!3m2!1sen!2sid!4v1635123456789!5m2!1sen!2sid"
                             width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
                     </iframe>
                 </div>
@@ -185,9 +185,9 @@
                             <td class="text-muted">Tutup</td>
                         </tr>
                     </table>
-                    
+
                     <hr>
-                    
+
                     <div class="emergency-contact">
                         <h6><i class="fas fa-exclamation-triangle text-warning"></i> Kontak Darurat</h6>
                         <p class="mb-1"><strong>24/7 Hotline:</strong> 0800-1234-5678</p>
@@ -348,7 +348,7 @@
     .contact-form {
         padding: 1.5rem;
     }
-    
+
     .page-header .display-4 {
         font-size: 2rem;
     }
@@ -362,7 +362,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form validation enhancement
     const form = document.querySelector('form');
     const submitBtn = form.querySelector('button[type="submit"]');
-    
+
     form.addEventListener('submit', function(e) {
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
         submitBtn.disabled = true;
@@ -371,16 +371,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Character counter for message textarea
     const messageTextarea = document.getElementById('message');
     const maxLength = 1000;
-    
+
     if (messageTextarea) {
         const counter = document.createElement('small');
         counter.className = 'text-muted';
         messageTextarea.parentNode.appendChild(counter);
-        
+
         function updateCounter() {
             const remaining = maxLength - messageTextarea.value.length;
             counter.textContent = `${messageTextarea.value.length}/${maxLength} karakter`;
-            
+
             if (remaining < 50) {
                 counter.classList.add('text-warning');
                 counter.classList.remove('text-muted');
@@ -389,7 +389,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 counter.classList.remove('text-warning');
             }
         }
-        
+
         messageTextarea.addEventListener('input', updateCounter);
         updateCounter();
     }

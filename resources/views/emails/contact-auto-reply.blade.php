@@ -104,27 +104,27 @@
 
         <div class="contact-details">
             <h4>Informasi Kontak PPID:</h4>
-            
+
             <div class="contact-method">
                 <span>📍</span>
                 <span>Jl. Raya No. 123, Jakarta Pusat 10110</span>
             </div>
-            
+
             <div class="contact-method">
                 <span>📞</span>
                 <span>Telepon: (021) 1234-5678</span>
             </div>
-            
+
             <div class="contact-method">
                 <span>📠</span>
                 <span>Fax: (021) 1234-5679</span>
             </div>
-            
+
             <div class="contact-method">
                 <span>✉️</span>
                 <span>Email: info@ppid.go.id</span>
             </div>
-            
+
             <div class="contact-method">
                 <span>🕒</span>
                 <span>Jam Operasional: Senin-Kamis 08:00-16:00, Jumat 08:00-16:30</span>

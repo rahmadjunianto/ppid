@@ -588,14 +588,14 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="stat-item">
-                        <span class="stat-number" data-count="1250">0</span>
+                        <span class="stat-number" data-count="125">0</span>
                         <h5>Permohonan Informasi</h5>
                         <p class="text-muted">Total permohonan yang telah diterima</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="stat-item">
-                        <span class="stat-number" data-count="1198">0</span>
+                        <span class="stat-number" data-count="119">0</span>
                         <h5>Dikabulkan</h5>
                         <p class="text-muted">Permohonan yang telah dikabulkan</p>
                     </div>

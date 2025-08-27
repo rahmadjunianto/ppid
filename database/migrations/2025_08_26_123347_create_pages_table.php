@@ -25,6 +25,7 @@ class CreatePagesTable extends Migration
             $table->string('featured_image')->nullable();
             $table->string('template')->default('default');
             $table->unsignedBigInteger('parent_id')->nullable();
+            $table->unsignedBigInteger('admin_id')->nullable();
             $table->integer('sort_order')->default(0);
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
             $table->boolean('show_in_menu')->default(true);
@@ -36,6 +37,10 @@ class CreatePagesTable extends Migration
             $table->index(['status', 'published_at']);
             $table->index(['parent_id', 'sort_order']);
             $table->index('slug');
+            $table->index('admin_id');
+            
+            // Foreign key constraint
+            $table->foreign('admin_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 

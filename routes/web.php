@@ -6,7 +6,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\SurveyController as AdminSurveyController;
+use App\Http\Controllers\Admin\PageController as AdminPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +22,29 @@ use App\Http\Controllers\Admin\SurveyController as AdminSurveyController;
 |
 */
 
-Route::get('/', function () {
-    return view('beranda');
-});
+Route::get('/', [PageController::class, 'home']);
 
 Route::get('/beranda', function () {
     return view('beranda');
+});
+
+// Page search
+Route::get('/search', [PageController::class, 'search'])->name('pages.search');
+
+// Sitemap
+Route::get('/sitemap', [PageController::class, 'sitemap'])->name('pages.sitemap');
+
+// Contact form
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
+
+// Test TinyMCE (remove in production)
+Route::get('/test-tinymce', function () {
+    return view('test-tinymce');
+});
+
+// Test CKEditor 5 (remove in production)
+Route::get('/test-ckeditor', function () {
+    return view('test-ckeditor');
 });
 
 Route::get('/profil', function () {
@@ -96,6 +116,21 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         Route::delete('/{pegawai}', [App\Http\Controllers\Admin\PegawaiController::class, 'destroy'])->name('destroy');
     });
 
+    // Pages Management
+    Route::prefix('pages')->name('pages.')->group(function () {
+        Route::get('/', [AdminPageController::class, 'index'])->name('index');
+        Route::get('/create', [AdminPageController::class, 'create'])->name('create');
+        Route::post('/', [AdminPageController::class, 'store'])->name('store');
+        Route::get('/{page}', [AdminPageController::class, 'show'])->name('show');
+        Route::get('/{page}/edit', [AdminPageController::class, 'edit'])->name('edit');
+        Route::put('/{page}', [AdminPageController::class, 'update'])->name('update');
+        Route::delete('/{page}', [AdminPageController::class, 'destroy'])->name('destroy');
+        Route::post('/{page}/duplicate', [AdminPageController::class, 'duplicate'])->name('duplicate');
+        Route::patch('/{page}/toggle-status', [AdminPageController::class, 'toggleStatus'])->name('toggle-status');
+        Route::post('/update-order', [AdminPageController::class, 'updateOrder'])->name('update-order');
+        Route::post('/upload-image', [AdminPageController::class, 'uploadImage'])->name('upload-image');
+    });
+
     // Agenda Management
     Route::prefix('agenda')->name('agenda.')->group(function () {
         Route::get('/', [App\Http\Controllers\Admin\AgendaController::class, 'index'])->name('index');
@@ -116,3 +151,17 @@ Route::prefix('pegawai')->name('pegawai.')->group(function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Test CKEditor route (untuk debugging)
+Route::get('/test-admin-create', function () {
+    return view('admin.pages.create', [
+        'pages' => \App\Models\Page::orderBy('title')->get()
+    ]);
+});
+
+Route::get('/test-ckeditor-admin', function () {
+    return view('test-ckeditor-admin');
+});
+
+// Dynamic page routes (must be last to avoid conflicts)
+Route::get('/{slug}', [PageController::class, 'show'])->where('slug', '.*')->name('pages.show');

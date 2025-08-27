@@ -296,5 +296,6 @@ $(document).ready(function() {
 @endif
 
 @stack('scripts')
+@yield('scripts')
 </body>
 </html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple CKEditor 5 Test</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .editor-container { margin: 20px 0; }
+        .ck-editor__editable { min-height: 200px; }
+    </style>
+</head>
+<body>
+    <h1>Simple CKEditor 5 Test</h1>
+    
+    <div class="editor-container">
+        <h3>Content Editor:</h3>
+        <div id="editor">
+            <h2>Hello World!</h2>
+            <p>This is a <strong>test</strong> content for CKEditor 5.</p>
+            <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+            </ul>
+        </div>
+    </div>
+    
+    <button onclick="getData()">Get Editor Data</button>
+    
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script>
+        let editorInstance;
+        
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                console.log('Editor was initialized', editor);
+                editorInstance = editor;
+                alert('CKEditor 5 loaded successfully!');
+            })
+            .catch(error => {
+                console.error('There was a problem initializing the editor.', error);
+                alert('Error loading CKEditor 5: ' + error.message);
+            });
+            
+        function getData() {
+            if (editorInstance) {
+                alert('Editor content: ' + editorInstance.getData());
+            } else {
+                alert('Editor not initialized');
+            }
+        }
+    </script>
+</body>
+</html>

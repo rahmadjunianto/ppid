@@ -96,6 +96,33 @@
                     </ul>
                 </li>
 
+                <!-- Kelola Halaman -->
+                <li class="nav-item {{ request()->routeIs('admin.pages.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-file-alt"></i>
+                        <p>
+                            Kelola Halaman
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.pages.index') }}"
+                               class="nav-link {{ request()->routeIs('admin.pages.index') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Daftar Halaman</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.pages.create') }}"
+                               class="nav-link {{ request()->routeIs('admin.pages.create') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tambah Halaman</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 @if(auth()->user() && auth()->user()->role === 'admin')
                 <!-- User Management -->
                 <li class="nav-item {{ request()->routeIs('admin.users.*') ? 'menu-open' : '' }}">

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CKEditor 5 Test - Create Page</title>
+    <style>
+        .container { max-width: 800px; margin: 50px auto; padding: 20px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        .btn { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .btn:hover { background: #0056b3; }
+        .ck-editor__editable { min-height: 400px; }
+        .ck-content { font-size: 16px; line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Test CKEditor 5 - Create Page</h1>
+        
+        <form method="POST" action="#" onsubmit="return false;">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" placeholder="Enter page title">
+            </div>
+            
+            <div class="form-group">
+                <label for="slug">Slug</label>
+                <input type="text" id="slug" name="slug" placeholder="page-slug">
+            </div>
+            
+            <div class="form-group">
+                <label for="content">Content</label>
+                <div id="content">
+                    <h2>Judul Halaman</h2>
+                    <p>Masukkan konten halaman di sini. Anda dapat menggunakan editor untuk formatting yang lebih baik.</p>
+                    <ul>
+                        <li>Bold text</li>
+                        <li>Italic text</li>
+                        <li>Lists dan formatting</li>
+                    </ul>
+                </div>
+                <textarea name="content" style="display: none;"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                    <option value="draft">Draft</option>
+                    <option value="published">Published</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn">Save Page</button>
+        </form>
+    </div>
+
+    <!-- CKEditor 5 CDN -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM loaded, initializing CKEditor 5...');
+        
+        // Initialize CKEditor 5
+        ClassicEditor
+            .create(document.querySelector('#content'), {
+                toolbar: {
+                    items: [
+                        'heading',
+                        '|',
+                        'bold',
+                        'italic',
+                        'link',
+                        'bulletedList',
+                        'numberedList',
+                        '|',
+                        'outdent',
+                        'indent',
+                        '|',
+                        'blockQuote',
+                        'insertTable',
+                        '|',
+                        'undo',
+                        'redo',
+                        'sourceEditing'
+                    ]
+                },
+                language: 'en',
+                table: {
+                    contentToolbar: [
+                        'tableColumn',
+                        'tableRow',
+                        'mergeTableCells'
+                    ]
+                }
+            })
+            .then(editor => {
+                console.log('CKEditor 5 initialized successfully!');
+                window.editor = editor;
+                
+                // Sync editor content to hidden textarea on form submit
+                const form = document.querySelector('form');
+                if (form) {
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        const hiddenTextarea = document.querySelector('textarea[name="content"]');
+                        if (hiddenTextarea) {
+                            hiddenTextarea.value = editor.getData();
+                            console.log('Content synced:', hiddenTextarea.value);
+                            alert('Content saved! Check console for content.');
+                        }
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('CKEditor 5 initialization failed:', error);
+                alert('CKEditor 5 failed to load: ' + error.message);
+            });
+
+        // Auto-generate slug from title
+        const titleInput = document.getElementById('title');
+        const slugInput = document.getElementById('slug');
+
+        titleInput.addEventListener('input', function() {
+            if (!slugInput.value || slugInput.dataset.auto !== 'false') {
+                const slug = this.value
+                    .toLowerCase()
+                    .replace(/[^a-z0-9\s-]/g, '')
+                    .replace(/\s+/g, '-')
+                    .replace(/-+/g, '-')
+                    .trim('-');
+                
+                slugInput.value = slug;
+            }
+        });
+
+        slugInput.addEventListener('input', function() {
+            this.dataset.auto = 'false';
+        });
+    });
+    </script>
+</body>
+</html>

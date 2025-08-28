@@ -78,239 +78,9 @@
                                         <div class="form-group">
                                             <label for="content">Konten</label>
                                             <div id="content" class="@error('content') is-invalid @enderror">
-                                                {!! old('content', '<h2 style="color: #1e5631; font-size: 28px; font-weight: 700; margin-bottom: 20px; text-align: center; border-bottom: 3px solid #1e5631; padding-bottom: 10px;">📋 Informasi Tersedia Setiap Saat</h2>
-
-<div style="background: linear-gradient(135deg, #e7f3ff, #f0f9ff); border-radius: 12px; padding: 20px; margin: 20px 0; border: 1px solid #b8daff;">
-<p style="font-size: 16px; color: #2c5282; margin: 0; text-align: center;">
-🏛️ <strong>Berikut adalah daftar informasi publik yang tersedia setiap saat di PPID Kemenag Nganjuk</strong>
-</p>
-</div>
-
-<div style="overflow-x: auto; margin: 25px 0; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
-<table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; background: white; border-radius: 12px; overflow: hidden;">
-<thead>
-<tr style="background: linear-gradient(135deg, #1e5631, #2d8f47); color: white;">
-<th style="padding: 18px 20px; text-align: left; font-size: 16px; font-weight: 600; border: none;">
-📄 Nama Informasi Publik
-</th>
-<th style="padding: 18px 20px; text-align: center; font-size: 16px; font-weight: 600; border: none; min-width: 150px;">
-⚡ Aksi
-</th>
-</tr>
-</thead>
-<tbody>
-<tr style="background-color: #f8fffe; transition: all 0.3s ease; border-bottom: 1px solid #e2e8f0;">
-<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
-<strong style="color: #1e5631;">📋 Daftar Informasi Publik</strong>
-<br><small style="color: #718096; font-size: 13px;">Katalog lengkap informasi yang dapat diakses publik</small>
-</td>
-<td style="padding: 16px 20px; text-align: center; border: none;">
-<a href="#" style="background: linear-gradient(135deg, #4299e1, #3182ce); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(66, 153, 225, 0.3);">
-👀 Lihat Detail
-</a>
-</td>
-</tr>
-<tr style="background-color: white; transition: all 0.3s ease; border-bottom: 1px solid #e2e8f0;">
-<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
-<strong style="color: #1e5631;">🚫 Informasi yang Dikecualikan</strong>
-<br><small style="color: #718096; font-size: 13px;">Daftar informasi yang tidak dapat diakses publik</small>
-</td>
-<td style="padding: 16px 20px; text-align: center; border: none;">
-<a href="#" style="background: linear-gradient(135deg, #ed8936, #dd6b20); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(237, 137, 54, 0.3);">
-📋 Lihat Detail
-</a>
-</td>
-</tr>
-<tr style="background-color: #f8fffe; transition: all 0.3s ease; border-bottom: 1px solid #e2e8f0;">
-<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
-<strong style="color: #1e5631;">📖 Pedoman Pengelolaan Administrasi</strong>
-<br><small style="color: #718096; font-size: 13px;">Panduan tata kelola administrasi perkantoran</small>
-</td>
-<td style="padding: 16px 20px; text-align: center; border: none;">
-<a href="#" style="background: linear-gradient(135deg, #48bb78, #38a169); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(72, 187, 120, 0.3);">
-📥 Download PDF
-</a>
-</td>
-</tr>
-<tr style="background-color: white; transition: all 0.3s ease; border-bottom: 1px solid #e2e8f0;">
-<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
-<strong style="color: #1e5631;">🏢 Pedoman Pengelolaan Organisasi</strong>
-<br><small style="color: #718096; font-size: 13px;">Struktur dan tata kelola organisasi</small>
-</td>
-<td style="padding: 16px 20px; text-align: center; border: none;">
-<a href="#" style="background: linear-gradient(135deg, #9f7aea, #805ad5); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(159, 122, 234, 0.3);">
-📥 Download PDF
-</a>
-</td>
-</tr>
-<tr style="background-color: #f8fffe; transition: all 0.3s ease;">
-<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
-<strong style="color: #1e5631;">📊 Statistik Kepegawaian</strong>
-<br><small style="color: #718096; font-size: 13px;">Data statistik pegawai dan kepegawaian</small>
-</td>
-<td style="padding: 16px 20px; text-align: center; border: none;">
-<a href="#" style="background: linear-gradient(135deg, #f56565, #e53e3e); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(245, 101, 101, 0.3);">
-📈 Lihat Data
-</a>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-<h3 style="color: #1e5631; font-size: 22px; font-weight: 600; margin: 35px 0 20px 0;">
-🌟 Informasi Tambahan
-</h3>
-
-<div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 5px solid #1e5631;">
-<ul style="list-style: none; padding: 0; margin: 0;">
-<li style="margin-bottom: 15px; padding: 15px; background: linear-gradient(135deg, #f7fafc, #edf2f7); border-radius: 8px; border-left: 4px solid #4299e1;">
-<strong style="color: #1e5631; font-size: 16px;">🕌 Program Moderasi Beragama</strong>
-<br><span style="color: #4a5568; font-size: 14px; margin-top: 5px; display: block;">Dokumen panduan moderasi beragama untuk menciptakan keharmonisan</span>
-</li>
-<li style="margin-bottom: 15px; padding: 15px; background: linear-gradient(135deg, #f7fafc, #edf2f7); border-radius: 8px; border-left: 4px solid #48bb78;">
-<strong style="color: #1e5631; font-size: 16px;">♿ Layanan Penyandang Disabilitas</strong>
-<br><span style="color: #4a5568; font-size: 14px; margin-top: 5px; display: block;">Informasi layanan khusus untuk penyandang disabilitas</span>
-</li>
-<li style="margin-bottom: 0; padding: 15px; background: linear-gradient(135deg, #f7fafc, #edf2f7); border-radius: 8px; border-left: 4px solid #ed8936;">
-<strong style="color: #1e5631; font-size: 16px;">⚖️ Daftar Produk Hukum</strong>
-<br><span style="color: #4a5568; font-size: 14px; margin-top: 5px; display: block;">Regulasi dan peraturan di lingkungan Kementerian Agama</span>
-</li>
-</ul>
-</div>
-
-<div style="background: linear-gradient(135deg, #edf8f4, #f0fff4); border-left: 6px solid #38a169; border-radius: 12px; padding: 25px; margin: 30px 0; box-shadow: 0 4px 15px rgba(56, 161, 105, 0.15);">
-<div style="display: flex; align-items: flex-start; gap: 15px;">
-<div style="background: #38a169; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">
-💡
-</div>
-<div>
-<h4 style="color: #1e5631; margin: 0 0 10px 0; font-size: 18px; font-weight: 600;">Catatan Penting</h4>
-<p style="color: #2d3748; margin: 0; font-size: 15px; line-height: 1.6;">
-Semua informasi di atas dapat diakses setiap saat oleh masyarakat sesuai dengan ketentuan <strong>UU No. 14 Tahun 2008 tentang Keterbukaan Informasi Publik</strong> dan peraturan perundang-undangan yang berlaku.
-</p>
-</div>
-</div>
-</div>') !!}
+                                                {{ old('content', '') }}
                                             </div>
-                                            <textarea name="content" style="display: none;">{{ old('content', '<h2 style="color: #1e5631; font-size: 28px; font-weight: 700; margin-bottom: 20px; text-align: center; border-bottom: 3px solid #1e5631; padding-bottom: 10px;">📋 Informasi Tersedia Setiap Saat</h2>
-
-<div style="background: linear-gradient(135deg, #e7f3ff, #f0f9ff); border-radius: 12px; padding: 20px; margin: 20px 0; border: 1px solid #b8daff;">
-<p style="font-size: 16px; color: #2c5282; margin: 0; text-align: center;">
-🏛️ <strong>Berikut adalah daftar informasi publik yang tersedia setiap saat di PPID Kemenag Nganjuk</strong>
-</p>
-</div>
-
-<div style="overflow-x: auto; margin: 25px 0; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
-<table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; background: white; border-radius: 12px; overflow: hidden;">
-<thead>
-<tr style="background: linear-gradient(135deg, #1e5631, #2d8f47); color: white;">
-<th style="padding: 18px 20px; text-align: left; font-size: 16px; font-weight: 600; border: none; position: relative;">
-<span style="display: flex; align-items: center;">
-📄 Nama Informasi Publik
-</span>
-</th>
-<th style="padding: 18px 20px; text-align: center; font-size: 16px; font-weight: 600; border: none; min-width: 150px;">
-<span style="display: flex; align-items: center; justify-content: center;">
-⚡ Aksi
-</span>
-</th>
-</tr>
-</thead>
-<tbody>
-<tr style="background-color: #f8fffe; transition: all 0.3s ease; border-bottom: 1px solid #e2e8f0;">
-<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
-<strong style="color: #1e5631;">📋 Daftar Informasi Publik</strong>
-<br><small style="color: #718096; font-size: 13px;">Katalog lengkap informasi yang dapat diakses publik</small>
-</td>
-<td style="padding: 16px 20px; text-align: center; border: none;">
-<a href="#" style="background: linear-gradient(135deg, #4299e1, #3182ce); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(66, 153, 225, 0.3); transition: all 0.3s ease;">
-👀 Lihat Detail
-</a>
-</td>
-</tr>
-<tr style="background-color: white; transition: all 0.3s ease; border-bottom: 1px solid #e2e8f0;">
-<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
-<strong style="color: #1e5631;">🚫 Informasi yang Dikecualikan</strong>
-<br><small style="color: #718096; font-size: 13px;">Daftar informasi yang tidak dapat diakses publik</small>
-</td>
-<td style="padding: 16px 20px; text-align: center; border: none;">
-<a href="#" style="background: linear-gradient(135deg, #ed8936, #dd6b20); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(237, 137, 54, 0.3); transition: all 0.3s ease;">
-📋 Lihat Detail
-</a>
-</td>
-</tr>
-<tr style="background-color: #f8fffe; transition: all 0.3s ease; border-bottom: 1px solid #e2e8f0;">
-<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
-<strong style="color: #1e5631;">📖 Pedoman Pengelolaan Administrasi</strong>
-<br><small style="color: #718096; font-size: 13px;">Panduan tata kelola administrasi perkantoran</small>
-</td>
-<td style="padding: 16px 20px; text-align: center; border: none;">
-<a href="#" style="background: linear-gradient(135deg, #48bb78, #38a169); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(72, 187, 120, 0.3); transition: all 0.3s ease;">
-📥 Download PDF
-</a>
-</td>
-</tr>
-<tr style="background-color: white; transition: all 0.3s ease; border-bottom: 1px solid #e2e8f0;">
-<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
-<strong style="color: #1e5631;">🏢 Pedoman Pengelolaan Organisasi</strong>
-<br><small style="color: #718096; font-size: 13px;">Struktur dan tata kelola organisasi</small>
-</td>
-<td style="padding: 16px 20px; text-align: center; border: none;">
-<a href="#" style="background: linear-gradient(135deg, #9f7aea, #805ad5); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(159, 122, 234, 0.3); transition: all 0.3s ease;">
-📥 Download PDF
-</a>
-</td>
-</tr>
-<tr style="background-color: #f8fffe; transition: all 0.3s ease;">
-<td style="padding: 16px 20px; border: none; font-size: 15px; color: #2d3748;">
-<strong style="color: #1e5631;">📊 Statistik Kepegawaian</strong>
-<br><small style="color: #718096; font-size: 13px;">Data statistik pegawai dan kepegawaian</small>
-</td>
-<td style="padding: 16px 20px; text-align: center; border: none;">
-<a href="#" style="background: linear-gradient(135deg, #f56565, #e53e3e); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(245, 101, 101, 0.3); transition: all 0.3s ease;">
-📈 Lihat Data
-</a>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-<h3 style="color: #1e5631; font-size: 22px; font-weight: 600; margin: 35px 0 20px 0; display: flex; align-items: center;">
-🌟 Informasi Tambahan
-</h3>
-
-<div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 5px solid #1e5631;">
-<ul style="list-style: none; padding: 0; margin: 0;">
-<li style="margin-bottom: 15px; padding: 15px; background: linear-gradient(135deg, #f7fafc, #edf2f7); border-radius: 8px; border-left: 4px solid #4299e1;">
-<strong style="color: #1e5631; font-size: 16px;">🕌 Program Moderasi Beragama</strong>
-<br><span style="color: #4a5568; font-size: 14px; margin-top: 5px; display: block;">Dokumen panduan moderasi beragama untuk menciptakan keharmonisan</span>
-</li>
-<li style="margin-bottom: 15px; padding: 15px; background: linear-gradient(135deg, #f7fafc, #edf2f7); border-radius: 8px; border-left: 4px solid #48bb78;">
-<strong style="color: #1e5631; font-size: 16px;">♿ Layanan Penyandang Disabilitas</strong>
-<br><span style="color: #4a5568; font-size: 14px; margin-top: 5px; display: block;">Informasi layanan khusus untuk penyandang disabilitas</span>
-</li>
-<li style="margin-bottom: 0; padding: 15px; background: linear-gradient(135deg, #f7fafc, #edf2f7); border-radius: 8px; border-left: 4px solid #ed8936;">
-<strong style="color: #1e5631; font-size: 16px;">⚖️ Daftar Produk Hukum</strong>
-<br><span style="color: #4a5568; font-size: 14px; margin-top: 5px; display: block;">Regulasi dan peraturan di lingkungan Kementerian Agama</span>
-</li>
-</ul>
-</div>
-
-<div style="background: linear-gradient(135deg, #edf8f4, #f0fff4); border-left: 6px solid #38a169; border-radius: 12px; padding: 25px; margin: 30px 0; box-shadow: 0 4px 15px rgba(56, 161, 105, 0.15);">
-<div style="display: flex; align-items: flex-start; gap: 15px;">
-<div style="background: #38a169; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">
-💡
-</div>
-<div>
-<h4 style="color: #1e5631; margin: 0 0 10px 0; font-size: 18px; font-weight: 600;">Catatan Penting</h4>
-<p style="color: #2d3748; margin: 0; font-size: 15px; line-height: 1.6;">
-Semua informasi di atas dapat diakses setiap saat oleh masyarakat sesuai dengan ketentuan <strong>UU No. 14 Tahun 2008 tentang Keterbukaan Informasi Publik</strong> dan peraturan perundang-undangan yang berlaku.
-</p>
-</div>
-</div>
-</div>') }}</textarea>
+                                            <textarea name="content" style="display: none;">{{ old('content', '') }}</textarea>
                                             <small class="text-muted">Gunakan rich text editor untuk formatting yang lebih baik</small>
                                             @error('content')
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -654,16 +424,94 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('CKEditor 5 initialized successfully!');
             window.editor = editor;
 
-            // Sync editor content to hidden textarea on form submit
+            // Sync function
+            function syncContent() {
+                const hiddenTextarea = document.querySelector('textarea[name="content"]');
+                if (hiddenTextarea && editor) {
+                    const content = editor.getData();
+                    hiddenTextarea.value = content;
+                    console.log('Content synced:', content.length + ' characters');
+                    return true;
+                }
+                return false;
+            }
+
+            // Sync on editor change (auto-sync)
+            editor.model.document.on('change:data', () => {
+                syncContent();
+            });
+
+            // Sync on form submit
             const form = document.querySelector('form');
             if (form) {
                 form.addEventListener('submit', function(e) {
+                    console.log('Form submitting, syncing content...');
                     const hiddenTextarea = document.querySelector('textarea[name="content"]');
-                    if (hiddenTextarea) {
-                        hiddenTextarea.value = editor.getData();
+                    const editorContent = editor.getData();
+                    
+                    console.log('Editor content length:', editorContent.length);
+                    console.log('Editor content preview:', editorContent.substring(0, 100) + '...');
+                    
+                    if (!syncContent()) {
+                        console.error('Failed to sync content!');
+                        e.preventDefault();
+                        alert('Gagal menyinkronkan konten. Silakan coba lagi.');
+                        return false;
                     }
+                    
+                    console.log('Final textarea value:', hiddenTextarea.value.substring(0, 100) + '...');
                 });
             }
+
+            // Add manual sync button for debugging
+            const syncButton = document.createElement('button');
+            syncButton.type = 'button';
+            syncButton.className = 'btn btn-info btn-sm mt-2';
+            syncButton.innerHTML = '🔄 Sync Manual (Debug)';
+            syncButton.onclick = function() {
+                const content = editor.getData();
+                const hiddenTextarea = document.querySelector('textarea[name="content"]');
+                
+                console.log('Manual sync triggered');
+                console.log('Editor content:', content);
+                console.log('Hidden textarea before:', hiddenTextarea.value);
+                
+                if (syncContent()) {
+                    console.log('Hidden textarea after:', hiddenTextarea.value);
+                    alert(`Konten berhasil disinkronkan!\nPanjang: ${content.length} karakter\nPreview: ${content.substring(0, 50)}...`);
+                } else {
+                    alert('Gagal menyinkronkan konten!');
+                }
+            };
+
+            // Insert sync button after the editor
+            const editorDiv = document.getElementById('content');
+            if (editorDiv && editorDiv.parentNode) {
+                editorDiv.parentNode.insertBefore(syncButton, editorDiv.nextSibling);
+            }
+
+            // Add form validation
+            form.addEventListener('submit', function(e) {
+                const titleValue = document.getElementById('title').value.trim();
+                const contentValue = editor.getData().trim();
+                
+                if (!titleValue) {
+                    alert('Judul halaman harus diisi!');
+                    e.preventDefault();
+                    return false;
+                }
+                
+                if (!contentValue) {
+                    alert('Konten halaman harus diisi!');
+                    e.preventDefault();
+                    return false;
+                }
+                
+                console.log('Form validation passed, content length:', contentValue.length);
+            });
+
+            // Make sync function globally available
+            window.syncEditorContent = syncContent;
         })
         .catch(error => {
             console.error('CKEditor 5 initialization failed:', error);
@@ -714,6 +562,19 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <style>
+#content {
+    min-height: 400px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+#content:empty:before {
+    content: "Mulai menulis konten di sini...";
+    color: #999;
+    font-style: italic;
+}
+
 .ck-editor__editable {
     min-height: 400px;
 }

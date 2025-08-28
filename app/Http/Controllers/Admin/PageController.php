@@ -120,10 +120,10 @@ class PageController extends Controller
             $data['sort_order'] = $maxOrder + 1;
         }
 
-        Page::create($data);
+        $page = Page::create($data);
 
-        return redirect()->route('admin.pages.index')
-                        ->with('success', 'Halaman berhasil dibuat.');
+        return redirect()->route('admin.pages.edit', $page)
+                ->with('success', 'Halaman berhasil dibuat.');
     }
 
     public function show(Page $page)
@@ -202,8 +202,7 @@ class PageController extends Controller
 
         $page->update($data);
 
-        return redirect()->route('admin.pages.index')
-                        ->with('success', 'Halaman berhasil diperbarui.');
+        return redirect()->back();
     }
 
     public function destroy(Page $page)

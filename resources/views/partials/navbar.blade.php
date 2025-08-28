@@ -49,10 +49,10 @@
                         <li><a class="dropdown-item" href="{{ url('informasi-berkala') }}">
                             <i class="bi bi-calendar-week me-2"></i>Informasi Berkala
                         </a></li>
-                        <li><a class="dropdown-item" href="#">
+                        <li><a class="dropdown-item" href="https://kemenagnganjuk.id/berita" target="_blank">
                             <i class="bi bi-clock-history me-2"></i>Informasi Serta Merta
                         </a></li>
-                        <li><a class="dropdown-item" href="#">
+                        <li><a class="dropdown-item" href="{{ url('informasi-setiap-saat') }}">
                             <i class="bi bi-hourglass-split me-2"></i>Informasi Setiap Saat
                         </a></li>
                     </ul>

@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (item.id_berita != {{ $berita->id_berita }}) {
                         html += `
                             <div class="mb-3 pb-3 border-bottom">
-                                <h6><a href="{{ url('berita') }}/${item.id_berita}" class="text-decoration-none">${item.judul}</a></h6>
+                                <h6><a href="{{ url('berita') }}/${item.judul_seo}" class="text-decoration-none">${item.judul}</a></h6>
                                 <small class="text-muted">
                                     <i class="fas fa-calendar-alt"></i>
                                     ${new Date(item.tanggal).toLocaleDateString('id-ID')}

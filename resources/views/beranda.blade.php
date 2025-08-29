@@ -514,7 +514,7 @@
             <div class="quick-access">
                 <div class="row">
                     <div class="col-md-3 col-6 mb-3">
-                        <a href="https://wa.me/6285645822049?text=mas+pesen+tukin" target="_blank" class="quick-access-item">
+                        <a href="https://wa.me/?text=mas+pesen+tukin" target="_blank" class="quick-access-item">
                             <div class="service-icon mx-auto">
                                 <i class="bi bi-file-earmark-text text-white fs-4"></i>
                             </div>

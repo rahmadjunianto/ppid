@@ -6,6 +6,9 @@
     <meta name="description" content="@yield('meta_description', 'PPID Kementerian Agama Kabupaten Nganjuk - Layanan Informasi Publik Terpercaya')">
     <meta name="keywords" content="@yield('meta_keywords', 'PPID, Kemenag, Nganjuk, Informasi Publik, Layanan')">
 
+    <!-- Allow loading images from external sources -->
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
     <title>@yield('title', 'PPID Kemenag Nganjuk')</title>
 
     <!-- Bootstrap CSS -->
@@ -481,6 +484,19 @@
             }
 
             lastScrollTop = scrollTop;
+        });
+
+        // Debug image loading issues
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img[src*="kemenagnganjuk.id"]');
+            images.forEach(function(img) {
+                img.addEventListener('error', function() {
+                    console.log('Failed to load image:', this.src);
+                });
+                img.addEventListener('load', function() {
+                    console.log('Successfully loaded image:', this.src);
+                });
+            });
         });
     });
     </script>

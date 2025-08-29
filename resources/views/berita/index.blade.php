@@ -84,8 +84,13 @@
                     @foreach($berita as $item)
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="card h-100">
-                                @if($item->gambar)
-                                    <img src="{{ $item->gambar }}" class="card-img-top" alt="{{ $item->judul }}" style="height: 200px; object-fit: cover;">
+                                @if($item->image_url)
+                                    <img src="{{ $item->image_url }}"
+                                         class="card-img-top"
+                                         alt="{{ $item->judul }}"
+                                         style="height: 200px; object-fit: cover;"
+                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
                                 @else
                                     <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
                                         <i class="fas fa-image fa-3x text-muted"></i>
@@ -122,8 +127,8 @@
                                                 </small>
                                             @endif
                                         </div>
-                                        <div class="mt-2">
-                                            <a href="{{ route('berita.show', $item->judul_seo) }}" class="btn btn-primary btn-sm">Baca Selengkapnya</a>
+                                      <div class="mt-auto">
+                                        <a href="{{ route('berita.show', $item->judul_seo) }}" class="btn btn-outline-primary btn-sm">Baca Selengkapnya</a>
                                         </div>
                                     </div>
                                 </div>

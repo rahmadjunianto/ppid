@@ -9,6 +9,7 @@ use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\ImageProxyController;
 use App\Http\Controllers\Admin\SurveyController as AdminSurveyController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 
@@ -47,6 +48,9 @@ Route::get('/test-tinymce', function () {
 Route::get('/test-ckeditor', function () {
     return view('test-ckeditor');
 });
+
+// Image proxy route
+Route::get('/image-proxy/{filename}', [ImageProxyController::class, 'proxy'])->name('image.proxy');
 
 // Berita routes from portal_kemenag database
 Route::prefix('berita')->group(function () {

@@ -112,6 +112,37 @@ class Berita extends Model
     }
 
     /**
+     * Accessor for image URL
+     *
+     * @return string|null
+     */
+    public function getImageUrlAttribute()
+    {
+        if (empty($this->gambar)) {
+            return null;
+        }
+
+        // Use proxy route for external images
+        return route('image.proxy', ['filename' => $this->gambar]);
+    }
+
+    /**
+     * Check if image exists and is accessible
+     *
+     * @return bool
+     */
+    public function hasValidImage()
+    {
+        if (!$this->image_url) {
+            return false;
+        }
+
+        // For now, assume all images are valid if URL is constructed
+        // In production, you might want to implement actual checking
+        return true;
+    }
+
+    /**
      * Accessor for author
      *
      * @return string

@@ -15,8 +15,12 @@
             </nav>
 
             <article class="card">
-                @if($berita->gambar)
-                    <img src="{{ $berita->gambar }}" class="card-img-top" alt="{{ $berita->judul }}" style="max-height: 400px; object-fit: cover;">
+                @if($berita->image_url)
+                    <img src="{{ $berita->image_url }}"
+                         class="card-img-top"
+                         alt="{{ $berita->judul }}"
+                         style="max-height: 400px; object-fit: cover;"
+                         onerror="this.style.display='none';">
                 @endif
 
                 <div class="card-body">

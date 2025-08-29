@@ -721,8 +721,10 @@
                     @foreach($latestBerita->take(6) as $berita)
                         <div class="col-lg-4 col-md-6">
                             <div class="card news-card h-100">
-                                @if($berita->gambar)
-                                    <img src="{{ $berita->gambar }}" class="card-img-top news-image" alt="{{ $berita->judul }}" style="height: 200px; object-fit: cover;">
+                                @if($berita->image_url)
+                                    <img src="{{ $berita->image_url }}" class="card-img-top news-image" alt="{{ $berita->judul }}" style="height: 200px; object-fit: cover;"
+                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
                                 @else
                                     <div class="card-img-top news-image bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
                                         <i class="bi bi-image text-muted" style="font-size: 3rem;"></i>

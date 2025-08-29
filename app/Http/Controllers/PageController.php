@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\Berita;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -81,9 +82,17 @@ class PageController extends Controller
     {
         $homepage = Page::getHomepage();
 
+        // Get latest news from portal_kemenag database
+        $latestBerita = Berita::published()
+                             ->with('kategori')
+                             ->orderBy('tanggal', 'desc')
+                             ->orderBy('jam', 'desc')
+                             ->limit(6)
+                             ->get();
+
         if (!$homepage) {
             // Fallback to existing beranda view if no homepage is set
-            return view('beranda');
+            return view('beranda', compact('latestBerita'));
         }
 
         $template = $homepage->template ?: 'home';
@@ -103,7 +112,8 @@ class PageController extends Controller
 
         return view($viewPath, [
             'page' => $homepage,
-            'latestPages' => $latestPages
+            'latestPages' => $latestPages,
+            'latestBerita' => $latestBerita
         ]);
     }
 

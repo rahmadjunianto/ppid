@@ -713,58 +713,76 @@
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="section-title">Berita Terbaru</h2>
-                <p class="section-subtitle">Informasi dan berita terkini dari Kanwil Kemenag Jawa Timur</p>
+                <p class="section-subtitle">Informasi dan berita terkini dari Kementerian Agama</p>
             </div>
 
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <div class="card news-card">
-                        <img src="https://jatim.kemenag.go.id/file/fotoberita/544359-17558331162119-berita.jpg" class="card-img-top news-image" alt="Kanwil Kemenag Jatim Terima Penghargaan">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <small class="text-muted">22 Agustus 2025</small>
-                                <span class="badge bg-primary">Prestasi</span>
-                            </div>
-                            <h6 class="card-title">Kanwil Kemenag Jatim Terima Penghargaan dari Kemenkum</h6>
-                            <p class="card-text">Kanwil Kemenag Jatim meraih penghargaan pada peringatan Hari Pengayoman ke-80 sebagai bentuk apresiasi atas kontribusi dalam bidang pengayoman...</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm">Baca Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
+                @if(isset($latestBerita) && $latestBerita->count() > 0)
+                    @foreach($latestBerita->take(6) as $berita)
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card news-card h-100">
+                                @if($berita->gambar)
+                                    <img src="{{ $berita->gambar }}" class="card-img-top news-image" alt="{{ $berita->judul }}" style="height: 200px; object-fit: cover;">
+                                @else
+                                    <div class="card-img-top news-image bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                                        <i class="bi bi-image text-muted" style="font-size: 3rem;"></i>
+                                    </div>
+                                @endif
+                                <div class="card-body d-flex flex-column">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        @if($berita->tanggal_publish)
+                                            <small class="text-muted">{{ $berita->tanggal_publish->format('d M Y') }}</small>
+                                        @else
+                                            <small class="text-muted">{{ $berita->tanggal ? \Carbon\Carbon::parse($berita->tanggal)->format('d M Y') : 'Tanggal tidak tersedia' }}</small>
+                                        @endif
+                                        @if($berita->headline === 'Y')
+                                            <span class="badge bg-danger">Headline</span>
+                                        @elseif($berita->utama === 'Y')
+                                            <span class="badge bg-primary">Utama</span>
+                                        @else
+                                            <span class="badge bg-secondary">Berita</span>
+                                        @endif
+                                    </div>
+                                    <h6 class="card-title">{{ Str::limit($berita->judul, 80) }}</h6>
+                                    <p class="card-text flex-grow-1">{{ Str::limit(strip_tags($berita->konten), 120) }}</p>
 
-                <div class="col-lg-4 col-md-6">
-                    <div class="card news-card">
-                        <img src="https://jatim.kemenag.go.id/file/fotoberita/544350-17558421815314-berita.jpg" class="card-img-top news-image" alt="Sinergi Pelayanan Umat Katolik">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <small class="text-muted">21 Agustus 2025</small>
-                                <span class="badge bg-success">Kegiatan</span>
-                            </div>
-                            <h6 class="card-title">Sinergi Tingkatkan Pelayanan Umat Katolik</h6>
-                            <p class="card-text">Bimas Katolik, Keuskupan Surabaya dan Keuskupan Malang sepakati sinergi untuk meningkatkan kualitas pelayanan kepada umat Katolik...</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm">Baca Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
+                                    {{-- Show category if available --}}
+                                    @if($berita->kategori)
+                                        <div class="mb-2">
+                                            <small class="text-muted">
+                                                <i class="fas fa-folder"></i> {{ $berita->kategori->nama_kategori }}
+                                                @if($berita->dibaca)
+                                                    • <i class="fas fa-eye"></i> {{ number_format($berita->dibaca) }} dibaca
+                                                @endif
+                                            </small>
+                                        </div>
+                                    @elseif($berita->dibaca)
+                                        <div class="mb-2">
+                                            <small class="text-muted">
+                                                <i class="fas fa-eye"></i> {{ number_format($berita->dibaca) }} dibaca
+                                            </small>
+                                        </div>
+                                    @endif
 
-                <div class="col-lg-4 col-md-6">
-                    <div class="card news-card">
-                        <img src="https://jatim.kemenag.go.id/file/fotoberita/544273-1755398225778-berita.jpg" class="card-img-top news-image" alt="Upacara HUT ke-80 RI">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <small class="text-muted">17 Agustus 2025</small>
-                                <span class="badge bg-warning">Kemerdekaan</span>
+                                    <div class="mt-auto">
+                                        <a href="{{ route('berita.show', $berita->judul_seo) }}" class="btn btn-outline-primary btn-sm">Baca Selengkapnya</a>
+                                    </div>
+                                </div>
                             </div>
-                            <h6 class="card-title">Kakanwil Membacakan Doa pada Upacara HUT ke-80 RI</h6>
-                            <p class="card-text">Kakanwil Kemenag Jatim membacakan doa pada upacara peringatan HUT ke-80 RI di Grahadi Surabaya dengan khidmat dan penuh rasa syukur...</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm">Baca Selengkapnya</a>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="col-12">
+                        <div class="alert alert-info text-center">
+                            <i class="bi bi-info-circle me-2"></i>
+                            Belum ada berita yang tersedia saat ini.
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
 
             <div class="text-center mt-4">
-                <a href="#" class="btn btn-kemenag text-white btn-lg">Lihat Semua Artikel</a>
+                <a href="{{ route('berita.index') }}" class="btn btn-kemenag text-white btn-lg">Lihat Semua Berita</a>
             </div>
         </div>
     </section>

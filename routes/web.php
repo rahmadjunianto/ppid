@@ -8,6 +8,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\Admin\SurveyController as AdminSurveyController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 
@@ -45,6 +46,43 @@ Route::get('/test-tinymce', function () {
 // Test CKEditor 5 (remove in production)
 Route::get('/test-ckeditor', function () {
     return view('test-ckeditor');
+});
+
+// Berita routes from portal_kemenag database
+Route::prefix('berita')->group(function () {
+    Route::get('/', [BeritaController::class, 'index'])->name('berita.index');
+    Route::get('/latest/{limit?}', [BeritaController::class, 'latest'])->name('berita.latest');
+    Route::get('/search', [BeritaController::class, 'search'])->name('berita.search');
+    Route::get('/{slug}', [BeritaController::class, 'show'])->name('berita.show');
+});
+
+// Test route for debugging berita
+Route::get('/test-berita', function () {
+    try {
+        $count = \App\Models\Berita::published()->count();
+        $latest = \App\Models\Berita::published()->orderBy('tanggal', 'desc')->limit(5)->get();
+
+        $html = "<h1>Test Berita dari Database Portal Kemenag</h1>";
+        $html .= "<p>Total berita published: <strong>{$count}</strong></p>";
+        $html .= "<h2>5 Berita Terbaru:</h2><ul>";
+
+        foreach($latest as $berita) {
+            $html .= "<li>";
+            $html .= "<strong>" . $berita->judul . "</strong><br>";
+            $html .= "Tanggal: " . $berita->tanggal . " " . $berita->jam . "<br>";
+            $html .= "Author: " . $berita->author . "<br>";
+            $html .= "Dibaca: " . $berita->dibaca . " kali<br>";
+            $html .= "<a href='/berita/{$berita->judul_seo}'>Lihat detail</a>";
+            $html .= "</li><br>";
+        }
+
+        $html .= "</ul>";
+        $html .= "<p><a href='/berita'>Lihat Semua Berita</a></p>";
+
+        return $html;
+    } catch (Exception $e) {
+        return "Error: " . $e->getMessage();
+    }
 });
 
 // Demo tabel menarik

@@ -385,102 +385,7 @@
 
     <!-- Main Content -->
     <div class="container">
-        <!-- PPID Profile -->
-        <div class="content-section">
-            <h2 class="section-title">
-                <i class="bi bi-person-circle"></i> Pejabat Pengelola Informasi dan Dokumentasi (PPID)
-            </h2>
 
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="profile-card">
-                        <div class="profile-image">
-                            <i class="bi bi-person-fill"></i>
-                        </div>
-                        <div class="profile-name">Drs. H. Ahmad Solichin, M.Pd.I</div>
-                        <div class="profile-position">Kepala Subbag Tata Usaha</div>
-                        <div class="text-center">
-                            <span class="profile-nip">NIP: 197203151994031003</span>
-                        </div>
-
-                        <div class="profile-details">
-                            <div class="detail-item">
-                                <div class="detail-icon">
-                                    <i class="bi bi-briefcase"></i>
-                                </div>
-                                <div class="detail-content">
-                                    <h6>Jabatan</h6>
-                                    <p>Pejabat Pengelola Informasi dan Dokumentasi (PPID)</p>
-                                </div>
-                            </div>
-
-                            <div class="detail-item">
-                                <div class="detail-icon">
-                                    <i class="bi bi-building"></i>
-                                </div>
-                                <div class="detail-content">
-                                    <h6>Unit Kerja</h6>
-                                    <p>Kankemenag Kabupaten Nganjuk</p>
-                                </div>
-                            </div>
-
-                            <div class="detail-item">
-                                <div class="detail-icon">
-                                    <i class="bi bi-calendar"></i>
-                                </div>
-                                <div class="detail-content">
-                                    <h6>Periode Jabatan</h6>
-                                    <p>2023 - Sekarang</p>
-                                </div>
-                            </div>
-
-                            <div class="detail-item">
-                                <div class="detail-icon">
-                                    <i class="bi bi-telephone"></i>
-                                </div>
-                                <div class="detail-content">
-                                    <h6>Kontak</h6>
-                                    <p>(0358) 321175 Ext. 101</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="profile-card">
-                        <h4 class="text-center mb-3" style="color: var(--kemenag-primary);">
-                            <i class="bi bi-list-task"></i> Tugas dan Tanggung Jawab
-                        </h4>
-
-                        <div class="responsibility-item">
-                            <h5><i class="bi bi-file-earmark-text me-2"></i>Penyediaan Informasi</h5>
-                            <p>Menyediakan dan menyiapkan informasi publik yang dapat diakses oleh masyarakat</p>
-                        </div>
-
-                        <div class="responsibility-item">
-                            <h5><i class="bi bi-archive me-2"></i>Penyimpanan & Dokumentasi</h5>
-                            <p>Melakukan penyimpanan, pendokumentasian, dan pemeliharaan informasi publik</p>
-                        </div>
-
-                        <div class="responsibility-item">
-                            <h5><i class="bi bi-people me-2"></i>Pelayanan Masyarakat</h5>
-                            <p>Memberikan pelayanan informasi publik kepada masyarakat sesuai peraturan</p>
-                        </div>
-
-                        <div class="responsibility-item">
-                            <h5><i class="bi bi-shield-check me-2"></i>Pengamanan Informasi</h5>
-                            <p>Melakukan pengamanan informasi yang dikecualikan dari akses publik</p>
-                        </div>
-
-                        <div class="responsibility-item">
-                            <h5><i class="bi bi-clipboard-check me-2"></i>Uji Konsekuensi</h5>
-                            <p>Melakukan uji konsekuensi sebelum menyampaikan informasi kepada publik</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- Atasan PPID Profile -->
         <div class="content-section">
@@ -494,10 +399,10 @@
                         <div class="profile-image">
                             <i class="bi bi-person-fill"></i>
                         </div>
-                        <div class="profile-name">Drs. H. Moch. Syamsul Hadi, M.Pd.I</div>
-                        <div class="profile-position">Kepala Kantor Kementerian Agama</div>
+                        <div class="profile-name">ABDUL RAHMAN S.Ag, M.PdI</div>
+                        <div class="profile-position">Kepala Kantor Kementerian Agama Kabupaten Nganjuk</div>
                         <div class="text-center">
-                            <span class="profile-nip">NIP: 196805151990031004</span>
+                            <span class="profile-nip">NIP: 196902151997031006</span>
                         </div>
 
                         <div class="profile-details">
@@ -527,17 +432,7 @@
                                 </div>
                                 <div class="detail-content">
                                     <h6>Periode Jabatan</h6>
-                                    <p>2022 - Sekarang</p>
-                                </div>
-                            </div>
-
-                            <div class="detail-item">
-                                <div class="detail-icon">
-                                    <i class="bi bi-telephone"></i>
-                                </div>
-                                <div class="detail-content">
-                                    <h6>Kontak</h6>
-                                    <p>(0358) 321175</p>
+                                    <p>2025 - Sekarang</p>
                                 </div>
                             </div>
                         </div>
@@ -551,23 +446,115 @@
                         </h4>
 
                         <div class="responsibility-item">
-                            <h5><i class="bi bi-check-circle me-2"></i>Pengawasan PPID</h5>
-                            <p>Mengawasi pelaksanaan tugas dan fungsi PPID dalam melayani informasi publik</p>
+                            <h5><i class="bi bi-check-circle me-2"></i>Kebijakan Akses Publik</h5>
+                            <p>Memutuskan dan mengevaluasi kebijakan akses publik pada Kantor Kementerian Agama Kabupaten Nganjuk</p>
                         </div>
 
                         <div class="responsibility-item">
-                            <h5><i class="bi bi-file-ruled me-2"></i>Penetapan Kebijakan</h5>
-                            <p>Menetapkan kebijakan terkait pengelolaan dan pelayanan informasi publik</p>
+                            <h5><i class="bi bi-file-ruled me-2"></i>Evaluasi Kinerja Struktur</h5>
+                            <p>Mengevaluasi kinerja struktur dan para penanggung jawab akses Informasi Publik Kantor Kementerian Agama Kabupaten Nganjuk</p>
                         </div>
 
                         <div class="responsibility-item">
-                            <h5><i class="bi bi-award me-2"></i>Evaluasi Kinerja</h5>
-                            <p>Melakukan evaluasi kinerja PPID secara berkala dan berkelanjutan</p>
+                            <h5><i class="bi bi-award me-2"></i>Manajemen Pengelolaan</h5>
+                            <p>Memastikan manajemen pengelolaan dan pelayanan Informasi Publik pada Kantor Kementerian Agama Kabupaten Nganjuk telah sesuai dengan peraturan perundang-undangan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PPID Unit Profile -->
+        <div class="content-section">
+            <h2 class="section-title">
+                <i class="bi bi-person-workspace"></i> Pejabat Pengelola Informasi dan Dokumentasi Unit
+            </h2>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="profile-card">
+                        <div class="profile-image">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <div class="profile-name">FARID WAJDI S.Ag.,MM</div>
+                        <div class="profile-position">Kepala Bagian Tata Usaha Kantor Kementerian Agama Kabupaten Nganjuk</div>
+                        <div class="text-center">
+                            <span class="profile-nip">NIP: 197101191998031002</span>
+                        </div>
+
+                        <div class="profile-details">
+                            <div class="detail-item">
+                                <div class="detail-icon">
+                                    <i class="bi bi-star"></i>
+                                </div>
+                                <div class="detail-content">
+                                    <h6>Jabatan</h6>
+                                    <p>Pejabat Pengelola Informasi dan Dokumentasi Unit</p>
+                                </div>
+                            </div>
+
+                            <div class="detail-item">
+                                <div class="detail-icon">
+                                    <i class="bi bi-building"></i>
+                                </div>
+                                <div class="detail-content">
+                                    <h6>Unit Kerja</h6>
+                                    <p>Kankemenag Kabupaten Nganjuk</p>
+                                </div>
+                            </div>
+
+                            <div class="detail-item">
+                                <div class="detail-icon">
+                                    <i class="bi bi-calendar"></i>
+                                </div>
+                                <div class="detail-content">
+                                    <h6>Periode Jabatan</h6>
+                                    <p>2023 - 2029</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="profile-card">
+                        <h4 class="text-center mb-3" style="color: var(--kemenag-primary);">
+                            <i class="bi bi-gear"></i> Tugas dan Tanggung Jawab
+                        </h4>
+
+                        <div class="responsibility-item">
+                            <h5><i class="bi bi-collection me-2"></i>Koordinasi Pengumpulan Informasi</h5>
+                            <p>Mengkoordinasikan pengumpulan seluruh informasi publik dari Unit Kerja pada Kantor Kementerian Agama Kabupaten Nganjuk</p>
                         </div>
 
                         <div class="responsibility-item">
-                            <h5><i class="bi bi-clipboard-data me-2"></i>Koordinasi</h5>
-                            <p>Melakukan koordinasi dengan unit kerja lain dalam penyediaan informasi</p>
+                            <h5><i class="bi bi-database me-2"></i>Pendataan Informasi Publik</h5>
+                            <p>Mengkoordinasikan pendataan Informasi Publik yang dikuasai oleh setiap Unit Kerja dalam rangka pembuatan dan pemuktahiran Daftar Informasi Publik</p>
+                        </div>
+
+                        <div class="responsibility-item">
+                            <h5><i class="bi bi-shield-check me-2"></i>Pengujian Konsekuensi</h5>
+                            <p>Melakukan pengujian tentang konsekuensi sebagaimana dimaksud Pasal 17 Undang-Undang Keterbukaan Informasi Publik dengan seksama dan penuh ketelitian</p>
+                        </div>
+
+                        <div class="responsibility-item">
+                            <h5><i class="bi bi-file-text me-2"></i>Pertimbangan Tertulis</h5>
+                            <p>Menetapkan pertimbangan tertulis atas kebijakan yang diambil untuk memenuhi hak setiap pemohon informasi</p>
+                        </div>
+
+                        <div class="responsibility-item">
+                            <h5><i class="bi bi-exclamation-triangle me-2"></i>Alasan Pengecualian</h5>
+                            <p>Menyertakan alasan tertulis pengecualian Informasi Publik secara jelas dan tegas dalam hal permohonan Informasi Publik ditolak</p>
+                        </div>
+
+                        <div class="responsibility-item">
+                            <h5><i class="bi bi-people me-2"></i>Pelayanan Informasi</h5>
+                            <p>Mengkoordinasikan penyediaan dan pelayanan seluruh Informasi Publik melalui pengumuman dan/atau permohonan</p>
+                        </div>
+
+                        <div class="responsibility-item">
+                            <h5><i class="bi bi-clipboard-data me-2"></i>Pelaporan Tugas</h5>
+                            <p>Melaporkan pelaksanaan tugas kepada Pejabat Pengelola Informasi dan Dokumentasi Utama Kementerian Agama</p>
                         </div>
                     </div>
                 </div>
@@ -582,26 +569,28 @@
 
             <div class="org-structure">
                 <div class="org-level">
-                    <h4>Atasan PPID</h4>
+                    <h4>Atasan PPID Unit</h4>
                     <div class="org-box">
+                        ABDUL RAHMAN S.Ag, M.PdI<br>
                         Kepala Kantor Kementerian Agama<br>
                         Kabupaten Nganjuk
                     </div>
                 </div>
 
-                <div class="org-arrow">
+                <div class="org-arrow text-center">
                     <i class="bi bi-arrow-down"></i>
                 </div>
 
                 <div class="org-level">
-                    <h4>PPID</h4>
+                    <h4>PPID Unit</h4>
                     <div class="org-box">
-                        Kepala Subbag Tata Usaha<br>
-                        (PPID Kankemenag Nganjuk)
+                        FARID WAJDI S.Ag.,MM<br>
+                        Kepala Bagian Tata Usaha<br>
+                        Kantor Kementerian Agama Kabupaten Nganjuk
                     </div>
                 </div>
 
-                <div class="org-arrow">
+                <div class="org-arrow text-center">
                     <i class="bi bi-arrow-down"></i>
                 </div>
 
@@ -610,20 +599,20 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="org-box">
-                                Staf Subbag TU<br>
-                                (Pengelola Dokumen)
+                                Bidang Pelayanan
+Informasi,
+Dokumentasi dan
+Arsip
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="org-box">
-                                Staf Subbag TU<br>
-                                (Pelayanan Informasi)
+                            <div class="org-box">Bidang Pengelolaan
+Informasi
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="org-box">
-                                Staf IT<br>
-                                (Teknologi Informasi)
+                            <div class="org-box">Bidang Aduan dan
+Pelayanan Sengketa
                             </div>
                         </div>
                     </div>
@@ -631,39 +620,6 @@
             </div>
         </div>
 
-        <!-- Statistics -->
-        <div class="content-section">
-            <h2 class="section-title">
-                <i class="bi bi-graph-up"></i> Statistik Pelayanan PPID
-            </h2>
-
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="stats-card">
-                        <div class="stats-number">156</div>
-                        <div class="stats-label">Permohonan Informasi<br>Tahun 2025</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="stats-card">
-                        <div class="stats-number">98%</div>
-                        <div class="stats-label">Tingkat Kepuasan<br>Layanan</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="stats-card">
-                        <div class="stats-number">24</div>
-                        <div class="stats-label">Rata-rata Jam<br>Penyelesaian</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="stats-card">
-                        <div class="stats-number">5</div>
-                        <div class="stats-label">Tahun Pengalaman<br>Melayani</div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Footer -->

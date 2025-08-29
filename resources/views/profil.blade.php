@@ -437,21 +437,21 @@
                                 <h6 class="text-primary">
                                     <i class="bi bi-geo-alt"></i> Alamat
                                 </h6>
-                                <p class="small">Jl. Raya Surabaya-Madiun KM. 45<br>Nganjuk, Jawa Timur</p>
+                                <p class="small">Jl. Dermojoyo 22, Payaman<br>Nganjuk, Jawa Timur</p>
                             </div>
 
                             <div class="mb-3">
                                 <h6 class="text-primary">
                                     <i class="bi bi-telephone"></i> Telepon
                                 </h6>
-                                <p class="small">(0358) 321175</p>
+                                <p class="small">-</p>
                             </div>
 
                             <div class="mb-3">
                                 <h6 class="text-primary">
                                     <i class="bi bi-envelope"></i> Email
                                 </h6>
-                                <p class="small">ppid@kemenagnganjuk.id</p>
+                                <p class="small">ppid.kemenagnganjuk@gmail.com</p>
                             </div>
 
                             <div>

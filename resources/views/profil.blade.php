@@ -480,10 +480,36 @@
             </div>
         </div>
     </div>
+<!-- Lampiran / Embed Aplikasi -->
+<div class="content-section" style="margin-top: 4rem; margin-bottom: 4rem;">
+    <h2 class="section-title">
+        <i class="bi bi-folder2-open"></i> Lampiran / Embed Aplikasi
+    </h2>
 
-    <!-- Footer -->
-    @include('partials.footer')
+    <div class="card">
+        <div class="card-body" style="padding: 2rem;">
+            <div class="ratio ratio-16x9 mb-4">
+                <iframe
+                    src="https://www.appsheet.com/start/deaf9e73-f3ff-417f-b30e-c6a573315fdb"
+                    title="AppSheet - PPID"
+                    loading="lazy"
+                    style="border:0;"
+                    allowfullscreen>
+                </iframe>
+            </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            <p class="small text-muted mb-0">
+                Jika tampilan tidak muncul atau ingin melihat di layar penuh, buka aplikasi di tab baru:
+                <a href="https://www.appsheet.com/start/deaf9e73-f3ff-417f-b30e-c6a573315fdb" target="_blank" rel="noopener">Buka AppSheet</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+@include('partials.footer')
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+</html>
 </html>

@@ -117,7 +117,9 @@ Route::get('/demo-ckeditor-working', function () {
 Route::get('/profil', function () {
     return view('profil');
 });
-
+Route::get('/dashboard-keagamaan', function () {
+    return view('dashboard-keagamaan');
+});
 Route::get('/profil-pejabat', function () {
     return view('profil-pejabat');
 });

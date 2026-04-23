@@ -42,6 +42,26 @@
                     </ul>
                 </li>
 
+                <!-- Survey SKM & SPAK -->
+                <li class="nav-item {{ request()->routeIs('admin.surveys-skm-spak.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.surveys-skm-spak.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-chart-line"></i>
+                        <p>
+                            Survey SKM & SPAK
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.surveys-skm-spak.index') }}"
+                               class="nav-link {{ request()->routeIs('admin.surveys-skm-spak.index') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Data Responden</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <!-- Data Pegawai -->
                 <li class="nav-item {{ request()->routeIs('admin.pegawai.*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->routeIs('admin.pegawai.*') ? 'active' : '' }}">

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\SurveySkmSpakController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\PageController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\ImageProxyController;
 use App\Http\Controllers\Admin\SurveyController as AdminSurveyController;
+use App\Http\Controllers\Admin\SurveySkmSpakController as AdminSurveySkmSpakController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 
 /*
@@ -150,6 +152,11 @@ Route::prefix('survey')->name('survey.')->group(function () {
     Route::post('/', [SurveyController::class, 'store'])->name('store');
     Route::get('/success', [SurveyController::class, 'success'])->name('success');
     Route::get('/results', [SurveyController::class, 'results'])->name('results');
+
+    // SKM-SPAK Survey Routes
+    Route::get('/skm-spak', [SurveySkmSpakController::class, 'index'])->name('skm-spak.index');
+    Route::post('/skm-spak', [SurveySkmSpakController::class, 'store'])->name('skm-spak.store');
+    Route::get('/skm-spak/success', [SurveySkmSpakController::class, 'success'])->name('skm-spak.success');
 });
 
 Auth::routes();
@@ -172,6 +179,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         Route::get('/', [AdminSurveyController::class, 'index'])->name('index');
         Route::get('/{survey}', [AdminSurveyController::class, 'show'])->name('show');
         Route::delete('/{survey}', [AdminSurveyController::class, 'destroy'])->name('destroy');
+    });
+
+    // SKM-SPAK Survey Management
+    Route::prefix('surveys-skm-spak')->name('surveys-skm-spak.')->group(function () {
+        Route::get('/', [AdminSurveySkmSpakController::class, 'index'])->name('index');
+        Route::get('/export', [AdminSurveySkmSpakController::class, 'export'])->name('export');
+        Route::get('/{id}', [AdminSurveySkmSpakController::class, 'show'])->name('show');
+        Route::delete('/{id}', [AdminSurveySkmSpakController::class, 'destroy'])->name('destroy');
     });
 
     // Pegawai Management

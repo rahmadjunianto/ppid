@@ -138,13 +138,18 @@ class SurveySkmSpak extends Model
      */
     public static function getSkmScoreLabel($score)
     {
-        return match ($score) {
-            1 => 'Tidak Sesuai',
-            2 => 'Kurang Sesuai',
-            3 => 'Sesuai',
-            4 => 'Sangat Sesuai',
-            default => 'N/A'
-        };
+        switch ($score) {
+            case 1:
+                return 'Tidak Sesuai';
+            case 2:
+                return 'Kurang Sesuai';
+            case 3:
+                return 'Sesuai';
+            case 4:
+                return 'Sangat Sesuai';
+            default:
+                return 'N/A';
+        }
     }
 
     /**
@@ -152,13 +157,18 @@ class SurveySkmSpak extends Model
      */
     public static function getSpakScoreLabel($score)
     {
-        return match ($score) {
-            1 => 'Ada',
-            2 => 'Jarang',
-            3 => 'Sangat Jarang',
-            4 => 'Tidak Ada',
-            default => 'N/A'
-        };
+        switch ($score) {
+            case 1:
+                return 'Ada';
+            case 2:
+                return 'Jarang';
+            case 3:
+                return 'Sangat Jarang';
+            case 4:
+                return 'Tidak Ada';
+            default:
+                return 'N/A';
+        }
     }
 
     /**
@@ -166,13 +176,19 @@ class SurveySkmSpak extends Model
      */
     public static function getRatingLabel($score)
     {
-        return match ($score) {
-            1 => 'Sangat Tidak Puas',
-            2 => 'Tidak Puas',
-            3 => 'Netral',
-            4 => 'Puas',
-            5 => 'Sangat Puas',
-            default => 'N/A'
-        };
+        switch ($score) {
+            case 1:
+                return 'Sangat Tidak Puas';
+            case 2:
+                return 'Tidak Puas';
+            case 3:
+                return 'Netral';
+            case 4:
+                return 'Puas';
+            case 5:
+                return 'Sangat Puas';
+            default:
+                return 'N/A';
+        }
     }
 }

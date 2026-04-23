@@ -609,7 +609,6 @@
                                     <option value="Pendidikan Agama Islam" {{ old('jenis_pelayanan') == 'Pendidikan Agama Islam' ? 'selected' : '' }}>Pendidikan Agama Islam</option>
                                     <option value="Pendidikan Diniyah dan Pondok Pesantren" {{ old('jenis_pelayanan') == 'Pendidikan Diniyah dan Pondok Pesantren' ? 'selected' : '' }}>Pendidikan Diniyah dan Pondok Pesantren</option>
                                     <option value="Pendidikan Madrasah" {{ old('jenis_pelayanan') == 'Pendidikan Madrasah' ? 'selected' : '' }}>Pendidikan Madrasah</option>
-                                    <option value="Haji dan Umroh" {{ old('jenis_pelayanan') == 'Haji dan Umroh' ? 'selected' : '' }}>Haji dan Umroh</option>
                                     <option value="Zakat dan Wakaf" {{ old('jenis_pelayanan') == 'Zakat dan Wakaf' ? 'selected' : '' }}>Zakat dan Wakaf</option>
                                 </select>
                                 <div class="error-message" id="err_jenis_pelayanan"></div>

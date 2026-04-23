@@ -7,12 +7,14 @@ use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStyles;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Style\Font;
-use PhpOffice\PhpSpreadsheet\Style\PatternFill;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use Illuminate\Http\Request;
 
-class SurveySkmSpakExport implements FromQuery, WithHeadings, WithMapping, WithStyles
+class SurveySkmSpakExport implements FromQuery, WithHeadings, WithMapping, WithStyles, ShouldAutoSize
 {
     protected $request;
 
@@ -117,28 +119,25 @@ class SurveySkmSpakExport implements FromQuery, WithHeadings, WithMapping, WithS
         ];
     }
 
-    public function styles($sheet)
+    public function styles(Worksheet $sheet)
     {
-        $headerFill = new PatternFill(
-            PatternFill::FILL_SOLID,
-            '1e5631'
-        );
-        $headerFont = new Font([
-            'bold' => true,
-            'color' => ['rgb' => 'FFFFFF'],
-            'size' => 11
+        // Style header row (row 1)
+        $sheet->getStyle('1:1')->applyFromArray([
+            'font' => [
+                'bold' => true,
+                'color' => ['rgb' => 'FFFFFF'],
+                'size' => 11,
+            ],
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['rgb' => '1e5631'],
+            ],
+            'alignment' => [
+                'horizontal' => Alignment::HORIZONTAL_CENTER,
+                'vertical' => Alignment::VERTICAL_CENTER,
+                'wrapText' => true,
+            ],
         ]);
-
-        $sheet->getStyle('1')->setFill($headerFill);
-        $sheet->getStyle('1')->setFont($headerFont);
-        $sheet->getStyle('1')->setAlignment(
-            new Alignment(Alignment::HORIZONTAL_CENTER, Alignment::VERTICAL_CENTER, 0, true)
-        );
-
-        // Auto-size columns
-        foreach (range('A', $sheet->getHighestColumn()) as $column) {
-            $sheet->getColumnDimension($column)->setAutoSize(true);
-        }
 
         // Freeze header row
         $sheet->freezePane('A2');
@@ -146,3 +145,4 @@ class SurveySkmSpakExport implements FromQuery, WithHeadings, WithMapping, WithS
         return [];
     }
 }
+

@@ -19,15 +19,13 @@ class StoreSurveySkmSpakRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             // Demographic Data
             'jenis_kelamin' => 'required|string|in:Laki - Laki,Perempuan',
             'usia' => 'required|string|in:Kurang dari 20 Tahun,21 - 30 Tahun,31 - 40 Tahun,41 - 50 Tahun,51 - 60 Tahun,Lebih dari 61 Tahun',
             'pendidikan_terakhir' => 'required|string',
             'pekerjaan' => 'required|string',
             'kategori_responden' => 'required|string|in:Internal - Pegawai Kemenag,Eksternal - Masyarakat Umum',
-            'unit_kerja' => 'required|string|max:255',
-            'jabatan' => 'required|string|max:255',
             'jenis_pelayanan' => 'required|string',
 
             // SKM Unsur (scale 1-4)
@@ -51,6 +49,24 @@ class StoreSurveySkmSpakRequest extends FormRequest
             // Feedback
             'kritik_saran' => 'nullable|string|max:1000',
         ];
+
+        /**
+         * Conditional validation for unit_kerja and jabatan
+         * - Required if kategori_responden = "Internal - Pegawai Kemenag"
+         * - Optional if kategori_responden = "Eksternal - Masyarakat Umum"
+         */
+        $kategori = $this->input('kategori_responden');
+        
+        if ($kategori === 'Internal - Pegawai Kemenag') {
+            $rules['unit_kerja'] = 'required|string|max:255';
+            $rules['jabatan'] = 'required|string|max:255';
+        } else {
+            // Eksternal - nullable but validate if provided
+            $rules['unit_kerja'] = 'nullable|string|max:255';
+            $rules['jabatan'] = 'nullable|string|max:255';
+        }
+
+        return $rules;
     }
 
     /**
@@ -72,10 +88,10 @@ class StoreSurveySkmSpakRequest extends FormRequest
             'kategori_responden.required' => 'Kategori responden harus dipilih',
             'kategori_responden.in' => 'Kategori responden tidak valid',
 
-            'unit_kerja.required' => 'Unit kerja harus diisi',
+            'unit_kerja.required' => 'Unit kerja harus diisi untuk kategori Internal - Pegawai Kemenag',
             'unit_kerja.max' => 'Unit kerja maksimal 255 karakter',
 
-            'jabatan.required' => 'Jabatan harus diisi',
+            'jabatan.required' => 'Jabatan harus diisi untuk kategori Internal - Pegawai Kemenag',
             'jabatan.max' => 'Jabatan maksimal 255 karakter',
 
             'jenis_pelayanan.required' => 'Jenis pelayanan harus dipilih',

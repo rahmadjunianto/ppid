@@ -572,9 +572,17 @@
                             <div class="tab-title">
                                 <i class="fas fa-building"></i> Unit Kerja
                             </div>
+                            <div id="unitKerjaStatusInfo" class="alert alert-info" style="display: none;">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <span id="unitKerjaInfoText"></span>
+                            </div>
                             <div class="form-group-skm">
-                                <label for="unit_kerja" class="form-label">Unit Kerja <span class="badge bg-danger">Wajib</span></label>
+                                <label for="unit_kerja" class="form-label">
+                                    Unit Kerja 
+                                    <span id="unit_kerja_badge" class="badge bg-danger">Wajib</span>
+                                </label>
                                 <input type="text" class="form-control" id="unit_kerja" name="unit_kerja" placeholder="Contoh: MAN 1 Nganjuk" value="{{ old('unit_kerja') }}" required>
+                                <small id="unit_kerja_helper" class="form-text"></small>
                                 <div class="error-message" id="err_unit_kerja"></div>
                             </div>
                         </div>
@@ -584,9 +592,17 @@
                             <div class="tab-title">
                                 <i class="fas fa-id-badge"></i> Jabatan
                             </div>
+                            <div id="jabatanStatusInfo" class="alert alert-info" style="display: none;">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <span id="jabatanInfoText"></span>
+                            </div>
                             <div class="form-group-skm">
-                                <label for="jabatan" class="form-label">Jabatan <span class="badge bg-danger">Wajib</span></label>
+                                <label for="jabatan" class="form-label">
+                                    Jabatan 
+                                    <span id="jabatan_badge" class="badge bg-danger">Wajib</span>
+                                </label>
                                 <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Contoh: Penyuluh" value="{{ old('jabatan') }}" required>
+                                <small id="jabatan_helper" class="form-text"></small>
                                 <div class="error-message" id="err_jabatan"></div>
                             </div>
                         </div>
@@ -1103,6 +1119,101 @@
         23: ['kritik_saran'],
     };
 
+    /**
+     * Get the currently selected kategori responden
+     */
+    function getSelectedKategori() {
+        const kategoriInput = document.querySelector('input[name="kategori_responden"]:checked');
+        return kategoriInput ? kategoriInput.value : null;
+    }
+
+    /**
+     * Determine if unit_kerja and jabatan are required based on kategori
+     */
+    function areOptionalFieldsRequired() {
+        const kategori = getSelectedKategori();
+        return kategori === 'Internal - Pegawai Kemenag';
+    }
+
+    /**
+     * Update visual indicators for unit_kerja and jabatan fields
+     */
+    function updateOptionalFieldsUI() {
+        const isRequired = areOptionalFieldsRequired();
+        const unitKerjaBadge = document.getElementById('unit_kerja_badge');
+        const jabatanBadge = document.getElementById('jabatan_badge');
+        const unitKerjaInfo = document.getElementById('unitKerjaStatusInfo');
+        const jabatanInfo = document.getElementById('jabatanStatusInfo');
+        const unitKerjaInput = document.getElementById('unit_kerja');
+        const jabatanInput = document.getElementById('jabatan');
+
+        if (isRequired) {
+            // Internal - fields wajib
+            unitKerjaBadge.textContent = 'Wajib';
+            unitKerjaBadge.className = 'badge bg-danger';
+            jabatanBadge.textContent = 'Wajib';
+            jabatanBadge.className = 'badge bg-danger';
+            unitKerjaInfo.style.display = 'none';
+            jabatanInfo.style.display = 'none';
+            unitKerjaInput.required = true;
+            jabatanInput.required = true;
+            unitKerjaInput.classList.remove('is-invalid');
+            jabatanInput.classList.remove('is-invalid');
+        } else {
+            // Eksternal - fields optional
+            unitKerjaBadge.textContent = 'Opsional';
+            unitKerjaBadge.className = 'badge bg-secondary';
+            jabatanBadge.textContent = 'Opsional';
+            jabatanBadge.className = 'badge bg-secondary';
+            unitKerjaInfo.style.display = 'block';
+            jabatanInfo.style.display = 'block';
+            document.getElementById('unitKerjaInfoText').textContent = 'Field ini bersifat opsional untuk kategori eksternal. Anda dapat melewati step ini.';
+            document.getElementById('jabatanInfoText').textContent = 'Field ini bersifat opsional untuk kategori eksternal. Anda dapat melewati step ini.';
+            unitKerjaInput.required = false;
+            jabatanInput.required = false;
+            unitKerjaInput.classList.remove('is-invalid');
+            jabatanInput.classList.remove('is-invalid');
+        }
+    }
+
+    /**
+     * Check if current step can be skipped
+     */
+    function canSkipStep(step) {
+        const isOptionalFieldsRequired = areOptionalFieldsRequired();
+        
+        // Step 6 (unit_kerja) and step 7 (jabatan) can be skipped if eksternal
+        if ((step === 6 || step === 7) && !isOptionalFieldsRequired) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Check if current step has all fields filled
+     */
+    function isStepFilledOrOptional(step) {
+        const fields = dynamicFields[step];
+        if (!fields) return true;
+
+        // If this is an optional field step and user is eksternal, allow skipping
+        if (canSkipStep(step)) {
+            return true;
+        }
+
+        // Otherwise validate all fields
+        return fields.every(fieldName => {
+            const field = document.querySelector(`[name="${fieldName}"]`);
+            if (!field) return true;
+
+            if (field.type === 'radio' || field.type === 'checkbox') {
+                return !!document.querySelector(`[name="${fieldName}"]:checked`);
+            } else {
+                return field.value.trim() !== '';
+            }
+        });
+    }
+
     function showStep(step) {
         // Hide all tabs
         document.querySelectorAll('.form-tab').forEach(tab => {
@@ -1111,6 +1222,11 @@
 
         // Show current tab
         document.querySelectorAll('.form-tab')[step].classList.add('active');
+
+        // Update UI for optional fields if on step 5 (kategori)
+        if (step === 5 || step === 6 || step === 7) {
+            updateOptionalFieldsUI();
+        }
 
         // Update progress bar
         updateProgress();
@@ -1125,20 +1241,57 @@
 
     function nextStep() {
         if (currentStep < totalSteps - 1) {
-            // Check if current step requires validation
-            if (dynamicFields[currentStep]) {
-                if (!validateStep(currentStep)) {
-                    return;
+            // Special case: From Step 5 (Kategori), check which path to take
+            if (currentStep === 5) {
+                if (dynamicFields[currentStep]) {
+                    if (!validateStep(currentStep)) {
+                        return; // Validation failed
+                    }
                 }
+                // After validation, check kategori selection
+                if (!areOptionalFieldsRequired()) {
+                    // EKSTERNAL: Jump directly to Step 8 (Jenis Pelayanan)
+                    // Skip Steps 6 & 7 entirely
+                    currentStep = 8;
+                } else {
+                    // INTERNAL: Normal flow to Step 6 (Unit Kerja)
+                    currentStep = 6;
+                }
+                showStep(currentStep);
             }
-            currentStep++;
-            showStep(currentStep);
+            // Existing logic for other steps
+            else if (dynamicFields[currentStep]) {
+                if (canSkipStep(currentStep)) {
+                    // This case shouldn't happen for eksternal users from step 6/7
+                    // because they're skipped. But keep for safety.
+                    if (currentStep === 6 || currentStep === 7) {
+                        currentStep = 8; // Jump to step 8
+                    } else {
+                        currentStep++;
+                    }
+                    showStep(currentStep);
+                } else if (!validateStep(currentStep)) {
+                    return;
+                } else {
+                    currentStep++;
+                    showStep(currentStep);
+                }
+            } else {
+                currentStep++;
+                showStep(currentStep);
+            }
         }
     }
 
     function previousStep() {
         if (currentStep > 0) {
-            currentStep--;
+            // If eksternal user going back from step 8, go to step 5 (kategori)
+            // because steps 6 & 7 were skipped
+            if (currentStep === 8 && !areOptionalFieldsRequired()) {
+                currentStep = 5;
+            } else {
+                currentStep--;
+            }
             showStep(currentStep);
         }
     }
@@ -1150,6 +1303,13 @@
         fields.forEach(fieldName => {
             const field = document.querySelector(`[name="${fieldName}"]`);
             if (!field) return;
+
+            // Skip validation for optional eksternal fields
+            if (canSkipStep(step)) {
+                clearError(fieldName);
+                field.classList.remove('is-invalid');
+                return;
+            }
 
             let fieldValue = '';
             if (field.type === 'radio' || field.type === 'checkbox') {
@@ -1215,10 +1375,24 @@
         } else {
             btnPrevious.style.display = 'block';
             btnNext.style.display = 'block';
-            btnNext.innerHTML = 'Selanjutnya <i class="fas fa-chevron-right ms-2"></i>';
+            
+            // Update button text based on whether step can be skipped
+            if (canSkipStep(currentStep)) {
+                btnNext.innerHTML = 'Lewati <i class="fas fa-forward ms-2"></i>';
+            } else {
+                btnNext.innerHTML = 'Selanjutnya <i class="fas fa-chevron-right ms-2"></i>';
+            }
+            
             btnFinish.style.display = 'none';
         }
     }
+
+    // Listen for kategori_responden changes to update UI
+    document.querySelectorAll('input[name="kategori_responden"]').forEach(input => {
+        input.addEventListener('change', function() {
+            updateOptionalFieldsUI();
+        });
+    });
 
     // Prevent form submission on Enter key
     document.getElementById('skmspakForm').addEventListener('keypress', function(e) {

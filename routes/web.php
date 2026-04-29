@@ -25,7 +25,14 @@ use App\Http\Controllers\Admin\PageController as AdminPageController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/cek-drive', function () {
+    $path = storage_path('app/test.zip');
+    file_put_contents($path, 'test');
 
+    Storage::disk('google')->put('test.zip', file_get_contents($path));
+
+    return 'OK';
+});
 Route::get('/', [PageController::class, 'home']);
 
 Route::get('/beranda', function () {

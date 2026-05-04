@@ -69,128 +69,148 @@
     </div>
     @endif
 
-    <!-- Search & Filter -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Filter & Pencarian</h3>
-                </div>
-                <div class="card-body">
-                    <form method="GET" action="{{ route('admin.surveys-skm-spak.index') }}" class="form-inline">
-                        <div class="form-group mr-2 mb-2">
-                            <label for="kategori_responden" class="mr-2">Kategori:</label>
-                            <select name="kategori_responden" id="kategori_responden" class="form-control">
-                                <option value="">-- Semua Kategori --</option>
-                                @foreach($kategoris as $kat)
-                                    <option value="{{ $kat }}" {{ request('kategori_responden') == $kat ? 'selected' : '' }}>
-                                        {{ $kat }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group mr-2 mb-2">
-                            <label for="jenis_pelayanan" class="mr-2">Jenis Pelayanan:</label>
-                            <select name="jenis_pelayanan" id="jenis_pelayanan" class="form-control">
-                                <option value="">-- Semua Pelayanan --</option>
-                                @foreach($layananList as $layanan)
-                                    <option value="{{ $layanan }}" {{ request('jenis_pelayanan') == $layanan ? 'selected' : '' }}>
-                                        {{ $layanan }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group mr-2 mb-2">
-                            <label for="from_date" class="mr-2">Dari Tanggal:</label>
-                            <input type="date" name="from_date" id="from_date" class="form-control" value="{{ request('from_date') }}">
-                        </div>
-                        <div class="form-group mr-2 mb-2">
-                            <label for="to_date" class="mr-2">Hingga Tanggal:</label>
-                            <input type="date" name="to_date" id="to_date" class="form-control" value="{{ request('to_date') }}">
-                        </div>
-                        <button type="submit" class="btn btn-primary mb-2">
-                            <i class="fas fa-search mr-2"></i> Cari
-                        </button>
-                        <a href="{{ route('admin.surveys-skm-spak.index') }}" class="btn btn-secondary ml-2 mb-2">
-                            <i class="fas fa-redo mr-2"></i> Reset
-                        </a>
-                        <a href="{{ route('admin.surveys-skm-spak.export', request()->query()) }}" class="btn btn-success ml-2 mb-2" title="Export data ke Excel">
-                            <i class="fas fa-file-excel mr-2"></i> Export Excel
-                        </a>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Survey List -->
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Daftar Responden Survey</h3>
+                    <h3 class="card-title">
+                        <i class="fas fa-poll mr-2"></i>
+                        Daftar Responden Survey
+                    </h3>
+                    <div class="card-tools">
+                        <a href="{{ route('admin.surveys-skm-spak.export', request()->query()) }}" class="btn btn-success btn-sm" title="Export data ke Excel">
+                            <i class="fas fa-file-excel"></i> Export Excel
+                        </a>
+                    </div>
                 </div>
-                <div class="card-body p-0">
-                    <table class="table table-sm table-hover table-bordered">
-                        <thead class="bg-light">
-                            <tr>
-                                <th>#</th>
-                                <th>Kategori</th>
-                                <th>Unit Kerja</th>
-                                <th>Jenis Pelayanan</th>
-                                <th>Skor SKM</th>
-                                <th>Skor SPAK</th>
-                                <th>Tanggal</th>
-                                <th width="150">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($surveys as $survey)
-                                <tr>
-                                    <td>{{ ($surveys->currentPage() - 1) * $surveys->perPage() + $loop->iteration }}</td>
-                                    <td>
-                                        <span class="badge {{ strpos($survey->kategori_responden, 'Internal') !== false ? 'badge-primary' : 'badge-info' }}">
-                                            {{ $survey->kategori_responden }}
-                                        </span>
-                                    </td>
-                                    <td>{{ $survey->unit_kerja }}</td>
-                                    <td>{{ $survey->jenis_pelayanan }}</td>
-                                    <td>
-                                        <span class="badge badge-success">
-                                            {{ $survey->getSkmAverage() ?? 'N/A' }}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-warning">
-                                            {{ $survey->getSpakAverage() ?? 'N/A' }}
-                                        </span>
-                                    </td>
-                                    <td>{{ $survey->created_at->locale('id')->format('d M Y H:i') }}</td>
-                                    <td>
-                                        <a href="{{ route('admin.surveys-skm-spak.show', $survey->id) }}" class="btn btn-sm btn-info" title="Lihat Detail">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" onclick="setDeleteId({{ $survey->id }})" title="Hapus">
-                                            <i class="fas fa-trash"></i>
+
+                <div class="card-body">
+                    <!-- Filter -->
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <form method="GET" action="{{ route('admin.surveys-skm-spak.index') }}">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <select name="kategori_responden" class="form-control">
+                                            <option value="">-- Semua Kategori --</option>
+                                            @foreach($kategoris as $kat)
+                                                <option value="{{ $kat }}" {{ request('kategori_responden') == $kat ? 'selected' : '' }}>
+                                                    {{ $kat }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select name="jenis_pelayanan" class="form-control">
+                                            <option value="">-- Semua Pelayanan --</option>
+                                            @foreach($layananList as $layanan)
+                                                <option value="{{ $layanan }}" {{ request('jenis_pelayanan') == $layanan ? 'selected' : '' }}>
+                                                    {{ $layanan }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="date" name="from_date" class="form-control" value="{{ request('from_date') }}" placeholder="Dari Tanggal">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="date" name="to_date" class="form-control" value="{{ request('to_date') }}" placeholder="Hingga Tanggal">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="submit" class="btn btn-info">
+                                            <i class="fas fa-search"></i> Cari
                                         </button>
-                                    </td>
-                                </tr>
-                            @empty
+                                        <a href="{{ route('admin.surveys-skm-spak.index') }}" class="btn btn-secondary">Reset</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Results Count -->
+                    @if($surveys->total() > 0)
+                    <p class="text-muted">
+                        Menampilkan {{ $surveys->firstItem() ?? 0 }} - {{ $surveys->lastItem() ?? 0 }}
+                        dari {{ $surveys->total() }} survey
+                    </p>
+                    @endif
+
+                    <!-- Table -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
                                 <tr>
-                                    <td colspan="8" class="text-center py-4 text-muted">
-                                        <i class="fas fa-inbox fa-2x mb-3"></i><br>
-                                        Tidak ada data survey ditemukan
-                                    </td>
+                                    <th width="60">No</th>
+                                    <th>Kategori</th>
+                                    <th>Unit Kerja</th>
+                                    <th>Jenis Pelayanan</th>
+                                    <th>Skor SKM</th>
+                                    <th>Skor SPAK</th>
+                                    <th>Tanggal</th>
+                                    <th width="100">Aksi</th>
                                 </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @forelse($surveys as $index => $survey)
+                                    <tr>
+                                        <td>{{ $surveys->firstItem() + $index }}</td>
+                                        <td>
+                                            <span class="badge {{ strpos($survey->kategori_responden, 'Internal') !== false ? 'badge-primary' : 'badge-info' }}">
+                                                {{ $survey->kategori_responden }}
+                                            </span>
+                                        </td>
+                                        <td>{{ $survey->unit_kerja }}</td>
+                                        <td>{{ $survey->jenis_pelayanan }}</td>
+                                        <td>
+                                            <span class="badge badge-success">
+                                                {{ $survey->getSkmAverage() ?? 'N/A' }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-warning">
+                                                {{ $survey->getSpakAverage() ?? 'N/A' }}
+                                            </span>
+                                        </td>
+                                        <td>{{ $survey->created_at->locale('id')->format('d M Y H:i') }}</td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a href="{{ route('admin.surveys-skm-spak.show', $survey->id) }}" class="btn btn-info btn-sm" title="Lihat">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" onclick="setDeleteId({{ $survey->id }})" title="Hapus">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="8" class="text-center py-4">
+                                            <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                                            <p class="text-muted">Tidak ada data survey ditemukan</p>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    @if($surveys->hasPages())
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div>
+                                <small class="text-muted">
+                                    Menampilkan {{ $surveys->firstItem() }} - {{ $surveys->lastItem() }}
+                                    dari {{ $surveys->total() }} survey
+                                </small>
+                            </div>
+                            <div>
+                                {{ $surveys->appends(request()->query())->links('admin-pagination') }}
+                            </div>
+                        </div>
+                    @endif
                 </div>
-                @if($surveys->total() > 0)
-                <div class="card-footer">
-                    {{ $surveys->links() }}
-                </div>
-                @endif
             </div>
         </div>
     </div>
@@ -214,7 +234,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form id="deleteForm" method="POST" style="display: inline;">
+                <form id="deleteForm" method="POST" style="display: inline-block;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">

@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             AgendaSeeder::class,
             PageSeeder::class,
             SurveySeeder::class,
+            SurveySkmSpakSeeder::class,
         ]);
     }
 }

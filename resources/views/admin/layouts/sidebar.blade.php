@@ -62,6 +62,40 @@
                     </ul>
                 </li>
 
+                <!-- IKM & SPAK Management -->
+                <li class="nav-item {{ request()->routeIs('admin.survey-periods.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.survey-periods.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-poll-h"></i>
+                        <p>
+                            IKM & SPAK
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.survey-periods.index') }}"
+                               class="nav-link {{ request()->routeIs('admin.survey-periods.index') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Kelola Periode Survei</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.survey-export.index') }}"
+                               class="nav-link {{ request()->routeIs('admin.survey-export.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Export Laporan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/ikm-spak') }}" target="_blank"
+                               class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Lihat Publik</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <!-- Data Pegawai -->
                 <li class="nav-item {{ request()->routeIs('admin.pegawai.*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->routeIs('admin.pegawai.*') ? 'active' : '' }}">

@@ -17,12 +17,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            AdminUserSeeder::class,
-            PegawaiSeeder::class,
-            AgendaSeeder::class,
-            PageSeeder::class,
-            SurveySeeder::class,
-            SurveySkmSpakSeeder::class,
+            // AdminUserSeeder::class,
+            // PegawaiSeeder::class,
+            // AgendaSeeder::class,
+            // PageSeeder::class,
+            // SurveySeeder::class,
+            // SurveySkmSpakSeeder::class,
+            SurveyPeriodSeeder::class,
         ]);
     }
 }

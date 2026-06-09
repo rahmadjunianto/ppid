@@ -1,0 +1,276 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\SurveyPeriod;
+use App\Models\SurveyFollowUp;
+
+class SurveyPeriodSeeder extends Seeder
+{
+    public function run(): void
+    {
+        // Data IKM dan SPAK tahun 2024-2026
+        // Kategori: A (Sangat Baik) ≥88.31, B (Baik) ≥76.61, C (Cukup) ≥65.00, D (Buruk) <65
+        $periods = [
+            // 2024
+            [
+                'year' => 2024,
+                'quarter' => 'tw1',
+                'ikm_value' => 82.35,
+                'ikm_category' => 'B',
+                'ikm_category_label' => 'Baik',
+                'spak_value' => 85.20,
+                'spak_category' => 'B',
+                'spak_category_label' => 'Baik',
+                'total_respondents' => 156,
+                'target_respondents' => 150,
+                'survey_start_date' => '2024-01-01',
+                'survey_end_date' => '2024-03-31',
+                'notes' => 'Periode Triwulan I Tahun 2024',
+                'is_published' => true,
+                'published_at' => '2024-04-15',
+                'signatory_name' => 'Drs. H. Ahmad Fauzi, M.Si',
+                'signatory_position' => 'Kepala Kantor',
+                'signatory_nip' => '19670115 199303 1 003',
+            ],
+            [
+                'year' => 2024,
+                'quarter' => 'tw2',
+                'ikm_value' => 83.50,
+                'ikm_category' => 'B',
+                'ikm_category_label' => 'Baik',
+                'spak_value' => 86.10,
+                'spak_category' => 'B',
+                'spak_category_label' => 'Baik',
+                'total_respondents' => 162,
+                'target_respondents' => 150,
+                'survey_start_date' => '2024-04-01',
+                'survey_end_date' => '2024-06-30',
+                'notes' => 'Periode Triwulan II Tahun 2024',
+                'is_published' => true,
+                'published_at' => '2024-07-15',
+                'signatory_name' => 'Drs. H. Ahmad Fauzi, M.Si',
+                'signatory_position' => 'Kepala Kantor',
+                'signatory_nip' => '19670115 199303 1 003',
+            ],
+            [
+                'year' => 2024,
+                'quarter' => 'tw3',
+                'ikm_value' => 84.20,
+                'ikm_category' => 'B',
+                'ikm_category_label' => 'Baik',
+                'spak_value' => 86.80,
+                'spak_category' => 'B',
+                'spak_category_label' => 'Baik',
+                'total_respondents' => 158,
+                'target_respondents' => 150,
+                'survey_start_date' => '2024-07-01',
+                'survey_end_date' => '2024-09-30',
+                'notes' => 'Periode Triwulan III Tahun 2024',
+                'is_published' => true,
+                'published_at' => '2024-10-15',
+                'signatory_name' => 'Drs. H. Ahmad Fauzi, M.Si',
+                'signatory_position' => 'Kepala Kantor',
+                'signatory_nip' => '19670115 199303 1 003',
+            ],
+            [
+                'year' => 2024,
+                'quarter' => 'tw4',
+                'ikm_value' => 85.10,
+                'ikm_category' => 'B',
+                'ikm_category_label' => 'Baik',
+                'spak_value' => 87.50,
+                'spak_category' => 'B',
+                'spak_category_label' => 'Baik',
+                'total_respondents' => 170,
+                'target_respondents' => 150,
+                'survey_start_date' => '2024-10-01',
+                'survey_end_date' => '2024-12-31',
+                'notes' => 'Periode Triwulan IV Tahun 2024',
+                'is_published' => true,
+                'published_at' => '2025-01-15',
+                'signatory_name' => 'Drs. H. Ahmad Fauzi, M.Si',
+                'signatory_position' => 'Kepala Kantor',
+                'signatory_nip' => '19670115 199303 1 003',
+            ],
+            // 2025
+            [
+                'year' => 2025,
+                'quarter' => 'tw1',
+                'ikm_value' => 85.80,
+                'ikm_category' => 'B',
+                'ikm_category_label' => 'Baik',
+                'spak_value' => 88.20,
+                'spak_category' => 'A',
+                'spak_category_label' => 'Sangat Baik',
+                'total_respondents' => 165,
+                'target_respondents' => 150,
+                'survey_start_date' => '2025-01-01',
+                'survey_end_date' => '2025-03-31',
+                'notes' => 'Periode Triwulan I Tahun 2025',
+                'is_published' => true,
+                'published_at' => '2025-04-15',
+                'signatory_name' => 'Drs. H. Ahmad Fauzi, M.Si',
+                'signatory_position' => 'Kepala Kantor',
+                'signatory_nip' => '19670115 199303 1 003',
+            ],
+            [
+                'year' => 2025,
+                'quarter' => 'tw2',
+                'ikm_value' => 86.50,
+                'ikm_category' => 'B',
+                'ikm_category_label' => 'Baik',
+                'spak_value' => 89.10,
+                'spak_category' => 'A',
+                'spak_category_label' => 'Sangat Baik',
+                'total_respondents' => 172,
+                'target_respondents' => 150,
+                'survey_start_date' => '2025-04-01',
+                'survey_end_date' => '2025-06-30',
+                'notes' => 'Periode Triwulan II Tahun 2025',
+                'is_published' => true,
+                'published_at' => '2025-07-15',
+                'signatory_name' => 'Drs. H. Ahmad Fauzi, M.Si',
+                'signatory_position' => 'Kepala Kantor',
+                'signatory_nip' => '19670115 199303 1 003',
+            ],
+            [
+                'year' => 2025,
+                'quarter' => 'tw3',
+                'ikm_value' => 87.20,
+                'ikm_category' => 'B',
+                'ikm_category_label' => 'Baik',
+                'spak_value' => 89.80,
+                'spak_category' => 'A',
+                'spak_category_label' => 'Sangat Baik',
+                'total_respondents' => 180,
+                'target_respondents' => 150,
+                'survey_start_date' => '2025-07-01',
+                'survey_end_date' => '2025-09-30',
+                'notes' => 'Periode Triwulan III Tahun 2025',
+                'is_published' => true,
+                'published_at' => '2025-10-15',
+                'signatory_name' => 'Drs. H. Ahmad Fauzi, M.Si',
+                'signatory_position' => 'Kepala Kantor',
+                'signatory_nip' => '19670115 199303 1 003',
+            ],
+            [
+                'year' => 2025,
+                'quarter' => 'tw4',
+                'ikm_value' => 88.10,
+                'ikm_category' => 'A',
+                'ikm_category_label' => 'Sangat Baik',
+                'spak_value' => 90.50,
+                'spak_category' => 'A',
+                'spak_category_label' => 'Sangat Baik',
+                'total_respondents' => 185,
+                'target_respondents' => 150,
+                'survey_start_date' => '2025-10-01',
+                'survey_end_date' => '2025-12-31',
+                'notes' => 'Periode Triwulan IV Tahun 2025',
+                'is_published' => true,
+                'published_at' => '2026-01-15',
+                'signatory_name' => 'Drs. H. Ahmad Fauzi, M.Si',
+                'signatory_position' => 'Kepala Kantor',
+                'signatory_nip' => '19670115 199303 1 003',
+            ],
+            // 2026
+            [
+                'year' => 2026,
+                'quarter' => 'tw1',
+                'ikm_value' => 88.75,
+                'ikm_category' => 'A',
+                'ikm_category_label' => 'Sangat Baik',
+                'spak_value' => 91.20,
+                'spak_category' => 'A',
+                'spak_category_label' => 'Sangat Baik',
+                'total_respondents' => 190,
+                'target_respondents' => 150,
+                'survey_start_date' => '2026-01-01',
+                'survey_end_date' => '2026-03-31',
+                'notes' => 'Periode Triwulan I Tahun 2026',
+                'is_published' => true,
+                'published_at' => '2026-04-15',
+                'signatory_name' => 'Drs. H. Ahmad Fauzi, M.Si',
+                'signatory_position' => 'Kepala Kantor',
+                'signatory_nip' => '19670115 199303 1 003',
+            ],
+            [
+                'year' => 2026,
+                'quarter' => 'tw2',
+                'ikm_value' => 89.35,
+                'ikm_category' => 'A',
+                'ikm_category_label' => 'Sangat Baik',
+                'spak_value' => 91.80,
+                'spak_category' => 'A',
+                'spak_category_label' => 'Sangat Baik',
+                'total_respondents' => 195,
+                'target_respondents' => 150,
+                'survey_start_date' => '2026-04-01',
+                'survey_end_date' => '2026-06-30',
+                'notes' => 'Periode Triwulan II Tahun 2026',
+                'is_published' => true,
+                'published_at' => '2026-07-15',
+                'signatory_name' => 'Drs. H. Ahmad Fauzi, M.Si',
+                'signatory_position' => 'Kepala Kantor',
+                'signatory_nip' => '19670115 199303 1 003',
+            ],
+        ];
+
+        foreach ($periods as $periodData) {
+            $period = SurveyPeriod::create($periodData);
+            
+            // Tambah data tindak lanjut untuk setiap periode
+            $this->createFollowUps($period);
+        }
+
+        $this->command->info('Survey Period seeder completed: ' . count($periods) . ' periods created');
+    }
+
+    private function createFollowUps(SurveyPeriod $period): void
+    {
+        $followUps = [
+            [
+                'title' => 'Peningkatan Kualitas Layanan Informasi',
+                'description' => 'Memperbarui konten website dengan informasi yang lebih lengkap dan mudah dipahami masyarakat',
+                'action_plan' => 'Revisi konten website dan penambahan FAQ',
+                'responsible_unit' => 'Seksi Umum dan RT',
+                'target_date' => now()->addMonths(3)->format('Y-m-d'),
+                'status' => 'completed',
+                'result' => 'Website telah diperbarui dengan konten baru',
+            ],
+            [
+                'title' => 'Optimalisasi Sistem Antrian',
+                'description' => 'Menerapkan sistem antrian online untuk mengurangi waktu tunggu masyarakat',
+                'action_plan' => 'Implementasi aplikasi antrian digital',
+                'responsible_unit' => 'Seksi PTK',
+                'target_date' => now()->addMonths(6)->format('Y-m-d'),
+                'status' => $period->quarter === 'tw1' ? 'in_progress' : 'completed',
+                'result' => 'Aplikasi antrian telah launching',
+            ],
+            [
+                'title' => 'Sosialisasi Layanan Elektronik',
+                'description' => 'Mengadakan sosialisasi kepada masyarakat tentang layanan berbasis digital',
+                'action_plan' => 'Workshop dan bimtek layanan online',
+                'responsible_unit' => 'Seksi HIS',
+                'target_date' => now()->addMonths(2)->format('Y-m-d'),
+                'status' => $period->quarter === 'tw1' || $period->quarter === 'tw2' ? 'in_progress' : 'completed',
+                'result' => 'Sosialisasi telah dilaksanakan',
+            ],
+        ];
+
+        foreach ($followUps as $followUpData) {
+            SurveyFollowUp::create([
+                'period_id' => $period->id,
+                'title' => $followUpData['title'],
+                'description' => $followUpData['description'],
+                'action_plan' => $followUpData['action_plan'],
+                'responsible_unit' => $followUpData['responsible_unit'],
+                'target_date' => $followUpData['target_date'],
+                'status' => $followUpData['status'],
+                'result' => $followUpData['result'],
+            ]);
+        }
+    }
+}

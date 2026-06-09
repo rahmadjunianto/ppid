@@ -93,7 +93,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ request()->is('survey*') ? 'active' : '' }}" href="#" id="surveyDropdown" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle {{ request()->is('survey*') || request()->is('ikm-spak*') ? 'active' : '' }}" href="#" id="surveyDropdown" role="button" data-bs-toggle="dropdown">
                         <i class="bi bi-graph-up me-1"></i>Survey
                     </a>
                     <ul class="dropdown-menu">
@@ -102,6 +102,16 @@
                         </a></li>
                         <li><a class="dropdown-item {{ request()->is('survey/skm-spak') ? 'active' : '' }}" href="{{ url('/survey/skm-spak') }}">
                             <i class="bi bi-bar-chart me-2"></i>Survey SKM & SPAK
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item {{ request()->is('ikm-spak') ? 'active' : '' }}" href="{{ url('/ikm-spak') }}">
+                            <i class="bi bi-pie-chart me-2"></i>IKM & SPAK
+                        </a></li>
+                        <li><a class="dropdown-item {{ request()->is('ikm-spak/tren') ? 'active' : '' }}" href="{{ url('/ikm-spak/tren') }}">
+                            <i class="bi bi-graph-up-arrow me-2"></i>Statistik & Tren
+                        </a></li>
+                        <li><a class="dropdown-item {{ request()->is('ikm-spak/statistik') ? 'active' : '' }}" href="{{ url('/ikm-spak/statistik') }}">
+                            <i class="bi bi-bar-chart-fill me-2"></i>Data Statistik
                         </a></li>
                     </ul>
                 </li>

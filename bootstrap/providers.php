@@ -6,4 +6,5 @@ return [
     App\Providers\EventServiceProvider::class,
     App\Providers\MenuServiceProvider::class,
     App\Providers\GoogleDriveServiceProvider::class,
+    Barryvdh\DomPDF\ServiceProvider::class,
 ];

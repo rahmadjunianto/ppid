@@ -11,9 +11,11 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\ImageProxyController;
+use App\Http\Controllers\PublicSurveyController;
 use App\Http\Controllers\Admin\SurveyController as AdminSurveyController;
 use App\Http\Controllers\Admin\SurveySkmSpakController as AdminSurveySkmSpakController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
+use App\Http\Controllers\Admin\SurveyPeriodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -166,6 +168,22 @@ Route::prefix('survey')->name('survey.')->group(function () {
     Route::get('/skm-spak/success', [SurveySkmSpakController::class, 'success'])->name('skm-spak.success');
 });
 
+// Public IKM/SPAK Publication Routes
+Route::prefix('ikm-spak')->name('ikm-spak.')->group(function () {
+    Route::get('/', [PublicSurveyController::class, 'index'])->name('index');
+    Route::get('/detail/{year}/{quarter}', [PublicSurveyController::class, 'show'])->name('show');
+    Route::get('/download/{id}', [PublicSurveyController::class, 'download'])->name('download');
+    Route::get('/statistik', [PublicSurveyController::class, 'statistics'])->name('statistics');
+    Route::get('/tren', [PublicSurveyController::class, 'trendChart'])->name('trend');
+    Route::get('/tren-data', [PublicSurveyController::class, 'trendChartApi'])->name('trend-data');
+    
+    // Export Routes
+    Route::get('/export/{year}/{quarter}', [PublicSurveyController::class, 'exportPeriod'])->name('export');
+    Route::get('/export-ikm/{year}/{quarter}', [PublicSurveyController::class, 'exportIkm'])->name('export.ikm');
+    Route::get('/export-spak/{year}/{quarter}', [PublicSurveyController::class, 'exportSpak'])->name('export.spak');
+    Route::get('/export-tindak-lanjut/{year}/{quarter}', [PublicSurveyController::class, 'exportFollowUp'])->name('export.followup');
+});
+
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -194,6 +212,25 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         Route::get('/export', [AdminSurveySkmSpakController::class, 'export'])->name('export');
         Route::get('/{id}', [AdminSurveySkmSpakController::class, 'show'])->name('show');
         Route::delete('/{id}', [AdminSurveySkmSpakController::class, 'destroy'])->name('destroy');
+    });
+
+    // Survey Periods Management (IKM/SPAK Publication)
+    Route::prefix('survey-periods')->name('survey-periods.')->group(function () {
+        Route::get('/', [SurveyPeriodController::class, 'index'])->name('index');
+        Route::get('/create', [SurveyPeriodController::class, 'create'])->name('create');
+        Route::post('/', [SurveyPeriodController::class, 'store'])->name('store');
+        Route::get('/{surveyPeriod}/edit', [SurveyPeriodController::class, 'edit'])->name('edit');
+        Route::put('/{surveyPeriod}', [SurveyPeriodController::class, 'update'])->name('update');
+        Route::delete('/{surveyPeriod}', [SurveyPeriodController::class, 'destroy'])->name('destroy');
+        Route::post('/{surveyPeriod}/toggle-publish', [SurveyPeriodController::class, 'togglePublish'])->name('toggle-publish');
+        Route::post('/{surveyPeriod}/add-follow-up', [SurveyPeriodController::class, 'addFollowUp'])->name('add-follow-up');
+    });
+
+    // Survey Export Management
+    Route::prefix('survey-export')->name('survey-export.')->group(function () {
+        Route::get('/', [SurveyPeriodController::class, 'export'])->name('index');
+        Route::get('/generate/{id}', [SurveyPeriodController::class, 'generateReport'])->name('generate');
+        Route::get('/download/{id}', [SurveyPeriodController::class, 'downloadReport'])->name('download');
     });
 
     // Pegawai Management

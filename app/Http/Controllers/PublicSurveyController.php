@@ -45,12 +45,33 @@ class PublicSurveyController extends Controller
             ->orderBy('quarter', 'desc')
             ->get();
 
+        // Get all follow-ups (default: completed)
+        $query = \App\Models\SurveyFollowUp::with('period');
+
+        // Filter by status (default: completed)
+        $defaultStatus = request('status') ?: 'completed';
+        $query->where('status', $defaultStatus);
+
+        // Default filter: current year
+        $defaultYear = request('year') ?: date('Y');
+        $query->whereHas('period', function($q) use ($defaultYear) {
+            $q->where('year', $defaultYear);
+        });
+
+        // Filter by priority if provided
+        if (request('priority')) {
+            $query->where('priority', request('priority'));
+        }
+        
+        $unfollowedItems = $query->orderBy('created_at', 'desc')->get();
+
         return view('survey.publication.index', compact(
             'surveyPeriods',
             'latestPeriod',
             'availableYears',
             'trendData',
-            'reports'
+            'reports',
+            'unfollowedItems'
         ));
     }
 

@@ -195,6 +195,97 @@
         </div>
     </div>
 
+    {{-- Publikasi Tindak Lanjut Section --}}
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-info text-white">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>Daftar Tindak Lanjut Hasil Survei</h5>
+                <form method="GET" action="{{ route('ikm-spak.index') }}" class="d-flex gap-2 flex-wrap">
+                    <select name="status" class="form-select form-select-sm" style="width: auto;" onchange="this.form.submit()">
+                        <option value="completed" {{ (request('status') ?: 'completed') == 'completed' ? 'selected' : '' }}>Selesai</option>
+                        <option value="in_progress" {{ request('status') == 'in_progress' ? 'selected' : '' }}>Sedang Dikerjakan</option>
+                        <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Menunggu</option>
+                        <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>Dibatalkan</option>
+                    </select>
+                    <select name="year" class="form-select form-select-sm" style="width: auto;" onchange="this.form.submit()">
+                        @foreach($availableYears as $year)
+                            <option value="{{ $year }}" {{ (request('year') ?: date('Y')) == $year ? 'selected' : '' }}>{{ $year }}</option>
+                        @endforeach
+                    </select>
+                    <select name="priority" class="form-select form-select-sm" style="width: auto;" onchange="this.form.submit()">
+                        <option value="">Semua Prioritas</option>
+                        <option value="high" {{ request('priority') == 'high' ? 'selected' : '' }}>Tinggi</option>
+                        <option value="medium" {{ request('priority') == 'medium' ? 'selected' : '' }}>Sedang</option>
+                        <option value="low" {{ request('priority') == 'low' ? 'selected' : '' }}>Rendah</option>
+                    </select>
+                    @if(request('year') || request('status') || request('priority'))
+                        <a href="{{ route('ikm-spak.index') }}" class="btn btn-sm btn-outline-light">
+                            <i class="fas fa-times"></i> Reset
+                        </a>
+                    @endif
+                </form>
+            </div>
+        </div>
+        @if($unfollowedItems->count() > 0)
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>No</th>
+                            <th>Judul Tindak Lanjut</th>
+                            <th>Periode Survei</th>
+                            <th>Unit Pelaksana</th>
+                            <th>PIC</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Prioritas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($unfollowedItems as $index => $item)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>
+                                <strong>{{ $item->title }}</strong>
+                                @if($item->description)
+                                <br><small class="text-muted">{{ Str::limit($item->description, 50) }}</small>
+                                @endif
+                            </td>
+                            <td>
+                                @if($item->period)
+                                <span class="badge bg-light text-dark">{{ $item->period->getPeriodLabel() }}</span>
+                                @else
+                                <span class="text-muted">-</span>
+                                @endif
+                            </td>
+                            <td>{{ $item->responsible_unit ?? '-' }}</td>
+                            <td>{{ $item->PIC ?? '-' }}</td>
+                            <td class="text-center">
+                                <span class="badge bg-{{ $item->status_color }}">
+                                    {{ $item->status_label }}
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <span class="badge bg-{{ $item->priority_color }}">
+                                    {{ $item->priority_label }}
+                                </span>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @else
+        <div class="card-body text-center py-4">
+            <p class="text-muted mb-0">
+                <i class="fas fa-check-circle text-success me-2"></i>
+                Semua tindak lanjut telah ditindaklanjuti
+            </p>
+        </div>
+        @endif
+    </div>
+
     {{-- Downloadable Reports --}}
     @if($reports->count() > 0)
     <div class="card border-0 shadow-sm mb-4">

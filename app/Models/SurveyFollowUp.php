@@ -13,7 +13,7 @@ class SurveyFollowUp extends Model
     protected $table = 'survey_follow_ups';
 
     protected $fillable = [
-        'survey_period_id',
+        'period_id',
         'title',
         'description',
         'action_plan',
@@ -37,7 +37,7 @@ class SurveyFollowUp extends Model
      */
     public function period(): BelongsTo
     {
-        return $this->belongsTo(SurveyPeriod::class, 'survey_period_id');
+        return $this->belongsTo(SurveyPeriod::class, 'period_id');
     }
 
     /**

@@ -2,6 +2,7 @@
 
 @section('content')
 <style>
+
     :root {
         --kemenag-primary: #1e5631;
         --kemenag-secondary: #2d8f47;
@@ -616,16 +617,104 @@
                                 <label for="jenis_pelayanan" class="form-label">Jenis Pelayanan yang Diterima <span class="badge bg-danger">Wajib</span></label>
                                 <select class="form-control" id="jenis_pelayanan" name="jenis_pelayanan" required>
                                     <option value="">-- Pilih Jenis Pelayanan --</option>
-                                    <option value="Humas" {{ old('jenis_pelayanan') == 'Humas' ? 'selected' : '' }}>Humas</option>
-                                    <option value="Kepegawaian" {{ old('jenis_pelayanan') == 'Kepegawaian' ? 'selected' : '' }}>Kepegawaian</option>
-                                    <option value="Keuangan" {{ old('jenis_pelayanan') == 'Keuangan' ? 'selected' : '' }}>Keuangan</option>
-                                    <option value="PTSP" {{ old('jenis_pelayanan') == 'PTSP' ? 'selected' : '' }}>PTSP</option>
-                                    <option value="Umum" {{ old('jenis_pelayanan') == 'Umum' ? 'selected' : '' }}>Umum</option>
-                                    <option value="Bimbingan Masyarakat Islam" {{ old('jenis_pelayanan') == 'Bimbingan Masyarakat Islam' ? 'selected' : '' }}>Bimbingan Masyarakat Islam</option>
-                                    <option value="Pendidikan Agama Islam" {{ old('jenis_pelayanan') == 'Pendidikan Agama Islam' ? 'selected' : '' }}>Pendidikan Agama Islam</option>
-                                    <option value="Pendidikan Diniyah dan Pondok Pesantren" {{ old('jenis_pelayanan') == 'Pendidikan Diniyah dan Pondok Pesantren' ? 'selected' : '' }}>Pendidikan Diniyah dan Pondok Pesantren</option>
-                                    <option value="Pendidikan Madrasah" {{ old('jenis_pelayanan') == 'Pendidikan Madrasah' ? 'selected' : '' }}>Pendidikan Madrasah</option>
-                                    <option value="Zakat dan Wakaf" {{ old('jenis_pelayanan') == 'Zakat dan Wakaf' ? 'selected' : '' }}>Zakat dan Wakaf</option>
+                                    <optgroup label="Kepegawaian">
+                                        <option value="Kepegawaian (Surat Pernyataan Tidak Pernah Dikenakan Hukuman Disiplin Sedang / Berat)" {{ old('jenis_pelayanan') == 'Kepegawaian (Surat Pernyataan Tidak Pernah Dikenakan Hukuman Disiplin Sedang / Berat)' ? 'selected' : '' }}>Surat Pernyataan Tidak Pernah Dikenakan Hukuman Disiplin Sedang / Berat</option>
+                                        <option value="Kepegawaian (Pengajuan Tanda Kehormatan Satyalancana Karya Satya)" {{ old('jenis_pelayanan') == 'Kepegawaian (Pengajuan Tanda Kehormatan Satyalancana Karya Satya)' ? 'selected' : '' }}>Pengajuan Tanda Kehormatan Satyalancana Karya Satya</option>
+                                        <option value="Kepegawaian (Surat Pengantar Usul Ijin Belajar)" {{ old('jenis_pelayanan') == 'Kepegawaian (Surat Pengantar Usul Ijin Belajar)' ? 'selected' : '' }}>Surat Pengantar Usul Ijin Belajar</option>
+                                        <option value="Kepegawaian (Surat Izin Cuti)" {{ old('jenis_pelayanan') == 'Kepegawaian (Surat Izin Cuti)' ? 'selected' : '' }}>Surat Izin Cuti</option>
+                                        <option value="Kepegawaian (Kenaikan Pangkat)" {{ old('jenis_pelayanan') == 'Kepegawaian (Kenaikan Pangkat)' ? 'selected' : '' }}>Kenaikan Pangkat</option>
+                                        <option value="Kepegawaian (Pengajuan Pencantuman Gelar Pendidikan Pegawai)" {{ old('jenis_pelayanan') == 'Kepegawaian (Pengajuan Pencantuman Gelar Pendidikan Pegawai)' ? 'selected' : '' }}>Pengajuan Pencantuman Gelar Pendidikan Pegawai</option>
+                                        <option value="Kepegawaian (Pengajuan Pensiun)" {{ old('jenis_pelayanan') == 'Kepegawaian (Pengajuan Pensiun)' ? 'selected' : '' }}>Pengajuan Pensiun</option>
+                                        <option value="Kepegawaian (Pengajuan Pensiun Dini)" {{ old('jenis_pelayanan') == 'Kepegawaian (Pengajuan Pensiun Dini)' ? 'selected' : '' }}>Pengajuan Pensiun Dini</option>
+                                        <option value="Kepegawaian (Surat Pengantar Ijin Tugas Belajar)" {{ old('jenis_pelayanan') == 'Kepegawaian (Surat Pengantar Ijin Tugas Belajar)' ? 'selected' : '' }}>Surat Pengantar Ijin Tugas Belajar</option>
+                                        <option value="Kepegawaian (Pengajuan Mutasi Pegawai PNS)" {{ old('jenis_pelayanan') == 'Kepegawaian (Pengajuan Mutasi Pegawai PNS)' ? 'selected' : '' }}>Pengajuan Mutasi Pegawai PNS</option>
+                                    </optgroup>
+                                    <optgroup label="Umum & FKUB">
+                                        <option value="Umum & FKUB (Permohonan Rohaniawan Pembaca Doa)" {{ old('jenis_pelayanan') == 'Umum & FKUB (Permohonan Rohaniawan Pembaca Doa)' ? 'selected' : '' }}>Permohonan Rohaniawan Pembaca Doa</option>
+                                        <option value="Umum & FKUB (Rekomendasi Persetujuan Penelitian di Kementerian Agama Kabupaten Nganjuk)" {{ old('jenis_pelayanan') == 'Umum & FKUB (Rekomendasi Persetujuan Penelitian di Kementerian Agama Kabupaten Nganjuk)' ? 'selected' : '' }}>Rekomendasi Persetujuan Penelitian di Kementerian Agama Kabupaten Nganjuk</option>
+                                        <option value="Umum & FKUB (Permohonan Studi Banding Studi Lapangan Kunjungan Kerja)" {{ old('jenis_pelayanan') == 'Umum & FKUB (Permohonan Studi Banding Studi Lapangan Kunjungan Kerja)' ? 'selected' : '' }}>Permohonan Studi Banding Studi Lapangan Kunjungan Kerja</option>
+                                        <option value="Umum & FKUB (Permohonan Magang PPL PKL Mahasiswa, SMK, SMA, MA Sederajat)" {{ old('jenis_pelayanan') == 'Umum & FKUB (Permohonan Magang PPL PKL Mahasiswa, SMK, SMA, MA Sederajat)' ? 'selected' : '' }}>Permohonan Magang PPL PKL Mahasiswa, SMK, SMA, MA Sederajat</option>
+                                        <option value="Umum & FKUB (Rekomendasi Kegiatan)" {{ old('jenis_pelayanan') == 'Umum & FKUB (Rekomendasi Kegiatan)' ? 'selected' : '' }}>Rekomendasi Kegiatan</option>
+                                        <option value="Umum & FKUB (Permohonan Audiensi)" {{ old('jenis_pelayanan') == 'Umum & FKUB (Permohonan Audiensi)' ? 'selected' : '' }}>Permohonan Audiensi</option>
+                                        <option value="Umum & FKUB (Permohonan MOU)" {{ old('jenis_pelayanan') == 'Umum & FKUB (Permohonan MOU)' ? 'selected' : '' }}>Permohonan MOU</option>
+                                        <option value="Umum & FKUB (Permohonan Narasumber Kegiatan)" {{ old('jenis_pelayanan') == 'Umum & FKUB (Permohonan Narasumber Kegiatan)' ? 'selected' : '' }}>Permohonan Narasumber Kegiatan</option>
+                                        <option value="Umum & FKUB (Penawaran / Promosi)" {{ old('jenis_pelayanan') == 'Umum & FKUB (Penawaran / Promosi)' ? 'selected' : '' }}>Penawaran / Promosi</option>
+                                        <option value="Umum & FKUB (Permohonan Data Informasi)" {{ old('jenis_pelayanan') == 'Umum & FKUB (Permohonan Data Informasi)' ? 'selected' : '' }}>Permohonan Data Informasi</option>
+                                    </optgroup>
+                                    <optgroup label="Pendidikan Madrasah">
+                                        <option value="Pendidikan Madrasah (Rekomendasi Melanjutkan Sekolah/Kuliah Ke Luar Negeri)" {{ old('jenis_pelayanan') == 'Pendidikan Madrasah (Rekomendasi Melanjutkan Sekolah/Kuliah Ke Luar Negeri)' ? 'selected' : '' }}>Rekomendasi Melanjutkan Sekolah/Kuliah Ke Luar Negeri</option>
+                                        <option value="Pendidikan Madrasah (Rekomendasi Bantuan Sarana/Prasarana)" {{ old('jenis_pelayanan') == 'Pendidikan Madrasah (Rekomendasi Bantuan Sarana/Prasarana)' ? 'selected' : '' }}>Rekomendasi Bantuan Sarana/Prasarana</option>
+                                        <option value="Pendidikan Madrasah (Pengajuan Kepala Madrasah Baru)" {{ old('jenis_pelayanan') == 'Pendidikan Madrasah (Pengajuan Kepala Madrasah Baru)' ? 'selected' : '' }}>Pengajuan Kepala Madrasah Baru</option>
+                                        <option value="Pendidikan Madrasah (Rekomendasi Mutasi Siswa Dalam Provinsi)" {{ old('jenis_pelayanan') == 'Pendidikan Madrasah (Rekomendasi Mutasi Siswa Dalam Provinsi)' ? 'selected' : '' }}>Rekomendasi Mutasi Siswa Dalam Provinsi</option>
+                                        <option value="Pendidikan Madrasah (Rekomendasi Penelitian di Madrasah)" {{ old('jenis_pelayanan') == 'Pendidikan Madrasah (Rekomendasi Penelitian di Madrasah)' ? 'selected' : '' }}>Rekomendasi Penelitian di Madrasah</option>
+                                        <option value="Pendidikan Madrasah (Rekomendasi Lomba Di Madrasah)" {{ old('jenis_pelayanan') == 'Pendidikan Madrasah (Rekomendasi Lomba Di Madrasah)' ? 'selected' : '' }}>Rekomendasi Lomba Di Madrasah</option>
+                                        <option value="Pendidikan Madrasah (Rekomendasi Akreditasi)" {{ old('jenis_pelayanan') == 'Pendidikan Madrasah (Rekomendasi Akreditasi)' ? 'selected' : '' }}>Rekomendasi Akreditasi</option>
+                                        <option value="Pendidikan Madrasah (Surat Pengantar Kurikulum MA)" {{ old('jenis_pelayanan') == 'Pendidikan Madrasah (Surat Pengantar Kurikulum MA)' ? 'selected' : '' }}>Surat Pengantar Kurikulum MA</option>
+                                        <option value="Pendidikan Madrasah (Rekomendasi PPDB)" {{ old('jenis_pelayanan') == 'Pendidikan Madrasah (Rekomendasi PPDB)' ? 'selected' : '' }}>Rekomendasi PPDB</option>
+                                        <option value="Pendidikan Madrasah (Pengesahan RKTM dan RKJM(RKM) RA, MI & MTs)" {{ old('jenis_pelayanan') == 'Pendidikan Madrasah (Pengesahan RKTM dan RKJM(RKM) RA, MI & MTs)' ? 'selected' : '' }}>Pengesahan RKTM dan RKJM(RKM) RA, MI & MTs</option>
+                                        <option value="Pendidikan Madrasah (Rekomendasi IKM (Implementasi Kurikulum Merdeka))" {{ old('jenis_pelayanan') == 'Pendidikan Madrasah (Rekomendasi IKM (Implementasi Kurikulum Merdeka))' ? 'selected' : '' }}>Rekomendasi IKM (Implementasi Kurikulum Merdeka)</option>
+                                        <option value="Pendidikan Madrasah (Rekomendasi Mutasi Siswa Ke Luar Provinsi)" {{ old('jenis_pelayanan') == 'Pendidikan Madrasah (Rekomendasi Mutasi Siswa Ke Luar Provinsi)' ? 'selected' : '' }}>Rekomendasi Mutasi Siswa Ke Luar Provinsi</option>
+                                        <option value="Pendidikan Madrasah (Pengesahan Kurikulum)" {{ old('jenis_pelayanan') == 'Pendidikan Madrasah (Pengesahan Kurikulum)' ? 'selected' : '' }}>Pengesahan Kurikulum</option>
+                                        <option value="Pendidikan Madrasah (Rekomendasi untuk syarat pengurusan paspor belajar ke luar negeri)" {{ old('jenis_pelayanan') == 'Pendidikan Madrasah (Rekomendasi untuk syarat pengurusan paspor belajar ke luar negeri)' ? 'selected' : '' }}>Rekomendasi untuk syarat pengurusan paspor belajar ke luar negeri</option>
+                                        <option value="Pendidikan Madrasah (Rekomendasi Kegiatan Pendidikan (Diklat, seminar, workshop,dll))" {{ old('jenis_pelayanan') == 'Pendidikan Madrasah (Rekomendasi Kegiatan Pendidikan (Diklat, seminar, workshop,dll))' ? 'selected' : '' }}>Rekomendasi Kegiatan Pendidikan (Diklat, seminar, workshop,dll)</option>
+                                    </optgroup>
+                                    <optgroup label="Pendidikan Diniyah dan Pondok Pesantren">
+                                        <option value="Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Izin Tinggal/Belajar Terbatas Bagi Santri/Guru Asing dari Luar Negeri (ITAS) Baru atau Perpanjangan)" {{ old('jenis_pelayanan') == 'Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Izin Tinggal/Belajar Terbatas Bagi Santri/Guru Asing dari Luar Negeri (ITAS) Baru atau Perpanjangan)' ? 'selected' : '' }}>Rekomendasi Izin Tinggal/Belajar Terbatas Bagi Santri/Guru Asing dari Luar Negeri (ITAS) Baru atau Perpanjangan</option>
+                                        <option value="Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Permohonan Izin Operasional Madrasah Diniyah Takmiliyah Ulya)" {{ old('jenis_pelayanan') == 'Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Permohonan Izin Operasional Madrasah Diniyah Takmiliyah Ulya)' ? 'selected' : '' }}>Rekomendasi Permohonan Izin Operasional Madrasah Diniyah Takmiliyah Ulya</option>
+                                        <option value="Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Permohonan Izin Operasional Pendidikan Diniyah Formal)" {{ old('jenis_pelayanan') == 'Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Permohonan Izin Operasional Pendidikan Diniyah Formal)' ? 'selected' : '' }}>Rekomendasi Permohonan Izin Operasional Pendidikan Diniyah Formal</option>
+                                        <option value="Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Bantuan Untuk Lembaga Pondok Pesantren, Madin, Dan TPQ)" {{ old('jenis_pelayanan') == 'Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Bantuan Untuk Lembaga Pondok Pesantren, Madin, Dan TPQ)' ? 'selected' : '' }}>Rekomendasi Bantuan Untuk Lembaga Pondok Pesantren, Madin, Dan TPQ</option>
+                                        <option value="Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Izin Penelitian)" {{ old('jenis_pelayanan') == 'Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Izin Penelitian)' ? 'selected' : '' }}>Rekomendasi Izin Penelitian</option>
+                                        <option value="Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Izin Operasional Pendidikan Kesetaraan Pada Pondok Pesantren Salafiyah Tingkat Ulya)" {{ old('jenis_pelayanan') == 'Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Izin Operasional Pendidikan Kesetaraan Pada Pondok Pesantren Salafiyah Tingkat Ulya)' ? 'selected' : '' }}>Rekomendasi Izin Operasional Pendidikan Kesetaraan Pada Pondok Pesantren Salafiyah Tingkat Ulya</option>
+                                        <option value="Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Izin Operasional Ma'had Aly)" {{ old('jenis_pelayanan') == "Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Izin Operasional Ma'had Aly)" ? 'selected' : '' }}>Rekomendasi Izin Operasional Ma'had Aly</option>
+                                        <option value="Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Izin Operasional Satuan Pendidikan Muadalah Pada Pondok Pesantren)" {{ old('jenis_pelayanan') == 'Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Izin Operasional Satuan Pendidikan Muadalah Pada Pondok Pesantren)' ? 'selected' : '' }}>Rekomendasi Izin Operasional Satuan Pendidikan Muadalah Pada Pondok Pesantren</option>
+                                        <option value="Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Melanjutkan Studi ke Luar Negeri bagi Santri Pondok Pesantren)" {{ old('jenis_pelayanan') == 'Pendidikan Diniyah dan Pondok Pesantren (Rekomendasi Melanjutkan Studi ke Luar Negeri bagi Santri Pondok Pesantren)' ? 'selected' : '' }}>Rekomendasi Melanjutkan Studi ke Luar Negeri bagi Santri Pondok Pesantren</option>
+                                        <option value="Pendidikan Diniyah dan Pondok Pesantren (Pengajuan Rekomendasi untuk syarat pengurusan paspor belajar ke luar negeri)" {{ old('jenis_pelayanan') == 'Pendidikan Diniyah dan Pondok Pesantren (Pengajuan Rekomendasi untuk syarat pengurusan paspor belajar ke luar negeri)' ? 'selected' : '' }}>Pengajuan Rekomendasi untuk syarat pengurusan paspor belajar ke luar negeri</option>
+                                        <option value="Pendidikan Diniyah dan Pondok Pesantren (Permohonan Rekomendasi Tahfidz Al Qur'an)" {{ old('jenis_pelayanan') == "Pendidikan Diniyah dan Pondok Pesantren (Permohonan Rekomendasi Tahfidz Al Qur'an)" ? 'selected' : '' }}>Permohonan Rekomendasi Tahfidz Al Qur'an</option>
+                                    </optgroup>
+                                    <optgroup label="Pendidikan Agama Islam">
+                                        <option value="Pendidikan Agama Islam (Dispensasi Kelayakan Tunjangan PAI)" {{ old('jenis_pelayanan') == 'Pendidikan Agama Islam (Dispensasi Kelayakan Tunjangan PAI)' ? 'selected' : '' }}>Dispensasi Kelayakan Tunjangan PAI</option>
+                                        <option value="Pendidikan Agama Islam (Pembuatan Akun SIAGA)" {{ old('jenis_pelayanan') == 'Pendidikan Agama Islam (Pembuatan Akun SIAGA)' ? 'selected' : '' }}>Pembuatan Akun SIAGA</option>
+                                        <option value="Pendidikan Agama Islam (Pengajuan Akun Emis)" {{ old('jenis_pelayanan') == 'Pendidikan Agama Islam (Pengajuan Akun Emis)' ? 'selected' : '' }}>Pengajuan Akun Emis</option>
+                                        <option value="Pendidikan Agama Islam (Pendataan Sertifikasi Guru PAI)" {{ old('jenis_pelayanan') == 'Pendidikan Agama Islam (Pendataan Sertifikasi Guru PAI)' ? 'selected' : '' }}>Pendataan Sertifikasi Guru PAI</option>
+                                        <option value="Pendidikan Agama Islam (Permohonan Penerbitan NUPTK di Akun SIAGA)" {{ old('jenis_pelayanan') == 'Pendidikan Agama Islam (Permohonan Penerbitan NUPTK di Akun SIAGA)' ? 'selected' : '' }}>Permohonan Penerbitan NUPTK di Akun SIAGA</option>
+                                        <option value="Pendidikan Agama Islam (Permohonan Perubahan Data Personal di Akun SIAGA)" {{ old('jenis_pelayanan') == 'Pendidikan Agama Islam (Permohonan Perubahan Data Personal di Akun SIAGA)' ? 'selected' : '' }}>Permohonan Perubahan Data Personal di Akun SIAGA</option>
+                                    </optgroup>
+                                    <optgroup label="Bimbingan Masyarakat Islam">
+                                        <option value="Bimbingan Masyarakat Islam (Permohonan Surat Keterangan Majelis Ta'lim Terdaftar)" {{ old('jenis_pelayanan') == "Bimbingan Masyarakat Islam (Permohonan Surat Keterangan Majelis Ta'lim Terdaftar)" ? 'selected' : '' }}>Permohonan Surat Keterangan Majelis Ta'lim Terdaftar</option>
+                                        <option value="Bimbingan Masyarakat Islam (Piagam Masjid)" {{ old('jenis_pelayanan') == 'Bimbingan Masyarakat Islam (Piagam Masjid)' ? 'selected' : '' }}>Piagam Masjid</option>
+                                        <option value="Bimbingan Masyarakat Islam (Piagam Mushola)" {{ old('jenis_pelayanan') == 'Bimbingan Masyarakat Islam (Piagam Mushola)' ? 'selected' : '' }}>Piagam Mushola</option>
+                                        <option value="Bimbingan Masyarakat Islam (Rekomendasi Persetujuan Penelitian di KUA)" {{ old('jenis_pelayanan') == 'Bimbingan Masyarakat Islam (Rekomendasi Persetujuan Penelitian di KUA)' ? 'selected' : '' }}>Rekomendasi Persetujuan Penelitian di KUA</option>
+                                        <option value="Bimbingan Masyarakat Islam (Sertifikat Arah Kiblat)" {{ old('jenis_pelayanan') == 'Bimbingan Masyarakat Islam (Sertifikat Arah Kiblat)' ? 'selected' : '' }}>Sertifikat Arah Kiblat</option>
+                                        <option value="Bimbingan Masyarakat Islam (Rekomendasi Bantuan Masjid/Musholla)" {{ old('jenis_pelayanan') == 'Bimbingan Masyarakat Islam (Rekomendasi Bantuan Masjid/Musholla)' ? 'selected' : '' }}>Rekomendasi Bantuan Masjid/Musholla</option>
+                                    </optgroup>
+                                    <optgroup label="Zakat dan Wakaf">
+                                        <option value="Zakat dan Wakaf (Sertifikasi Tanah Wakaf)" {{ old('jenis_pelayanan') == 'Zakat dan Wakaf (Sertifikasi Tanah Wakaf)' ? 'selected' : '' }}>Sertifikasi Tanah Wakaf</option>
+                                        <option value="Zakat dan Wakaf (Rekomendasi Pembentukan Lembaga Amil Zakat)" {{ old('jenis_pelayanan') == 'Zakat dan Wakaf (Rekomendasi Pembentukan Lembaga Amil Zakat)' ? 'selected' : '' }}>Rekomendasi Pembentukan Lembaga Amil Zakat</option>
+                                        <option value="Zakat dan Wakaf (Rekomendasi Pergantian Nadzir)" {{ old('jenis_pelayanan') == 'Zakat dan Wakaf (Rekomendasi Pergantian Nadzir)' ? 'selected' : '' }}>Rekomendasi Pergantian Nadzir</option>
+                                        <option value="Zakat dan Wakaf (Perubahan Nadzir Perseorangan)" {{ old('jenis_pelayanan') == 'Zakat dan Wakaf (Perubahan Nadzir Perseorangan)' ? 'selected' : '' }}>Perubahan Nadzir Perseorangan</option>
+                                        <option value="Zakat dan Wakaf (Rekomendasi Pergantian Nadzir Organisasi/Badan Hukum)" {{ old('jenis_pelayanan') == 'Zakat dan Wakaf (Rekomendasi Pergantian Nadzir Organisasi/Badan Hukum)' ? 'selected' : '' }}>Rekomendasi Pergantian Nadzir Organisasi/Badan Hukum</option>
+                                        <option value="Zakat dan Wakaf (Rekomendasi Izin Tukar Menukar Harta Benda Wakaf)" {{ old('jenis_pelayanan') == 'Zakat dan Wakaf (Rekomendasi Izin Tukar Menukar Harta Benda Wakaf)' ? 'selected' : '' }}>Rekomendasi Izin Tukar Menukar Harta Benda Wakaf</option>
+                                        <option value="Zakat dan Wakaf (Rekomendasi Perubahan Peruntukan Wakaf)" {{ old('jenis_pelayanan') == 'Zakat dan Wakaf (Rekomendasi Perubahan Peruntukan Wakaf)' ? 'selected' : '' }}>Rekomendasi Perubahan Peruntukan Wakaf</option>
+                                    </optgroup>
+                                    <optgroup label="Kearsipan">
+                                        <option value="Kearsipan (Permohonan Pengelolaan Arsip Dinamis)" {{ old('jenis_pelayanan') == 'Kearsipan (Permohonan Pengelolaan Arsip Dinamis)' ? 'selected' : '' }}>Permohonan Pengelolaan Arsip Dinamis</option>
+                                        <option value="Kearsipan (Permohonan Pengelolaan Arsip Statis)" {{ old('jenis_pelayanan') == 'Kearsipan (Permohonan Pengelolaan Arsip Statis)' ? 'selected' : '' }}>Permohonan Pengelolaan Arsip Statis</option>
+                                        <option value="Kearsipan (Permohonan Pembinaan Kearsipan)" {{ old('jenis_pelayanan') == 'Kearsipan (Permohonan Pembinaan Kearsipan)' ? 'selected' : '' }}>Permohonan Pembinaan Kearsipan</option>
+                                        <option value="Kearsipan (Permohonan Pengolahan dan Penyajian Arsip menjadi Informasi)" {{ old('jenis_pelayanan') == 'Kearsipan (Permohonan Pengolahan dan Penyajian Arsip menjadi Informasi)' ? 'selected' : '' }}>Permohonan Pengolahan dan Penyajian Arsip menjadi Informasi</option>
+                                    </optgroup>
+                                    <optgroup label="Pembinaan Agama Kristen">
+                                        <option value="Pembinaan Agama Kristen (Permohonan Data Umat Kristen)" {{ old('jenis_pelayanan') == 'Pembinaan Agama Kristen (Permohonan Data Umat Kristen)' ? 'selected' : '' }}>Permohonan Data Umat Kristen</option>
+                                        <option value="Pembinaan Agama Kristen (Permohonan Penyuluhan Online Umat Kristen)" {{ old('jenis_pelayanan') == 'Pembinaan Agama Kristen (Permohonan Penyuluhan Online Umat Kristen)' ? 'selected' : '' }}>Permohonan Penyuluhan Online Umat Kristen</option>
+                                        <option value="Pembinaan Agama Kristen (Permohonan Konseling Penyuluh Agama Kristen)" {{ old('jenis_pelayanan') == 'Pembinaan Agama Kristen (Permohonan Konseling Penyuluh Agama Kristen)' ? 'selected' : '' }}>Permohonan Konseling Penyuluh Agama Kristen</option>
+                                        <option value="Pembinaan Agama Kristen (Permohonan Pendampingan Mediasi Penyuluh Agama Kristen)" {{ old('jenis_pelayanan') == 'Pembinaan Agama Kristen (Permohonan Pendampingan Mediasi Penyuluh Agama Kristen)' ? 'selected' : '' }}>Permohonan Pendampingan Mediasi Penyuluh Agama Kristen</option>
+                                        <option value="Pembinaan Agama Kristen (Permohonan Bimbingan Penyuluhan Agama Kristen)" {{ old('jenis_pelayanan') == 'Pembinaan Agama Kristen (Permohonan Bimbingan Penyuluhan Agama Kristen)' ? 'selected' : '' }}>Permohonan Bimbingan Penyuluhan Agama Kristen</option>
+                                        <option value="Pembinaan Agama Kristen (Permohonan Pembinaan Umat Kristen)" {{ old('jenis_pelayanan') == 'Pembinaan Agama Kristen (Permohonan Pembinaan Umat Kristen)' ? 'selected' : '' }}>Permohonan Pembinaan Umat Kristen</option>
+                                    </optgroup>
+                                    <optgroup label="Kehumasan">
+                                        <option value="Kehumasan (Permohonan Informasi)" {{ old('jenis_pelayanan') == 'Kehumasan (Permohonan Informasi)' ? 'selected' : '' }}>Permohonan Informasi</option>
+                                        <option value="Kehumasan (Permohonan Media Relation)" {{ old('jenis_pelayanan') == 'Kehumasan (Permohonan Media Relation)' ? 'selected' : '' }}>Permohonan Media Relation</option>
+                                        <option value="Kehumasan (Layanan Pengaduan dan Aspirasi)" {{ old('jenis_pelayanan') == 'Kehumasan (Layanan Pengaduan dan Aspirasi)' ? 'selected' : '' }}>Layanan Pengaduan dan Aspirasi</option>
+                                    </optgroup>
                                 </select>
                                 <div class="error-message" id="err_jenis_pelayanan"></div>
                             </div>
@@ -1086,7 +1175,7 @@
                 </div>
             </div>
         </div>
-    </div>
+</div>
 </div>
 
 <script>
@@ -1405,4 +1494,5 @@
     // Initialize
     showStep(0);
 </script>
+
 @endsection

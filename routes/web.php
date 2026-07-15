@@ -184,7 +184,7 @@ Route::prefix('ikm-spak')->name('ikm-spak.')->group(function () {
     Route::get('/export-tindak-lanjut/{year}/{quarter}', [PublicSurveyController::class, 'exportFollowUp'])->name('export.followup');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -277,7 +277,7 @@ Route::prefix('pegawai')->name('pegawai.')->group(function () {
     Route::get('/{pegawai}', [App\Http\Controllers\PegawaiController::class, 'show'])->name('show');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

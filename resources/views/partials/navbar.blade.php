@@ -99,10 +99,10 @@
                         <li><a class="dropdown-item {{ request()->is('sop*') ? 'active' : '' }}" href="{{ url('/sop?tab=ppid') }}">
                             <i class="bi bi-clipboard-check me-2"></i>SOP Layanan
                         </a></li>
-                        <li><a class="dropdown-item {{ request()->is('biaya-layanan*') ? 'active' : '' }}" href="#">
+                        <li><a class="dropdown-item {{ request()->is('biaya-pelayanan*') ? 'active' : '' }}" href="{{ url('/biaya-pelayanan') }}">
                             <i class="bi bi-currency-dollar me-2"></i>Biaya Layanan
                         </a></li>
-                        <li><a class="dropdown-item {{ request()->is('waktu-layanan*') ? 'active' : '' }}" href="#">
+                        <li><a class="dropdown-item {{ request()->is('jadwal-pelayanan*') ? 'active' : '' }}" href="{{ url('/jadwal-pelayanan') }}">
                             <i class="bi bi-clock me-2"></i>Waktu Layanan
                         </a></li>
                     </ul>

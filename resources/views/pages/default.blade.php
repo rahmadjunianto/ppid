@@ -28,6 +28,25 @@
                     <p class="lead text-muted">{{ $page->excerpt }}</p>
                 @endif
 
+                <!-- Page Meta Info -->
+                <div class="page-meta mt-3">
+                    @if($page->admin)
+                        <span class="meta-author">
+                            <i class="fas fa-user-edit"></i> {{ $page->admin->name }}
+                        </span>
+                        <span class="meta-separator">|</span>
+                    @endif
+                    @if($page->published_at)
+                        <span class="meta-date">
+                            <i class="fas fa-calendar-alt"></i> {{ $page->published_at->locale('id')->translatedFormat('d F Y') }}
+                        </span>
+                        <span class="meta-separator">|</span>
+                    @endif
+                    <span class="meta-views">
+                        <i class="fas fa-eye"></i> Dibaca {{ number_format($page->view_count) }} kali
+                    </span>
+                </div>
+
                 @if($page->featured_image)
                     <div class="featured-image my-4">
                         <img src="{{ asset('storage/' . $page->featured_image) }}"
@@ -146,6 +165,27 @@
 .page-header {
     border-bottom: 1px solid #dee2e6;
     padding-bottom: 1rem;
+}
+
+.page-meta {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.page-meta .meta-author,
+.page-meta .meta-date,
+.page-meta .meta-views {
+    display: inline-block;
+}
+
+.page-meta .meta-separator {
+    margin: 0 0.5rem;
+    color: #dee2e6;
+}
+
+.page-meta i {
+    margin-right: 0.25rem;
+    color: #007bff;
 }
 
 .content-body {

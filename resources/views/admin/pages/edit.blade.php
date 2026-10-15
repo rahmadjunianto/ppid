@@ -155,13 +155,14 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="published_at">Tanggal Publikasi</label>
+                                            <label for="published_at">Tanggal Publikasi <small class="text-muted">(WIB/UTC+7)</small></label>
                                             <input type="datetime-local" class="form-control @error('published_at') is-invalid @enderror"
                                                    id="published_at" name="published_at"
-                                                   value="{{ old('published_at', $page->published_at ? $page->published_at->format('Y-m-d\TH:i') : '') }}">
+                                                   value="{{ old('published_at', $page->published_at ? \Carbon\Carbon::parse($page->published_at, 'UTC')->setTimezone('Asia/Jakarta')->format('Y-m-d\TH:i') : '') }}">
                                             @error('published_at')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
+                                            <small class="form-text text-muted">Tanggal dan waktu dalam zona waktu Indonesia (WIB)</small>
                                         </div>
 
                                         <div class="form-group">

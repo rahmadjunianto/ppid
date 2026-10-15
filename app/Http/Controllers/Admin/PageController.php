@@ -7,6 +7,7 @@ use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class PageController extends Controller
 {
@@ -97,6 +98,12 @@ class PageController extends Controller
         while (Page::where('slug', $data['slug'])->exists()) {
             $data['slug'] = $originalSlug . '-' . $counter;
             $counter++;
+        }
+
+        // Handle published_at with Indonesia timezone (WIB/UTC+7)
+        if (!empty($data['published_at'])) {
+            $data['published_at'] = Carbon::parse($data['published_at'], 'Asia/Jakarta')
+                                          ->setTimezone('UTC');
         }
 
         // Handle featured image upload
@@ -198,6 +205,16 @@ class PageController extends Controller
             $data['is_homepage'] = true;
         } else {
             $data['is_homepage'] = false;
+        }
+
+        // Handle published_at with Indonesia timezone (WIB/UTC+7)
+        if (array_key_exists('published_at', $data)) {
+            if (!empty($data['published_at'])) {
+                $data['published_at'] = Carbon::parse($data['published_at'], 'Asia/Jakarta')
+                                              ->setTimezone('UTC');
+            } else {
+                $data['published_at'] = null;
+            }
         }
 
         $page->update($data);

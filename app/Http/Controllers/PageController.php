@@ -16,7 +16,7 @@ class PageController extends Controller
         $currentParent = null;
 
         foreach ($slugs as $currentSlug) {
-            $query = Page::where('slug', $currentSlug)->published();
+            $query = Page::where('slug', $currentSlug)->published()->with('admin');
 
             if ($currentParent) {
                 $query->where('parent_id', $currentParent->id);
@@ -36,6 +36,9 @@ class PageController extends Controller
         if (!$page) {
             abort(404);
         }
+
+        // Increment view count
+        $page->increment('view_count');
 
         // Get breadcrumb
         $breadcrumb = $page->getBreadcrumb();

@@ -58,18 +58,33 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ request()->is('permohonan-informasi*') || request()->is('pengajuan-keberatan*') || request()->is('status-permohonan*') ? 'active' : '' }}" href="#" id="layananDropdown" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle {{ request()->is('permohonan-informasi*') || request()->is('pengajuan-keberatan*') || request()->is('status-permohonan*') || request()->is('tata-cara-permohonan-informasi-publik') || request()->is('tata-cara-pengajuan-keberatan') || request()->is('tata-cara-permohonan-penyelesaian-sengketa-informasi') || request()->is('sop-layanan-informasi-publik') || request()->is('sop-unit-kerja-layanan') || request()->is('standar-pengumuman-informasi') || request()->is('tata-cara-pengaduan-masyarakat-dan-whistleblowing') || request()->is('alasan-pengajuan-keberatan') ? 'active' : '' }}" href="#" id="layananDropdown" role="button" data-bs-toggle="dropdown">
                         <i class="bi bi-gear"></i> Layanan Informasi
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item {{ request()->is('permohonan-informasi*') ? 'active' : '' }}" href="#">
-                            <i class="bi bi-file-earmark-text me-2"></i>Permohonan Informasi
+                        <li><a class="dropdown-item {{ request()->is('tata-cara-permohonan-informasi-publik') ? 'active' : '' }}" href="{{ url('/tata-cara-permohonan-informasi-publik') }}">
+                            <i class="bi bi-file-earmark-text me-2"></i>Tata Cara Permohonan Informasi
                         </a></li>
-                        <li><a class="dropdown-item {{ request()->is('pengajuan-keberatan*') ? 'active' : '' }}" href="#">
-                            <i class="bi bi-exclamation-triangle me-2"></i>Pengajuan Keberatan
+                        <li><a class="dropdown-item {{ request()->is('tata-cara-pengajuan-keberatan') ? 'active' : '' }}" href="{{ url('/tata-cara-pengajuan-keberatan') }}">
+                            <i class="bi bi-exclamation-triangle me-2"></i>Tata Cara Pengajuan Keberatan
                         </a></li>
-                        <li><a class="dropdown-item {{ request()->is('status-permohonan*') ? 'active' : '' }}" href="#">
-                            <i class="bi bi-search me-2"></i>Status Permohonan
+                        <li><a class="dropdown-item {{ request()->is('alasan-pengajuan-keberatan') ? 'active' : '' }}" href="{{ url('/alasan-pengajuan-keberatan') }}">
+                            <i class="bi bi-question-circle me-2"></i>Alasan Pengajuan Keberatan
+                        </a></li>
+                        <li><a class="dropdown-item {{ request()->is('tata-cara-permohonan-penyelesaian-sengketa-informasi') ? 'active' : '' }}" href="{{ url('/tata-cara-permohonan-penyelesaian-sengketa-informasi') }}">
+                            <i class="bi bi-shield-exclamation me-2"></i>Tata Cara Sengketa Informasi
+                        </a></li>
+                        <li><a class="dropdown-item {{ request()->is('sop-layanan-informasi-publik') ? 'active' : '' }}" href="{{ url('/sop-layanan-informasi-publik') }}">
+                            <i class="bi bi-clipboard-check me-2"></i>SOP Layanan Informasi Publik
+                        </a></li>
+                        <li><a class="dropdown-item {{ request()->is('standar-pengumuman-informasi') ? 'active' : '' }}" href="{{ url('/standar-pengumuman-informasi') }}">
+                            <i class="bi bi-megaphone me-2"></i>Standar Pengumuman Informasi
+                        </a></li>
+                        <li><a class="dropdown-item {{ request()->is('tata-cara-pengaduan-masyarakat-dan-whistleblowing') ? 'active' : '' }}" href="{{ url('/tata-cara-pengaduan-masyarakat-dan-whistleblowing') }}">
+                            <i class="bi bi-flag me-2"></i>Tata Cara Pengaduan Masyarakat
+                        </a></li>
+                        <li><a class="dropdown-item {{ request()->is('alasan-pengajuan-keberatan') ? 'active' : '' }}" href="{{ url('/alasan-pengajuan-keberatan') }}">
+                            <i class="bi bi-question-circle me-2"></i>Alasan Pengajuan Keberatan
                         </a></li>
                     </ul>
                 </li>

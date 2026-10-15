@@ -30,14 +30,16 @@ class Page extends Model
         'seo_data',
         'admin_id',
         'custom_fields',
-        'published_at'
+        'published_at',
+        'view_count'
     ];
 
     protected $casts = [
         'custom_fields' => 'array',
         'show_in_menu' => 'boolean',
         'is_homepage' => 'boolean',
-        'published_at' => 'datetime'
+        'published_at' => 'datetime',
+        'view_count' => 'integer'
     ];
 
     protected $dates = [
@@ -54,16 +56,16 @@ class Page extends Model
                 $page->slug = Str::slug($page->title);
             }
 
-            // Auto set published_at if status is published
+            // Auto set published_at if status is published (with Indonesia timezone)
             if ($page->status === 'published' && !$page->published_at) {
-                $page->published_at = now();
+                $page->published_at = Carbon::now('Asia/Jakarta');
             }
         });
 
         static::updating(function ($page) {
-            // Auto set published_at when status changed to published
+            // Auto set published_at when status changed to published (with Indonesia timezone)
             if ($page->status === 'published' && !$page->published_at) {
-                $page->published_at = now();
+                $page->published_at = Carbon::now('Asia/Jakarta');
             }
 
             // Clear published_at if status changed to draft
@@ -87,6 +89,11 @@ class Page extends Model
     public function publishedChildren()
     {
         return $this->children()->published();
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo(User::class, 'admin_id');
     }
 
     // Scopes
@@ -163,12 +170,9 @@ class Page extends Model
 
     public function getExcerptAttribute($value)
     {
-        if ($value) {
-            return $value;
-        }
-
-        // Auto generate excerpt from content
-        return Str::limit(strip_tags($this->content), 160);
+        // Return the actual value (can be null if user intentionally left it empty)
+        // Do NOT auto-generate - let the form display the actual stored value
+        return $value;
     }
 
     public function getPublishedAtFormattedAttribute()

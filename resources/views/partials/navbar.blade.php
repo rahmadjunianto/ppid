@@ -68,14 +68,14 @@
                         <li><a class="dropdown-item {{ request()->is('tata-cara-pengajuan-keberatan') ? 'active' : '' }}" href="{{ url('/tata-cara-pengajuan-keberatan') }}">
                             <i class="bi bi-exclamation-triangle me-2"></i>Tata Cara Pengajuan Keberatan
                         </a></li>
-                        <li><a class="dropdown-item {{ request()->is('alasan-pengajuan-keberatan') ? 'active' : '' }}" href="{{ url('/alasan-pengajuan-keberatan') }}">
-                            <i class="bi bi-question-circle me-2"></i>Alasan Pengajuan Keberatan
-                        </a></li>
                         <li><a class="dropdown-item {{ request()->is('tata-cara-permohonan-penyelesaian-sengketa-informasi') ? 'active' : '' }}" href="{{ url('/tata-cara-permohonan-penyelesaian-sengketa-informasi') }}">
                             <i class="bi bi-shield-exclamation me-2"></i>Tata Cara Sengketa Informasi
                         </a></li>
                         <li><a class="dropdown-item {{ request()->is('sop-layanan-informasi-publik') ? 'active' : '' }}" href="{{ url('/sop-layanan-informasi-publik') }}">
                             <i class="bi bi-clipboard-check me-2"></i>SOP Layanan Informasi Publik
+                        </a></li>
+                        <li><a class="dropdown-item {{ request()->is('sop-unit-kerja-layanan') ? 'active' : '' }}" href="{{ url('/sop-unit-kerja-layanan') }}">
+                            <i class="bi bi-clipboard-check me-2"></i>SOP Unit Kerja Layanan
                         </a></li>
                         <li><a class="dropdown-item {{ request()->is('standar-pengumuman-informasi') ? 'active' : '' }}" href="{{ url('/standar-pengumuman-informasi') }}">
                             <i class="bi bi-megaphone me-2"></i>Standar Pengumuman Informasi

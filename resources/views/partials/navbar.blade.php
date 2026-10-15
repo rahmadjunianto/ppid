@@ -71,7 +71,7 @@
                         <li><a class="dropdown-item {{ request()->is('tata-cara-permohonan-penyelesaian-sengketa-informasi') ? 'active' : '' }}" href="{{ url('/tata-cara-permohonan-penyelesaian-sengketa-informasi') }}">
                             <i class="bi bi-shield-exclamation me-2"></i>Tata Cara Sengketa Informasi
                         </a></li>
-                        <li><a class="dropdown-item {{ request()->is('sop-layanan-informasi-publik') ? 'active' : '' }}" href="{{ url('/sop-layanan-informasi-publik') }}">
+                        <li><a class="dropdown-item {{ request()->is('sop?tab=ppid') ? 'active' : '' }}" href="{{ url('/sop?tab=ppid') }}">
                             <i class="bi bi-clipboard-check me-2"></i>SOP Layanan Informasi Publik
                         </a></li>
                         <li><a class="dropdown-item {{ request()->is('sop-unit-kerja-layanan') ? 'active' : '' }}" href="{{ url('/sop-unit-kerja-layanan') }}">

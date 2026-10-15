@@ -93,7 +93,7 @@
                         <i class="bi bi-award"></i> Standar Layanan
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item {{ request()->is('maklumat-pelayanan*') ? 'active' : '' }}" href="#">
+                        <li><a class="dropdown-item {{ request()->is('maklumat-pelayanan*') ? 'active' : '' }}" href="{{ url('/maklumat-pelayanan') }}">
                             <i class="bi bi-megaphone me-2"></i>Maklumat Pelayanan
                         </a></li>
                         <li><a class="dropdown-item {{ request()->is('sop*') ? 'active' : '' }}" href="{{ url('/sop?tab=ppid') }}">
@@ -107,7 +107,7 @@
                         </a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle {{ request()->is('survey*') || request()->is('ikm-spak*') ? 'active' : '' }}" href="#" id="surveyDropdown" role="button" data-bs-toggle="dropdown">
                         <i class="bi bi-graph-up me-1"></i>Survey
                     </a>
@@ -129,7 +129,7 @@
                             <i class="bi bi-bar-chart-fill me-2"></i>Data Statistik
                         </a></li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

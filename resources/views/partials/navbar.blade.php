@@ -81,7 +81,7 @@
                         <li><a class="dropdown-item {{ request()->is('maklumat-pelayanan*') ? 'active' : '' }}" href="#">
                             <i class="bi bi-megaphone me-2"></i>Maklumat Pelayanan
                         </a></li>
-                        <li><a class="dropdown-item {{ request()->is('sop-layanan*') ? 'active' : '' }}" href="#">
+                        <li><a class="dropdown-item {{ request()->is('sop*') ? 'active' : '' }}" href="{{ url('/sop?tab=ppid') }}">
                             <i class="bi bi-clipboard-check me-2"></i>SOP Layanan
                         </a></li>
                         <li><a class="dropdown-item {{ request()->is('biaya-layanan*') ? 'active' : '' }}" href="#">

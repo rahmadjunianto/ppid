@@ -177,6 +177,34 @@
                     </ul>
                 </li>
 
+                <!-- SOP Management -->
+                <li class="nav-item {{ request()->routeIs('admin.sops.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.sops.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-file-contract"></i>
+                        <p>
+                            Kelola SOP
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.sops.index') }}"
+                               class="nav-link {{ request()->routeIs('admin.sops.index') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Daftar SOP</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.sops.create') }}"
+                               class="nav-link {{ request()->routeIs('admin.sops.create') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tambah SOP</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
                 @if(auth()->user() && auth()->user()->role === 'admin')
                 <!-- User Management -->
                 <li class="nav-item {{ request()->routeIs('admin.users.*') ? 'menu-open' : '' }}">

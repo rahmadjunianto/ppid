@@ -16,6 +16,8 @@ use App\Http\Controllers\Admin\SurveyController as AdminSurveyController;
 use App\Http\Controllers\Admin\SurveySkmSpakController as AdminSurveySkmSpakController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\SurveyPeriodController;
+use App\Http\Controllers\SopController;
+use App\Http\Controllers\Admin\SopController as AdminSopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -270,7 +272,27 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         Route::put('/{agenda}', [App\Http\Controllers\Admin\AgendaController::class, 'update'])->name('update');
         Route::delete('/{agenda}', [App\Http\Controllers\Admin\AgendaController::class, 'destroy'])->name('destroy');
     });
+
+    // SOP Management
+    Route::prefix('sops')->name('sops.')->group(function () {
+        Route::get('/', [AdminSopController::class, 'index'])->name('index');
+        Route::get('/create', [AdminSopController::class, 'create'])->name('create');
+        Route::post('/', [AdminSopController::class, 'store'])->name('store');
+        Route::get('/{sop}', [AdminSopController::class, 'show'])->name('show');
+        Route::get('/{sop}/edit', [AdminSopController::class, 'edit'])->name('edit');
+        Route::put('/{sop}', [AdminSopController::class, 'update'])->name('update');
+        Route::delete('/{sop}', [AdminSopController::class, 'destroy'])->name('destroy');
+    });
+
 });
+// Public SOP Routes
+Route::prefix('sop')->name('sop.')->group(function () {
+    Route::get('/', [SopController::class, 'index'])->name('index');
+    Route::get('/view/{id}', [SopController::class, 'view'])->name('view');
+    Route::get('/download/{id}', [SopController::class, 'download'])->name('download');
+});
+
+
 
 // Public Pegawai Routes
 Route::prefix('pegawai')->name('pegawai.')->group(function () {

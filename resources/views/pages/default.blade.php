@@ -64,52 +64,6 @@
                     </div>
                 @endif
             </div>
-            
-            <!-- Script untuk responsive images -->
-            @push('scripts')
-            <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                function resizeImages() {
-                    if (window.innerWidth <= 768) {
-                        var container = document.getElementById('pageContent');
-                        if (container) {
-                            var containerWidth = container.offsetWidth;
-                            var images = container.querySelectorAll('img');
-                            images.forEach(function(img) {
-                                img.style.maxWidth = containerWidth + 'px';
-                                img.style.width = containerWidth + 'px';
-                                img.style.height = 'auto';
-                            });
-                            
-                            var figures = container.querySelectorAll('figure');
-                            figures.forEach(function(figure) {
-                                figure.style.maxWidth = containerWidth + 'px';
-                                figure.style.width = containerWidth + 'px';
-                            });
-                        }
-                    } else {
-                        var container = document.getElementById('pageContent');
-                        if (container) {
-                            var images = container.querySelectorAll('img');
-                            images.forEach(function(img) {
-                                img.style.maxWidth = '';
-                                img.style.width = '';
-                            });
-                            
-                            var figures = container.querySelectorAll('figure');
-                            figures.forEach(function(figure) {
-                                figure.style.maxWidth = '';
-                                figure.style.width = '';
-                            });
-                        }
-                    }
-                }
-                
-                resizeImages();
-                window.addEventListener('resize', resizeImages);
-            });
-            </script>
-            @endpush
 
             <!-- Child Pages -->
             @if($page->children->where('status', 'published')->count() > 0)
@@ -205,6 +159,51 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    function resizeImages() {
+        if (window.innerWidth <= 768) {
+            var container = document.getElementById('pageContent');
+            if (container) {
+                var containerWidth = container.offsetWidth;
+                var images = container.querySelectorAll('img');
+                images.forEach(function(img) {
+                    img.style.maxWidth = containerWidth + 'px';
+                    img.style.width = containerWidth + 'px';
+                    img.style.height = 'auto';
+                });
+                
+                var figures = container.querySelectorAll('figure');
+                figures.forEach(function(figure) {
+                    figure.style.maxWidth = containerWidth + 'px';
+                    figure.style.width = containerWidth + 'px';
+                });
+            }
+        } else {
+            var container = document.getElementById('pageContent');
+            if (container) {
+                var images = container.querySelectorAll('img');
+                images.forEach(function(img) {
+                    img.style.maxWidth = '';
+                    img.style.width = '';
+                });
+                
+                var figures = container.querySelectorAll('figure');
+                figures.forEach(function(figure) {
+                    figure.style.maxWidth = '';
+                    figure.style.width = '';
+                });
+            }
+        }
+    }
+    
+    resizeImages();
+    window.addEventListener('resize', resizeImages);
+});
+</script>
+@endpush
 
 @section('styles')
 <style>

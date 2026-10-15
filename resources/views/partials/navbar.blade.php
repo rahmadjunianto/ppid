@@ -96,14 +96,17 @@
                         <li><a class="dropdown-item {{ request()->is('maklumat-pelayanan*') ? 'active' : '' }}" href="{{ url('/maklumat-pelayanan') }}">
                             <i class="bi bi-megaphone me-2"></i>Maklumat Pelayanan
                         </a></li>
+                        <li><a class="dropdown-item {{ request()->is('jadwal-pelayanan*') ? 'active' : '' }}" href="{{ url('/jadwal-pelayanan') }}">
+                            <i class="bi bi-clock me-2"></i>Jadwal Pelayanan
+                        </a></li>
+                        <li><a class="dropdown-item {{ request()->is('biaya-pelayanan*') ? 'active' : '' }}" href="{{ url('/biaya-pelayanan') }}">
+                            <i class="bi bi-currency-dollar me-2"></i>Biaya/Tarif Pelayanan
+                        </a></li>
                         <li><a class="dropdown-item {{ request()->is('sop*') ? 'active' : '' }}" href="{{ url('/sop?tab=ppid') }}">
                             <i class="bi bi-clipboard-check me-2"></i>SOP Layanan
                         </a></li>
-                        <li><a class="dropdown-item {{ request()->is('biaya-pelayanan*') ? 'active' : '' }}" href="{{ url('/biaya-pelayanan') }}">
-                            <i class="bi bi-currency-dollar me-2"></i>Biaya Layanan
-                        </a></li>
-                        <li><a class="dropdown-item {{ request()->is('jadwal-pelayanan*') ? 'active' : '' }}" href="{{ url('/jadwal-pelayanan') }}">
-                            <i class="bi bi-clock me-2"></i>Waktu Layanan
+                        <li><a class="dropdown-item {{ request()->is('tata-cara-permohonan-informasi-publik') ? 'active' : '' }}" href="{{ url('/tata-cara-permohonan-informasi-publik') }}">
+                            <i class="bi bi-file-earmark-text me-2"></i>Alur Permohonan Informasi
                         </a></li>
                     </ul>
                 </li>

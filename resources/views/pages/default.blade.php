@@ -57,13 +57,59 @@
             </div>
 
             <!-- Page Content -->
-            <div class="page-content">
+            <div class="page-content" id="pageContent">
                 @if($page->content)
                     <div class="content-body">
                         {!! $page->content !!}
                     </div>
                 @endif
             </div>
+            
+            <!-- Script untuk responsive images -->
+            @push('scripts')
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                function resizeImages() {
+                    if (window.innerWidth <= 768) {
+                        var container = document.getElementById('pageContent');
+                        if (container) {
+                            var containerWidth = container.offsetWidth;
+                            var images = container.querySelectorAll('img');
+                            images.forEach(function(img) {
+                                img.style.maxWidth = containerWidth + 'px';
+                                img.style.width = containerWidth + 'px';
+                                img.style.height = 'auto';
+                            });
+                            
+                            var figures = container.querySelectorAll('figure');
+                            figures.forEach(function(figure) {
+                                figure.style.maxWidth = containerWidth + 'px';
+                                figure.style.width = containerWidth + 'px';
+                            });
+                        }
+                    } else {
+                        var container = document.getElementById('pageContent');
+                        if (container) {
+                            var images = container.querySelectorAll('img');
+                            images.forEach(function(img) {
+                                img.style.maxWidth = '';
+                                img.style.width = '';
+                            });
+                            
+                            var figures = container.querySelectorAll('figure');
+                            figures.forEach(function(figure) {
+                                figure.style.maxWidth = '';
+                                figure.style.width = '';
+                            });
+                        }
+                    }
+                }
+                
+                resizeImages();
+                window.addEventListener('resize', resizeImages);
+            });
+            </script>
+            @endpush
 
             <!-- Child Pages -->
             @if($page->children->where('status', 'published')->count() > 0)
@@ -215,6 +261,157 @@
     border-radius: 0.25rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin: 1rem 0;
+    display: block;
+}
+
+/* Featured Image - Responsive */
+.featured-image {
+    text-align: center;
+    width: 100%;
+    margin: 1.5rem 0;
+}
+
+.featured-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Mobile - Gambar fit dalam layar */
+@media (max-width: 768px) {
+    .page-content {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        position: relative;
+    }
+
+    .content-body {
+        font-size: 1rem;
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* RESET semua inline styles pada gambar */
+    .page-content img,
+    .content-body img {
+        max-width: 100% !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        height: auto !important;
+        display: block !important;
+        margin: 1rem auto !important;
+        padding: 0 !important;
+        border-radius: 8px !important;
+        object-fit: contain !important;
+        box-sizing: border-box !important;
+        /* Override inline styles dari CKEditor */
+        left: auto !important;
+        right: auto !important;
+    }
+
+    /* Gambar dalam figure - constrain */
+    .page-content figure,
+    .content-body figure,
+    figure.image {
+        margin: 1rem 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        background: transparent !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+        border: none !important;
+        box-shadow: none !important;
+        float: none !important;
+        clear: both !important;
+    }
+
+    .page-content figure img,
+    .content-body figure img,
+    figure.image img {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 8px !important;
+        object-fit: contain !important;
+        display: block !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+    }
+
+    /* Override style figcaption */
+    .page-content figcaption,
+    .content-body figcaption,
+    figure.image figcaption {
+        width: 100% !important;
+        text-align: center !important;
+        margin: 0.5rem 0 !important;
+    }
+
+    .featured-image {
+        margin: 1rem 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+    }
+
+    .featured-image img {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        border-radius: 8px !important;
+        object-fit: contain !important;
+    }
+
+    /* Override inline width/height dari CKEditor */
+    [style*="width"] {
+        width: 100% !important;
+    }
+    
+    img[style] {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .content-body img,
+    .content-body figure img,
+    .featured-image img {
+        max-width: 100% !important;
+        width: 100% !important;
+        height: auto !important;
+        margin: 0.75rem 0 !important;
+        border-radius: 6px !important;
+    }
+
+    .content-body figure {
+        margin: 0.75rem 0 !important;
+    }
+}
+
+/* Lightbox effect on click */
+.content-body img,
+.featured-image img {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-body img:hover,
+.featured-image img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 
 .content-body blockquote {

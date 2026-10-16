@@ -63,7 +63,12 @@
                             @forelse($dokumens as $index => $dok)
                             <tr>
                                 <td class="text-center text-muted">{{ $dokumens->firstItem() + $index }}</td>
-                                <td><strong>{{ $dok->nama_dokumen }}</strong></td>
+                                <td>
+                                    <strong>{{ $dok->nama_dokumen }}</strong>
+                                    @if($dok->link_type === 'file' && $dok->file)
+                                        <span class="badge bg-secondary ms-2">{{ strtoupper(pathinfo($dok->file, PATHINFO_EXTENSION)) }}</span>
+                                    @endif
+                                </td>
                                 <td><span class="badge" style="background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); color: white; font-size: 0.75rem;">{{ $dok->grupDokumen->nama_grup ?? '-' }}</span></td>
                                 <td class="text-muted">{{ $dok->nomor ?? '-' }}</td>
                                 <td class="text-muted">{{ $dok->tahun ?? '-' }}</td>
@@ -71,10 +76,10 @@
                                 <td class="text-center">
                                     @if($dok->link_type === 'file')
                                         @if($dok->file_url)
-                                            <a href="{{ route('pustaka-dokumen.view', $dok->id) }}" target="_blank" class="btn btn-outline-success btn-sm" title="Lihat">
+                                            <a href="{{ route('pustaka-dokumen.view', $dok->slug) }}" target="_blank" class="btn btn-outline-success btn-sm" title="Lihat">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('pustaka-dokumen.download', $dok->id) }}" class="btn btn-success btn-sm" title="Unduh" style="background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); border: none;">
+                                            <a href="{{ route('pustaka-dokumen.download', $dok->slug) }}" class="btn btn-success btn-sm" title="Unduh" style="background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); border: none;">
                                                 <i class="fas fa-download"></i>
                                             </a>
                                         @else

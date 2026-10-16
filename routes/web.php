@@ -337,8 +337,8 @@ Route::prefix('informasi-berkala')->name('informasi-berkala.')->group(function (
 // Public Pustaka Dokumen Routes
 Route::prefix('pustaka-dokumen')->name('pustaka-dokumen.')->group(function () {
     Route::get('/', [PustakaDokumenController::class, 'index'])->name('index');
-    Route::get('/view/{id}', [PustakaDokumenController::class, 'view'])->name('view');
-    Route::get('/download/{id}', [PustakaDokumenController::class, 'download'])->name('download');
+    Route::get('/view/{slug}', [PustakaDokumenController::class, 'view'])->name('view');
+    Route::get('/download/{slug}', [PustakaDokumenController::class, 'download'])->name('download');
 });
 
 

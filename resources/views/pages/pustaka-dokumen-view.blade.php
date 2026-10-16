@@ -26,7 +26,7 @@
                             </small>
                         @endif
                     </div>
-                    <a href="{{ route('pustaka-dokumen.download', $dokumen->id) }}" class="btn btn-light btn-sm">
+                    <a href="{{ route('pustaka-dokumen.download', $dokumen->slug) }}" class="btn btn-light btn-sm">
                         <i class="fas fa-download me-1"></i> Unduh
                     </a>
                 </div>

@@ -47,9 +47,13 @@ class PustakaDokumenController extends Controller
         ));
     }
 
-    public function download($id)
+    public function download($slug)
     {
-        $dokumen = PustakaDokumen::findOrFail($id);
+        $dokumen = PustakaDokumen::findBySlug($slug);
+
+        if (!$dokumen) {
+            abort(404, 'Dokumen tidak ditemukan');
+        }
 
         if ($dokumen->link_type !== 'file' || !$dokumen->file) {
             abort(404, 'File tidak ditemukan');
@@ -65,9 +69,13 @@ class PustakaDokumenController extends Controller
         return \Illuminate\Support\Facades\Storage::disk('public')->download($dokumen->file, $filename);
     }
 
-    public function view($id)
+    public function view($slug)
     {
-        $dokumen = PustakaDokumen::findOrFail($id);
+        $dokumen = PustakaDokumen::findBySlug($slug);
+
+        if (!$dokumen) {
+            abort(404, 'Dokumen tidak ditemukan');
+        }
 
         if ($dokumen->link_type !== 'file' || !$dokumen->file) {
             abort(404, 'File tidak ditemukan');

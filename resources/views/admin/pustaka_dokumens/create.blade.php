@@ -44,7 +44,7 @@
                             <label class="form-check-label fw-bold" for="type_file"><i class="fas fa-upload me-1"></i> Upload File</label>
                             <div id="file-input-section" class="mt-2">
                                 <input type="file" class="form-control" id="file" name="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg">
-                                <small class="text-muted">Max: 10MB</small>
+                                <small class="text-muted">Format: PDF, DOC, DOCX, XLS, XLSX, PNG, JPG (Max: 10MB)</small>
                             </div>
                         </div>
                     </div>

@@ -65,4 +65,19 @@ class PustakaDokumen extends Model
               ->orWhere('nomor', 'like', "%{$term}%");
         });
     }
+
+    public function getSlugAttribute(): string
+    {
+        return Str::slug($this->nama_dokumen) . '-' . $this->id;
+    }
+
+    public static function findBySlug($slug)
+    {
+        // Extract ID from slug (format: nama-dokumen-id)
+        if (preg_match('/-(\d+)$/', $slug, $matches)) {
+            $id = $matches[1];
+            return self::find($id);
+        }
+        return null;
+    }
 }

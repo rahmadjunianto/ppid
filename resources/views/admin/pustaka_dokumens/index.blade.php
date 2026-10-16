@@ -66,6 +66,9 @@
                         <td class="text-center text-muted">{{ $pustakaDokumens->firstItem() + $index }}</td>
                         <td>
                             <strong>{{ $dok->nama_dokumen }}</strong>
+                            @if($dok->link_type === 'file' && $dok->file)
+                                <span class="badge bg-secondary ms-1">{{ strtoupper(pathinfo($dok->file, PATHINFO_EXTENSION)) }}</span>
+                            @endif
                             @if($dok->link_type === 'link' && $dok->link_url)
                                 <br><small class="text-muted">{{ Str::limit($dok->link_url, 40) }}</small>
                             @endif

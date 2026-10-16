@@ -204,6 +204,33 @@
                     </ul>
                 </li>
 
+                <!-- Informasi Berkala Management -->
+                <li class="nav-item {{ request()->routeIs('admin.informasi-berkala.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.informasi-berkala.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-file-alt"></i>
+                        <p>
+                            Informasi Berkala
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.informasi-berkala.index') }}"
+                               class="nav-link {{ request()->routeIs('admin.informasi-berkala.index') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Daftar Informasi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.informasi-berkala.create') }}"
+                               class="nav-link {{ request()->routeIs('admin.informasi-berkala.create') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tambah Informasi</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
 
                 @if(auth()->user() && auth()->user()->role === 'admin')
                 <!-- User Management -->

@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\SurveyPeriodController;
 use App\Http\Controllers\SopController;
 use App\Http\Controllers\Admin\SopController as AdminSopController;
+use App\Http\Controllers\PublicInformasiBerkalaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ use App\Http\Controllers\Admin\SopController as AdminSopController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/cek-drive', function () {
     $path = storage_path('app/test.zip');
     file_put_contents($path, 'test');
@@ -83,7 +85,7 @@ Route::get('/test-berita', function () {
         $html .= "<p>Total berita published: <strong>{$count}</strong></p>";
         $html .= "<h2>5 Berita Terbaru:</h2><ul>";
 
-        foreach($latest as $berita) {
+        foreach ($latest as $berita) {
             $html .= "<li>";
             $html .= "<strong>" . $berita->judul . "</strong><br>";
             $html .= "Tanggal: " . $berita->tanggal . " " . $berita->jam . "<br>";
@@ -178,7 +180,7 @@ Route::prefix('ikm-spak')->name('ikm-spak.')->group(function () {
     Route::get('/statistik', [PublicSurveyController::class, 'statistics'])->name('statistics');
     Route::get('/tren', [PublicSurveyController::class, 'trendChart'])->name('trend');
     Route::get('/tren-data', [PublicSurveyController::class, 'trendChartApi'])->name('trend-data');
-    
+
     // Export Routes
     Route::get('/export/{year}/{quarter}', [PublicSurveyController::class, 'exportPeriod'])->name('export');
     Route::get('/export-ikm/{year}/{quarter}', [PublicSurveyController::class, 'exportIkm'])->name('export.ikm');
@@ -284,12 +286,29 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         Route::delete('/{sop}', [AdminSopController::class, 'destroy'])->name('destroy');
     });
 
+    // Informasi Berkala Management
+    Route::prefix('informasi-berkala')->name('informasi-berkala.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\InformasiBerkalaController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\Admin\InformasiBerkalaController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\Admin\InformasiBerkalaController::class, 'store'])->name('store');
+        Route::get('/{informasiBerkala}', [\App\Http\Controllers\Admin\InformasiBerkalaController::class, 'show'])->name('show');
+        Route::get('/{informasiBerkala}/edit', [\App\Http\Controllers\Admin\InformasiBerkalaController::class, 'edit'])->name('edit');
+        Route::put('/{informasiBerkala}', [\App\Http\Controllers\Admin\InformasiBerkalaController::class, 'update'])->name('update');
+        Route::delete('/{informasiBerkala}', [\App\Http\Controllers\Admin\InformasiBerkalaController::class, 'destroy'])->name('destroy');
+    });
 });
 // Public SOP Routes
 Route::prefix('sop')->name('sop.')->group(function () {
     Route::get('/', [SopController::class, 'index'])->name('index');
     Route::get('/view/{id}', [SopController::class, 'view'])->name('view');
     Route::get('/download/{id}', [SopController::class, 'download'])->name('download');
+});
+
+// Public Informasi Berkala Routes
+Route::prefix('informasi-berkala')->name('informasi-berkala.')->group(function () {
+    Route::get('/', [PublicInformasiBerkalaController::class, 'index'])->name('index');
+    Route::get('/view/{id}', [PublicInformasiBerkalaController::class, 'view'])->name('view');
+    Route::get('/download/{id}', [PublicInformasiBerkalaController::class, 'download'])->name('download');
 });
 
 

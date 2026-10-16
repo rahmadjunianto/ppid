@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('pages', function (Blueprint $table) {
-            $table->unsignedBigInteger('view_count')->default(0)->after('published_at');
-        });
+        if (!Schema::hasColumn('pages', 'view_count')) {
+            Schema::table('pages', function (Blueprint $table) {
+                $table->unsignedBigInteger('view_count')->default(0)->after('published_at');
+            });
+        }
     }
 
     /**

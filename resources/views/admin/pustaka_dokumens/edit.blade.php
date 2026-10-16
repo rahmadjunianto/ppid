@@ -42,7 +42,11 @@
                             <label class="form-check-label fw-bold" for="type_file"><i class="fas fa-upload me-1"></i> Upload File</label>
                             <div id="file-input-section" class="mt-2">
                                 @if($pustakaDokumen->file)
-                                    <div class="alert alert-info py-2 mb-2"><i class="fas fa-file me-1"></i> File: <strong>{{ basename($pustakaDokumen->file) }}</strong> ({{ $pustakaDokumen->ukuran ?? '-' }})</div>
+                                    <div class="alert alert-info py-2 mb-2">
+                                        <i class="fas fa-file-pdf me-1"></i> 
+                                        <strong>{{ $pustakaDokumen->nama_dokumen }}</strong>.{{ pathinfo($pustakaDokumen->file, PATHINFO_EXTENSION) }}
+                                        <span class="text-muted">({{ $pustakaDokumen->ukuran ?? '-' }})</span>
+                                    </div>
                                 @endif
                                 <input type="file" class="form-control" id="file" name="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg">
                                 <small class="text-muted">Kosongkan jika tidak diganti</small>

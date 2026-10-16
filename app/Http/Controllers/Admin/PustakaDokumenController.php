@@ -53,7 +53,8 @@ class PustakaDokumenController extends Controller
 
         if ($request->link_type === 'file' && $request->hasFile('file')) {
             $file = $request->file('file');
-            $filename = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::slug($validated['nama_dokumen']) . '-' . time() . '.' . $extension;
             $path = $file->storeAs('pustaka-dokumen', $filename, 'public');
             $validated['file'] = $path;
             $validated['ukuran'] = $this->formatFileSize($file->getSize());
@@ -91,7 +92,8 @@ class PustakaDokumenController extends Controller
                 }
                 
                 $file = $request->file('file');
-                $filename = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+                $extension = $file->getClientOriginalExtension();
+                $filename = Str::slug($validated['nama_dokumen']) . '-' . time() . '.' . $extension;
                 $path = $file->storeAs('pustaka-dokumen', $filename, 'public');
                 $validated['file'] = $path;
                 $validated['ukuran'] = $this->formatFileSize($file->getSize());

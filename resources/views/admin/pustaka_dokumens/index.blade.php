@@ -33,7 +33,7 @@
                 </select>
             </div>
             <div class="col-md-5">
-                <input type="text" name="search" class="form-control" 
+                <input type="text" name="search" class="form-control"
                        placeholder="Cari nama dokumen..." value="{{ request('search') }}">
             </div>
             <div class="col-md-3">
@@ -52,11 +52,9 @@
                     <tr>
                         <th width="50" class="text-center">No</th>
                         <th>Nama Dokumen</th>
-                        <th>Deskripsi</th>
                         <th>Grup</th>
                         <th>Nomor</th>
                         <th>Tahun</th>
-                        <th>Tipe</th>
                         <th width="140" class="text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -66,32 +64,30 @@
                         <td class="text-center text-muted">{{ $pustakaDokumens->firstItem() + $index }}</td>
                         <td>
                             <strong>{{ $dok->nama_dokumen }}</strong>
-                            @if($dok->link_type === 'file' && $dok->file)
-                                <span class="badge bg-secondary ms-1">{{ strtoupper(pathinfo($dok->file, PATHINFO_EXTENSION)) }}</span>
+                            @if($dok->deskripsi)
+                                <br><small class="text-muted">{{ Str::limit($dok->deskripsi, 60) }}</small>
                             @endif
-                            @if($dok->link_type === 'link' && $dok->link_url)
-                                <br><small class="text-muted">{{ Str::limit($dok->link_url, 40) }}</small>
+                            @if($dok->link_type === 'file' && $dok->file_url)
+                                <br><a href="{{ $dok->file_url }}" target="_blank" class="btn btn-sm btn-outline-success mt-1">
+                                    <i class="fas fa-eye me-1"></i> Lihat File
+                                </a>
+                            @elseif($dok->link_type === 'link' && $dok->link_url)
+                                <br><a href="{{ $dok->link_url }}" target="_blank" class="btn btn-sm btn-outline-primary mt-1">
+                                    <i class="fas fa-external-link-alt me-1"></i> Kunjungi Link
+                                </a>
                             @endif
                         </td>
-                        <td class="text-muted small">{{ Str::limit($dok->deskripsi, 60) ?? '-' }}</td>
                         <td>
                             <span class="badge" style="background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); color: white;">{{ $dok->grupDokumen->nama_grup ?? '-' }}</span>
                         </td>
                         <td class="text-muted">{{ $dok->nomor ?? '-' }}</td>
                         <td class="text-muted">{{ $dok->tahun ?? '-' }}</td>
-                        <td>
-                            @if($dok->link_type === 'file')
-                                <span class="badge" style="background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); color: white;"><i class="fas fa-file"></i> File</span>
-                            @else
-                                <span class="badge bg-info"><i class="fas fa-link"></i> Link</span>
-                            @endif
-                        </td>
                         <td class="text-center">
-                            <a href="{{ route('admin.pustaka-dokumens.edit', $dok->id) }}" 
+                            <a href="{{ route('admin.pustaka-dokumens.edit', $dok->id) }}"
                                class="btn btn-outline-success btn-sm" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form action="{{ route('admin.pustaka-dokumens.destroy', $dok->id) }}" 
+                            <form action="{{ route('admin.pustaka-dokumens.destroy', $dok->id) }}"
                                   method="POST" class="d-inline"
                                   onsubmit="return confirm('Yakin hapus dokumen ini?')">
                                 @csrf

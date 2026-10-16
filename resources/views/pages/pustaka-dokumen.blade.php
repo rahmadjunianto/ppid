@@ -52,8 +52,7 @@
                             <tr>
                                 <th width="50" class="text-center">No</th>
                                 <th>Nama Dokumen</th>
-                                <th>Deskripsi</th>
-                                <th width="130">Grup</th>
+                                <th width="140">Grup</th>
                                 <th width="80">Tahun</th>
                                 <th width="120" class="text-center">Aksi</th>
                             </tr>
@@ -67,8 +66,10 @@
                                     @if($dok->link_type === 'file' && $dok->file)
                                         <span class="badge bg-secondary ms-2">{{ strtoupper(pathinfo($dok->file, PATHINFO_EXTENSION)) }}</span>
                                     @endif
+                                    @if($dok->deskripsi)
+                                        <br><small class="text-muted">{{ Str::limit($dok->deskripsi, 100) }}</small>
+                                    @endif
                                 </td>
-                                <td class="text-muted small">{{ Str::limit($dok->deskripsi, 80) ?? '-' }}</td>
                                 <td><span class="badge" style="background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); color: white; font-size: 0.75rem;">{{ $dok->grupDokumen->nama_grup ?? '-' }}</span></td>
                                 <td class="text-muted">{{ $dok->tahun ?? '-' }}</td>
                                 <td class="text-center">

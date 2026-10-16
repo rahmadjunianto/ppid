@@ -49,6 +49,9 @@
                         <li><a class="dropdown-item {{ request()->is('informasi-berkala*') ? 'active' : '' }}" href="{{ url('informasi-berkala') }}">
                             <i class="bi bi-calendar-week me-2"></i>Informasi Berkala
                         </a></li>
+                        <li><a class="dropdown-item {{ request()->is('pustaka-dokumen*') ? 'active' : '' }}" href="{{ url('pustaka-dokumen') }}">
+                            <i class="bi bi-book me-2"></i>Pustaka Dokumen
+                        </a></li>
                         <li><a class="dropdown-item" href="https://kemenagnganjuk.id/berita" target="_blank">
                             <i class="bi bi-clock-history me-2"></i>Informasi Serta Merta
                         </a></li>

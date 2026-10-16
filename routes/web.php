@@ -19,6 +19,9 @@ use App\Http\Controllers\Admin\SurveyPeriodController;
 use App\Http\Controllers\SopController;
 use App\Http\Controllers\Admin\SopController as AdminSopController;
 use App\Http\Controllers\PublicInformasiBerkalaController;
+use App\Http\Controllers\PustakaDokumenController;
+use App\Http\Controllers\Admin\GrupDokumenController;
+use App\Http\Controllers\Admin\PustakaDokumenController as AdminPustakaDokumenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -296,6 +299,26 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         Route::put('/{informasiBerkala}', [\App\Http\Controllers\Admin\InformasiBerkalaController::class, 'update'])->name('update');
         Route::delete('/{informasiBerkala}', [\App\Http\Controllers\Admin\InformasiBerkalaController::class, 'destroy'])->name('destroy');
     });
+
+    // Grup Dokumen Management
+    Route::prefix('grup-dokumens')->name('grup-dokumens.')->group(function () {
+        Route::get('/', [GrupDokumenController::class, 'index'])->name('index');
+        Route::get('/create', [GrupDokumenController::class, 'create'])->name('create');
+        Route::post('/', [GrupDokumenController::class, 'store'])->name('store');
+        Route::get('/{grupDokumen}/edit', [GrupDokumenController::class, 'edit'])->name('edit');
+        Route::put('/{grupDokumen}', [GrupDokumenController::class, 'update'])->name('update');
+        Route::delete('/{grupDokumen}', [GrupDokumenController::class, 'destroy'])->name('destroy');
+    });
+
+    // Pustaka Dokumen Management
+    Route::prefix('pustaka-dokumens')->name('pustaka-dokumens.')->group(function () {
+        Route::get('/', [AdminPustakaDokumenController::class, 'index'])->name('index');
+        Route::get('/create', [AdminPustakaDokumenController::class, 'create'])->name('create');
+        Route::post('/', [AdminPustakaDokumenController::class, 'store'])->name('store');
+        Route::get('/{pustakaDokumen}/edit', [AdminPustakaDokumenController::class, 'edit'])->name('edit');
+        Route::put('/{pustakaDokumen}', [AdminPustakaDokumenController::class, 'update'])->name('update');
+        Route::delete('/{pustakaDokumen}', [AdminPustakaDokumenController::class, 'destroy'])->name('destroy');
+    });
 });
 // Public SOP Routes
 Route::prefix('sop')->name('sop.')->group(function () {
@@ -309,6 +332,13 @@ Route::prefix('informasi-berkala')->name('informasi-berkala.')->group(function (
     Route::get('/', [PublicInformasiBerkalaController::class, 'index'])->name('index');
     Route::get('/view/{id}', [PublicInformasiBerkalaController::class, 'view'])->name('view');
     Route::get('/download/{id}', [PublicInformasiBerkalaController::class, 'download'])->name('download');
+});
+
+// Public Pustaka Dokumen Routes
+Route::prefix('pustaka-dokumen')->name('pustaka-dokumen.')->group(function () {
+    Route::get('/', [PustakaDokumenController::class, 'index'])->name('index');
+    Route::get('/view/{id}', [PustakaDokumenController::class, 'view'])->name('view');
+    Route::get('/download/{id}', [PustakaDokumenController::class, 'download'])->name('download');
 });
 
 

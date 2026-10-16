@@ -85,8 +85,8 @@
                         </li>
                     </ul>
                 </li> --}}
-                <li class="nav-item {{ request()->routeIs('admin.pegawai.*') || request()->routeIs('admin.agenda.*') || request()->routeIs('admin.pages.*') || request()->routeIs('admin.sops.*') || request()->routeIs('admin.informasi-berkala.*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->routeIs('admin.pegawai.*') || request()->routeIs('admin.agenda.*') || request()->routeIs('admin.pages.*') || request()->routeIs('admin.sops.*') || request()->routeIs('admin.informasi-berkala.*') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->routeIs(['admin.pegawai.*', 'admin.agenda.*', 'admin.pages.*', 'admin.sops.*', 'admin.informasi-berkala.*', 'admin.grup-dokumens.*', 'admin.pustaka-dokumens.*']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs(['admin.pegawai.*', 'admin.agenda.*', 'admin.pages.*', 'admin.sops.*', 'admin.informasi-berkala.*', 'admin.grup-dokumens.*', 'admin.pustaka-dokumens.*']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>Kelola <i class="fas fa-angle-left right"></i></p>
                     </a>
@@ -94,31 +94,43 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.pegawai.index') }}" class="nav-link {{ request()->routeIs('admin.pegawai.*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Daftar Pegawai</p>
+                                <p>Pegawai</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.agenda.index') }}" class="nav-link {{ request()->routeIs('admin.agenda.*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Daftar Agenda</p>
+                                <p> Agenda</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.pages.index') }}" class="nav-link {{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Daftar Halaman</p>
+                                <p> Halaman</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.sops.index') }}" class="nav-link {{ request()->routeIs('admin.sops.*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Daftar SOP</p>
+                                <p> SOP</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.informasi-berkala.index') }}" class="nav-link {{ request()->routeIs('admin.informasi-berkala.*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Daftar Informasi</p>
+                                <p> Informasi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.grup-dokumens.index') }}" class="nav-link {{ request()->routeIs('admin.grup-dokumens.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p> Grup Dokumen</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.pustaka-dokumens.index') }}" class="nav-link {{ request()->routeIs('admin.pustaka-dokumens.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p> Pustaka Dokumen</p>
                             </a>
                         </li>
                     </ul>

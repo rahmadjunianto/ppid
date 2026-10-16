@@ -31,7 +31,7 @@
                 </form>
             </div>
         </div>
-        
+
         <!-- Filter Buttons -->
         <div class="mb-3">
             <div class="d-flex flex-wrap gap-2">
@@ -39,7 +39,7 @@
                     <i class="bi bi-list-ul me-1"></i> Semua
                 </a>
                 @foreach($grupDokumens as $grup)
-                    <a href="{{ route('pustaka-dokumen.index', ['grup' => $grup->slug]) }}" 
+                    <a href="{{ route('pustaka-dokumen.index', ['grup' => $grup->slug]) }}"
                        class="btn btn-sm {{ $grupAktif == $grup->slug ? 'text-white' : 'btn-outline-success' }}"
                        style="{{ $grupAktif == $grup->slug ? 'background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); border: none;' : '' }}">
                         {{ $grup->nama_grup }}
@@ -109,7 +109,7 @@
                 </div>
             </div>
         </div>
-        
+
         @if($dokumens->hasPages())
             <div class="d-flex justify-content-center mt-4">
                 {{ $dokumens->links() }}

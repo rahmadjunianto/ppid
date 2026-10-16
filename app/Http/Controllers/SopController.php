@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class SopController extends Controller
@@ -69,16 +70,14 @@ class SopController extends Controller
             abort(404, 'File tidak ditemukan');
         }
 
-        $filePath = storage_path('app/public/' . $sop->file);
-
-        if (!file_exists($filePath)) {
+        if (!Storage::disk('public')->exists($sop->file)) {
             abort(404, 'File tidak ditemukan');
         }
 
         $extension = pathinfo($sop->file, PATHINFO_EXTENSION);
         $filename = Str::slug($sop->nama_dokumen) . '.' . $extension;
 
-        return response()->download($filePath, $filename);
+        return Storage::disk('public')->download($sop->file, $filename);
     }
 
     /**
@@ -95,9 +94,7 @@ class SopController extends Controller
             abort(404, 'File tidak ditemukan');
         }
 
-        $filePath = storage_path('app/public/' . $sop->file);
-
-        if (!file_exists($filePath)) {
+        if (!Storage::disk('public')->exists($sop->file)) {
             abort(404, 'File tidak ditemukan');
         }
 

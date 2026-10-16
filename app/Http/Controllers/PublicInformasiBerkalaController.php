@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\InformasiBerkala;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PublicInformasiBerkalaController extends Controller
@@ -55,16 +56,14 @@ class PublicInformasiBerkalaController extends Controller
             abort(404, "File tidak ditemukan");
         }
 
-        $filePath = storage_path("app/public/" . $item->file);
-
-        if (!file_exists($filePath)) {
+        if (!Storage::disk('public')->exists($item->file)) {
             abort(404, "File tidak ditemukan");
         }
 
         $extension = pathinfo($item->file, PATHINFO_EXTENSION);
         $filename = Str::slug($item->judul) . "." . $extension;
 
-        return response()->download($filePath, $filename);
+        return Storage::disk('public')->download($item->file, $filename);
     }
 
     /**
@@ -78,9 +77,7 @@ class PublicInformasiBerkalaController extends Controller
             abort(404, "File tidak ditemukan");
         }
 
-        $filePath = storage_path("app/public/" . $item->file);
-
-        if (!file_exists($filePath)) {
+        if (!Storage::disk('public')->exists($item->file)) {
             abort(404, "File tidak ditemukan");
         }
 

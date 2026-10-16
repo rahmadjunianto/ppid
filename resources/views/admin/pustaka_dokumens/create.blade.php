@@ -21,6 +21,11 @@
                 <label for="nama_dokumen" class="form-label fw-semibold">Nama Dokumen <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen" value="{{ old('nama_dokumen') }}" required>
             </div>
+            <div class="mb-3">
+                <label for="deskripsi" class="form-label fw-semibold">Deskripsi</label>
+                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="2">{{ old('deskripsi') }}</textarea>
+                <small class="text-muted">Deskripsi singkat tentang dokumen (opsional)</small>
+            </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-3">

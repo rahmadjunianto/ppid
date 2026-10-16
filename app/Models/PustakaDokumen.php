@@ -17,6 +17,7 @@ class PustakaDokumen extends Model
     protected $fillable = [
         'grup_dokumen_id',
         'nama_dokumen',
+        'deskripsi',
         'nomor',
         'tahun',
         'link_type',

@@ -52,11 +52,11 @@
                     <tr>
                         <th width="50" class="text-center">No</th>
                         <th>Nama Dokumen</th>
+                        <th>Deskripsi</th>
                         <th>Grup</th>
                         <th>Nomor</th>
                         <th>Tahun</th>
                         <th>Tipe</th>
-                        <th>Ukuran</th>
                         <th width="140" class="text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -73,6 +73,7 @@
                                 <br><small class="text-muted">{{ Str::limit($dok->link_url, 40) }}</small>
                             @endif
                         </td>
+                        <td class="text-muted small">{{ Str::limit($dok->deskripsi, 60) ?? '-' }}</td>
                         <td>
                             <span class="badge" style="background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); color: white;">{{ $dok->grupDokumen->nama_grup ?? '-' }}</span>
                         </td>
@@ -85,7 +86,6 @@
                                 <span class="badge bg-info"><i class="fas fa-link"></i> Link</span>
                             @endif
                         </td>
-                        <td class="text-muted">{{ $dok->ukuran ?? '-' }}</td>
                         <td class="text-center">
                             <a href="{{ route('admin.pustaka-dokumens.edit', $dok->id) }}" 
                                class="btn btn-outline-success btn-sm" title="Edit">

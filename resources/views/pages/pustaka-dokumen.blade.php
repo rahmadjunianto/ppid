@@ -52,10 +52,9 @@
                             <tr>
                                 <th width="50" class="text-center">No</th>
                                 <th>Nama Dokumen</th>
-                                <th width="150">Grup</th>
-                                <th width="120">Nomor</th>
+                                <th>Deskripsi</th>
+                                <th width="130">Grup</th>
                                 <th width="80">Tahun</th>
-                                <th width="80">Ukuran</th>
                                 <th width="120" class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -69,10 +68,9 @@
                                         <span class="badge bg-secondary ms-2">{{ strtoupper(pathinfo($dok->file, PATHINFO_EXTENSION)) }}</span>
                                     @endif
                                 </td>
+                                <td class="text-muted small">{{ Str::limit($dok->deskripsi, 80) ?? '-' }}</td>
                                 <td><span class="badge" style="background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); color: white; font-size: 0.75rem;">{{ $dok->grupDokumen->nama_grup ?? '-' }}</span></td>
-                                <td class="text-muted">{{ $dok->nomor ?? '-' }}</td>
                                 <td class="text-muted">{{ $dok->tahun ?? '-' }}</td>
-                                <td class="text-muted">{{ $dok->ukuran ?? '-' }}</td>
                                 <td class="text-center">
                                     @if($dok->link_type === 'file')
                                         @if($dok->file_url)
@@ -96,7 +94,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="7" class="text-center py-5">
+                                <td colspan="6" class="text-center py-5">
                                     <i class="bi bi-folder2-open text-muted" style="font-size: 3rem;"></i>
                                     <p class="text-muted mt-2 mb-0">Tidak ada dokumen ditemukan.</p>
                                 </td>

@@ -41,6 +41,7 @@ class PustakaDokumenController extends Controller
         $validated = $request->validate([
             'grup_dokumen_id' => 'required|exists:grup_dokumens,id',
             'nama_dokumen' => 'required|string|max:255',
+            'deskripsi' => 'nullable|string|max:1000',
             'nomor' => 'nullable|string|max:100',
             'tahun' => 'nullable|integer|min:2000|max:2100',
             'link_type' => 'required|in:file,link',
@@ -77,6 +78,7 @@ class PustakaDokumenController extends Controller
         $validated = $request->validate([
             'grup_dokumen_id' => 'required|exists:grup_dokumens,id',
             'nama_dokumen' => 'required|string|max:255',
+            'deskripsi' => 'nullable|string|max:1000',
             'nomor' => 'nullable|string|max:100',
             'tahun' => 'nullable|integer|min:2000|max:2100',
             'link_type' => 'required|in:file,link',

@@ -1,12 +1,15 @@
 @extends('layouts.app')
-@section('title', 'Pustaka Dokumen')
+@section('title', $selectedGrup === 'Semua Grup' ? 'Pustaka Dokumen' : $selectedGrup)
 @section('content')
 <section class="py-4" style="background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%);">
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0" style="background: transparent;">
                 <li class="breadcrumb-item"><a href="{{ url('/') }}" class="text-white text-decoration-none">Beranda</a></li>
-                <li class="breadcrumb-item text-white" aria-current="page">Pustaka Dokumen</li>
+                <li class="breadcrumb-item"><a href="{{ route('pustaka-dokumen.index') }}" class="text-white text-decoration-none">Pustaka Dokumen</a></li>
+                @if($selectedGrup !== 'Semua Grup')
+                <li class="breadcrumb-item text-white" aria-current="page">{{ $selectedGrup }}</li>
+                @endif
             </ol>
         </nav>
     </div>
@@ -15,8 +18,8 @@
     <div class="container">
         <div class="row mb-4 align-items-center">
             <div class="col-lg-8">
-                <h4 class="fw-bold text-success mb-1"><i class="bi bi-book me-2"></i>Pustaka Dokumen</h4>
-                <p class="text-muted mb-0 small">Unduh dokumen resmi: SOP, laporan, regulasi, dan lainnya.</p>
+                <h4 class="fw-bold text-success mb-1"><i class="bi bi-book me-2"></i>{{ $selectedGrup }}</h4>
+                <p class="text-muted mb-0 small">@if($selectedGrup === 'Semua Grup')Unduh dokumen resmi: SOP, laporan, regulasi, dan lainnya.@else{{ $grupDokumens->where('nama_grup', $selectedGrup)->first()->deskripsi ?? 'Kumpulan dokumen ' . $selectedGrup }}@endif</p>
             </div>
             <div class="col-lg-4">
                 <form method="GET">

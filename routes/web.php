@@ -339,6 +339,7 @@ Route::prefix('pustaka-dokumen')->name('pustaka-dokumen.')->group(function () {
     Route::get('/', [PustakaDokumenController::class, 'index'])->name('index');
     Route::get('/view/{slug}', [PustakaDokumenController::class, 'view'])->name('view');
     Route::get('/download/{slug}', [PustakaDokumenController::class, 'download'])->name('download');
+    Route::get('/link/{slug}', [PustakaDokumenController::class, 'link'])->name('link');
 });
 
 

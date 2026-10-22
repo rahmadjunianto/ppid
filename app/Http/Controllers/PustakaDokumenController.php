@@ -63,6 +63,9 @@ class PustakaDokumenController extends Controller
             abort(404, 'File tidak ditemukan');
         }
 
+        // Catat jumlah dilihat saat file diunduh
+        $dokumen->increment('view_count');
+
         $extension = pathinfo($dokumen->file, PATHINFO_EXTENSION);
         $filename = Str::slug($dokumen->nama_dokumen) . '.' . $extension;
 
@@ -85,8 +88,32 @@ class PustakaDokumenController extends Controller
             abort(404, 'File tidak ditemukan');
         }
 
+        // Catat jumlah dilihat saat file dibuka
+        $dokumen->increment('view_count');
+
         $fileUrl = asset('storage/' . $dokumen->file);
 
         return view('pages.pustaka-dokumen-view', compact('dokumen', 'fileUrl'));
+    }
+
+    /**
+     * Redirect ke URL eksternal sambil mencatat jumlah dilihat.
+     */
+    public function link($slug)
+    {
+        $dokumen = PustakaDokumen::findBySlug($slug);
+
+        if (!$dokumen) {
+            abort(404, 'Dokumen tidak ditemukan');
+        }
+
+        if ($dokumen->link_type !== 'link' || !$dokumen->link_url) {
+            abort(404, 'Link tidak ditemukan');
+        }
+
+        // Catat jumlah dilihat saat tautan eksternal diklik
+        $dokumen->increment('view_count');
+
+        return redirect()->away($dokumen->link_url);
     }
 }

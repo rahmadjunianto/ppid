@@ -27,6 +27,11 @@ class PustakaDokumen extends Model
         'created_by',
     ];
 
+    protected $casts = [
+        'tahun'      => 'integer',
+        'view_count' => 'integer',
+    ];
+
     public function grupDokumen(): BelongsTo
     {
         return $this->belongsTo(GrupDokumen::class, 'grup_dokumen_id');

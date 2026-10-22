@@ -57,6 +57,7 @@
                                 <th>Nama Dokumen</th>
                                 <th width="140">Grup</th>
                                 <th width="80">Tahun</th>
+                                <th width="90" class="text-center">Dilihat</th>
                                 <th width="120" class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -76,6 +77,9 @@
                                 <td><span class="badge" style="background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); color: white; font-size: 0.75rem;">{{ $dok->grupDokumen->nama_grup ?? '-' }}</span></td>
                                 <td class="text-muted">{{ $dok->tahun ?? '-' }}</td>
                                 <td class="text-center">
+                                    <span class="badge bg-light text-dark border"><i class="fas fa-eye me-1"></i>{{ $dok->view_count ?? 0 }}</span>
+                                </td>
+                                <td class="text-center">
                                     @if($dok->link_type === 'file')
                                         @if($dok->file_url)
                                             <a href="{{ route('pustaka-dokumen.view', $dok->slug) }}" target="_blank" class="btn btn-outline-success btn-sm" title="Lihat">
@@ -89,7 +93,7 @@
                                         @endif
                                     @else
                                         @if($dok->link_url)
-                                            <a href="{{ $dok->link_url }}" target="_blank" class="btn btn-sm text-white" style="background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); border: none;">
+                                            <a href="{{ route('pustaka-dokumen.link', $dok->slug) }}" target="_blank" class="btn btn-sm text-white" style="background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); border: none;">
                                                 <i class="fas fa-external-link-alt me-1"></i> Kunjungi
                                             </a>
                                         @endif
@@ -98,7 +102,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="6" class="text-center py-5">
+                                <td colspan="7" class="text-center py-5">
                                     <i class="bi bi-folder2-open text-muted" style="font-size: 3rem;"></i>
                                     <p class="text-muted mt-2 mb-0">Tidak ada dokumen ditemukan.</p>
                                 </td>

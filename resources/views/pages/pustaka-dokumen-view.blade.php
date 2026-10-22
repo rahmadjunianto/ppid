@@ -26,6 +26,9 @@
                             </small>
                         @endif
                     </div>
+                    <span class="badge bg-light text-dark me-2">
+                        <i class="fas fa-eye me-1"></i>{{ $dokumen->view_count ?? 0 }} kali dilihat
+                    </span>
                     <a href="{{ route('pustaka-dokumen.download', $dokumen->slug) }}" class="btn btn-light btn-sm">
                         <i class="fas fa-download me-1"></i> Unduh
                     </a>

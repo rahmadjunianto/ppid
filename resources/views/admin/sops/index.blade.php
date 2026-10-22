@@ -126,6 +126,7 @@
                                         <th width="15%">Nomor</th>
                                         <th width="8%">Tahun</th>
                                         <th width="8%">Ukuran</th>
+                                        <th width="8%">Dilihat</th>
                                         <th width="8%">Status</th>
                                         <th width="16%">Aksi</th>
                                     </tr>
@@ -150,6 +151,11 @@
                                             <td>{{ $sop->nomor ?: '-' }}</td>
                                             <td class="text-center">{{ $sop->tahun ?: '-' }}</td>
                                             <td class="text-center">{{ $sop->ukuran_formatted }}</td>
+                                            <td class="text-center">
+                                                <span class="badge badge-light">
+                                                    <i class="fas fa-eye mr-1"></i>{{ $sop->view_count ?? 0 }}
+                                                </span>
+                                            </td>
                                             <td class="text-center">{!! $sop->status_badge !!}</td>
                                             <td class="text-center">
                                                 <div class="btn-group">

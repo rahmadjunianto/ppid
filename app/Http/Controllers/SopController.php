@@ -106,6 +106,9 @@ class SopController extends Controller
             abort(404, 'File tidak ditemukan');
         }
 
+        // Catat jumlah dilihat saat file diunduh
+        $sop->increment('view_count');
+
         $extension = pathinfo($sop->file, PATHINFO_EXTENSION);
         $filename = Str::slug($sop->nama_dokumen) . '.' . $extension;
 
@@ -129,6 +132,9 @@ class SopController extends Controller
         if (!Storage::disk('public')->exists($sop->file)) {
             abort(404, 'File tidak ditemukan');
         }
+
+        // Catat jumlah dilihat saat file dibuka
+        $sop->increment('view_count');
 
         // Generate URL for PDF file
         $pdfUrl = asset('storage/' . $sop->file);

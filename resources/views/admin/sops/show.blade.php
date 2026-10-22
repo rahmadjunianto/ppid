@@ -56,6 +56,14 @@
                                     <td>{{ $sop->ukuran_formatted }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Jumlah Dilihat</th>
+                                    <td>
+                                        <span class="badge badge-light">
+                                            <i class="fas fa-eye mr-1"></i>{{ $sop->view_count ?? 0 }} kali dilihat
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>Status</th>
                                     <td>{!! $sop->status_badge !!}</td>
                                 </tr>

@@ -17,6 +17,8 @@
         .pdf-toolbar button { background: #555; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
         .pdf-toolbar button:hover { background: #666; }
         .pdf-toolbar button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .pdf-toolbar .view-count { margin-left: auto; background: rgba(255,255,255,0.15); color: #fff; padding: 5px 12px; border-radius: 4px; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; }
+        .pdf-toolbar .view-count a { color: #fff; text-decoration: underline; }
         .pdf-container { flex: 1; overflow: auto; display: flex; flex-direction: column; align-items: center; padding: 10px; background: #444; }
         .pdf-page { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.3); margin-bottom: 10px; }
         .pdf-loading, .pdf-error { color: #fff; font-size: 18px; text-align: center; padding: 40px; }
@@ -29,6 +31,11 @@
             <button id="btnPrev" onclick="prevPage()"><i class="bi bi-chevron-left"></i> Sebelumnya</button>
             <span>Halaman <strong id="pageNum">1</strong> dari <strong id="pageCount">-</strong></span>
             <button id="btnNext" onclick="nextPage()">Selanjutnya <i class="bi bi-chevron-right"></i></button>
+            <span class="view-count">
+                <i class="bi bi-eye"></i> {{ $sop->view_count ?? 0 }} kali dilihat
+                &nbsp;|&nbsp;
+                <a href="{{ route('sop.download', $sop->id) }}"><i class="bi bi-download"></i> Unduh</a>
+            </span>
         </div>
         <div class="pdf-container" id="pdfContainer"><div class="pdf-loading">Memuat dokumen...</div></div>
     </div>

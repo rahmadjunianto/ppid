@@ -85,6 +85,7 @@
                             <th style="width: 180px">Unit Kerja</th>
                         @endif
                         <th class="text-center" style="width: 100px">Tahun</th>
+                        <th class="text-center" style="width: 90px">Dilihat</th>
                         <th class="text-center" style="width: 150px">Aksi</th>
                     </tr>
                 </thead>
@@ -114,6 +115,11 @@
                                 @if($sop->tahun)
                                     <span class="badge bg-light text-dark">{{ $sop->tahun }}</span>
                                 @endif
+                            </td>
+                            <td class="text-center">
+                                <span class="badge bg-light text-dark border">
+                                    <i class="bi bi-eye me-1"></i>{{ $sop->view_count ?? 0 }}
+                                </span>
                             </td>
                             <td class="text-center">
                                 <div class="d-flex gap-1 justify-content-center">

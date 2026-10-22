@@ -79,6 +79,7 @@
                         <th>Grup</th>
                         <th>Nomor</th>
                         <th>Tahun</th>
+                        <th width="90" class="text-center">Dilihat</th>
                         <th width="140" class="text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -107,6 +108,9 @@
                         <td class="text-muted">{{ $dok->nomor ?? '-' }}</td>
                         <td class="text-muted">{{ $dok->tahun ?? '-' }}</td>
                         <td class="text-center">
+                            <span class="badge bg-light text-dark border"><i class="fas fa-eye me-1"></i>{{ $dok->view_count ?? 0 }}</span>
+                        </td>
+                        <td class="text-center">
                             <a href="{{ route('admin.pustaka-dokumens.edit', $dok->id) }}"
                                class="btn btn-outline-success btn-sm" title="Edit">
                                 <i class="fas fa-edit"></i>
@@ -124,7 +128,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="8" class="text-center text-muted py-4">
+                        <td colspan="7" class="text-center text-muted py-4">
                             <i class="fas fa-file-alt fa-2x mb-2"></i>
                             <p class="mb-0">Belum ada dokumen.</p>
                         </td>

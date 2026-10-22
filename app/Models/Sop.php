@@ -27,6 +27,7 @@ class Sop extends Model
     protected $casts = [
         'tahun' => 'integer',
         'sort_order' => 'integer',
+        'view_count' => 'integer',
     ];
 
     // Scopes

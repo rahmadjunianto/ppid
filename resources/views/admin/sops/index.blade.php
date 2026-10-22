@@ -17,6 +17,9 @@
                         Daftar Dokumen SOP
                     </h3>
                     <div class="card-tools">
+                        <a href="{{ route('admin.sops.create', ['jumlah' => 5]) }}" class="btn btn-success btn-sm">
+                            <i class="fas fa-layer-group"></i> Tambah Banyak
+                        </a>
                         <a href="{{ route('admin.sops.create') }}" class="btn btn-primary btn-sm">
                             <i class="fas fa-plus"></i> Tambah SOP
                         </a>
@@ -27,6 +30,29 @@
                     @if(session('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('success') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+
+                    @if(session('failed_items'))
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>Dokumen berikut gagal disimpan:</strong>
+                            <ul class="mb-0">
+                                @foreach(session('failed_items') as $failed)
+                                    <li>{{ $failed }}</li>
+                                @endforeach
+                            </ul>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+
+                    @if(session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ session('error') }}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -118,7 +144,7 @@
                                             </td>
                                             <td>
                                                 <span class="badge badge-{{ $sop->grup == 'SOP PPID' ? 'info' : 'warning' }}">
-                                                    {{ $sop->grup }}
+                                                    {{ $sop->grup_label }}
                                                 </span>
                                             </td>
                                             <td>{{ $sop->nomor ?: '-' }}</td>

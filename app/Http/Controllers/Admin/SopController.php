@@ -5,8 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Sop;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Throwable;
 
 class SopController extends Controller
 {
@@ -51,20 +56,41 @@ class SopController extends Controller
     /**
      * Show the form for creating a new SOP.
      */
-    public function create()
+    public function create(Request $request)
     {
         $grupOptions = Sop::getGrupOptions();
-        return view('admin.sops.create', compact('grupOptions'));
+
+        // Jumlah baris awal (untuk mode multiple form)
+        $jumlahRows = (int) $request->query('jumlah', 1);
+
+        // Jika sebelumnya gagal validasi, jumlah baris mengikuti data yang dikirim
+        $oldItems = $request->session()->getOldInput('items');
+
+        if (is_array($oldItems) && count($oldItems) > $jumlahRows) {
+            $jumlahRows = count($oldItems);
+        }
+
+        $jumlahRows = max(1, min($jumlahRows, 50));
+
+        return view('admin.sops.create', compact('grupOptions', 'jumlahRows'));
     }
 
     /**
      * Store a newly created SOP in storage.
+     *
+     * Mendukung dua mode:
+     * - Mode tunggal  : field biasa (nama_dokumen, file, dst.)
+     * - Mode multiple : field berupa array (items[0][nama_dokumen], items[0][file], dst.)
      */
     public function store(Request $request)
     {
+        if ($request->has('items')) {
+            return $this->storeMultiple($request);
+        }
+
         $request->validate([
             'nama_dokumen' => 'required|string|max:255',
-            'grup' => 'required|in:SOP PPID,Sub Bag TU,Bimas,Pais,Pendma,PD Pontren',
+            'grup' => ['required', Rule::in(array_keys(Sop::getGrupOptions()))],
             'nomor' => 'nullable|string|max:255',
             'tahun' => 'nullable|integer|min:1900|max:' . (date('Y') + 1),
             'file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx|max:10240',
@@ -91,6 +117,101 @@ class SopController extends Controller
     }
 
     /**
+     * Simpan banyak SOP sekaligus dari satu form (multiple form).
+     */
+    protected function storeMultiple(Request $request)
+    {
+        $items = $request->input('items', []);
+        $files = $request->file('items', []);
+
+        // Buang baris yang benar-benar kosong (tidak ada nama dokumen maupun file)
+        // Indeks asli dipertahankan agar pesan error cocok dengan baris form.
+        $cleanItems = [];
+
+        foreach ($items as $index => $item) {
+            $hasName = trim((string) ($item['nama_dokumen'] ?? '')) !== '';
+            $upload  = $files[$index]['file'] ?? null;
+            $hasFile = $upload instanceof UploadedFile
+                && $upload->getError() === UPLOAD_ERR_OK
+                && $upload->getSize() > 0;
+
+            if (! $hasName && ! $hasFile) {
+                continue;
+            }
+
+            $item['file'] = $hasFile ? $upload : null;
+            $cleanItems[$index] = $item;
+        }
+
+        // Tidak ada baris yang terisi sama sekali
+        if (count($cleanItems) === 0) {
+            return redirect()->route('admin.sops.create')
+                ->withErrors(['items' => 'Minimal satu baris SOP harus diisi (nama dokumen dan file).'])
+                ->withInput();
+        }
+
+        $rules = [
+            'items'                  => 'required|array|min:1',
+            'items.*.nama_dokumen'   => 'required|string|max:255',
+            'items.*.grup'           => ['required', Rule::in(array_keys(Sop::getGrupOptions()))],
+            'items.*.nomor'          => 'nullable|string|max:255',
+            'items.*.tahun'          => 'nullable|integer|min:1900|max:' . (date('Y') + 1),
+            'items.*.file'           => 'required|file|mimes:pdf,doc,docx,xls,xlsx|max:10240',
+            'items.*.status'         => 'required|in:draft,published',
+            'items.*.sort_order'     => 'nullable|integer|min:0',
+        ];
+
+        // Validasi manual (data sudah dibersihkan) -> error diarahkan ke baris form yang sesuai
+        Validator::make(['items' => $cleanItems], $rules)->validate();
+
+        $success = 0;
+        $failed  = [];
+
+        DB::transaction(function () use ($cleanItems, &$success, &$failed) {
+            foreach ($cleanItems as $item) {
+                $file = $item['file'];
+
+                try {
+                    $originalName = $file->getClientOriginalName();
+                    $filename = time() . '_' . Str::random(6) . '_' . Str::slug(pathinfo($originalName, PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+                    $path = $file->storeAs('sops', $filename, 'public');
+
+                    Sop::create([
+                        'nama_dokumen' => $item['nama_dokumen'],
+                        'grup'         => $item['grup'],
+                        'nomor'        => $item['nomor'] ?? null,
+                        'tahun'        => $item['tahun'] ?? null,
+                        'file'         => $path,
+                        'ukuran'       => $file->getSize(),
+                        'status'       => $item['status'],
+                        'sort_order'   => $item['sort_order'] ?? 0,
+                        'admin_id'     => auth()->id(),
+                    ]);
+
+                    $success++;
+                } catch (Throwable $e) {
+                    $failed[] = ($item['nama_dokumen'] ?? 'Dokumen') . ' (' . $e->getMessage() . ')';
+                }
+            }
+        });
+
+        if ($success > 0) {
+            $message = $success . ' SOP berhasil ditambahkan.';
+
+            if (count($failed) > 0) {
+                $message .= ' ' . count($failed) . ' dokumen gagal disimpan.';
+            }
+
+            return redirect()->route('admin.sops.index')
+                ->with('success', $message)
+                ->with('failed_items', $failed);
+        }
+
+        return redirect()->route('admin.sops.index')
+            ->with('error', 'Gagal menyimpan SOP: ' . implode('; ', $failed));
+    }
+
+    /**
      * Display the specified SOP.
      */
     public function show(Sop $sop)
@@ -114,7 +235,7 @@ class SopController extends Controller
     {
         $request->validate([
             'nama_dokumen' => 'required|string|max:255',
-            'grup' => 'required|in:SOP PPID,Sub Bag TU,Bimas,Pais,Pendma,PD Pontren',
+            'grup' => ['required', Rule::in(array_keys(Sop::getGrupOptions()))],
             'nomor' => 'nullable|string|max:255',
             'tahun' => 'nullable|integer|min:1900|max:' . (date('Y') + 1),
             'file' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx|max:10240',

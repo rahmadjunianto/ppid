@@ -103,7 +103,16 @@ class Sop extends Model
             'Pais' => 'Pais',
             'Pendma' => 'Pendma',
             'PD Pontren' => 'PD Pontren',
+            'Penzawa' => 'Penyelenggara Zakat Wakaf',
         ];
+    }
+
+    /**
+     * Label lengkap untuk grup (mis. "Penzawa" => "Penyelenggara Zakat Wakaf").
+     */
+    public function getGrupLabelAttribute()
+    {
+        return static::getGrupOptions()[$this->grup] ?? $this->grup;
     }
 
     public static function getTahunOptions()

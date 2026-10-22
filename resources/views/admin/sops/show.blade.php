@@ -39,7 +39,7 @@
                                     <th>Grup</th>
                                     <td>
                                         <span class="badge badge-{{ $sop->grup == 'SOP PPID' ? 'info' : 'warning' }}">
-                                            {{ $sop->grup }}
+                                            {{ $sop->grup_label }}
                                         </span>
                                     </td>
                                 </tr>

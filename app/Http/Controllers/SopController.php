@@ -27,6 +27,7 @@ class SopController extends Controller
             'pais' => 'Pais',
             'pendma' => 'Pendma',
             'pd_pontren' => 'PD Pontren',
+            'penzawa' => 'Penzawa',
         ];
         
         $grup = $tabToGrup[$tab] ?? 'SOP PPID';

@@ -56,6 +56,11 @@
                     <i class="bi bi-grid me-2"></i>PD Pontren
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ $tab == 'penzawa' ? 'active' : '' }}" href="{{ url('/sop?tab=penzawa') }}">
+                    <i class="bi bi-heart me-2"></i>Penyelenggara Zakat Wakaf
+                </a>
+            </li>
         </ul>
     </div>
 

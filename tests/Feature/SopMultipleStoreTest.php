@@ -199,4 +199,116 @@ class SopMultipleStoreTest extends TestCase
         $response->assertOk();
         $response->assertSee('SOP Public Penzawa');
     }
+
+    public function test_unit_kerja_tab_lists_all_non_ppid_groups(): void
+    {
+        Storage::fake('public');
+
+        foreach ([
+            'SOP PPID'   => 'Dokumen Milik PPID',
+            'Bimas'      => 'Dokumen Milik Bimas',
+            'Pais'       => 'Dokumen Milik Pais',
+            'Pendma'     => 'Dokumen Milik Pendma',
+            'Penzawa'    => 'Dokumen Milik Penzawa',
+            'Sub Bag TU' => 'Dokumen Milik Sub Bag TU',
+            'PD Pontren' => 'Dokumen Milik PD Pontren',
+        ] as $grup => $nama) {
+            Sop::create([
+                'nama_dokumen' => $nama,
+                'grup'         => $grup,
+                'tahun'        => 2026,
+                'status'       => 'published',
+                'sort_order'   => 0,
+            ]);
+        }
+
+        $response = $this->get('/sop?tab=unit_kerja');
+
+        $response->assertOk();
+        $response->assertSee('Dokumen Milik Bimas');
+        $response->assertSee('Dokumen Milik Pais');
+        $response->assertSee('Dokumen Milik Pendma');
+        $response->assertSee('Dokumen Milik Penzawa');
+        $response->assertSee('Dokumen Milik Sub Bag TU');
+        $response->assertSee('Dokumen Milik PD Pontren');
+        $response->assertDontSee('Dokumen Milik PPID');
+    }
+
+    public function test_ppid_tab_only_lists_ppid_documents(): void
+    {
+        Storage::fake('public');
+
+        Sop::create([
+            'nama_dokumen' => 'Dokumen Milik PPID',
+            'grup'         => 'SOP PPID',
+            'tahun'        => 2026,
+            'status'       => 'published',
+            'sort_order'   => 0,
+        ]);
+        Sop::create([
+            'nama_dokumen' => 'Dokumen Milik Bimas',
+            'grup'         => 'Bimas',
+            'tahun'        => 2026,
+            'status'       => 'published',
+            'sort_order'   => 0,
+        ]);
+
+        $response = $this->get('/sop?tab=ppid');
+
+        $response->assertOk();
+        $response->assertSee('Dokumen Milik PPID');
+        $response->assertDontSee('Dokumen Milik Bimas');
+    }
+
+    public function test_unit_kerja_tab_can_filter_by_grup(): void
+    {
+        Storage::fake('public');
+
+        Sop::create([
+            'nama_dokumen' => 'Dokumen Milik Bimas',
+            'grup'         => 'Bimas',
+            'tahun'        => 2026,
+            'status'       => 'published',
+            'sort_order'   => 0,
+        ]);
+        Sop::create([
+            'nama_dokumen' => 'Dokumen Milik Pais',
+            'grup'         => 'Pais',
+            'tahun'        => 2026,
+            'status'       => 'published',
+            'sort_order'   => 0,
+        ]);
+
+        $response = $this->get('/sop?tab=unit_kerja&grup=Bimas');
+
+        $response->assertOk();
+        $response->assertSee('Dokumen Milik Bimas');
+        $response->assertDontSee('Dokumen Milik Pais');
+    }
+
+    public function test_legacy_unit_tab_redirects_to_merged_tab_with_filter(): void
+    {
+        Storage::fake('public');
+
+        Sop::create([
+            'nama_dokumen' => 'Dokumen Milik Penzawa',
+            'grup'         => 'Penzawa',
+            'tahun'        => 2026,
+            'status'       => 'published',
+            'sort_order'   => 0,
+        ]);
+        Sop::create([
+            'nama_dokumen' => 'Dokumen Milik Pais',
+            'grup'         => 'Pais',
+            'tahun'        => 2026,
+            'status'       => 'published',
+            'sort_order'   => 0,
+        ]);
+
+        $response = $this->get('/sop?tab=penzawa');
+
+        $response->assertOk();
+        $response->assertSee('Dokumen Milik Penzawa');
+        $response->assertDontSee('Dokumen Milik Pais');
+    }
 }

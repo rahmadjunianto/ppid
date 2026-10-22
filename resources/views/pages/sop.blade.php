@@ -32,33 +32,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ $tab == 'subbag_tu' ? 'active' : '' }}" href="{{ url('/sop?tab=subbag_tu') }}">
-                    <i class="bi bi-folder me-2"></i>Sub Bag TU
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ $tab == 'bimas' ? 'active' : '' }}" href="{{ url('/sop?tab=bimas') }}">
-                    <i class="bi bi-people me-2"></i>Bimas
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ $tab == 'pais' ? 'active' : '' }}" href="{{ url('/sop?tab=pais') }}">
-                    <i class="bi bi-book me-2"></i>Pais
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ $tab == 'pendma' ? 'active' : '' }}" href="{{ url('/sop?tab=pendma') }}">
-                    <i class="bi bi-mortarboard me-2"></i>Pendma
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ $tab == 'pd_pontren' ? 'active' : '' }}" href="{{ url('/sop?tab=pd_pontren') }}">
-                    <i class="bi bi-grid me-2"></i>PD Pontren
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ $tab == 'penzawa' ? 'active' : '' }}" href="{{ url('/sop?tab=penzawa') }}">
-                    <i class="bi bi-heart me-2"></i>Penyelenggara Zakat Wakaf
+                <a class="nav-link {{ $tab == 'unit_kerja' ? 'active' : '' }}" href="{{ url('/sop?tab=unit_kerja') }}">
+                    <i class="bi bi-diagram-3 me-2"></i>SOP Unit Kerja Lain
                 </a>
             </li>
         </ul>
@@ -69,12 +44,22 @@
         <div class="col-md-8">
             <form action="{{ url('/sop') }}" method="GET" class="d-flex gap-2">
                 <input type="hidden" name="tab" value="{{ $tab }}">
+                @if($tab == 'unit_kerja')
+                    <select name="grup" class="form-select" style="max-width: 260px;" onchange="this.form.submit()">
+                        <option value="">Semua Unit Kerja</option>
+                        @foreach($unitKerjaList as $unit)
+                            <option value="{{ $unit }}" {{ $grup == $unit ? 'selected' : '' }}>
+                                {{ $grupOptions[$unit] }}
+                            </option>
+                        @endforeach
+                    </select>
+                @endif
                 <div class="input-group flex-grow-1">
                     <input type="text" name="search" class="form-control" placeholder="Cari dokumen SOP..." value="{{ $search }}">
                     <button class="btn btn-primary" type="submit">
                         <i class="bi bi-search"></i>
                     </button>
-                    @if($search)
+                    @if($search || $grup)
                         <a href="{{ url('/sop?tab=' . $tab) }}" class="btn btn-outline-secondary">
                             <i class="bi bi-x-circle"></i>
                         </a>
@@ -96,6 +81,9 @@
                     <tr>
                         <th class="text-center" style="width: 60px">No</th>
                         <th>Nama Dokumen</th>
+                        @if($tab == 'unit_kerja')
+                            <th style="width: 180px">Unit Kerja</th>
+                        @endif
                         <th class="text-center" style="width: 100px">Tahun</th>
                         <th class="text-center" style="width: 150px">Aksi</th>
                     </tr>
@@ -115,6 +103,13 @@
                                     </div>
                                 </div>
                             </td>
+                            @if($tab == 'unit_kerja')
+                                <td>
+                                    <span class="badge bg-light text-dark border">
+                                        {{ $grupOptions[$sop->grup] ?? $sop->grup }}
+                                    </span>
+                                </td>
+                            @endif
                             <td class="text-center">
                                 @if($sop->tahun)
                                     <span class="badge bg-light text-dark">{{ $sop->tahun }}</span>
@@ -146,7 +141,7 @@
     {{-- Show All Button --}}
     @if($search)
         <div class="mt-4 text-center">
-            <a href="{{ url('/sop?tab=' . $tab) }}" class="btn btn-primary">
+            <a href="{{ url('/sop?tab=' . $tab . ($grup ? '&grup=' . urlencode($grup) : '')) }}" class="btn btn-primary">
                 <i class="bi bi-arrow-left me-2"></i>Tampilkan Semua
             </a>
         </div>

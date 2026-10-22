@@ -17,11 +17,17 @@ class SopController extends Controller
      */
     public function index(Request $request)
     {
+        // Semua grup yang tersedia
+        $grupOptions = Sop::getGrupOptions();
+
+        // Grup selain SOP PPID digabung dalam satu tab ("unit_kerja")
+        $unitKerjaList = array_values(array_diff(array_keys($grupOptions), ['SOP PPID']));
+
+        // Tab aktif: hanya ada 2 tab (ppid & unit_kerja)
         $tab = $request->get('tab', 'ppid');
-        
-        // Map tab to grup
-        $tabToGrup = [
-            'ppid' => 'SOP PPID',
+
+        // Backward compatibility: tab lama dipetakan ke tab unit_kerja + filter grup
+        $legacyTabToGrup = [
             'subbag_tu' => 'Sub Bag TU',
             'bimas' => 'Bimas',
             'pais' => 'Pais',
@@ -29,11 +35,36 @@ class SopController extends Controller
             'pd_pontren' => 'PD Pontren',
             'penzawa' => 'Penzawa',
         ];
-        
-        $grup = $tabToGrup[$tab] ?? 'SOP PPID';
+
+        $grup = null;
+        if (isset($legacyTabToGrup[$tab])) {
+            $grup = $legacyTabToGrup[$tab];
+            $tab = 'unit_kerja';
+        } elseif ($tab !== 'unit_kerja') {
+            $tab = 'ppid';
+        }
+
+        // Filter grup pada tab unit kerja
+        if ($tab === 'unit_kerja' && $request->filled('grup')) {
+            $requestGrup = $request->get('grup');
+            if (in_array($requestGrup, $unitKerjaList, true)) {
+                $grup = $requestGrup;
+            }
+        }
+
         $search = $request->get('search');
 
-        $query = Sop::published()->where('grup', $grup);
+        $query = Sop::published();
+
+        if ($tab === 'unit_kerja') {
+            $query->whereIn('grup', $unitKerjaList);
+
+            if ($grup) {
+                $query->where('grup', $grup);
+            }
+        } else {
+            $query->where('grup', 'SOP PPID');
+        }
 
         // Search functionality
         if ($search) {
@@ -54,7 +85,7 @@ class SopController extends Controller
                         ->reverse()
                         ->values();
 
-        return view('pages.sop', compact('sops', 'tab', 'search', 'tahunList'));
+        return view('pages.sop', compact('sops', 'tab', 'search', 'tahunList', 'grup', 'grupOptions', 'unitKerjaList'));
     }
 
     /**

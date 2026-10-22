@@ -49,6 +49,9 @@
                         <li><a class="dropdown-item {{ request()->is('pustaka-dokumen*') ? 'active' : '' }}" href="{{ url('pustaka-dokumen') }}">
                             <i class="bi bi-book me-2"></i>Daftar Informasi Publik
                         </a></li>
+                        <li><a class="dropdown-item {{ request()->is('regulasi*') ? 'active' : '' }}" href="{{ url('regulasi') }}">
+                            <i class="bi bi-journal-bookmark me-2"></i>Regulasi &amp; Peraturan
+                        </a></li>
                         <li><a class="dropdown-item" href="https://kemenagnganjuk.id/berita" target="_blank">
                             <i class="bi bi-clock-history me-2"></i>Informasi Serta Merta
                         </a></li>

@@ -85,8 +85,8 @@
                         </li>
                     </ul>
                 </li> --}}
-                <li class="nav-item {{ request()->routeIs(['admin.pegawai.*', 'admin.agenda.*', 'admin.pages.*', 'admin.sops.*', 'admin.informasi-berkala.*', 'admin.grup-dokumens.*', 'admin.pustaka-dokumens.*']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->routeIs(['admin.pegawai.*', 'admin.agenda.*', 'admin.pages.*', 'admin.sops.*', 'admin.informasi-berkala.*', 'admin.grup-dokumens.*', 'admin.pustaka-dokumens.*']) ? 'active' : '' }}">
+                <li class="nav-item {{ request()->routeIs(['admin.pegawai.*', 'admin.agenda.*', 'admin.pages.*', 'admin.sops.*', 'admin.regulasi.*', 'admin.informasi-berkala.*', 'admin.grup-dokumens.*', 'admin.pustaka-dokumens.*']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs(['admin.pegawai.*', 'admin.agenda.*', 'admin.pages.*', 'admin.sops.*', 'admin.regulasi.*', 'admin.informasi-berkala.*', 'admin.grup-dokumens.*', 'admin.pustaka-dokumens.*']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>Kelola <i class="fas fa-angle-left right"></i></p>
                     </a>
@@ -113,6 +113,12 @@
                             <a href="{{ route('admin.sops.index') }}" class="nav-link {{ request()->routeIs('admin.sops.*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p> SOP</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.regulasi.index') }}" class="nav-link {{ request()->routeIs('admin.regulasi.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p> Regulasi &amp; Peraturan</p>
                             </a>
                         </li>
                         <li class="nav-item">

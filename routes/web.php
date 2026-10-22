@@ -21,6 +21,8 @@ use App\Http\Controllers\Admin\SopController as AdminSopController;
 use App\Http\Controllers\PublicInformasiBerkalaController;
 use App\Http\Controllers\PustakaDokumenController;
 use App\Http\Controllers\Admin\GrupDokumenController;
+use App\Http\Controllers\RegulasiController;
+use App\Http\Controllers\Admin\RegulasiController as AdminRegulasiController;
 use App\Http\Controllers\Admin\PustakaDokumenController as AdminPustakaDokumenController;
 
 /*
@@ -289,6 +291,17 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         Route::delete('/{sop}', [AdminSopController::class, 'destroy'])->name('destroy');
     });
 
+    // Regulasi & Peraturan Management
+    Route::prefix('regulasi')->name('regulasi.')->group(function () {
+        Route::get('/', [AdminRegulasiController::class, 'index'])->name('index');
+        Route::get('/create', [AdminRegulasiController::class, 'create'])->name('create');
+        Route::post('/', [AdminRegulasiController::class, 'store'])->name('store');
+        Route::get('/{id}', [AdminRegulasiController::class, 'show'])->name('show');
+        Route::get('/{id}/edit', [AdminRegulasiController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [AdminRegulasiController::class, 'update'])->name('update');
+        Route::delete('/{id}', [AdminRegulasiController::class, 'destroy'])->name('destroy');
+    });
+
     // Informasi Berkala Management
     Route::prefix('informasi-berkala')->name('informasi-berkala.')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\InformasiBerkalaController::class, 'index'])->name('index');
@@ -332,6 +345,14 @@ Route::prefix('informasi-berkala')->name('informasi-berkala.')->group(function (
     Route::get('/', [PublicInformasiBerkalaController::class, 'index'])->name('index');
     Route::get('/view/{id}', [PublicInformasiBerkalaController::class, 'view'])->name('view');
     Route::get('/download/{id}', [PublicInformasiBerkalaController::class, 'download'])->name('download');
+});
+
+// Public Regulasi & Peraturan Routes
+Route::prefix('regulasi')->name('regulasi.')->group(function () {
+    Route::get('/', [RegulasiController::class, 'index'])->name('index');
+    Route::get('/view/{id}', [RegulasiController::class, 'view'])->name('view');
+    Route::get('/download/{id}', [RegulasiController::class, 'download'])->name('download');
+    Route::get('/link/{id}', [RegulasiController::class, 'link'])->name('link');
 });
 
 // Public Daftar Informasi Publik Routes

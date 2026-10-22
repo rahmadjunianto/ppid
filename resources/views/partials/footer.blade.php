@@ -25,6 +25,7 @@
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="{{ url('/') }}" class="text-light text-decoration-none">Beranda</a></li>
                         <li class="mb-2"><a href="{{ url('/profil') }}" class="text-light text-decoration-none">Profil</a></li>
+                        <li class="mb-2"><a href="{{ url('/regulasi') }}" class="text-light text-decoration-none">Regulasi &amp; Peraturan</a></li>
                         <li class="mb-2"><a href="#" class="text-light text-decoration-none">Informasi Publik</a></li>
                         <li class="mb-2"><a href="#" class="text-light text-decoration-none">Layanan</a></li>
                     </ul>

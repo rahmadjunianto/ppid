@@ -4,20 +4,23 @@
 @section('meta_description', $page->meta_description ?: $page->excerpt)
 @section('meta_keywords', $page->meta_keywords)
 
-@section('breadcrumb')
-    @foreach($page->getBreadcrumbs() as $breadcrumb)
-        @if($loop->last)
-            <li class="breadcrumb-item active">{{ $breadcrumb['title'] }}</li>
-        @else
-            <li class="breadcrumb-item">
-                <a href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['title'] }}</a>
-            </li>
-        @endif
-    @endforeach
-@endsection
-
 @section('content')
 <div class="container my-5">
+
+    {{-- Breadcrumb --}}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-page">
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+            @foreach($page->getBreadcrumbs() as $breadcrumb)
+                @if($loop->last)
+                    <li class="breadcrumb-item active" aria-current="page">{{ $breadcrumb['title'] }}</li>
+                @else
+                    <li class="breadcrumb-item"><a href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['title'] }}</a></li>
+                @endif
+            @endforeach
+        </ol>
+    </nav>
+
     <div class="row">
         <div class="col-12">
             <!-- Page Header -->

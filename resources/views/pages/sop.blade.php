@@ -1,14 +1,18 @@
 @extends('layouts.app')
 @section('title', 'SOP Layanan Informasi Publik')
 @section('meta_description', 'Standar operasional prosedur pelayanan informasi PPID.')
-@section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-    <li class="breadcrumb-item"><a href="#">Informasi Publik</a></li>
-    <li class="breadcrumb-item active">SOP</li>
-@endsection
-
 @section('content')
 <div class="container my-5">
+
+    {{-- Breadcrumb --}}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-page">
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/pustaka-dokumen') }}">Standar Layanan</a></li>
+            <li class="breadcrumb-item active" aria-current="page">SOP</li>
+        </ol>
+    </nav>
+
     {{-- Page Header --}}
     <div class="page-header mb-4">
         <div class="d-flex align-items-center gap-3">
@@ -331,7 +335,7 @@
     #pdfModal {
         padding: 0 !important;
     }
-    
+
     #pdfModal .modal-fullscreen {
         width: 100vw !important;
         height: 100vh !important;
@@ -339,7 +343,7 @@
         margin: 0 !important;
         padding: 0 !important;
     }
-    
+
     #pdfModal .modal-dialog {
         width: 100vw !important;
         height: 100vh !important;
@@ -347,14 +351,14 @@
         margin: 0 !important;
         padding: 0 !important;
     }
-    
+
     #pdfModal .modal-content {
         width: 100vw !important;
         height: 100vh !important;
         border: none !important;
         border-radius: 0 !important;
     }
-    
+
     #pdfModal .pdf-modal-header {
         flex-shrink: 0;
     }
@@ -368,21 +372,21 @@ document.addEventListener('DOMContentLoaded', function() {
     var pdfModal = document.getElementById('pdfModal');
     var pdfIframe = document.getElementById('pdfIframe');
     var pdfDocName = document.getElementById('pdfDocName');
-    
+
     pdfModal.addEventListener('show.bs.modal', function(event) {
         var button = event.relatedTarget;
         var pdfId = button.getAttribute('data-pdf-id');
         var docName = button.getAttribute('data-doc-name') || 'Dokumen SOP';
-        
+
         // Set document name in header
         pdfDocName.textContent = docName;
-        
+
         // Set iframe src
         if (pdfId) {
             pdfIframe.src = '/sop/view/' + pdfId;
         }
     });
-    
+
     // Clear iframe when modal is closed
     pdfModal.addEventListener('hidden.bs.modal', function() {
         pdfIframe.src = '';

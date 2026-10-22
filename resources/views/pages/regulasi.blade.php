@@ -9,13 +9,6 @@
         --primary: #1e5631;
     }
 
-    /* Breadcrumb */
-    .breadcrumb-regulasi {
-        background: transparent;
-        padding: 0;
-        margin-bottom: 1rem;
-    }
-
     /* Page Header */
     .page-header {
         background: linear-gradient(135deg, #f8f9fa, #e9ecef);
@@ -174,7 +167,7 @@
 
     {{-- Breadcrumb --}}
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb breadcrumb-regulasi">
+        <ol class="breadcrumb breadcrumb-page">
             <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
             <li class="breadcrumb-item"><a href="{{ url('/pustaka-dokumen') }}">Informasi Publik</a></li>
             <li class="breadcrumb-item active" aria-current="page">Regulasi &amp; Peraturan</li>

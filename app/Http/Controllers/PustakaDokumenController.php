@@ -31,7 +31,7 @@ class PustakaDokumenController extends Controller
             $query->search($search);
         }
 
-        $dokumens = $query->paginate(20)->withQueryString();
+        $dokumens = $query->paginate(10)->withQueryString();
 
         // Get selected grup name
         $selectedGrup = $grupAktif 

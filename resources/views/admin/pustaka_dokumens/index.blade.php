@@ -1,12 +1,12 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Pustaka Dokumen')
+@section('title', 'Daftar Informasi Publik')
 
 @section('content')
 <div class="card shadow-sm border-0">
     <div class="card-header" style="background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); color: white;">
         <div class="d-flex justify-content-between align-items-center">
-            <h5 class="mb-0"><i class="fas fa-book me-2"></i>Pustaka Dokumen</h5>
+            <h5 class="mb-0"><i class="fas fa-book me-2"></i>Daftar Informasi Publik</h5>
             <a href="{{ route('admin.pustaka-dokumens.create') }}" class="btn btn-light btn-sm">
                 <i class="fas fa-plus"></i> Tambah Dokumen
             </a>

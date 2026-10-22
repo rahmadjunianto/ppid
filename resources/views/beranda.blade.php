@@ -538,7 +538,7 @@
                         </a>
                     </div>
                     <div class="col-md-3 col-6 mb-3">
-                        <a href="#" class="quick-access-item">
+                        <a href="{{ route('pustaka-dokumen.index') }}" class="quick-access-item">
                             <div class="service-icon mx-auto">
                                 <i class="bi bi-list-ul text-white fs-4"></i>
                             </div>
@@ -635,7 +635,7 @@
                             </div>
                             <h5 class="card-title fw-semibold">Daftar Informasi Publik</h5>
                             <p class="card-text">Akses lengkap daftar informasi publik yang tersedia di Kanwil Kemenag Jawa Timur.</p>
-                            <a href="#" class="btn btn-kemenag text-white">Lihat Detail</a>
+                            <a href="{{ route('pustaka-dokumen.index') }}" class="btn btn-kemenag text-white">Lihat Detail</a>
                         </div>
                     </div>
                 </div>

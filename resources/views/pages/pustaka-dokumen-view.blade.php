@@ -6,7 +6,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0" style="background: transparent;">
                 <li class="breadcrumb-item"><a href="{{ url('/') }}" class="text-white text-decoration-none">Beranda</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('pustaka-dokumen.index') }}" class="text-white text-decoration-none">Pustaka Dokumen</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('pustaka-dokumen.index') }}" class="text-white text-decoration-none">Daftar Informasi Publik</a></li>
                 <li class="breadcrumb-item text-white" aria-current="page">{{ Str::limit($dokumen->nama_dokumen, 30) }}</li>
             </ol>
         </nav>

@@ -43,14 +43,11 @@
                         <i class="bi bi-info-circle"></i> Informasi Publik
                     </a>
                     <ul class="dropdown-menu">
-                        {{-- <li><a class="dropdown-item" href="#">
-                            <i class="bi bi-list-ul me-2"></i>Daftar Informasi Publik
-                        </a></li> --}}
                         <li><a class="dropdown-item {{ request()->is('informasi-berkala*') ? 'active' : '' }}" href="{{ url('informasi-berkala') }}">
                             <i class="bi bi-calendar-week me-2"></i>Informasi Berkala
                         </a></li>
                         <li><a class="dropdown-item {{ request()->is('pustaka-dokumen*') ? 'active' : '' }}" href="{{ url('pustaka-dokumen') }}">
-                            <i class="bi bi-book me-2"></i>Pustaka Dokumen
+                            <i class="bi bi-book me-2"></i>Daftar Informasi Publik
                         </a></li>
                         <li><a class="dropdown-item" href="https://kemenagnganjuk.id/berita" target="_blank">
                             <i class="bi bi-clock-history me-2"></i>Informasi Serta Merta

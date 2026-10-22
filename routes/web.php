@@ -310,7 +310,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         Route::delete('/{grupDokumen}', [GrupDokumenController::class, 'destroy'])->name('destroy');
     });
 
-    // Pustaka Dokumen Management
+    // Daftar Informasi Publik Management
     Route::prefix('pustaka-dokumens')->name('pustaka-dokumens.')->group(function () {
         Route::get('/', [AdminPustakaDokumenController::class, 'index'])->name('index');
         Route::get('/create', [AdminPustakaDokumenController::class, 'create'])->name('create');
@@ -334,7 +334,7 @@ Route::prefix('informasi-berkala')->name('informasi-berkala.')->group(function (
     Route::get('/download/{id}', [PublicInformasiBerkalaController::class, 'download'])->name('download');
 });
 
-// Public Pustaka Dokumen Routes
+// Public Daftar Informasi Publik Routes
 Route::prefix('pustaka-dokumen')->name('pustaka-dokumen.')->group(function () {
     Route::get('/', [PustakaDokumenController::class, 'index'])->name('index');
     Route::get('/view/{slug}', [PustakaDokumenController::class, 'view'])->name('view');

@@ -130,7 +130,7 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.pustaka-dokumens.index') }}" class="nav-link {{ request()->routeIs('admin.pustaka-dokumens.*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p> Pustaka Dokumen</p>
+                                <p> Daftar Informasi Publik</p>
                             </a>
                         </li>
                     </ul>

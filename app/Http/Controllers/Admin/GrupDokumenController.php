@@ -36,7 +36,7 @@ class GrupDokumenController extends Controller
         GrupDokumen::create($validated);
 
         return redirect()->route('admin.grup-dokumens.index')
-            ->with('success', 'Grup dokumen berhasil ditambahkan.');
+            ->with('success', 'Kategori dokumen berhasil ditambahkan.');
     }
 
     public function edit(GrupDokumen $grupDokumen)
@@ -64,7 +64,7 @@ class GrupDokumenController extends Controller
         $grupDokumen->update($validated);
 
         return redirect()->route('admin.grup-dokumens.index')
-            ->with('success', 'Grup dokumen berhasil diperbarui.');
+            ->with('success', 'Kategori dokumen berhasil diperbarui.');
     }
 
     public function destroy(GrupDokumen $grupDokumen)
@@ -72,6 +72,6 @@ class GrupDokumenController extends Controller
         $grupDokumen->delete();
 
         return redirect()->route('admin.grup-dokumens.index')
-            ->with('success', 'Grup dokumen berhasil dihapus.');
+            ->with('success', 'Kategori dokumen berhasil dihapus.');
     }
 }

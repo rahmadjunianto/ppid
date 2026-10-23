@@ -9,9 +9,9 @@
         <form action="{{ route('admin.pustaka-dokumens.update', $pustakaDokumen->id) }}" method="POST" enctype="multipart/form-data">
             @csrf @method('PUT')
             <div class="mb-3">
-                <label for="grup_dokumen_id" class="form-label fw-semibold">Grup Dokumen <span class="text-danger">*</span></label>
+                <label for="grup_dokumen_id" class="form-label fw-semibold">Kategori Dokumen <span class="text-danger">*</span></label>
                 <select class="form-select" id="grup_dokumen_id" name="grup_dokumen_id" required>
-                    <option value="">-- Pilih Grup --</option>
+                    <option value="">-- Pilih Kategori --</option>
                     @foreach($grupDokumens as $grup)
                         <option value="{{ $grup->id }}" {{ old('grup_dokumen_id', $pustakaDokumen->grup_dokumen_id) == $grup->id ? 'selected' : '' }}>{{ $grup->nama_grup }}</option>
                     @endforeach

@@ -130,7 +130,7 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.grup-dokumens.index') }}" class="nav-link {{ request()->routeIs('admin.grup-dokumens.*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p> Grup Dokumen</p>
+                                <p> Kategori Dokumen</p>
                             </a>
                         </li>
                         <li class="nav-item">

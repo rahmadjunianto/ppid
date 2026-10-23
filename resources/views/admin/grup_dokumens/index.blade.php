@@ -1,14 +1,14 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Master Grup Dokumen')
+@section('title', 'Master Kategori Dokumen')
 
 @section('content')
 <div class="card shadow-sm border-0">
     <div class="card-header" style="background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); color: white;">
         <div class="d-flex justify-content-between align-items-center">
-            <h5 class="mb-0"><i class="fas fa-folder-open me-2"></i>Master Grup Dokumen</h5>
+            <h5 class="mb-0"><i class="fas fa-folder-open me-2"></i>Master Kategori Dokumen</h5>
             <a href="{{ route('admin.grup-dokumens.create') }}" class="btn btn-light btn-sm">
-                <i class="fas fa-plus"></i> Tambah Grup
+                <i class="fas fa-plus"></i> Tambah Kategori
             </a>
         </div>
     </div>
@@ -25,7 +25,7 @@
                 <thead style="background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); color: white;">
                     <tr>
                         <th width="60" class="text-center">No</th>
-                        <th>Nama Grup</th>
+                        <th>Nama Kategori</th>
                         <th>Slug</th>
                         <th>Deskripsi</th>
                         <th width="80" class="text-center">Sort</th>
@@ -55,7 +55,7 @@
                             </a>
                             <form action="{{ route('admin.grup-dokumens.destroy', $grup->id) }}" 
                                   method="POST" class="d-inline"
-                                  onsubmit="return confirm('Yakin hapus grup ini? Dokumen terkait juga akan ikut terhapus.')">
+                                  onsubmit="return confirm('Yakin hapus kategori ini? Dokumen terkait juga akan ikut terhapus.')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-outline-danger btn-sm" title="Hapus">
@@ -68,7 +68,7 @@
                     <tr>
                         <td colspan="7" class="text-center text-muted py-4">
                             <i class="fas fa-folder-open fa-2x mb-2"></i>
-                            <p class="mb-0">Belum ada grup dokumen.</p>
+                            <p class="mb-0">Belum ada kategori dokumen.</p>
                         </td>
                     </tr>
                     @endforelse

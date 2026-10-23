@@ -197,7 +197,7 @@
                 errors.push('Baris ' + (index + 1) + ': Nama Dokumen wajib diisi.');
             }
             if (!grup || grup.value === '') {
-                errors.push('Baris ' + (index + 1) + ': Grup Dokumen wajib dipilih.');
+                errors.push('Baris ' + (index + 1) + ': Kategori Dokumen wajib dipilih.');
             }
             if (type && type.value === 'file' && (!file || file.files.length === 0)) {
                 errors.push('Baris ' + (index + 1) + ': File wajib dipilih atau pilih tipe "Input Link".');

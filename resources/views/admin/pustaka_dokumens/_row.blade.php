@@ -22,10 +22,10 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Grup Dokumen <span class="text-danger">*</span></label>
+                    <label>Kategori Dokumen <span class="text-danger">*</span></label>
                     <select class="form-control @error($errPrefix . 'grup_dokumen_id') is-invalid @enderror"
                             name="items[{{ $idx }}][grup_dokumen_id]">
-                        <option value="">-- Pilih Grup --</option>
+                        <option value="">-- Pilih Kategori --</option>
                         @foreach($grupDokumens as $grup)
                             <option value="{{ $grup->id }}" {{ (string) old($errPrefix . 'grup_dokumen_id') === (string) $grup->id ? 'selected' : '' }}>
                                 {{ $grup->nama_grup }}

@@ -48,7 +48,7 @@
         <form method="GET" class="row g-3 mb-3">
             <div class="col-md-4">
                 <select name="grup" class="form-select">
-                    <option value="">Semua Grup</option>
+                    <option value="">Semua Kategori</option>
                     @foreach($grupDokumens as $grup)
                         <option value="{{ $grup->id }}" {{ request('grup') == $grup->id ? 'selected' : '' }}>
                             {{ $grup->nama_grup }}
@@ -76,7 +76,7 @@
                     <tr>
                         <th width="50" class="text-center">No</th>
                         <th>Nama Dokumen</th>
-                        <th>Grup</th>
+                        <th>Kategori</th>
                         <th>Nomor</th>
                         <th>Tahun</th>
                         <th width="90" class="text-center">Dilihat</th>

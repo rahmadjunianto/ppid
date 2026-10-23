@@ -1,18 +1,18 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Tambah Grup Dokumen')
+@section('title', 'Tambah Kategori Dokumen')
 
 @section('content')
 <div class="card shadow-sm border-0">
     <div class="card-header" style="background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); color: white;">
-        <h5 class="mb-0"><i class="fas fa-plus me-2"></i>Tambah Grup Dokumen</h5>
+        <h5 class="mb-0"><i class="fas fa-plus me-2"></i>Tambah Kategori Dokumen</h5>
     </div>
     <div class="card-body">
         <form action="{{ route('admin.grup-dokumens.store') }}" method="POST">
             @csrf
             
             <div class="mb-3">
-                <label for="nama_grup" class="form-label fw-semibold">Nama Grup <span class="text-danger">*</span></label>
+                <label for="nama_grup" class="form-label fw-semibold">Nama Kategori <span class="text-danger">*</span></label>
                 <input type="text" 
                        class="form-control @error('nama_grup') is-invalid @enderror" 
                        id="nama_grup" 

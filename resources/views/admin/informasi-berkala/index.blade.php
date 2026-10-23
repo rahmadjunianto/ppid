@@ -25,38 +25,60 @@
             </div>
             <div class="card-body">
                 @if(session("success"))
-                    <div class="alert alert-success">{{ session("success") }}</div>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session("success") }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 @endif
-                <form method="GET" class="mb-3">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <input type="text" name="search" class="form-control" placeholder="Cari judul..." value="{{ request("search") }}">
-                        </div>
-                        <div class="col-md-3">
-                            <select name="kategori" class="form-control">
-                                <option value="">Semua Kategori</option>
-                                @foreach($kategoriOptions as $key => $label)
-                                    <option value="{{ $key }}" {{ request("kategori") == $key ? "selected" : "" }}>{{ $label }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <select name="status" class="form-control">
-                                <option value="">Semua</option>
-                                <option value="published" {{ request("status") == "published" ? "selected" : "" }}>Published</option>
-                                <option value="draft" {{ request("status") == "draft" ? "selected" : "" }}>Draft</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i> Filter</button>
-                            <a href="{{ route("admin.informasi-berkala.index") }}" class="btn btn-default"><i class="fas fa-times"></i> Reset</a>
-                        </div>
+
+                <!-- Filter -->
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <form method="GET" action="{{ route("admin.informasi-berkala.index") }}">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <input type="text" name="search" class="form-control" placeholder="Cari informasi berkala..."
+                                        value="{{ request("search") }}">
+                                </div>
+                                <div class="col-md-3">
+                                    <select name="kategori" class="form-control">
+                                        <option value="">Semua Kategori</option>
+                                        @foreach($kategoriOptions as $key => $label)
+                                        <option value="{{ $key }}" {{ request("kategori")==$key ? "selected" : "" }}>
+                                            {{ $label }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <select name="status" class="form-control">
+                                        <option value="">Semua Status</option>
+                                        <option value="draft" {{ request("status")=="draft" ? "selected" : "" }}>Draft
+                                        </option>
+                                        <option value="published" {{ request("status")=="published" ? "selected" : "" }}>Published
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-success btn-block">
+                                        <i class="fas fa-search"></i> Filter
+                                    </button>
+                                </div>
+                                <div class="col-md-1">
+                                    <a href="{{ route("admin.informasi-berkala.index") }}" class="btn btn-secondary btn-block">
+                                        <i class="fas fa-sync"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
                 @if($informasi->count() > 0)
                 <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead class="thead-dark">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
                             <tr>
                                 <th width="50" class="text-center">No</th>
                                 <th width="100" class="text-center">Kategori</th>
@@ -91,7 +113,20 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $informasi->appends(request()->query())->links("admin-pagination") }}
+                <!-- Pagination -->
+                @if($informasi->hasPages())
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div>
+                        <small class="text-muted">
+                            Menampilkan {{ $informasi->firstItem() }} - {{ $informasi->lastItem() }}
+                            dari {{ $informasi->total() }} Informasi Berkala
+                        </small>
+                    </div>
+                    <div>
+                        {{ $informasi->appends(request()->query())->links("admin-pagination") }}
+                    </div>
+                </div>
+                @endif
                 @else
                 <div class="text-center py-5">
                     <i class="fas fa-inbox fa-3x text-muted mb-3"></i>

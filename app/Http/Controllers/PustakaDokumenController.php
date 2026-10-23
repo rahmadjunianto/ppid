@@ -34,16 +34,27 @@ class PustakaDokumenController extends Controller
         $dokumens = $query->paginate(10)->withQueryString();
 
         // Get selected grup name
-        $selectedGrup = $grupAktif 
-            ? GrupDokumen::where('slug', $grupAktif)->first()?->nama_grup 
-            : 'Semua Grup';
+        $selectedGrup = $grupAktif
+            ? (GrupDokumen::where('slug', $grupAktif)->first()?->nama_grup ?? 'Semua Kategori')
+            : 'Semua Kategori';
+
+        // Jumlah dokumen per grup (untuk opsi select filter)
+        $jumlahPerGrup = PustakaDokumen::selectRaw('grup_dokumen_id, COUNT(*) as total')
+            ->groupBy('grup_dokumen_id')
+            ->pluck('total', 'grup_dokumen_id');
+
+        $counts = ['semua' => PustakaDokumen::count()];
+        foreach ($grupDokumens as $grup) {
+            $counts[$grup->slug] = (int) ($jumlahPerGrup[$grup->id] ?? 0);
+        }
 
         return view('pages.pustaka-dokumen', compact(
             'dokumens',
             'grupDokumens',
             'grupAktif',
             'search',
-            'selectedGrup'
+            'selectedGrup',
+            'counts'
         ));
     }
 

@@ -1,13 +1,13 @@
 @extends('layouts.app')
-@section('title', $selectedGrup === 'Semua Grup' ? 'Daftar Informasi Publik' : $selectedGrup)
+@section('title', $selectedGrup === 'Semua Kategori' ? 'Daftar Informasi Publik' : $selectedGrup)
 @section('content')
-<div class="container my-5">
+<div class="container my-4">
 
     {{-- Breadcrumb --}}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-page">
             <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-            @if($selectedGrup !== 'Semua Grup')
+            @if($selectedGrup !== 'Semua Kategori')
             <li class="breadcrumb-item"><a href="{{ route('pustaka-dokumen.index') }}">Informasi Publik</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ $selectedGrup }}</li>
             @else
@@ -16,37 +16,30 @@
         </ol>
     </nav>
 
-    <div class="row mb-4 align-items-center">
-        <div class="col-lg-8">
-            <h4 class="fw-bold text-success mb-1"><i class="bi bi-book me-2"></i>{{ $selectedGrup === 'Semua Grup' ? 'Daftar Informasi Publik' : $selectedGrup }}</h4>
-            <p class="text-muted mb-0 small">@if($selectedGrup === 'Semua Grup')Unduh dokumen resmi: SOP, laporan, regulasi, dan lainnya.@else{{ $grupDokumens->where('nama_grup', $selectedGrup)->first()->deskripsi ?? 'Kumpulan dokumen ' . $selectedGrup }}@endif</p>
+    <div class="row mb-3 align-items-center g-3">
+        <div class="col-lg-7">
+            <h4 class="fw-bold text-success mb-1"><i class="bi bi-book me-2"></i>{{ $selectedGrup === 'Semua Kategori' ? 'Daftar Informasi Publik' : $selectedGrup }}</h4>
+            <p class="text-muted mb-0 small">@if($selectedGrup === 'Semua Kategori')Unduh dokumen resmi: SOP, laporan, regulasi, dan lainnya.@else{{ $grupDokumens->where('nama_grup', $selectedGrup)->first()->deskripsi ?? 'Kumpulan dokumen ' . $selectedGrup }}@endif</p>
         </div>
-        <div class="col-lg-4">
-            <form method="GET">
+        <div class="col-lg-5">
+            <form method="GET" action="{{ route('pustaka-dokumen.index') }}">
                 <div class="input-group">
+                    <select name="grup" class="form-select" style="max-width: 230px;" aria-label="Filter Kategori" onchange="this.form.submit()">
+                        <option value="">Semua Kategori ({{ $counts['semua'] }})</option>
+                        @foreach($grupDokumens as $grup)
+                            <option value="{{ $grup->slug }}" {{ $grupAktif == $grup->slug ? 'selected' : '' }}>{{ $grup->nama_grup }} ({{ $counts[$grup->slug] ?? 0 }})</option>
+                        @endforeach
+                    </select>
                     <input type="text" name="search" class="form-control" placeholder="Cari dokumen..." value="{{ $search ?? '' }}">
-                    @if($grupAktif)<input type="hidden" name="grup" value="{{ $grupAktif }}">@endif
                     <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+                    @if($search || $grupAktif)
+                        <a href="{{ route('pustaka-dokumen.index') }}" class="btn btn-outline-secondary" title="Hapus filter"><i class="fas fa-times"></i></a>
+                    @endif
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Filter Buttons -->
-    <div class="mb-3">
-        <div class="d-flex flex-wrap gap-2">
-            <a href="{{ route('pustaka-dokumen.index') }}" class="btn btn-sm {{ !$grupAktif ? 'text-white' : 'btn-outline-success' }}" style="{{ !$grupAktif ? 'background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); border: none;' : '' }}">
-                <i class="bi bi-list-ul me-1"></i> Semua
-            </a>
-            @foreach($grupDokumens as $grup)
-                <a href="{{ route('pustaka-dokumen.index', ['grup' => $grup->slug]) }}"
-                   class="btn btn-sm {{ $grupAktif == $grup->slug ? 'text-white' : 'btn-outline-success' }}"
-                   style="{{ $grupAktif == $grup->slug ? 'background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); border: none;' : '' }}">
-                    {{ $grup->nama_grup }}
-                </a>
-            @endforeach
-        </div>
-    </div>
     <div class="card shadow-sm border-0">
         <div class="card-body p-0">
             <div class="table-responsive">
@@ -55,7 +48,7 @@
                         <tr>
                             <th width="50" class="text-center">No</th>
                             <th>Nama Dokumen</th>
-                            <th width="140">Grup</th>
+                            <th width="140">Kategori</th>
                             <th width="80">Tahun</th>
                             <th width="90" class="text-center">Dilihat</th>
                             <th width="120" class="text-center">Aksi</th>

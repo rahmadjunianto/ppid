@@ -35,6 +35,12 @@ class PublicInformasiBerkalaController extends Controller
         $kategoriOptions = InformasiBerkala::getKategoriOptions();
         $selectedKategori = $kategori ? ($kategoriOptions[$kategori] ?? $kategori) : null;
 
+        // Jumlah data per kategori (untuk opsi select filter)
+        $counts = ["semua" => InformasiBerkala::published()->count()];
+        foreach (array_keys($kategoriOptions) as $key) {
+            $counts[$key] = InformasiBerkala::published()->where("kategori", $key)->count();
+        }
+
         return view("pages.informasi-berkala", [
             "items" => $items,
             "itemsByKategori" => $itemsByKategori,
@@ -42,6 +48,7 @@ class PublicInformasiBerkalaController extends Controller
             "search" => $search,
             "kategoriOptions" => $kategoriOptions,
             "selectedKategori" => $selectedKategori,
+            "counts" => $counts,
         ]);
     }
 

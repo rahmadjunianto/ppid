@@ -530,7 +530,7 @@
                         </a>
                     </div>
                     <div class="col-md-3 col-6 mb-3">
-                        <a href="#" class="quick-access-item">
+                        <a href="/agenda" class="quick-access-item">
                             <div class="service-icon mx-auto">
                                 <i class="bi bi-calendar-event text-white fs-4"></i>
                             </div>
@@ -554,7 +554,7 @@
                         </a>
                     </div>
                     <div class="col-md-3 col-6 mb-3">
-                        <a href="#" class="quick-access-item">
+                        <a href="/ruang-lingkup-satuan-kerja" class="quick-access-item">
                             <div class="service-icon mx-auto">
                                 <i class="bi bi-buildings text-white fs-4"></i>
                             </div>
@@ -562,7 +562,7 @@
                         </a>
                     </div>
                     <div class="col-md-3 col-6 mb-3">
-                        <a href="#" class="quick-access-item">
+                        <a href="/regulasi" class="quick-access-item">
                             <div class="service-icon mx-auto">
                                 <i class="bi bi-book text-white fs-4"></i>
                             </div>

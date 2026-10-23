@@ -19,6 +19,7 @@
     "require-dev": {
         "fakerphp/faker": "^1.23",
         "fruitcake/laravel-debugbar": "^4.4",
+        "laravel/boost": "^2.10",
         "laravel/breeze": "^2.0",
         "laravel/sail": "^1.0",
         "mockery/mockery": "^1.6",
@@ -63,9 +64,6 @@
         "sort-packages": true,
         "allow-plugins": {
             "php-http/discovery": true
-        },
-        "platform": {
-            "php": "8.2.4"
         }
     },
     "minimum-stability": "dev",

@@ -77,7 +77,7 @@
                         <li><a class="dropdown-item {{ request()->is('sop?tab=ppid') ? 'active' : '' }}" href="{{ url('/sop?tab=ppid') }}">
                             <i class="bi bi-clipboard-check me-2"></i>SOP Layanan Informasi Publik
                         </a></li>
-                        <li><a class="dropdown-item {{ request()->is('sop-unit-kerja-layanan') ? 'active' : '' }}" href="{{ url('/sop-unit-kerja-layanan') }}">
+                        <li><a class="dropdown-item {{ request()->is('sop?tab=unit_kerja') ? 'active' : '' }}" href="{{ url('/sop?tab=unit_kerja') }}">
                             <i class="bi bi-clipboard-check me-2"></i>SOP Unit Kerja Layanan
                         </a></li>
                         <li><a class="dropdown-item {{ request()->is('standar-pengumuman-informasi') ? 'active' : '' }}" href="{{ url('/standar-pengumuman-informasi') }}">

@@ -138,9 +138,20 @@
             </table>
         </div>
 
-        <div class="d-flex justify-content-center">
-            {{ $pustakaDokumens->links() }}
-        </div>
+        <!-- Pagination -->
+        @if($pustakaDokumens->hasPages())
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div>
+                    <small class="text-muted">
+                        Menampilkan {{ $pustakaDokumens->firstItem() }} - {{ $pustakaDokumens->lastItem() }}
+                        dari {{ $pustakaDokumens->total() }} Dokumen
+                    </small>
+                </div>
+                <div>
+                    {{ $pustakaDokumens->appends(request()->query())->links('admin-pagination') }}
+                </div>
+            </div>
+        @endif
     </div>
 </div>
 @endsection

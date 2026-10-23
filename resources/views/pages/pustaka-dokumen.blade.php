@@ -116,11 +116,11 @@
 
     @if($dokumens->hasPages())
         <div class="d-flex justify-content-center mt-4">
-            {{ $dokumens->links() }}
+            {{ $dokumens->links('custom-pagination') }}
         </div>
     @endif
     <p class="text-muted small text-center mt-3 mb-0">
-        Menampilkan {{ $dokumens->count() }} dari {{ $dokumens->total() }} dokumen
+        Menampilkan {{ $dokumens->firstItem() ?? 0 }} - {{ $dokumens->lastItem() ?? 0 }} dari {{ $dokumens->total() }} dokumen
     </p>
 </div>
 @endsection

@@ -124,7 +124,7 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.informasi-berkala.index') }}" class="nav-link {{ request()->routeIs('admin.informasi-berkala.*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p> Informasi</p>
+                                <p> Informasi Berkala</p>
                             </a>
                         </li>
                         <li class="nav-item">

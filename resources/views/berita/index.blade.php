@@ -31,9 +31,9 @@
                                 <option value="">Semua Kategori</option>
                                 @if(isset($categories))
                                     @foreach($categories as $category)
-                                        <option value="{{ $category->id_kategori }}"
-                                                {{ request('kategori') == $category->id_kategori ? 'selected' : '' }}>
-                                            {{ $category->nama_kategori }}
+                                        <option value="{{ $category->id }}"
+                                                {{ request('kategori') == $category->id ? 'selected' : '' }}>
+                                            {{ $category->name }}
                                         </option>
                                     @endforeach
                                 @endif
@@ -87,9 +87,9 @@
                                 @if($item->image_url)
                                     <img src="{{ $item->image_url }}"
                                          class="card-img-top"
-                                         alt="{{ $item->judul }}"
+                                         alt="{{ $item->title }}"
                                          style="height: 200px; object-fit: cover;"
-                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                         onerror="this.onerror=null; this.src='{{ $item->image_url_asli }}'; this.onerror=function(){ this.style.display='none'; this.nextElementSibling.style.display='flex'; };">
 
                                 @else
                                     <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
@@ -98,37 +98,37 @@
                                 @endif
 
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">{{ Str::limit($item->judul, 60) }}</h5>
-                                    <p class="card-text flex-grow-1">{{ Str::limit(strip_tags($item->konten), 120) }}</p>
+                                    <h5 class="card-title">{{ Str::limit($item->title, 60) }}</h5>
+                                    <p class="card-text flex-grow-1">{{ $item->excerpt }}</p>
 
                                     <div class="mt-auto">
                                         <div class="d-flex flex-wrap justify-content-between align-items-center text-muted mb-2" style="font-size: 0.85rem;">
                                             <small>
                                                 <i class="fas fa-calendar-alt me-1"></i>
-                                                @if($item->tanggal_publish)
-                                                    {{ $item->tanggal_publish->format('d M Y') }}
+                                                @if($item->published_at)
+                                                    {{ $item->published_at->format('d M Y') }}
                                                 @else
                                                     Tanggal tidak tersedia
                                                 @endif
                                             </small>
-                                            @if($item->username)
+                                            @if($item->author)
                                                 <small>
-                                                    <i class="fas fa-user me-1"></i>{{ $item->username }}
+                                                    <i class="fas fa-user me-1"></i>{{ $item->author }}
                                                 </small>
                                             @endif
                                             @if($item->kategori)
                                                 <small>
-                                                    <i class="fas fa-folder me-1"></i>{{ $item->kategori->nama_kategori }}
+                                                    <i class="fas fa-folder me-1"></i>{{ $item->kategori->name }}
                                                 </small>
                                             @endif
-                                            @if($item->dibaca)
+                                            @if($item->views)
                                                 <small>
-                                                    <i class="fas fa-eye me-1"></i>{{ number_format($item->dibaca) }} dibaca
+                                                    <i class="fas fa-eye me-1"></i>{{ number_format($item->views) }} dibaca
                                                 </small>
                                             @endif
                                         </div>
                                       <div class="mt-auto">
-                                        <a href="{{ route('berita.show', $item->judul_seo) }}" class="btn btn-outline-primary btn-sm">Baca Selengkapnya</a>
+                                        <a href="{{ route('berita.show', $item->slug) }}" class="btn btn-outline-primary btn-sm">Baca Selengkapnya</a>
                                         </div>
                                     </div>
                                 </div>

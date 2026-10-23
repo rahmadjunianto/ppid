@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $berita->judul ?? 'Detail Berita')
+@section('title', $berita->title ?? 'Detail Berita')
 
 @section('content')
 <div class="container mt-4">
@@ -10,7 +10,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('berita.index') }}">Berita</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ Str::limit($berita->judul, 50) }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ Str::limit($berita->title, 50) }}</li>
                 </ol>
             </nav>
 
@@ -18,19 +18,19 @@
                 @if($berita->image_url)
                     <img src="{{ $berita->image_url }}"
                          class="card-img-top"
-                         alt="{{ $berita->judul }}"
+                         alt="{{ $berita->title }}"
                          style="max-height: 400px; object-fit: cover;"
-                         onerror="this.style.display='none';">
+                         onerror="this.onerror=null; this.src='{{ $berita->image_url_asli }}'; this.onerror=function(){ this.style.display='none'; };">
                 @endif
 
                 <div class="card-body">
-                    <h1 class="card-title h2 mb-3">{{ $berita->judul }}</h1>
+                    <h1 class="card-title h2 mb-3">{{ $berita->title }}</h1>
 
                     <div class="d-flex flex-wrap gap-3 mb-4 text-muted">
-                        @if($berita->tanggal_publish)
+                        @if($berita->published_at)
                             <small>
                                 <i class="fas fa-calendar-alt"></i>
-                                {{ $berita->tanggal_publish->format('d F Y, H:i') }} WIB
+                                {{ $berita->published_at->format('d F Y, H:i') }} WIB
                             </small>
                         @endif
 
@@ -44,42 +44,36 @@
                         @if($berita->kategori)
                             <small>
                                 <i class="fas fa-folder"></i>
-                                {{ $berita->kategori->nama_kategori }}
+                                {{ $berita->kategori->name }}
                             </small>
-                        @elseif($berita->kategori_id)
+                        @elseif($berita->category_id)
                             <small>
                                 <i class="fas fa-folder"></i>
-                                Kategori ID: {{ $berita->kategori_id }}
+                                Kategori ID: {{ $berita->category_id }}
                             </small>
                         @endif
 
-                        @if($berita->dibaca)
+                        @if($berita->views)
                             <small>
                                 <i class="fas fa-eye"></i>
-                                {{ $berita->dibaca }} kali dibaca
+                                {{ $berita->views }} kali dibaca
                             </small>
                         @endif
                     </div>
 
                     {{-- Tags Section --}}
-                    @if($berita->tag || $berita->formatted_tags)
+                    @if($berita->tags->isNotEmpty())
                         <div class="mb-3">
-                            @if($berita->formatted_tags && count($berita->formatted_tags) > 0)
-                                @foreach($berita->formatted_tags as $tag)
-                                    <span class="badge bg-secondary me-1">
-                                        <i class="fas fa-tag"></i> {{ $tag }}
-                                    </span>
-                                @endforeach
-                            @else
-                                <span class="badge bg-secondary">
-                                    <i class="fas fa-tag"></i> {{ $berita->tag }}
+                            @foreach($berita->tags as $tag)
+                                <span class="badge bg-secondary me-1">
+                                    <i class="fas fa-tag"></i> {{ $tag->name }}
                                 </span>
-                            @endif
+                            @endforeach
                         </div>
                     @endif
 
                     <div class="content">
-                        {!! $berita->konten !!}
+                        {!! $berita->content !!}
                     </div>
                 </div>
             </article>
@@ -130,11 +124,11 @@
                            target="_blank" class="btn btn-primary btn-sm">
                             <i class="fab fa-facebook-f"></i> Facebook
                         </a>
-                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->fullUrl()) }}&text={{ urlencode($berita->judul) }}"
+                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->fullUrl()) }}&text={{ urlencode($berita->title) }}"
                            target="_blank" class="btn btn-info btn-sm">
                             <i class="fab fa-twitter"></i> Twitter
                         </a>
-                        <a href="https://wa.me/?text={{ urlencode($berita->judul . ' ' . request()->fullUrl()) }}"
+                        <a href="https://wa.me/?text={{ urlencode($berita->title . ' ' . request()->fullUrl()) }}"
                            target="_blank" class="btn btn-success btn-sm">
                             <i class="fab fa-whatsapp"></i> WhatsApp
                         </a>
@@ -178,13 +172,13 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.status === 'success' && data.data.length > 0) {
                 let html = '';
                 data.data.forEach(item => {
-                    if (item.id_berita != {{ $berita->id_berita }}) {
+                    if (item.id != {{ $berita->id }}) {
                         html += `
                             <div class="mb-3 pb-3 border-bottom">
-                                <h6><a href="{{ url('berita') }}/${item.judul_seo}" class="text-decoration-none">${item.judul}</a></h6>
+                                <h6><a href="{{ url('berita') }}/${item.slug}" class="text-decoration-none">${item.title}</a></h6>
                                 <small class="text-muted">
                                     <i class="fas fa-calendar-alt"></i>
-                                    ${new Date(item.tanggal).toLocaleDateString('id-ID')}
+                                    ${new Date(item.published_at).toLocaleDateString('id-ID')}
                                 </small>
                             </div>
                         `;

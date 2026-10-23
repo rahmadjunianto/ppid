@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Kategori extends Model
 {
     use HasFactory;
 
     /**
-     * The connection name for the model.
+     * Data kategori diambil dari database portal (kemenag), tabel `post_categories`.
      *
      * @var string
      */
@@ -21,21 +23,14 @@ class Kategori extends Model
      *
      * @var string
      */
-    protected $table = 'kategori';
+    protected $table = 'post_categories';
 
     /**
      * The primary key for the model.
      *
      * @var string
      */
-    protected $primaryKey = 'id_kategori';
-
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = false;
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.
@@ -43,36 +38,39 @@ class Kategori extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'nama_kategori',
-        'aktif'
+        'legacy_id',
+        'name',
+        'slug',
+        'description',
+        'is_active',
+        'show_in_sidebar',
+        'sort_order',
     ];
 
     /**
-     * Get the route key for the model.
+     * The attributes that should be cast.
      *
-     * @return string
+     * @var array<string, string>
      */
-    public function getRouteKeyName()
-    {
-        return 'id_kategori';
-    }
+    protected $casts = [
+        'is_active' => 'boolean',
+        'show_in_sidebar' => 'boolean',
+        'sort_order' => 'integer',
+    ];
 
     /**
      * Get all berita for this kategori
      */
-    public function berita()
+    public function berita(): HasMany
     {
-        return $this->hasMany(Berita::class, 'id_kategori', 'id_kategori');
+        return $this->hasMany(Berita::class, 'category_id', 'id');
     }
 
     /**
      * Scope untuk kategori yang aktif
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeAktif($query)
+    public function scopeAktif(Builder $query): Builder
     {
-        return $query->where('aktif', 'Y');
+        return $query->where('is_active', true);
     }
 }

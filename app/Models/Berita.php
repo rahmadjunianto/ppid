@@ -2,15 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Str;
 
 class Berita extends Model
 {
     use HasFactory;
 
     /**
-     * The connection name for the model.
+     * Data berita diambil dari database portal (kemenag), tabel `posts`.
      *
      * @var string
      */
@@ -21,21 +25,14 @@ class Berita extends Model
      *
      * @var string
      */
-    protected $table = 'berita';
+    protected $table = 'posts';
 
     /**
      * The primary key for the model.
      *
      * @var string
      */
-    protected $primaryKey = 'id_berita';
-
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = false;
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.
@@ -43,15 +40,23 @@ class Berita extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'judul',
-        'isi_berita',
-        'gambar',
-        'tanggal',
-        'jam',
-        'aktif',
-        'username',
-        'id_kategori',
-        'judul_seo'
+        'legacy_id',
+        'category_id',
+        'author_id',
+        'title',
+        'subtitle',
+        'slug',
+        'content',
+        'thumbnail',
+        'image_caption',
+        'youtube_url',
+        'type',
+        'is_headline',
+        'is_featured',
+        'is_active',
+        'status',
+        'views',
+        'published_at',
     ];
 
     /**
@@ -60,181 +65,141 @@ class Berita extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'tanggal' => 'date',
+        'is_headline' => 'boolean',
+        'is_featured' => 'boolean',
+        'is_active' => 'boolean',
+        'views' => 'integer',
+        'published_at' => 'datetime',
     ];
 
+    /* ---------------------------------------------------------------------
+     | Relasi
+     | ------------------------------------------------------------------ */
+
     /**
-     * Get the URL-friendly identifier for the model.
-     *
-     * @return string
+     * Kategori berita
      */
-    public function getRouteKeyName()
+    public function kategori(): BelongsTo
     {
-        return 'judul_seo';
+        return $this->belongsTo(Kategori::class, 'category_id', 'id');
     }
 
     /**
-     * Accessor for getting full datetime
-     *
-     * @return \Carbon\Carbon|null
+     * Penulis berita (user portal)
      */
-    public function getTanggalPublishAttribute()
+    public function penulis(): BelongsTo
     {
-        if ($this->tanggal && $this->jam) {
-            // Jika tanggal sudah berupa Carbon object, ambil tanggalnya saja
-            $tanggal = $this->tanggal instanceof \Carbon\Carbon
-                ? $this->tanggal->format('Y-m-d')
-                : $this->tanggal;
-
-            try {
-                return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $tanggal . ' ' . $this->jam);
-            } catch (\Exception $e) {
-                // Fallback jika format tidak sesuai
-                return $this->tanggal instanceof \Carbon\Carbon
-                    ? $this->tanggal
-                    : \Carbon\Carbon::parse($this->tanggal);
-            }
-        }
-
-        return $this->tanggal instanceof \Carbon\Carbon
-            ? $this->tanggal
-            : ($this->tanggal ? \Carbon\Carbon::parse($this->tanggal) : null);
+        return $this->belongsTo(PortalUser::class, 'author_id', 'id');
     }
 
     /**
-     * Accessor for content
-     *
-     * @return string
+     * Tag berita
      */
-    public function getKontenAttribute()
+    public function tags(): BelongsToMany
     {
-        return $this->isi_berita;
+        return $this->belongsToMany(PortalTag::class, 'post_tag', 'post_id', 'tag_id');
     }
 
-    /**
-     * Accessor for image URL
-     *
-     * @return string|null
-     */
-    public function getImageUrlAttribute()
-    {
-        if (empty($this->gambar)) {
-            return null;
-        }
-
-        // Use proxy route for external images
-        return route('image.proxy', ['filename' => $this->gambar]);
-    }
+    /* ---------------------------------------------------------------------
+     | Scope
+     | ------------------------------------------------------------------ */
 
     /**
-     * Check if image exists and is accessible
-     *
-     * @return bool
+     * Scope untuk berita yang aktif dan sudah dipublikasikan
      */
-    public function hasValidImage()
+    public function scopePublished(Builder $query): Builder
     {
-        if (!$this->image_url) {
-            return false;
-        }
-
-        // For now, assume all images are valid if URL is constructed
-        // In production, you might want to implement actual checking
-        return true;
-    }
-
-    /**
-     * Accessor for author
-     *
-     * @return string
-     */
-    public function getAuthorAttribute()
-    {
-        return $this->username;
-    }
-
-    /**
-     * Accessor for category ID
-     *
-     * @return int
-     */
-    public function getKategoriIdAttribute()
-    {
-        return $this->id_kategori;
-    }
-
-    /**
-     * Accessor for slug
-     *
-     * @return string
-     */
-    public function getSlugAttribute()
-    {
-        return $this->judul_seo;
-    }
-
-    /**
-     * Accessor for status
-     *
-     * @return string
-     */
-    public function getStatusAttribute()
-    {
-        return $this->aktif === 'Y' ? 'published' : 'draft';
-    }
-
-    /**
-     * Scope untuk berita yang aktif/published
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopePublished($query)
-    {
-        return $query->where('aktif', 'Y');
+        return $query->where('status', 'published')
+            ->where('is_active', true)
+            ->whereNotNull('published_at')
+            ->where('published_at', '<=', now());
     }
 
     /**
      * Scope untuk berita headline
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeHeadline($query)
+    public function scopeHeadline(Builder $query): Builder
     {
-        return $query->where('headline', 'Y');
+        return $query->where('is_headline', true);
     }
 
     /**
-     * Scope untuk berita utama
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * Scope untuk berita utama/unggulan
      */
-    public function scopeUtama($query)
+    public function scopeUtama(Builder $query): Builder
     {
-        return $query->where('utama', 'Y');
+        return $query->where('is_featured', true);
+    }
+
+    /* ---------------------------------------------------------------------
+     | Accessor
+     | ------------------------------------------------------------------ */
+
+    /**
+     * URL-friendly identifier for the model.
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 
     /**
-     * Get the kategori that owns the berita
+     * URL gambar utama (varian webp bila nama berkas berupa hash).
      */
-    public function kategori()
+    public function getImageUrlAttribute(): ?string
     {
-        return $this->belongsTo(Kategori::class, 'id_kategori', 'id_kategori');
-    }
-
-    /**
-     * Get formatted tags as array
-     *
-     * @return array
-     */
-    public function getFormattedTagsAttribute()
-    {
-        if (empty($this->tag)) {
-            return [];
+        if (empty($this->thumbnail)) {
+            return null;
         }
 
-        // Split tags by comma and clean them
-        return array_map('trim', explode(',', $this->tag));
+        $base = rtrim((string) config('portal.media_url'), '/');
+        $file = ltrim($this->thumbnail, '/');
+
+        // Path relatif, contoh: posts/foto.jpg
+        if (str_contains($file, '/')) {
+            return $base . '/' . $file;
+        }
+
+        // Nama berkas baru (hash) -> varian webp
+        return $base . '/posts/large-' . $file . '.webp';
+    }
+
+    /**
+     * URL gambar asli, dipakai sebagai fallback jika varian webp gagal dimuat.
+     */
+    public function getImageUrlAsliAttribute(): ?string
+    {
+        if (empty($this->thumbnail)) {
+            return null;
+        }
+
+        $base = rtrim((string) config('portal.media_url'), '/');
+        $file = ltrim($this->thumbnail, '/');
+
+        return str_contains($file, '/') ? $base . '/' . $file : $base . '/posts/' . $file;
+    }
+
+    /**
+     * Nama penulis berita.
+     */
+    public function getAuthorAttribute(): ?string
+    {
+        return $this->penulis?->name ?? $this->penulis?->username;
+    }
+
+    /**
+     * Ringkasan isi berita tanpa tag HTML.
+     */
+    public function getExcerptAttribute(): string
+    {
+        return Str::limit(strip_tags((string) $this->content), 150);
+    }
+
+    /**
+     * Cek apakah berita memiliki gambar.
+     */
+    public function hasValidImage(): bool
+    {
+        return ! empty($this->thumbnail);
     }
 }

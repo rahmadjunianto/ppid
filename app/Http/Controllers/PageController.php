@@ -87,9 +87,8 @@ class PageController extends Controller
 
         // Get latest news from portal_kemenag database
         $latestBerita = Berita::published()
-                             ->with('kategori')
-                             ->orderBy('tanggal', 'desc')
-                             ->orderBy('jam', 'desc')
+                             ->with(['kategori', 'penulis'])
+                             ->orderBy('published_at', 'desc')
                              ->limit(6)
                              ->get();
 

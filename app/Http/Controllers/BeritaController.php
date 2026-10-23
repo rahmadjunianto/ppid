@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Berita;
 use App\Models\Kategori;
+use App\Models\PortalUser;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
@@ -17,44 +18,49 @@ class BeritaController extends Controller
     public function index(Request $request)
     {
         try {
-            $query = Berita::published()->with('kategori');
+            $query = Berita::published()->with(['kategori', 'penulis']);
 
             // Filter by category
             if ($request->filled('kategori')) {
-                $query->where('id_kategori', $request->kategori);
+                $query->where('category_id', $request->kategori);
             }
 
             // Filter by author/user
             if ($request->filled('user')) {
-                $query->where('username', 'LIKE', "%{$request->user}%");
+                $author = $request->user;
+                $query->whereHas('penulis', function ($q) use ($author) {
+                    $q->where('name', 'LIKE', "%{$author}%")
+                      ->orWhere('username', 'LIKE', "%{$author}%");
+                });
             }
 
             // Search functionality
             if ($request->filled('q')) {
                 $searchTerm = $request->q;
                 $query->where(function($q) use ($searchTerm) {
-                    $q->where('judul', 'LIKE', "%{$searchTerm}%")
-                      ->orWhere('isi_berita', 'LIKE', "%{$searchTerm}%");
+                    $q->where('title', 'LIKE', "%{$searchTerm}%")
+                      ->orWhere('subtitle', 'LIKE', "%{$searchTerm}%")
+                      ->orWhere('content', 'LIKE', "%{$searchTerm}%");
                 });
             }
 
-            $berita = $query->orderBy('tanggal', 'desc')
-                           ->orderBy('jam', 'desc')
+            $berita = $query->orderBy('published_at', 'desc')
                            ->paginate(12);
 
             // Append all query parameters to pagination links
             $berita->appends($request->only(['kategori', 'user', 'q']));
 
             // Get categories for filter dropdown
-            $categories = Kategori::aktif()->orderBy('nama_kategori')->get();
+            $categories = Kategori::aktif()->orderBy('name')->get();
 
             // Get unique authors for filter dropdown
-            $authors = Berita::published()
-                            ->whereNotNull('username')
-                            ->where('username', '!=', '')
-                            ->distinct()
-                            ->pluck('username')
-                            ->sort()
+            $authors = PortalUser::whereHas('berita', function ($q) {
+                                $q->published();
+                            })
+                            ->whereNotNull('name')
+                            ->where('name', '!=', '')
+                            ->orderBy('name')
+                            ->pluck('name')
                             ->values();
 
             // Check if request wants JSON response
@@ -95,13 +101,13 @@ class BeritaController extends Controller
     {
         try {
             $berita = Berita::published()
-                           ->with('kategori')
-                           ->where('judul_seo', $slug)
+                           ->with(['kategori', 'penulis', 'tags'])
+                           ->where('slug', $slug)
                            ->firstOrFail();
 
             // Increment view counter only for HTML requests (not API)
             if (!$request->wantsJson()) {
-                $berita->increment('dibaca');
+                $berita->increment('views');
             }
 
             // Check if request wants JSON response
@@ -138,8 +144,8 @@ class BeritaController extends Controller
     {
         try {
             $berita = Berita::published()
-                           ->orderBy('tanggal', 'desc')
-                           ->orderBy('jam', 'desc')
+                           ->with(['kategori', 'penulis'])
+                           ->orderBy('published_at', 'desc')
                            ->limit($limit)
                            ->get();
 

@@ -84,7 +84,7 @@ Route::prefix('berita')->group(function () {
 Route::get('/test-berita', function () {
     try {
         $count = \App\Models\Berita::published()->count();
-        $latest = \App\Models\Berita::published()->orderBy('tanggal', 'desc')->limit(5)->get();
+        $latest = \App\Models\Berita::published()->orderBy('published_at', 'desc')->limit(5)->get();
 
         $html = "<h1>Test Berita dari Database Portal Kemenag</h1>";
         $html .= "<p>Total berita published: <strong>{$count}</strong></p>";
@@ -92,11 +92,11 @@ Route::get('/test-berita', function () {
 
         foreach ($latest as $berita) {
             $html .= "<li>";
-            $html .= "<strong>" . $berita->judul . "</strong><br>";
-            $html .= "Tanggal: " . $berita->tanggal . " " . $berita->jam . "<br>";
+            $html .= "<strong>" . $berita->title . "</strong><br>";
+            $html .= "Tanggal: " . $berita->published_at . "<br>";
             $html .= "Author: " . $berita->author . "<br>";
-            $html .= "Dibaca: " . $berita->dibaca . " kali<br>";
-            $html .= "<a href='/berita/{$berita->judul_seo}'>Lihat detail</a>";
+            $html .= "Dibaca: " . $berita->views . " kali<br>";
+            $html .= "<a href='/berita/{$berita->slug}'>Lihat detail</a>";
             $html .= "</li><br>";
         }
 

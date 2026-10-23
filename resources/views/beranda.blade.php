@@ -722,8 +722,8 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="card news-card h-100">
                                 @if($berita->image_url)
-                                    <img src="{{ $berita->image_url }}" class="card-img-top news-image" alt="{{ $berita->judul }}" style="height: 200px; object-fit: cover;"
-                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <img src="{{ $berita->image_url }}" class="card-img-top news-image" alt="{{ $berita->title }}" style="height: 200px; object-fit: cover;"
+                                         onerror="this.onerror=null; this.src='{{ $berita->image_url_asli }}'; this.onerror=function(){ this.style.display='none'; this.nextElementSibling.style.display='flex'; };">
 
                                 @else
                                     <div class="card-img-top news-image bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
@@ -732,42 +732,42 @@
                                 @endif
                                 <div class="card-body d-flex flex-column">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
-                                        @if($berita->tanggal_publish)
-                                            <small class="text-muted">{{ $berita->tanggal_publish->format('d M Y') }}</small>
+                                        @if($berita->published_at)
+                                            <small class="text-muted">{{ $berita->published_at->format('d M Y') }}</small>
                                         @else
-                                            <small class="text-muted">{{ $berita->tanggal ? \Carbon\Carbon::parse($berita->tanggal)->format('d M Y') : 'Tanggal tidak tersedia' }}</small>
+                                            <small class="text-muted">Tanggal tidak tersedia</small>
                                         @endif
-                                        @if($berita->headline === 'Y')
+                                        @if($berita->is_headline)
                                             <span class="badge bg-danger">Headline</span>
-                                        @elseif($berita->utama === 'Y')
+                                        @elseif($berita->is_featured)
                                             <span class="badge bg-primary">Utama</span>
                                         @else
                                             <span class="badge bg-secondary">Berita</span>
                                         @endif
                                     </div>
-                                    <h6 class="card-title">{{ Str::limit($berita->judul, 80) }}</h6>
-                                    <p class="card-text flex-grow-1">{{ Str::limit(strip_tags($berita->konten), 120) }}</p>
+                                    <h6 class="card-title">{{ Str::limit($berita->title, 80) }}</h6>
+                                    <p class="card-text flex-grow-1">{{ $berita->excerpt }}</p>
 
                                     {{-- Show category if available --}}
                                     @if($berita->kategori)
                                         <div class="mb-2">
                                             <small class="text-muted">
-                                                <i class="fas fa-folder"></i> {{ $berita->kategori->nama_kategori }}
-                                                @if($berita->dibaca)
-                                                    • <i class="fas fa-eye"></i> {{ number_format($berita->dibaca) }} dibaca
+                                                <i class="fas fa-folder"></i> {{ $berita->kategori->name }}
+                                                @if($berita->views)
+                                                    • <i class="fas fa-eye"></i> {{ number_format($berita->views) }} dibaca
                                                 @endif
                                             </small>
                                         </div>
-                                    @elseif($berita->dibaca)
+                                    @elseif($berita->views)
                                         <div class="mb-2">
                                             <small class="text-muted">
-                                                <i class="fas fa-eye"></i> {{ number_format($berita->dibaca) }} dibaca
+                                                <i class="fas fa-eye"></i> {{ number_format($berita->views) }} dibaca
                                             </small>
                                         </div>
                                     @endif
 
                                     <div class="mt-auto">
-                                        <a href="{{ route('berita.show', $berita->judul_seo) }}" class="btn btn-outline-primary btn-sm">Baca Selengkapnya</a>
+                                        <a href="{{ route('berita.show', $berita->slug) }}" class="btn btn-outline-primary btn-sm">Baca Selengkapnya</a>
                                     </div>
                                 </div>
                             </div>

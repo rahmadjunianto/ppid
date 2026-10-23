@@ -17,6 +17,9 @@
                     Daftar Regulasi &amp; Peraturan
                 </h3>
                 <div class="card-tools">
+                    <a href="{{ route('admin.regulasi.create', ['jumlah' => 5]) }}" class="btn btn-success btn-sm">
+                        <i class="fas fa-layer-group"></i> Tambah Banyak
+                    </a>
                     <a href="{{ route('admin.regulasi.create') }}" class="btn btn-primary btn-sm">
                         <i class="fas fa-plus"></i> Tambah Regulasi
                     </a>

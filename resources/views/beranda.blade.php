@@ -514,7 +514,7 @@
             <div class="quick-access">
                 <div class="row">
                     <div class="col-md-3 col-6 mb-3">
-                        <a href="https://wa.me/?text=mas+pesen+tukin" target="_blank" class="quick-access-item">
+                        <a href="{{ url('/tata-cara-permohonan-informasi-publik') }}" class="quick-access-item">
                             <div class="service-icon mx-auto">
                                 <i class="bi bi-file-earmark-text text-white fs-4"></i>
                             </div>
@@ -661,7 +661,7 @@
                             </div>
                             <h5 class="card-title fw-semibold">Regulasi</h5>
                             <p class="card-text">Kumpulan peraturan dan regulasi terkait keterbukaan informasi publik.</p>
-                            <a href="#" class="btn btn-kemenag text-white">Lihat Detail</a>
+                            <a href="{{ route('regulasi.index') }}" class="btn btn-kemenag text-white">Lihat Detail</a>
                         </div>
                     </div>
                 </div>

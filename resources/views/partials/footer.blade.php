@@ -8,13 +8,13 @@
                         <a href="#" class="social-icon text-white text-decoration-none">
                             <i class="bi bi-facebook"></i>
                         </a>
-                        <a href="#" class="social-icon text-white text-decoration-none">
+                        <a href="https://www.instagram.com/kemenag_nganjuk/" class="social-icon text-white text-decoration-none">
                             <i class="bi bi-instagram"></i>
                         </a>
-                        <a href="#" class="social-icon text-white text-decoration-none">
+                        <a href="https://twitter.com/KemenagNganjuk" class="social-icon text-white text-decoration-none">
                             <i class="bi bi-twitter"></i>
                         </a>
-                        <a href="#" class="social-icon text-white text-decoration-none">
+                        <a href="https://www.youtube.com/@kemenagnganjukjatim" class="social-icon text-white text-decoration-none">
                             <i class="bi bi-youtube"></i>
                         </a>
                     </div>
@@ -26,18 +26,19 @@
                         <li class="mb-2"><a href="{{ url('/') }}" class="text-light text-decoration-none">Beranda</a></li>
                         <li class="mb-2"><a href="{{ url('/profil') }}" class="text-light text-decoration-none">Profil</a></li>
                         <li class="mb-2"><a href="{{ url('/regulasi') }}" class="text-light text-decoration-none">Regulasi &amp; Peraturan</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Informasi Publik</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Layanan</a></li>
+                        <li class="mb-2"><a href="{{ url('/pustaka-dokumen') }}" class="text-light text-decoration-none">Informasi Publik</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-6 mb-4">
                     <h6 class="fw-bold mb-3">Layanan</h6>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Permohonan Informasi</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Pengaduan</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Standar Layanan</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Download</a></li>
+                        <li class="mb-2"><a href="{{ url('/tata-cara-permohonan-informasi-publik') }}" class="text-light text-decoration-none">Permohonan Informasi</a></li>
+                        <li class="mb-2"><a href="{{ url('/tata-cara-pengajuan-keberatan') }}" class="text-light text-decoration-none">Pengajuan Keberatan</a></li>
+                        <li class="mb-2"><a href="{{ url('/tata-cara-permohonan-penyelesaian-sengketa-informasi') }}" class="text-light text-decoration-none">Permohonan Penyelesaian Sengketa</a></li>
+                        <li class="mb-2"><a href="{{ url('/standar-pengumuman-informasi') }}" class="text-light text-decoration-none">Standar Pengumuman Informasi</a></li>
+                        <li class="mb-2"><a href="{{ url('/tata-cara-pengaduan-masyarakat-dan-whistleblowing') }}" class="text-light text-decoration-none">Pengaduan Masyarakat dan Whistleblowing</a></li>
+                        <li class="mb-2"><a href="{{ url('/tata-cara-pengajuan-keberatan') }}" class="text-light text-decoration-none">Alasan Pengajuan Keberatan</a></li>
                     </ul>
                 </div>
 

@@ -99,43 +99,6 @@
             transform: translateY(-3px);
         }
 
-        .hero-section {
-            background: linear-gradient(135deg, var(--primary-color), #0a5a2f);
-            color: white;
-            padding: 80px 0 60px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="0.3" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="0.4" fill="rgba(255,255,255,0.1)"/></svg>');
-            background-size: 100px 100px;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .filter-section {
-            background: #f8f9fa;
-            padding: 30px 0;
-            border-bottom: 3px solid var(--primary-color);
-        }
-
-        .filter-card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border: 1px solid #e9ecef;
-        }
-
         .agenda-card {
             background: white;
             border-radius: 15px;
@@ -208,30 +171,6 @@
             color: #7b1fa2;
         }
 
-        .btn-filter {
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            background: white;
-            font-weight: 500;
-            border-radius: 25px;
-            padding: 8px 20px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-filter:hover,
-        .btn-filter.active {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .pagination-wrapper {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-top: 30px;
-        }
-
         .page-link {
             border: none;
             color: var(--primary-color);
@@ -275,15 +214,23 @@
         .breadcrumb {
             background: transparent;
             padding: 0;
+            margin-bottom: 1rem;
         }
 
         .breadcrumb-item a {
-            color: rgba(255,255,255,0.8);
+            color: var(--primary-color);
             text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-item a:hover {
+            color: var(--kemenag-secondary);
         }
 
         .breadcrumb-item.active {
-            color: white;
+            color: var(--primary-color);
+            font-weight: 600;
         }
 
         .no-results {
@@ -299,20 +246,12 @@
         }
 
         @media (max-width: 768px) {
-            .hero-section {
-                padding: 60px 0 40px;
-            }
-
             .agenda-date {
                 margin-bottom: 10px;
             }
 
             .agenda-date .day {
                 font-size: 1.5rem;
-            }
-
-            .filter-section {
-                padding: 20px 0;
             }
         }
     </style>
@@ -321,111 +260,54 @@
     <!-- Include Navbar -->
     @include('partials.navbar')
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="hero-content">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Agenda Kegiatan</li>
-                    </ol>
-                </nav>
-                <h1 class="display-4 fw-bold mb-3">Agenda Kegiatan</h1>
-                <p class="lead mb-0">Informasi lengkap mengenai kegiatan dan acara Kementerian Agama</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Filter Section -->
-    <section class="filter-section">
-        <div class="container">
-            <div class="filter-card p-4">
-                <form method="GET" action="{{ route('agenda.index') }}" class="row g-3 align-items-end">
-                    <div class="col-md-3">
-                        <label for="search" class="form-label fw-semibold">
-                            <i class="bi bi-search me-1"></i>Pencarian
-                        </label>
-                        <input type="text" class="form-control" id="search" name="search"
-                               value="{{ request('search') }}" placeholder="Cari agenda...">
-                    </div>
-
-                    <div class="col-md-2">
-                        <label for="bulan" class="form-label fw-semibold">
-                            <i class="bi bi-calendar-month me-1"></i>Bulan
-                        </label>
-                        <select class="form-select" id="bulan" name="bulan">
-                            <option value="">Semua Bulan</option>
-                            @foreach($bulanList as $key => $bulan)
-                                <option value="{{ $key }}" {{ request('bulan') == $key ? 'selected' : '' }}>
-                                    {{ $bulan }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="col-md-2">
-                        <label for="tahun" class="form-label fw-semibold">
-                            <i class="bi bi-calendar-year me-1"></i>Tahun
-                        </label>
-                        <select class="form-select" id="tahun" name="tahun">
-                            <option value="">Semua Tahun</option>
-                            @foreach($tahunList as $tahun)
-                                <option value="{{ $tahun }}" {{ request('tahun') == $tahun ? 'selected' : '' }}>
-                                    {{ $tahun }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="col-md-2">
-                        <label for="status" class="form-label fw-semibold">
-                            <i class="bi bi-clock me-1"></i>Status
-                        </label>
-                        <select class="form-select" id="status" name="status">
-                            <option value="">Semua Status</option>
-                            <option value="upcoming" {{ request('status') == 'upcoming' ? 'selected' : '' }}>
-                                Akan Datang
-                            </option>
-                            <option value="past" {{ request('status') == 'past' ? 'selected' : '' }}>
-                                Selesai
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="d-flex gap-2">
-                            <button type="submit" class="btn btn-filter flex-fill">
-                                <i class="bi bi-funnel me-1"></i>Filter
-                            </button>
-                            <a href="{{ route('agenda.index') }}" class="btn btn-outline-secondary">
-                                <i class="bi bi-arrow-clockwise"></i>
-                            </a>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
     <!-- Main Content -->
-    <section class="py-5">
+    <section class="py-4">
         <div class="container">
-            @if($agendas->count() > 0)
-                <div class="row">
-                    <div class="col-12 mb-4">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h3 class="fw-bold text-dark">
-                                <i class="bi bi-calendar-event text-success me-2"></i>
-                                Daftar Agenda
-                            </h3>
-                            <span class="badge bg-light text-dark fs-6">
-                                {{ $agendas->total() }} agenda ditemukan
-                            </span>
-                        </div>
-                    </div>
-                </div>
 
+            {{-- Breadcrumb --}}
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Agenda Kegiatan</li>
+                </ol>
+            </nav>
+
+            <div class="row mb-3 align-items-center g-3">
+                <div class="col-lg-5">
+                    <h4 class="fw-bold text-success mb-1"><i class="bi bi-calendar-event me-2"></i>Agenda Kegiatan</h4>
+                    <p class="text-muted mb-0 small">Informasi lengkap mengenai kegiatan dan acara Kementerian Agama</p>
+                </div>
+                <div class="col-lg-7">
+                    <form method="GET" action="{{ route('agenda.index') }}">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" placeholder="Cari agenda..." aria-label="Pencarian" value="{{ request('search') }}">
+                            <select name="bulan" class="form-select" style="max-width: 140px;" aria-label="Filter bulan" onchange="this.form.submit()">
+                                <option value="">Semua Bulan</option>
+                                @foreach($bulanList as $key => $bulan)
+                                    <option value="{{ $key }}" {{ request('bulan') == $key ? 'selected' : '' }}>{{ $bulan }}</option>
+                                @endforeach
+                            </select>
+                            <select name="tahun" class="form-select" style="max-width: 120px;" aria-label="Filter tahun" onchange="this.form.submit()">
+                                <option value="">Semua Tahun</option>
+                                @foreach($tahunList as $tahun)
+                                    <option value="{{ $tahun }}" {{ request('tahun') == $tahun ? 'selected' : '' }}>{{ $tahun }}</option>
+                                @endforeach
+                            </select>
+                            <select name="status" class="form-select" style="max-width: 140px;" aria-label="Filter status" onchange="this.form.submit()">
+                                <option value="">Semua Status</option>
+                                <option value="upcoming" {{ request('status') == 'upcoming' ? 'selected' : '' }}>Akan Datang</option>
+                                <option value="past" {{ request('status') == 'past' ? 'selected' : '' }}>Selesai</option>
+                            </select>
+                            <button class="btn btn-success" type="submit" title="Cari"><i class="bi bi-search"></i></button>
+                            @if(request()->anyFilled(['search', 'bulan', 'tahun', 'status']))
+                                <a href="{{ route('agenda.index') }}" class="btn btn-outline-secondary" title="Hapus filter"><i class="bi bi-x"></i></a>
+                            @endif
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            @if($agendas->count() > 0)
                 <div class="row g-4">
                     @foreach($agendas as $agenda)
                         <div class="col-lg-4 col-md-6">
@@ -491,16 +373,13 @@
 
                 <!-- Pagination -->
                 @if($agendas->hasPages())
-                    <div class="pagination-wrapper">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <div class="text-muted">
-                                Menampilkan {{ $agendas->firstItem() }} - {{ $agendas->lastItem() }}
-                                dari {{ $agendas->total() }} agenda
-                            </div>
-                        </div>
+                    <div class="d-flex justify-content-center mt-4">
                         {{ $agendas->appends(request()->query())->links('custom-pagination') }}
                     </div>
                 @endif
+                <p class="text-muted small text-center mt-3 mb-0">
+                    Menampilkan {{ $agendas->firstItem() ?? 0 }} - {{ $agendas->lastItem() ?? 0 }} dari {{ $agendas->total() }} agenda
+                </p>
             @else
                 <div class="no-results">
                     <i class="bi bi-calendar-x"></i>

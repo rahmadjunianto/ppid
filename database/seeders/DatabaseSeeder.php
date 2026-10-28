@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             // SurveyPeriodSeeder::class,
             GrupDokumenSeeder::class,
             InformasiBerkalaSeeder::class,
+            InformasiSetiapSaatSeeder::class,
             RegulasiSeeder::class,
         ]);
     }

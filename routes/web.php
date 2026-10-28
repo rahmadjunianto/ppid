@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\SurveyPeriodController;
 use App\Http\Controllers\SopController;
 use App\Http\Controllers\Admin\SopController as AdminSopController;
 use App\Http\Controllers\PublicInformasiBerkalaController;
+use App\Http\Controllers\PublicInformasiSetiapSaatController;
 use App\Http\Controllers\PustakaDokumenController;
 use App\Http\Controllers\Admin\GrupDokumenController;
 use App\Http\Controllers\RegulasiController;
@@ -313,6 +314,17 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         Route::delete('/{informasiBerkala}', [\App\Http\Controllers\Admin\InformasiBerkalaController::class, 'destroy'])->name('destroy');
     });
 
+    // Informasi Setiap Saat Management
+    Route::prefix('informasi-setiap-saat')->name('informasi-setiap-saat.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\InformasiSetiapSaatController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\Admin\InformasiSetiapSaatController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\Admin\InformasiSetiapSaatController::class, 'store'])->name('store');
+        Route::get('/{informasiSetiapSaat}', [\App\Http\Controllers\Admin\InformasiSetiapSaatController::class, 'show'])->name('show');
+        Route::get('/{informasiSetiapSaat}/edit', [\App\Http\Controllers\Admin\InformasiSetiapSaatController::class, 'edit'])->name('edit');
+        Route::put('/{informasiSetiapSaat}', [\App\Http\Controllers\Admin\InformasiSetiapSaatController::class, 'update'])->name('update');
+        Route::delete('/{informasiSetiapSaat}', [\App\Http\Controllers\Admin\InformasiSetiapSaatController::class, 'destroy'])->name('destroy');
+    });
+
     // Grup Dokumen Management
     Route::prefix('grup-dokumens')->name('grup-dokumens.')->group(function () {
         Route::get('/', [GrupDokumenController::class, 'index'])->name('index');
@@ -345,6 +357,13 @@ Route::prefix('informasi-berkala')->name('informasi-berkala.')->group(function (
     Route::get('/', [PublicInformasiBerkalaController::class, 'index'])->name('index');
     Route::get('/view/{id}', [PublicInformasiBerkalaController::class, 'view'])->name('view');
     Route::get('/download/{id}', [PublicInformasiBerkalaController::class, 'download'])->name('download');
+});
+
+// Public Informasi Setiap Saat Routes
+Route::prefix('informasi-setiap-saat')->name('informasi-setiap-saat.')->group(function () {
+    Route::get('/', [PublicInformasiSetiapSaatController::class, 'index'])->name('index');
+    Route::get('/view/{id}', [PublicInformasiSetiapSaatController::class, 'view'])->name('view');
+    Route::get('/download/{id}', [PublicInformasiSetiapSaatController::class, 'download'])->name('download');
 });
 
 // Public Regulasi & Peraturan Routes

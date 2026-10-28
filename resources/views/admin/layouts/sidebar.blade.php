@@ -85,8 +85,8 @@
                         </li>
                     </ul>
                 </li> --}}
-                <li class="nav-item {{ request()->routeIs(['admin.pegawai.*', 'admin.agenda.*', 'admin.pages.*', 'admin.sops.*', 'admin.regulasi.*', 'admin.informasi-berkala.*', 'admin.grup-dokumens.*', 'admin.pustaka-dokumens.*']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->routeIs(['admin.pegawai.*', 'admin.agenda.*', 'admin.pages.*', 'admin.sops.*', 'admin.regulasi.*', 'admin.informasi-berkala.*', 'admin.grup-dokumens.*', 'admin.pustaka-dokumens.*']) ? 'active' : '' }}">
+                <li class="nav-item {{ request()->routeIs(['admin.pegawai.*', 'admin.agenda.*', 'admin.pages.*', 'admin.sops.*', 'admin.regulasi.*', 'admin.informasi-berkala.*', 'admin.informasi-setiap-saat.*', 'admin.grup-dokumens.*', 'admin.pustaka-dokumens.*']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs(['admin.pegawai.*', 'admin.agenda.*', 'admin.pages.*', 'admin.sops.*', 'admin.regulasi.*', 'admin.informasi-berkala.*', 'admin.informasi-setiap-saat.*', 'admin.grup-dokumens.*', 'admin.pustaka-dokumens.*']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>Kelola <i class="fas fa-angle-left right"></i></p>
                     </a>
@@ -125,6 +125,12 @@
                             <a href="{{ route('admin.informasi-berkala.index') }}" class="nav-link {{ request()->routeIs('admin.informasi-berkala.*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p> Informasi Berkala</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.informasi-setiap-saat.index') }}" class="nav-link {{ request()->routeIs('admin.informasi-setiap-saat.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p> Informasi Setiap Saat</p>
                             </a>
                         </li>
                         <li class="nav-item">

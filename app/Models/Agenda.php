@@ -48,7 +48,7 @@ class Agenda extends Model
     // Scope untuk ordering
     public function scopeOrdered($query)
     {
-        return $query->orderBy('tanggal_mulai', 'asc')->orderBy('urutan', 'asc');
+        return $query->orderBy('tanggal_mulai', 'desc')->orderBy('urutan', 'asc');
     }
 
     // Accessor untuk format tanggal Indonesia

@@ -481,7 +481,7 @@
         </div>
     </div>
 <!-- Lampiran / Embed Aplikasi -->
-<div class="content-section" style="margin-top: 4rem; margin-bottom: 4rem;">
+<!-- <div class="content-section" style="margin-top: 4rem; margin-bottom: 4rem;">
     <h2 class="section-title">
         <i class="bi bi-folder2-open"></i> Lampiran / Embed Aplikasi
     </h2>
@@ -504,7 +504,7 @@
             </p>
         </div>
     </div>
-</div>
+</div> -->
 
 <!-- Footer -->
 @include('partials.footer')

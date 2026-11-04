@@ -36,6 +36,9 @@
                         <li><a class="dropdown-item {{ request()->is('tugas-fungsi') ? 'active' : '' }}" href="{{ url('/tugas-fungsi') }}">
                             <i class="bi bi-list-task me-2"></i>Tugas dan Fungsi
                         </a></li>
+                        <li><a class="dropdown-item {{ request()->is('sejarah-kantor-kementerian-agama-kabupaten-nganjuk') ? 'active' : '' }}" href="{{ url('/sejarah-kantor-kementerian-agama-kabupaten-nganjuk') }}">
+                            <i class="bi bi-journal-text"></i>Sejarah Kantor
+                        </a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

@@ -29,6 +29,15 @@ class DynamicListColumn extends Model
         'file' => 'Upload File',
     ];
 
+    /** Lebar minimum kolom yang boleh diatur (piksel). */
+    public const MIN_WIDTH = 40;
+
+    /** Lebar maksimum kolom yang boleh diatur (piksel). */
+    public const MAX_WIDTH = 1000;
+
+    /** Lebar fallback (piksel) untuk kolom yang lebarnya otomatis. */
+    public const FALLBACK_WIDTH = 160;
+
     protected $table = 'dynamic_list_columns';
 
     protected $fillable = [
@@ -41,6 +50,7 @@ class DynamicListColumn extends Model
         'is_multiple',
         'is_required',
         'sort_order',
+        'width',
     ];
 
     protected $casts = [
@@ -48,6 +58,7 @@ class DynamicListColumn extends Model
         'is_multiple' => 'boolean',
         'is_required' => 'boolean',
         'sort_order' => 'integer',
+        'width' => 'integer',
     ];
 
     protected static function booted(): void
@@ -106,6 +117,38 @@ class DynamicListColumn extends Model
     public function isFileType(): bool
     {
         return $this->type === 'file' || ($this->type === 'action' && $this->action_type === 'file');
+    }
+
+    /**
+     * Apakah kolom ini memiliki lebar khusus (dalam piksel)?
+     */
+    public function hasWidth(): bool
+    {
+        return $this->width !== null && (int) $this->width > 0;
+    }
+
+    /**
+     * Gaya CSS untuk lebar kolom; null berarti lebarnya otomatis.
+     */
+    public function widthStyle(): ?string
+    {
+        return $this->hasWidth() ? 'width: '.$this->width.'px;' : null;
+    }
+
+    /**
+     * Lebar efektif kolom (piksel). Kolom otomatis memakai lebar fallback.
+     */
+    public function resolvedWidth(): int
+    {
+        return $this->hasWidth() ? (int) $this->width : self::FALLBACK_WIDTH;
+    }
+
+    /**
+     * Label lebar untuk ditampilkan pada halaman pengelolaan.
+     */
+    public function widthLabel(): string
+    {
+        return $this->hasWidth() ? $this->width.' px' : 'Otomatis';
     }
 
     public function typeLabel(): string

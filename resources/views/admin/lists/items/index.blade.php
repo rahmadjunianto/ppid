@@ -61,7 +61,7 @@
                         <tr>
                             <th width="50" class="text-center">No</th>
                             @foreach($dynamicList->columns as $column)
-                                <th>{{ $column->label }}</th>
+                                <th class="text-break">{{ $column->label }}</th>
                             @endforeach
                             <th width="120" class="text-center">Aksi</th>
                         </tr>
@@ -71,7 +71,7 @@
                             <tr>
                                 <td class="text-center text-muted">{{ $index + 1 }}</td>
                                 @foreach($dynamicList->columns as $column)
-                                    <td>
+                                    <td class="text-break">
                                         @include('admin.lists.items._cell', ['column' => $column, 'item' => $item])
                                     </td>
                                 @endforeach

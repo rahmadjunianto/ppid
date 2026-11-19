@@ -219,7 +219,7 @@ class DynamicListTest extends TestCase
     public function test_menduplikasi_daftar_menyalin_kolom_tanpa_menyalin_data(): void
     {
         $list = $this->makeList(['title' => 'Daftar Asal']);
-        $column = $this->makeColumn($list, ['label' => 'Nama', 'type' => 'text']);
+        $column = $this->makeColumn($list, ['label' => 'Nama', 'type' => 'text', 'width' => 180]);
         $this->makeItem($list, [$column->key => 'Budi']);
 
         $response = $this->post(route('admin.lists.duplicate', $list));
@@ -231,6 +231,7 @@ class DynamicListTest extends TestCase
         $this->assertSame('draft', $copy->status);
         $this->assertCount(1, $copy->columns);
         $this->assertSame('nama', $copy->columns->first()->key);
+        $this->assertSame(180, (int) $copy->columns->first()->width);
         $this->assertSame(0, $copy->items()->count());
     }
 
@@ -438,6 +439,175 @@ class DynamicListTest extends TestCase
         $this->delete(route('admin.lists.columns.destroy', [$listA, $column]))->assertNotFound();
 
         $this->assertNotNull(DynamicListColumn::find($column->id));
+    }
+
+    /* ---------------------------------------------------------------------
+     | Lebar kolom (width)
+     | -------------------------------------------------------------------- */
+
+    public function test_menyimpan_kolom_dengan_lebar_khusus(): void
+    {
+        $list = $this->makeList();
+
+        $response = $this->post(route('admin.lists.columns.store', $list), [
+            'label' => 'Kolom Lebar',
+            'type' => 'text',
+            'sort_order' => 0,
+            'width' => 220,
+        ]);
+
+        $response->assertRedirect(route('admin.lists.columns.index', $list));
+
+        $column = $list->columns()->where('label', 'Kolom Lebar')->first();
+
+        $this->assertNotNull($column);
+        $this->assertSame(220, (int) $column->width);
+        $this->assertTrue($column->hasWidth());
+
+        $this->get(route('admin.lists.columns.index', $list))
+            ->assertOk()
+            ->assertSee('220 px');
+    }
+
+    public function test_lebar_kolom_kosong_berarti_otomatis(): void
+    {
+        $list = $this->makeList();
+
+        $this->post(route('admin.lists.columns.store', $list), [
+            'label' => 'Kolom Otomatis',
+            'type' => 'text',
+            'sort_order' => 0,
+            'width' => '',
+        ])->assertRedirect(route('admin.lists.columns.index', $list));
+
+        $column = $list->columns()->where('label', 'Kolom Otomatis')->first();
+
+        $this->assertNotNull($column);
+        $this->assertNull($column->width);
+        $this->assertFalse($column->hasWidth());
+
+        $this->get(route('admin.lists.columns.index', $list))
+            ->assertOk()
+            ->assertSee('Otomatis');
+    }
+
+    public function test_lebar_kolom_diluar_rentang_ditolak(): void
+    {
+        $list = $this->makeList();
+
+        $this->post(route('admin.lists.columns.store', $list), [
+            'label' => 'Kolom Terlalu Sempit',
+            'type' => 'text',
+            'width' => 10,
+        ])->assertSessionHasErrors('width');
+
+        $this->post(route('admin.lists.columns.store', $list), [
+            'label' => 'Kolom Terlalu Lebar',
+            'type' => 'text',
+            'width' => 5000,
+        ])->assertSessionHasErrors('width');
+
+        $this->assertSame(0, $list->columns()->count());
+    }
+
+    public function test_formulir_kolom_menampilkan_input_lebar(): void
+    {
+        $list = $this->makeList();
+        $column = $this->makeColumn($list, ['label' => 'Kolom Uji', 'width' => 175]);
+
+        $this->get(route('admin.lists.columns.create', $list))
+            ->assertOk()
+            ->assertSee('name="width"', false)
+            ->assertSee('Lebar Kolom (px)', false);
+
+        $this->get(route('admin.lists.columns.edit', [$list, $column]))
+            ->assertOk()
+            ->assertSee('name="width"', false)
+            ->assertSee('value="175"', false);
+    }
+
+    public function test_memperbarui_lebar_kolom(): void
+    {
+        $list = $this->makeList();
+        $column = $this->makeColumn($list, ['label' => 'Lebar Lama', 'width' => 120]);
+
+        $this->put(route('admin.lists.columns.update', [$list, $column]), [
+            'label' => 'Lebar Baru',
+            'type' => 'text',
+            'width' => 320,
+        ])->assertRedirect(route('admin.lists.columns.index', $list));
+
+        $this->assertSame(320, (int) $column->fresh()->width);
+
+        // Kosongkan kembali -> lebar otomatis.
+        $this->put(route('admin.lists.columns.update', [$list, $column]), [
+            'label' => 'Lebar Baru',
+            'type' => 'text',
+            'width' => '',
+        ])->assertRedirect(route('admin.lists.columns.index', $list));
+
+        $this->assertNull($column->fresh()->width);
+    }
+
+    public function test_lebar_kolom_tidak_diterapkan_di_halaman_data_admin(): void
+    {
+        $list = $this->makeList();
+        $column = $this->makeColumn($list, ['label' => 'Judul Dokumen', 'width' => 250]);
+        $this->makeItem($list, [$column->key => 'Dokumen A']);
+
+        $response = $this->get(route('admin.lists.items.index', $list));
+
+        $response->assertOk();
+        $response->assertDontSee('width: 250px', false);
+    }
+
+    public function test_lebar_kolom_diterapkan_di_halaman_publik(): void
+    {
+        $list = $this->makeList(['status' => 'published']);
+        $column = $this->makeColumn($list, ['label' => 'Judul Dokumen', 'width' => 250]);
+        $this->makeItem($list, [$column->key => 'Dokumen A']);
+
+        $response = $this->get(route('lists.show', $list->slug));
+
+        $response->assertOk();
+        $response->assertSee('width: 250px', false);
+    }
+
+    /* ---------------------------------------------------------------------
+     | Tampilan link aksi
+     | -------------------------------------------------------------------- */
+
+    public function test_link_aksi_di_halaman_publik_menampilkan_icon_tanpa_label(): void
+    {
+        $list = $this->makeList(['status' => 'published']);
+        $internal = $this->makeColumn($list, ['label' => 'Dokumen Internal', 'type' => 'action', 'action_type' => 'internal']);
+        $external = $this->makeColumn($list, ['label' => 'Situs External', 'type' => 'action', 'action_type' => 'external']);
+        $this->makeItem($list, [
+            $internal->key => '/dokumen/internal',
+            $external->key => 'https://contoh.go.id/dokumen',
+        ]);
+
+        $response = $this->get(route('lists.show', $list->slug));
+
+        $response->assertOk();
+        $response->assertSee('fas fa-external-link-alt me-1', false);
+        $response->assertSee('href="https://contoh.go.id/dokumen"', false);
+
+        // Teks label link sudah dihapus di tampilan publik.
+        $response->assertDontSee('</i>https://contoh.go.id/dokumen', false);
+        $response->assertDontSee('</i>/dokumen/internal', false);
+    }
+
+    public function test_link_aksi_di_halaman_admin_tetap_menampilkan_label(): void
+    {
+        $list = $this->makeList();
+        $external = $this->makeColumn($list, ['label' => 'Situs External', 'type' => 'action', 'action_type' => 'external']);
+        $this->makeItem($list, [$external->key => 'https://contoh.go.id/dokumen']);
+
+        $response = $this->get(route('admin.lists.items.index', $list));
+
+        $response->assertOk();
+        $response->assertSee('</i>https://contoh.go.id/dokumen', false);
     }
 
     /* ---------------------------------------------------------------------

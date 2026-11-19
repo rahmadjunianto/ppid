@@ -49,6 +49,7 @@
                         <th>Jenis Aksi</th>
                         <th class="text-center">Required</th>
                         <th class="text-center">Multi</th>
+                        <th width="110" class="text-center">Lebar</th>
                         <th width="160" class="text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -75,6 +76,13 @@
                                 @endif
                             </td>
                             <td class="text-center">
+                                @if($column->hasWidth())
+                                    <span class="badge bg-success">{{ $column->width }} px</span>
+                                @else
+                                    <span class="badge bg-light text-dark border">Otomatis</span>
+                                @endif
+                            </td>
+                            <td class="text-center">
                                 <a href="{{ route('admin.lists.columns.edit', [$dynamicList, $column]) }}" class="btn btn-outline-success btn-sm" title="Edit">
                                     <i class="fas fa-edit"></i>
                                 </a>
@@ -90,7 +98,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" class="text-center text-muted py-4">
+                            <td colspan="9" class="text-center text-muted py-4">
                                 <i class="fas fa-columns fa-2x mb-2"></i>
                                 <p class="mb-0">Belum ada kolom. Tambahkan kolom untuk membentuk struktur data.</p>
                             </td>

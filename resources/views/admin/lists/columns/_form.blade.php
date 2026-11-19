@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-group">
             <label for="sort_order">Urutan</label>
             <input type="number" name="sort_order" id="sort_order" min="0"
@@ -76,7 +76,23 @@
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="width">Lebar Kolom (px)</label>
+            <input type="number" name="width" id="width" step="10"
+                   min="{{ \App\Models\DynamicListColumn::MIN_WIDTH }}"
+                   max="{{ \App\Models\DynamicListColumn::MAX_WIDTH }}"
+                   class="form-control @error('width') is-invalid @enderror"
+                   value="{{ old('width', $isEdit ? $column->width : '') }}"
+                   placeholder="Otomatis">
+            <small class="form-text text-muted">
+                Kosongkan untuk lebar otomatis. Rentang {{ \App\Models\DynamicListColumn::MIN_WIDTH }}-{{ \App\Models\DynamicListColumn::MAX_WIDTH }} piksel.
+            </small>
+            @error('width')<span class="invalid-feedback">{{ $message }}</span>@enderror
+        </div>
+    </div>
+
+    <div class="col-md-3">
         <div class="form-check mt-4">
             <input type="hidden" name="is_multiple" value="0">
             <input type="checkbox" class="form-check-input" id="is_multiple" name="is_multiple" value="1"
@@ -85,7 +101,7 @@
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-check mt-4">
             <input type="hidden" name="is_required" value="0">
             <input type="checkbox" class="form-check-input" id="is_required" name="is_required" value="1"

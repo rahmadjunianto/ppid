@@ -81,6 +81,7 @@
                                         <th>Key</th>
                                         <th>Tipe</th>
                                         <th>Jenis Aksi</th>
+                                        <th width="100" class="text-center">Lebar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -91,10 +92,11 @@
                                             <td><code>{{ $column->key }}</code></td>
                                             <td>{{ $column->typeLabel() }}</td>
                                             <td>{{ $column->actionTypeLabel() ?? '-' }}</td>
+                                            <td class="text-center">{{ $column->widthLabel() }}</td>
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="5" class="text-center text-muted py-3">
+                                            <td colspan="6" class="text-center text-muted py-3">
                                                 Belum ada kolom. Tambahkan kolom terlebih dahulu.
                                             </td>
                                         </tr>

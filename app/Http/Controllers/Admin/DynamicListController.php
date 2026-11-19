@@ -140,6 +140,7 @@ class DynamicListController extends Controller
                 'is_multiple' => $column->is_multiple,
                 'is_required' => $column->is_required,
                 'sort_order' => $column->sort_order,
+                'width' => $column->width,
             ]);
         }
 

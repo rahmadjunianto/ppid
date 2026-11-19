@@ -7,7 +7,7 @@
     @php $columnFiles = $item->files->where('dynamic_list_column_id', $column->id); @endphp
     @forelse($columnFiles as $columnFile)
         <a href="{{ route('lists.file.download', $columnFile->id) }}" class="d-block small text-truncate"
-           style="max-width: 180px;" title="{{ $columnFile->original_name }}">
+           style="max-width: 100%;" title="{{ $columnFile->original_name }}">
             <i class="fas fa-paperclip me-1"></i>{{ $columnFile->original_name }}
         </a>
     @empty

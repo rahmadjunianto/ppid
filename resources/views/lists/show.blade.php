@@ -26,12 +26,19 @@
     <div class="card shadow-sm border-0">
         <div class="card-body p-0">
             <div class="table-responsive">
-                <table class="table table-bordered table-hover mb-0">
+                <table class="table table-bordered table-hover mb-0"
+                       style="table-layout: fixed; width: 100%; min-width: {{ $dynamicList->tableMinWidth() }}px;">
+                    <colgroup>
+                        <col style="width: 50px;">
+                        @foreach($dynamicList->columns as $column)
+                            <col @if($column->hasWidth()) style="{{ $column->widthStyle() }}" @endif>
+                        @endforeach
+                    </colgroup>
                     <thead style="background: linear-gradient(135deg, #1e5631 0%, #2d8f47 100%); color: white;">
                         <tr>
                             <th width="50" class="text-center">No</th>
                             @foreach($dynamicList->columns as $column)
-                                <th>{{ $column->label }}</th>
+                                <th class="text-break">{{ $column->label }}</th>
                             @endforeach
                         </tr>
                     </thead>
@@ -40,7 +47,7 @@
                             <tr>
                                 <td class="text-center text-muted">{{ $index + 1 }}</td>
                                 @foreach($dynamicList->columns as $column)
-                                    <td>
+                                    <td class="text-break">
                                         @include('lists._cell', ['column' => $column, 'item' => $item])
                                     </td>
                                 @endforeach

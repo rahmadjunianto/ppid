@@ -31,6 +31,7 @@ class DynamicListColumnController extends Controller
         $validated['is_multiple'] = $request->boolean('is_multiple');
         $validated['is_required'] = $request->boolean('is_required');
         $validated['options'] = $this->parseOptions($request, $validated['type']);
+        $validated['width'] = $this->resolveWidth($request);
         $validated['key'] = $this->resolveKey($request, $dynamicList);
 
         $dynamicList->columns()->create($validated);
@@ -56,6 +57,7 @@ class DynamicListColumnController extends Controller
         $validated['is_multiple'] = $request->boolean('is_multiple');
         $validated['is_required'] = $request->boolean('is_required');
         $validated['options'] = $this->parseOptions($request, $validated['type']);
+        $validated['width'] = $this->resolveWidth($request);
 
         // Bila key diubah, pindahkan nilai data pada item ke key baru.
         $newKey = $this->resolveKey($request, $dynamicList, $column->id);
@@ -127,10 +129,14 @@ class DynamicListColumnController extends Controller
             'is_multiple' => 'nullable|boolean',
             'is_required' => 'nullable|boolean',
             'sort_order' => 'nullable|integer|min:0',
+            'width' => 'nullable|integer|min:'.DynamicListColumn::MIN_WIDTH.'|max:'.DynamicListColumn::MAX_WIDTH,
         ], [
             'action_type.required_if' => 'Kolom aksi wajib memilih jenis aksi: link internal, link eksternal, atau upload file.',
             'type.in' => 'Tipe kolom tidak valid.',
             'action_type.in' => 'Jenis aksi tidak valid.',
+            'width.integer' => 'Lebar kolom harus berupa angka (piksel).',
+            'width.min' => 'Lebar kolom minimal '.DynamicListColumn::MIN_WIDTH.' piksel.',
+            'width.max' => 'Lebar kolom maksimal '.DynamicListColumn::MAX_WIDTH.' piksel.',
         ]);
     }
 
@@ -170,6 +176,18 @@ class DynamicListColumnController extends Controller
         }
 
         return $options;
+    }
+
+    /**
+     * Normalisasi lebar kolom (piksel). Kosong berarti otomatis (null).
+     */
+    private function resolveWidth(Request $request): ?int
+    {
+        if (! $request->filled('width')) {
+            return null;
+        }
+
+        return (int) $request->input('width');
     }
 
     /**

@@ -89,6 +89,18 @@ class DynamicList extends Model
         return $query->orderBy('sort_order')->orderBy('id');
     }
 
+    /**
+     * Lebar minimum tabel publik (piksel) supaya kolom tidak saling menekan.
+     *
+     * Lebar kolom hanya diterapkan pada tabel publik; tabel admin memakai layout otomatis.
+     */
+    public function tableMinWidth(): int
+    {
+        $columnsWidth = $this->columns->sum(fn (DynamicListColumn $column) => $column->resolvedWidth());
+
+        return max(50 + $columnsWidth, 640);
+    }
+
     public function getPublicUrlAttribute(): string
     {
         return route('lists.show', $this->slug);

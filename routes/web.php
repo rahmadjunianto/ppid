@@ -25,6 +25,10 @@ use App\Http\Controllers\Admin\GrupDokumenController;
 use App\Http\Controllers\RegulasiController;
 use App\Http\Controllers\Admin\RegulasiController as AdminRegulasiController;
 use App\Http\Controllers\Admin\PustakaDokumenController as AdminPustakaDokumenController;
+use App\Http\Controllers\Admin\DynamicListController as AdminDynamicListController;
+use App\Http\Controllers\Admin\DynamicListColumnController as AdminDynamicListColumnController;
+use App\Http\Controllers\Admin\DynamicListItemController as AdminDynamicListItemController;
+use App\Http\Controllers\PublicDynamicListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -344,6 +348,41 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         Route::put('/{pustakaDokumen}', [AdminPustakaDokumenController::class, 'update'])->name('update');
         Route::delete('/{pustakaDokumen}', [AdminPustakaDokumenController::class, 'destroy'])->name('destroy');
     });
+
+    // Dynamic Lists Management (daftar dengan kolom dinamis)
+    Route::prefix('lists')->name('lists.')->group(function () {
+        Route::get('/', [AdminDynamicListController::class, 'index'])->name('index');
+        Route::get('/create', [AdminDynamicListController::class, 'create'])->name('create');
+        Route::post('/', [AdminDynamicListController::class, 'store'])->name('store');
+        Route::get('/{dynamicList}', [AdminDynamicListController::class, 'show'])->name('show');
+        Route::get('/{dynamicList}/edit', [AdminDynamicListController::class, 'edit'])->name('edit');
+        Route::put('/{dynamicList}', [AdminDynamicListController::class, 'update'])->name('update');
+        Route::delete('/{dynamicList}', [AdminDynamicListController::class, 'destroy'])->name('destroy');
+        Route::post('/{dynamicList}/toggle-status', [AdminDynamicListController::class, 'toggleStatus'])->name('toggle-status');
+        Route::post('/{dynamicList}/duplicate', [AdminDynamicListController::class, 'duplicate'])->name('duplicate');
+
+        // Kolom dinamis
+        Route::prefix('{dynamicList}/columns')->name('columns.')->group(function () {
+            Route::get('/', [AdminDynamicListColumnController::class, 'index'])->name('index');
+            Route::get('/create', [AdminDynamicListColumnController::class, 'create'])->name('create');
+            Route::post('/', [AdminDynamicListColumnController::class, 'store'])->name('store');
+            Route::get('/{column}/edit', [AdminDynamicListColumnController::class, 'edit'])->name('edit');
+            Route::put('/{column}', [AdminDynamicListColumnController::class, 'update'])->name('update');
+            Route::delete('/{column}', [AdminDynamicListColumnController::class, 'destroy'])->name('destroy');
+            Route::post('/update-order', [AdminDynamicListColumnController::class, 'updateOrder'])->name('update-order');
+        });
+
+        // Baris data
+        Route::prefix('{dynamicList}/items')->name('items.')->group(function () {
+            Route::get('/', [AdminDynamicListItemController::class, 'index'])->name('index');
+            Route::get('/create', [AdminDynamicListItemController::class, 'create'])->name('create');
+            Route::post('/', [AdminDynamicListItemController::class, 'store'])->name('store');
+            Route::get('/{item}/edit', [AdminDynamicListItemController::class, 'edit'])->name('edit');
+            Route::put('/{item}', [AdminDynamicListItemController::class, 'update'])->name('update');
+            Route::delete('/{item}', [AdminDynamicListItemController::class, 'destroy'])->name('destroy');
+            Route::post('/update-order', [AdminDynamicListItemController::class, 'updateOrder'])->name('update-order');
+        });
+    });
 });
 // Public SOP Routes
 Route::prefix('sop')->name('sop.')->group(function () {
@@ -383,6 +422,12 @@ Route::prefix('pustaka-dokumen')->name('pustaka-dokumen.')->group(function () {
 });
 
 
+
+// Public Dynamic List Routes (harus didaftarkan sebelum catch-all /{slug})
+Route::prefix('lists')->name('lists.')->group(function () {
+    Route::get('/file/{file}/download', [PublicDynamicListController::class, 'downloadFile'])->name('file.download');
+    Route::get('/{slug}', [PublicDynamicListController::class, 'show'])->name('show');
+});
 
 // Public Pegawai Routes
 Route::prefix('pegawai')->name('pegawai.')->group(function () {

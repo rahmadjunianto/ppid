@@ -145,6 +145,12 @@
                                 <p> Daftar Informasi Publik</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.lists.index') }}" class="nav-link {{ request()->routeIs('admin.lists.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p> Daftar Dinamis</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
